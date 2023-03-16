@@ -13,7 +13,7 @@ const Graphs: React.FC = ()=>{
   
 
     return(
-      <div>
+      <div className='font-color'>
 
         <div id='banner'>
         BANNER HERE

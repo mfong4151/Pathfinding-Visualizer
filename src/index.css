@@ -77,14 +77,11 @@ code {
 
   width:39%;
   height:100%;
-  color:var(--color-white);
 }
 
 #page-right{
   width:60%;
   height:100%;
-  /* height:auto; */
-  color:var(--color-white);
 
 }
 
