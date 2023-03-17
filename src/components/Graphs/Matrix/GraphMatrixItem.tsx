@@ -50,7 +50,9 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, mouseDownState, pos}) =>
         <div className={`tile ${tileFocus} ${matrix[row][col]}`} 
         onMouseEnter={handleMouseEnter}
         onDoubleClick={()=> setMouseDown(!mouseDown)}
-        />
+        >
+            {matrix[row][col]}
+        </div>
     );
 
 }
