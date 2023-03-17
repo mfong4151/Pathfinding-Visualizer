@@ -49,7 +49,7 @@ code {
 
 /* general design styles */
 
-#banner{
+.banner{
   min-height: 48px;
 
 }
@@ -58,9 +58,6 @@ code {
 
 
 
-.tab-bg{
-  background-color: var(--color-charcol);
-}
 
 .font-color{
   color:var(--color-white);
@@ -71,17 +68,32 @@ code {
   width: 100vw;
   display: flex;
   justify-content: space-between;
+
 }
 
 #page-left{
 
   width:39%;
   height:100%;
+  background-color: var(--color-charcol);
+
 }
 
 #page-right{
   width:60%;
   height:100%;
+  background-color: var(--color-charcol);
 
 }
 
+.sq-buttons{
+  background-color: var(--color-charcol);
+  color: var(--color-white);
+  border-radius: .5rem;
+  border: 0;
+}
+
+.banner-button{
+  height:2rem;
+  width:8rem;
+}

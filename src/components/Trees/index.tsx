@@ -13,7 +13,7 @@ const Trees: React.FC = ()=>{
     return(
       <div className='font-color'>
 
-        <div id='banner'>
+        <div className='banner'>
         BANNER HERE
 
         </div>
@@ -22,9 +22,7 @@ const Trees: React.FC = ()=>{
           <div id='page-left' className='tab-bg'>
             Test
           </div>
-          <div className='adjbar'>
-
-          </div>
+          <div className='adjbar'/>
           <div id='page-right' className='tab-bg'>
             test2
           </div>  

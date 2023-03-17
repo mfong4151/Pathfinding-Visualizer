@@ -12,8 +12,7 @@ const LinkedLists: React.FC = ()=>{
     return(
       <div className='font-color'>
 
-        <div id='banner'>
-        BANNER HERE
+        <div className='banner'>
 
         </div>
 
@@ -21,9 +20,7 @@ const LinkedLists: React.FC = ()=>{
           <div id='page-left' className='tab-bg'>
             Test
           </div>
-          <div className='adjbar'>
-
-          </div>
+          <div className='adjbar'/>
           <div id='page-right' className='tab-bg'>
             test2
           </div>  
