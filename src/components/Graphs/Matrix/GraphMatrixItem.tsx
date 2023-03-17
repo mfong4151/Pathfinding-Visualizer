@@ -1,23 +1,55 @@
 import React, {useEffect, useState} from "react";
-import { Props} from "../commonInterface/modelMatrixState"
+
+export interface Props{
+    matrixState:{
+        matrix: Array<any>;
+        setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
+    } 
+    
+    mouseDownState:{
+        mouseDown: boolean;
+        setMouseDown: React.Dispatch<React.SetStateAction<boolean>>
+    }
+    pos:{
+        row:number;
+        col:number;
+    }
+} 
 
 
 
 //probably will want to refactor to take props
-const GraphMatrixItem: React.FC<Props> = ({matrixState}) =>{
-    const [tileFocus, setTileFocus] = useState('')
-    const [tileContent, setTileContent] = useState('')
+const GraphMatrixItem: React.FC<Props> = ({matrixState, mouseDownState, pos}) =>{
+    const [tileFocus, setTileFocus] = useState('');
     const {matrix, setMatrix} = matrixState;
-    const wallOnConditions = ['start', 'end', 'wall']
+    const {mouseDown, setMouseDown} = mouseDownState;
+    const {row, col} = pos;
 
-    
+
+    const handleMouseEnter = (e: React.FormEvent) =>{
+        e.stopPropagation();
+        
+        if (!mouseDown) return
+
+        const newMatrix = [...matrix];
+
+        if(matrix[row][col] ===''){
+            newMatrix[row][col] = 'wall'
+            setMatrix(prev =>newMatrix)
+
+        }else if (matrix[row][col] === 'wall'){
+            newMatrix[row][col] = ''
+            setMatrix(prev => newMatrix)
+        }
+        
+        return
+    }
+
+
     return(
-        <div className={`tile ${tileFocus} ${tileContent}
-
-            `} 
-        onMouseEnter={()=> setTileFocus('')}
-        onMouseLeave={()=>setTileFocus('')}
-        onMouseDown={()=>setTileContent(!wallOnConditions.includes(tileContent) ? 'wall' : '')}
+        <div className={`tile ${tileFocus} ${matrix[row][col]}`} 
+        onMouseEnter={handleMouseEnter}
+        onDoubleClick={()=> setMouseDown(!mouseDown)}
         />
     );
 
