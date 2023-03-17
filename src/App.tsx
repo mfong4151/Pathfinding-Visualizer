@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/index'
 import Graphs from './components/Graphs/index'
-import Trees from './components/Graphs/index'
-import LinkedLists from './components/Graphs/index'
+import Trees from './components/Trees/index'
+import LinkedLists from './components/LinkedLists/index'
 
 const App: React.FC = () => {
   
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/graphs" Component={Graphs}/>
         <Route path="/trees" Component={Trees}/>  
-        <Route path="/linked-lists" Component={LinkedLists}/>  
+        <Route path="/linked_lists" Component={LinkedLists}/>  
       </Routes>
     </div>
   );

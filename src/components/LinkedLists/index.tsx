@@ -18,7 +18,7 @@ const LinkedLists: React.FC = ()=>{
 
         <div className='page-body'>
           <div id='page-left' className='tab-bg'>
-            Test
+            linky
           </div>
           <div className='adjbar'/>
           <div id='page-right' className='tab-bg'>

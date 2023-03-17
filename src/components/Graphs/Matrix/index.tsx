@@ -1,14 +1,6 @@
 import React from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
-
-interface Props{
-    matrixState:{
-        matrix: Array<any>;
-        setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
-    } 
-
-
-} 
+import { Props} from "../commonInterface/modelMatrixState"
 
 
 const GraphMatrix: React.FC<Props> = ({matrixState})=>{
@@ -17,11 +9,9 @@ const GraphMatrix: React.FC<Props> = ({matrixState})=>{
     return(
         <div className="matrix">
             {matrix.map((row : Array<Array<String>>, idx: number)=> 
-                <div>
+                <div id={`row-${idx}`} className='udc' key={idx}>
                     {
-                        row.map((cell: Array<String>, idx: number) =>
-                        <GraphMatrixItem/>
-                        )
+                        row.map((cell: Array<String>, idx: number) =><GraphMatrixItem matrixState={matrixState} key={idx}/>)
                     }
                   
                 </div>
