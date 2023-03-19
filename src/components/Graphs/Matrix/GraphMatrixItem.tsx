@@ -45,13 +45,14 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, mouseDownState, pos}) =>
         return
     }
 
-
+    // still having issues with the entire on mouse sequence, need to refactor so that if it leaves the square then it turns back to normal
     return(
         <div className={`tile ${tileFocus} ${matrix[row][col]}`} 
-        onMouseEnter={handleMouseEnter}
-        onDoubleClick={()=> setMouseDown(!mouseDown)}
+            onMouseEnter={handleMouseEnter}
+            onMouseDown={()=> setMouseDown(true)}
+            onMouseUp={()=> setMouseDown(false)}
         >
-            {matrix[row][col]}
+           
         </div>
     );
 
