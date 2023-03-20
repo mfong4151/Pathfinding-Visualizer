@@ -12,20 +12,27 @@ const Canvas: React.FC = () => {
 
     
   return (
+    <>
       <DndProvider backend={HTML5Backend}>
+         <div className="canvas-toolbar">
+
+
+         </div>
+        
          <div className='canvas'>
             {temp.map((node : number, idx) =>
 
 
                   <div className="node"> 
-                  {node} 
-                </div>
-                )}
+                    {node} 
+                  </div>
+            )}
 
 
           </div>
         </DndProvider>
-        )
+     </>
+    )
       
 }
  
