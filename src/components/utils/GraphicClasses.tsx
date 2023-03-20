@@ -1,5 +1,5 @@
 
-class GraphicNode{
+export class GraphicNode{
     id: number;
     type: string;
     subtype: string;
@@ -28,4 +28,3 @@ class GraphicNode{
 
 }
 
-export default GraphicNode;
