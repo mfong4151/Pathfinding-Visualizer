@@ -16,7 +16,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/linked-lists" className="activeLink">
+          <NavLink to="/linked_lists" className="activeLink">
             Linked Lists
           </NavLink>
         </li>

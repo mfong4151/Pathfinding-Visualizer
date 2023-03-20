@@ -19,7 +19,6 @@ const Graphs: React.FC = ()=>{
 
     return(
       <div className='font-color'>
-        {/* might wanna refactor this into its own component */}
 
         <MatrixBanner matrixBannerStates={{matrixNodes, setMatrixNodes, setMatrix, matrix, matrixDim, setMatrixDim}}/>  
 

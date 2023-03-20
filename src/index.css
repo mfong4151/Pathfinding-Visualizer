@@ -97,3 +97,28 @@ code {
   height:2rem;
   width:8rem;
 }
+
+
+/* node styles */
+
+.canvas{
+
+  position:relative;
+  border: 1px solid var(--color-white);
+  height:800px;
+  width:800px;
+  overflow:hidden
+
+}
+
+  /* probably not going to commit to these styles, just part of a hellow world */
+.node{
+  /* position:absolute;
+  top:0;
+  left:0; */
+  background-color: hotpink;
+  height:60px;
+  width:60px;
+  cursor: pointer;
+
+}

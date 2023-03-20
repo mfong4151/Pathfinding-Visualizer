@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Canvas from '../generalComponents/Canvas'
 
 // interface Props{
 
@@ -21,8 +21,8 @@ const LinkedLists: React.FC = ()=>{
             linky
           </div>
           <div className='adjbar'/>
-          <div id='page-right' className='tab-bg'>
-            test2
+          <div id='page-right' className='tab-bg udc'>
+              <Canvas/>
           </div>  
 
         </div>
