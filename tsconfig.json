@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "src/components/utils/GraphicClasses.tsx"  ]
+, "src/components/utils/graphicClasses.tsx"  ]
 }

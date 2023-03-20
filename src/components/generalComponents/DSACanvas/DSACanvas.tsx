@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
-import { useRef } from 'react';
+import React from 'react'
+import CanvasGrid from './CanvasGrid';
 import {DndProvider, useDrag, useDrop} from "react-dnd"
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { generateCanvas } from './utils/canvasMethods';
 
-const Canvas: React.FC = () => {  
+
+const DSACanvas: React.FC = () => {  
 
   //inside div should be a .map function  
   const temp : number[] = [  1, 2, 3];
-
+  const canvasMatrix: string[][] = generateCanvas();
 
 
     
@@ -22,14 +24,7 @@ const Canvas: React.FC = () => {
          </div>
         
           <div className='canvas'>
-                {temp.map((node : number, idx) =>
-
-
-                    <div className="node"> 
-                      {node} 
-                    </div>
-                )}
-
+              <CanvasGrid/>
 
           </div>
         </DndProvider>
@@ -41,4 +36,4 @@ const Canvas: React.FC = () => {
   
   
 
-export default Canvas
+export default DSACanvas;

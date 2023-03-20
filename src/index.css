@@ -86,6 +86,10 @@ code {
 
 }
 
+.adjbar{
+  height:100%;
+  width:20px;
+}
 .sq-buttons{
   background-color: var(--color-charcol);
   color: var(--color-white);
@@ -102,7 +106,7 @@ code {
 /* node styles */
 
 #canvas-toolbar{
-  min-height:
+  min-height: 100px;
 }
 
 .canvas{
@@ -111,8 +115,9 @@ code {
   border: 1px solid var(--color-white);
   height:800px;
   width:800px;
-  overflow:hidden
-
+  overflow:hidden;
+  display: flex;
+  flex-wrap: 'wrap';
 }
 
   /* probably not going to commit to these styles, just part of a hellow world */
