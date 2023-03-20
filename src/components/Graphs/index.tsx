@@ -23,20 +23,15 @@ const Graphs: React.FC = ()=>{
         <MatrixBanner matrixBannerStates={{matrixNodes, setMatrixNodes, setMatrix, matrix, matrixDim, setMatrixDim}}/>  
 
         
-        <div className='page-body'>
-          <div id='page-left' className='tab-bg'>
-            Test
-          </div>
+         <div className='page-body'>
+            <section id='page-left' className='tab-bg'>
+              Test
+            </section>
           <div className='adjbar'/>
-          {/* <DragDropContext>
-          </DragDropContext> */}
-            {/* <Droppable></Droppable> */}
+            <section id='page-right' className='udc tab-bg'>
+              {matrixNodes && <GraphMatrix matrixState={matrixState}/>}
 
-              <div id='page-right' className='udc tab-bg'>
-                {matrixNodes && <GraphMatrix matrixState={matrixState}/>}
-                {/* {matrixNodes === 'nodes' && <GraphNodes/>} */}
-
-              </div>  
+            </section>  
 
         </div>
       

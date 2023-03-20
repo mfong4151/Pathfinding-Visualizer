@@ -12,18 +12,18 @@ const LinkedLists: React.FC = ()=>{
     return(
       <div className='font-color'>
 
-        <div className='banner'>
+        <section className='banner'>
 
-        </div>
+        </section>
 
         <div className='page-body'>
-          <div id='page-left' className='tab-bg'>
+          <section id='page-left' className='tab-bg'>
             linky
-          </div>
+          </section>
           <div className='adjbar'/>
-          <div id='page-right' className='tab-bg udc'>
+          <section id='page-right' className='tab-bg udc'>
               <Canvas/>
-          </div>  
+          </section>  
 
         </div>
       

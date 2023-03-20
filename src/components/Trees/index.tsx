@@ -19,13 +19,13 @@ const Trees: React.FC = ()=>{
         </div>
 
         <div className='page-body'>
-          <div id='page-left' className='tab-bg'>
+          <section id='page-left' className='tab-bg'>
             Test
-          </div>
+          </section>
           <div className='adjbar'/>
-          <div id='page-right' className='tab-bg'>
+          <section id='page-right' className='tab-bg'>
             test2
-          </div>  
+          </section>  
 
         </div>
       

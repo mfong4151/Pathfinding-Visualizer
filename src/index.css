@@ -101,6 +101,10 @@ code {
 
 /* node styles */
 
+#canvas-toolbar{
+  min-height:
+}
+
 .canvas{
 
   position:relative;
