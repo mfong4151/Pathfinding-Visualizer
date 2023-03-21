@@ -116,6 +116,13 @@ code {
   overflow:hidden;
   display: flex;
   flex-wrap: wrap;
+
+}
+
+/* temporary class for testing */
+.canvas-item{
+  border: solid grey 1px;
+
 }
 
   /* probably not going to commit to these styles, just part of a hellow world */

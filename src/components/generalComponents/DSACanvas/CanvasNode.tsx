@@ -5,10 +5,11 @@ interface Props{
 }
 
 const CanvasNode: React.FC<Props> = ({nodeValue}) => {
+  
   return (
-    <div>
-      
-    </div>
+    
+      <button className='node'>{nodeValue}</button>
+    
   )
 }
 
