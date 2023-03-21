@@ -1,17 +1,21 @@
-import React from 'react'
-import CanvasGrid from './CanvasGrid';
+import React, {useState } from 'react'
+import CanvasItem from './CanvasItem';
 import {DndProvider, useDrag, useDrop} from "react-dnd"
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { generateCanvas } from './utils/canvasMethods';
-
 
 const DSACanvas: React.FC = () => {  
-
-  //inside div should be a .map function  
-  const temp : number[] = [  1, 2, 3];
-  const canvasMatrix: string[][] = generateCanvas();
-
-
+  const canvasContents = [];
+  const [canvasWidth , setCanvasWidth] = useState(800);
+  const [canvasHeight, setCanvasHeight] = useState(800);
+  const canvasItemDim = {width:80, height:80}
+  
+  for(let i: number = 0; i < (canvasWidth * canvasHeight)/(canvasItemDim.width * canvasItemDim.height); i++) 
+    canvasContents.push(
+          <CanvasItem i={i} 
+              nodeValue={''} 
+              canvasItemDim={canvasItemDim}
+          />)
+  
     
   return (
     <div className="fdc">
@@ -23,9 +27,8 @@ const DSACanvas: React.FC = () => {
           <button className='node'>goodbye</button>
          </div>
         
-          <div className='canvas'>
-              <CanvasGrid/>
-
+          <div className='canvas' style={{width: canvasWidth, height: canvasHeight}} >
+              {canvasContents}
           </div>
         </DndProvider>
     </div>

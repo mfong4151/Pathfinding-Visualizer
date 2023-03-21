@@ -8,8 +8,7 @@ import DSACanvas from '../generalComponents/DSACanvas/DSACanvas'
 const LinkedLists: React.FC = ()=>{
     const [nodes, setNodes] = useState({});
     const adjBarRef = useRef<HTMLDivElement>(null)
-    // const {offsetLeft} = adjBarRef?.current;
-    // console.log(offsetLeft)
+    const adjBarLeft = adjBarRef?.current?.offsetLeft;
 
     return(
       <div className='font-color'>
@@ -22,8 +21,7 @@ const LinkedLists: React.FC = ()=>{
           <section id='page-left' className='tab-bg'>
             linky
           </section>
-          <div className='adjbar'/>
-           {/* ref={adjBarRef}/> */}
+          <div className='adjbar'ref={adjBarRef}/>
           <section id='page-right' className='tab-bg udc'>
               <DSACanvas/>
           </section>  
