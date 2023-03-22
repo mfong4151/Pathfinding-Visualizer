@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { ItemTypes } from './utils/dragDropConstraints';
 import { useDrag } from 'react-dnd';
 
 
+// export function moveKnight(toX, toY) {
+//   knightPosition = [toX, toY]
+//   emitChange()
+// }
 
 const CanvasNode: React.FC = () => {
   
+  const [nodeValue, setNodeValue] = useState<string>('hello world')
   const [{isDragging}, drag] = useDrag(()=>({
     type: ItemTypes.CANVAS_NODE,
     collect: (monitor) =>({
@@ -25,7 +30,7 @@ const CanvasNode: React.FC = () => {
           cursor: 'move',
         }}
       >
-        {}
+        {nodeValue}
       </button>
   )
 }

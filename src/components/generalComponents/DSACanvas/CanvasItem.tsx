@@ -3,11 +3,13 @@ import CanvasNode from './CanvasNode';
 import { Props } from '../interface/CanvasGridItemProps';
 import {useDrop} from 'react-dnd'
 import { ItemTypes } from './utils/dragDropConstraints';
+import { hoverOverStyles } from './utils/conditionalStyles';
 
 const CanvasItem: React.FC<Props> = ({i, hasNode, canvasItemDim }) => {  
   const gridItemWidth = canvasItemDim.width;
   const gridItemHeight = canvasItemDim.height;
   const [canvasItemContent, setCanvasItemContent] = useState<boolean>(hasNode)
+
 
   const [{isOver}, drop] = useDrop(
   ()=> ({
@@ -25,8 +27,11 @@ const CanvasItem: React.FC<Props> = ({i, hasNode, canvasItemDim }) => {
   const bw = i % 2  === 0 ? 'black' : 'white'
 
   return (
-    <div className='canvas-item' style={{width: gridItemWidth - 2, height: gridItemHeight -2, backgroundColor: bw}}>
-        {canvasItemContent}
+    <div className='canvas-item'
+    ref={drop}
+      style={ isOver ? hoverOverStyles() : {width: gridItemWidth - 2, height: gridItemHeight -2, backgroundColor: bw}}
+      >
+        {canvasItemContent && <CanvasNode/>}
     </div>
   )
 }

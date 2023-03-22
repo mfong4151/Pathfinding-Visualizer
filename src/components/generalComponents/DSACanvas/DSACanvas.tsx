@@ -27,7 +27,7 @@ const DSACanvas: React.FC = () => {
 
       <DndProvider backend={HTML5Backend}>
          <div id='canvas-toolbar' className="udc-left">
-          <CanvasNode nodeValue= {'hello'}/>
+          <CanvasNode/>
 
          </div>
         
