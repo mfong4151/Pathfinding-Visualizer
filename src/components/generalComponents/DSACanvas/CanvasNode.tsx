@@ -2,11 +2,9 @@ import React from 'react'
 import { ItemTypes } from './utils/dragDropConstraints';
 import { useDrag } from 'react-dnd';
 
-interface Props{
-    nodeValue: string;
-}
 
-const CanvasNode: React.FC<Props> = ({nodeValue}) => {
+
+const CanvasNode: React.FC = () => {
   
   const [{isDragging}, drag] = useDrag(()=>({
     type: ItemTypes.CANVAS_NODE,
@@ -27,7 +25,7 @@ const CanvasNode: React.FC<Props> = ({nodeValue}) => {
           cursor: 'move',
         }}
       >
-        {nodeValue}
+        {}
       </button>
   )
 }

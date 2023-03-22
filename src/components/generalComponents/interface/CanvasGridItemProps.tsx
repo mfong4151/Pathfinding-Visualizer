@@ -1,6 +1,6 @@
 export interface Props{
     i: number;
-    nodeValue: string;
+    hasNode: boolean;
     canvasItemDim: { 
       width: number;
       height: number
