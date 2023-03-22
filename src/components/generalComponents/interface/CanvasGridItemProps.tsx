@@ -1,5 +1,8 @@
 export interface Props{
-    i: number;
+    pos:{
+      i: number;
+      j: number;
+    }
     hasNode: boolean;
     canvasItemDim: { 
       width: number;

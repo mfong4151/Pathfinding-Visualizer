@@ -2,6 +2,8 @@
   --color-black-foreground:#1A1A1A;
   --color-charcol:#282828;
   --color-white: white;
+  --color-transparent:transparent;
+  
 }
 
 
@@ -102,37 +104,3 @@ code {
   width:8rem;
 }
 
-
-/* node styles */
-
-#canvas-toolbar{
-  min-height: 100px;
-}
-
-.canvas{
-
-  position:relative;
-  border: 1px solid var(--color-white);
-  overflow:hidden;
-  display: flex;
-  flex-wrap: wrap;
-
-}
-
-/* temporary class for testing */
-.canvas-item{
-  border: solid grey 1px;
-
-}
-
-  /* probably not going to commit to these styles, just part of a hellow world */
-.node{
-  /* position:absolute;
-  top:0;
-  left:0; */
-  background-color: hotpink;
-  height:60px;
-  width:60px;
-  cursor: pointer;
-
-}

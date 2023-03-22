@@ -1,0 +1,47 @@
+
+/* node styles */
+
+#canvas-toolbar{
+    min-height: 100px;
+  }
+  
+.canvas{
+  
+    position:relative;
+    border: 1px solid var(--color-white);
+    overflow:hidden;
+    display: flex;
+    flex-wrap: wrap;
+  
+  }
+  
+  /* temporary class for testing */
+  .canvas-item{
+    border: solid grey 1px;
+  
+  }
+  
+    /* probably not going to commit to these styles, just part of a hellow world */
+  .node{
+    /* position:absolute;
+    top:0;
+    left:0; */
+    height:60px;
+    width:60px;
+    cursor: pointer;
+    position:relative
+  }
+
+  .node-form{
+    position:absolute;
+    width:100%;
+    background-color: var(--color-transparent);
+    border-color: var(--color-transparent);
+  }
+
+  .node-input{
+    background-color: var(--color-transparent) ;
+    border-color: var(--color-transparent);    
+    color: var(--color-white);
+    width:100%;
+  }
