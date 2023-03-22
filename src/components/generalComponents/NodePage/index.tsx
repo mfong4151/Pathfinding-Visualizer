@@ -1,5 +1,5 @@
 import { useState, useRef} from "react";
-import DSACanvas from '../DSACanvas/DSACanvas'
+import DSACanvas from '../DSACanvas'
 
 interface Props{
     type:string;
