@@ -23,7 +23,6 @@ const CanvasItem: React.FC<Props> = ({pos, hasNode, canvasItemDim }) => {
 
 
   //temporary variable for testing purposes, delete in styles after finished, also delete the -2
-  const bw = pos.i % 2  === 0 ? 'black' : 'white'
 
   return (
     <div className='canvas-item udc'
