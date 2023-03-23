@@ -16,11 +16,10 @@ const CanvasItem: React.FC<Props> = ({pos, hasNode, canvasItemDim }) => {
         drop: () => setCanvasItemContent(!canvasItemContent),
         collect: (monitor) => ({
             isOver: !!monitor.isOver()
-
+  
           })
         }), [canvasItemContent]
   )  
-
 
   //temporary variable for testing purposes, delete in styles after finished, also delete the -2
 

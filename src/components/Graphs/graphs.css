@@ -8,8 +8,8 @@
 
 /* individual tile styling for matrix */
 .tile{
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
     border:1px rgb(175, 216, 248) solid;
     background-color: var(--color-charcol);
 }

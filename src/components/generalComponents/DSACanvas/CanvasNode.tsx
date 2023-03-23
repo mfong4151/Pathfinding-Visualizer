@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { ItemTypes } from './utils/dragDropConstraints';
-import { useDrag } from 'react-dnd';
 import './DSACanvas.css'
+import {useUseDrag} from '../../customHooks/useReactDND';
 
 interface Props{
   setCanvasItemContent:React.Dispatch<React.SetStateAction<boolean>> | null
@@ -17,12 +17,7 @@ const CanvasNode: React.FC<Props> = ({setCanvasItemContent, canvasItemDim}) => {
   const [errors, setErrors] = useState<Array<string>>([''])
   const {width, height} = canvasItemDim;
 
-  const [{isDragging}, drag] = useDrag(()=>({
-    type: ItemTypes.CANVAS_NODE,
-    collect: (monitor) =>({
-      isDragging: !!monitor.isDragging()
-    })
-  }))
+  const [{isDragging}, drag] = useUseDrag(ItemTypes.CANVAS_NODE)
 
   useEffect(()=>{
     if (isDragging && setCanvasItemContent) setCanvasItemContent(false)
@@ -36,8 +31,6 @@ const CanvasNode: React.FC<Props> = ({setCanvasItemContent, canvasItemDim}) => {
         ref={drag}
         style={{
           opacity: isDragging ? 0.5 : 1,
-          fontSize: 25,
-          fontWeight: 'bold',
           cursor: 'move',
         }}
       >
