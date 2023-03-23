@@ -15,7 +15,6 @@ const SvgTotem: React.FC<Props> = ({totemType, setHeldTotem}) => {
   const [{isDragging}, drag] = useUseDrag(ItemTypes.MATRIX_CELL)
   useEffect(()=>{
     setHeldTotem(prev=>totemType)
-    console.log(drag)
   },[isDragging])
   
 
