@@ -14,16 +14,17 @@ const SvgTotem: React.FC<Props> = ({totemType, setHeldTotem}) => {
 
   const [{isDragging}, drag] = useUseDrag(ItemTypes.MATRIX_CELL)
   useEffect(()=>{
-    setHeldTotem(totemType.slice(0,1))
+    setHeldTotem(prev=>totemType)
+    console.log(drag)
   },[isDragging])
   
+
   return (
     <div
       ref={drag}
-
       >
-      {totemType === 'start' && <Start/>}
-      {totemType === 'end' && <End/>}
+      {totemType === 's' && <Start/>}
+      {totemType === 'e' && <End/>}
     </div>
   )
 }
