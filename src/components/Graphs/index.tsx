@@ -3,7 +3,6 @@ import { useState } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
-import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState(true); //true === matrix, false === nodes
