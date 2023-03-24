@@ -9,11 +9,13 @@ interface Props{
     setMatrix: React.Dispatch<React.SetStateAction<Array<Array<string>>>>,
     matrixDim: {y: number, x:number},
     setMatrixDim: React.Dispatch<React.SetStateAction<{y: number, x:number}>>
+    chosenAlgo: string,
+    setChosenAlgo: React.Dispatch<React.SetStateAction<string>>
   }
 }
 
 const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
-  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim} = matrixBannerStates;
+  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, chosenAlgo, setChosenAlgo} = matrixBannerStates;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -62,10 +64,11 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
               </input>
             </form>
             <button className='sq-buttons banner-button udc'>
-              Choose an algorithim
+              {chosenAlgo}
             </button>
 
           </div>}
+          
         </div>
   )
 }
