@@ -8,7 +8,7 @@ import SvgTotem from './SvgTotem'
 const GraphMatrix: React.FC<Props> = ({matrixState})=>{
     const {matrix, setMatrix} = matrixState;
     const [heldTotem, setHeldTotem] = useState<string>('')
-    const [mouseDown, setMouseDown] = useState(false)
+    const [mouseDown, setMouseDown] = useState<boolean>(false)
     const mouseDownState = {mouseDown, setMouseDown}
 
     useEffect(()=>{
@@ -20,18 +20,19 @@ const GraphMatrix: React.FC<Props> = ({matrixState})=>{
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr'>
-                    <SvgTotem totemType='start' setHeldTotem={setHeldTotem}/>
-                    <SvgTotem totemType='end' setHeldTotem={setHeldTotem}/>
+                    <SvgTotem totemType='s' setHeldTotem={setHeldTotem}/>
+                    <SvgTotem totemType='e' setHeldTotem={setHeldTotem}/>
                 </div>
 
                 <div className="matrix">
-                    {matrix.map((row : Array<Array<String>>, idxRow: number)=>   
+                    {matrix.map((row : string[], idxRow: number)=>   
                         <div id={`row-${idxRow}`} className='udc' key={idxRow}>
                             {
-                                row.map((cell: Array<String>, idxCol: number) =>
+                                row.map((cellValue: string, idxCol: number) =>
                                 
                                 <GraphMatrixItem 
-                                    matrixState={matrixState} 
+                                    matrixState={matrixState}
+                                    cellValue={cellValue} 
                                     mouseDownState={mouseDownState}
                                     pos={{row: idxRow, col: idxCol}}
                                     totemState={{heldTotem, setHeldTotem}}

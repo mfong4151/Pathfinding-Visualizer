@@ -22,8 +22,8 @@ const SvgTotem: React.FC<Props> = ({totemType, setHeldTotem}) => {
       ref={drag}
 
       >
-      {totemType === 'start' && <Start/>}
-      {totemType === 'end' && <End/>}
+      {totemType === 's' && <Start/>}
+      {totemType === 'e' && <End/>}
     </div>
   )
 }
