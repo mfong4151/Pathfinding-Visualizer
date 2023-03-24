@@ -12,7 +12,7 @@ const Graphs: React.FC = ()=>{
     const [nodes, setNodes] = useState([]);
     const matrixState = {matrix, setMatrix};
     
-  
+
 
     return(
       <div className='font-color'>

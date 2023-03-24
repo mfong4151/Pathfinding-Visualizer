@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { createNewMatrix } from '../utils/graphUtils'
+import { useState } from 'react'
+import ChooseAlgoModal from './ChooseAlgoModal'
 
 interface Props{
   matrixBannerStates:{
@@ -15,6 +17,7 @@ interface Props{
 }
 
 const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
+  const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, chosenAlgo, setChosenAlgo} = matrixBannerStates;
 
 
@@ -63,12 +66,15 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
 
               </input>
             </form>
-            <button className='sq-buttons banner-button udc'>
+            <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
               {chosenAlgo}
             </button>
-
+            
           </div>}
           
+          {chooseAlgoModal &&
+            <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/>
+          }
         </div>
   )
 }
