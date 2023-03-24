@@ -48,9 +48,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
             {`Change to ${matrixNodes ? 'nodes' : 'matrix'}`}
           </button>
 
-          <button 
-              className='sq-buttons banner-button udc'
-              onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}
+          <button  className='sq-buttons banner-button udc'onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}
               >
               Reset Matrix
           </button>
