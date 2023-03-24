@@ -61,6 +61,10 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
 
               </input>
             </form>
+            <button className='sq-buttons banner-button udc'>
+              Choose an algorithim
+            </button>
+
           </div>}
         </div>
   )

@@ -3,7 +3,6 @@ import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../generalComponents/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../types/positions";
-import { time } from "console";
 
 interface Props{
     matrixState:{
@@ -20,13 +19,18 @@ interface Props{
 } 
 
 
+const CONDITIONAL_STYLING:{[key:string]: string} = {'w' : 'wall' ,
+                                                    'v1' : 'visited-1',
+                                                    'v2' : 'visited-2',
+                                                    'v3' : 'visited-3',
+                                                    }   
+
 //probably will want to refactor to take props
 const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEndState}) =>{
     const {matrix, setMatrix} = matrixState;
     const {startEndPos} = startEndState;
     const {y, x} = pos; 
-
-
+    
     const updateStartStop = (itemType :any) =>{
         const droppedTotem: string= itemType.totemType;
         const newMatrix: string[][] = [...matrix];
@@ -61,17 +65,25 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEnd
     }
 
     const updateWalls = (itemType: any) =>{
-        
+        const currDragging = itemType.totemType;
+        const inclusions: string[] = ['w', 'erase']
+       
+        if (!inclusions.includes(currDragging)) return
+
         const newMatrix = [...matrix];
-
-        if(matrix[y][x] ===''){
-            newMatrix[y][x] = 'w'
-            setMatrix(prev =>newMatrix)
-
-        }else if (matrix[y][x] === 'w'){
-            newMatrix[y][x] = ''
-            setMatrix(prev => newMatrix)
-        } 
+        switch(currDragging){
+            case'w':
+                newMatrix[y][x] = 'w'
+                setMatrix(prev => newMatrix)
+                break
+            case 'erase':
+                newMatrix[y][x] = ''
+                setMatrix(prev => newMatrix)
+                break
+            default:
+                break
+        }
+        
         
         return
     }
@@ -87,14 +99,9 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEnd
             }), [matrix]
       )  
 
-    
-
-
-
-
-    // still having issues with the entire on mouse sequence, need to refactor so that if it leaves the square then it turns back to normal
     return(
-        <div className={`tile udc ${cellValue === 'w' ? 'wall' : ''}`} 
+        <div 
+            className={`tile udc ${CONDITIONAL_STYLING[cellValue] ? CONDITIONAL_STYLING[cellValue] : ''}`} 
             ref={drop}
         >
            {cellValue === 's'  && <SvgTotem totemType={cellValue}/>}

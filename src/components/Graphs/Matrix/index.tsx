@@ -5,6 +5,7 @@ import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import SvgTotem from './SvgTotem'
+import CellTotem from "./CellTotem";
 
 
 
@@ -20,6 +21,9 @@ const GraphMatrix: React.FC<Props> = ({matrixState})=>{
                 <div className='toolbar fdr'>
                     <SvgTotem totemType='s'/>
                     <SvgTotem totemType='e'/>
+                    <CellTotem totemType='w'/>
+                    <CellTotem totemType='erase'/>
+                    
                 </div>
 
                 <div className="matrix">
