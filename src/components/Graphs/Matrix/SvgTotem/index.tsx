@@ -3,25 +3,27 @@ import Start from './Start'
 import End from './End'
 import { ItemTypes } from '../../../generalComponents/DSACanvas/utils/dragDropConstraints'
 import {useUseDrag} from '../../../customHooks/useReactDND'
+import { useDrag } from 'react-dnd'
 
 interface Props{
     totemType: string
-    setHeldTotem: React.Dispatch<React.SetStateAction<string>>
 }
 
 
-const SvgTotem: React.FC<Props> = ({totemType, setHeldTotem}) => {
+const SvgTotem: React.FC<Props> = ({totemType}) => {
 
-  const [{isDragging}, drag] = useUseDrag(ItemTypes.MATRIX_CELL)
-  useEffect(()=>{
-    setHeldTotem(prev=>totemType)
-  },[isDragging])
-  
+  const [collected, drag] = useDrag(()=>({
+      type: ItemTypes.MATRIX_CELL,
+      item:{totemType},
+      collect: (monitor) =>( {
+        isDragging: !!monitor.isDragging()
+
+      })
+    }))
+
+
   return (
-    <div
-      ref={drag}
-
-      >
+    <div ref={drag}>
       {totemType === 's' && <Start/>}
       {totemType === 'e' && <End/>}
     </div>

@@ -10,10 +10,11 @@ export const useUseDrag = (itemType:string) => {
     type: itemType,
     collect: (monitor) =>({
       isDragging: !!monitor.isDragging()
+
     })
   }))
-
 }
+
 
 // export const useuseDrop = (itemType: string, dropCallBack:) =>{
 

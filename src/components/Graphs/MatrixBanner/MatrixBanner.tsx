@@ -34,7 +34,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   }, [matrixDim])
 
   return (
-    <div className='banner'>
+    <div className='banner fdr'>
 
           <button   
               className='sq-buttons banner-button udc'
@@ -49,7 +49,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
               >
               Reset Matrix
           </button>
-          {matrixNodes && <div>
+          {matrixNodes && <div className='fdr'>
 
 
             <form>

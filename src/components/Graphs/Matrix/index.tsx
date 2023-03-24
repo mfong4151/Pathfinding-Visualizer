@@ -1,42 +1,39 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
 import { Props} from "../commonInterface/modelMatrixState"
-import { DndProvider } from "react-dnd";
+import { startStop } from "../../types/positions";
+import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import SvgTotem from './SvgTotem'
 
-const GraphMatrix: React.FC<Props> = ({matrixState})=>{
-    const {matrix, setMatrix} = matrixState;
-    const [heldTotem, setHeldTotem] = useState<string>('')
-    const [mouseDown, setMouseDown] = useState<boolean>(false)
-    const mouseDownState = {mouseDown, setMouseDown}
 
-    useEffect(()=>{
-        console.log(heldTotem)
-    },[heldTotem])
+
+const GraphMatrix: React.FC<Props> = ({matrixState})=>{
+    const {matrix} = matrixState;
+    const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
+
 
     return(
         <div className="fdc">
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr'>
-                    <SvgTotem totemType='s' setHeldTotem={setHeldTotem}/>
-                    <SvgTotem totemType='e' setHeldTotem={setHeldTotem}/>
+                    <SvgTotem totemType='s'/>
+                    <SvgTotem totemType='e'/>
                 </div>
 
                 <div className="matrix">
-                    {matrix.map((row : string[], idxRow: number)=>   
-                        <div id={`row-${idxRow}`} className='udc' key={idxRow}>
+                    {matrix.map((row : string[], y: number)=>   
+                        <div id={`row-${y}`} className='udc' key={y}>
                             {
-                                row.map((cellValue: string, idxCol: number) =>
+                                row.map((cellValue: string, x: number) =>
                                 
                                 <GraphMatrixItem 
                                     matrixState={matrixState}
                                     cellValue={cellValue} 
-                                    mouseDownState={mouseDownState}
-                                    pos={{row: idxRow, col: idxCol}}
-                                    totemState={{heldTotem, setHeldTotem}}
-                                    key={idxCol}
+                                    startEndState={{startEndPos, setStartEndPos}} 
+                                    pos={{y, x}}
+                                    key={`${y}${x}`}
                                 
                                 />)
                             }

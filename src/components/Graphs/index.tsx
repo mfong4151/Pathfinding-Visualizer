@@ -7,7 +7,7 @@ import MatrixBanner from './MatrixBanner/MatrixBanner';
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState(true); //true === matrix, false === nodes
     const [matrixDim, setMatrixDim]  = useState({y: 30, x: 30});
-    const [matrix, setMatrix] = useState(createNewMatrix(matrixDim.y, matrixDim.x));
+    const [matrix, setMatrix] = useState<string[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [nodes, setNodes] = useState([]);
     const matrixState = {matrix, setMatrix};
     
@@ -23,7 +23,7 @@ const Graphs: React.FC = ()=>{
             <section id='page-left' className='tab-bg'>
               Test
             </section>
-          <div className='adjbar'/>
+            <div className='adjbar'/>
             <section id='page-right' className='udc tab-bg'>
               {matrixNodes && <GraphMatrix matrixState={matrixState}/>}
 
