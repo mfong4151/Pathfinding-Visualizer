@@ -9,6 +9,9 @@ const Graphs: React.FC = ()=>{
     const [matrixDim, setMatrixDim]  = useState({y: 30, x: 30});
     const [matrix, setMatrix] = useState(createNewMatrix(matrixDim.y, matrixDim.x));
     const [nodes, setNodes] = useState([]);
+    const [toggleWalls, setToggleWalls] = useState(false);
+    const [toggleStart, setToggleStart] = useState(false);
+    const [toggleEnd, setToggleEnd] = useState(false);
     const matrixState = {matrix, setMatrix};
     
   

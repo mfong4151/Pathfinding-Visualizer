@@ -1,12 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../generalComponents/DSACanvas/utils/dragDropConstraints";
-import SvgTotem from "./SvgTotem";
-
-type position = {
-    x:number;
-    y:number;
-}
 
 interface Props{
     matrixState:{
@@ -20,11 +14,6 @@ interface Props{
     pos:{
         row:number;
         col:number;
-    }
-
-    startStopPos:{
-        start: position;
-        stop: position;
     }
     totemState:{
         heldTotem: string;
@@ -41,14 +30,13 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, mouseDownState, pos, tot
     const {row, col} = pos;
 
     const renderContents = (matrixContents:string)=>{
-        if(!!matrixContents) return 
-        else return ''
+
+
     }
 
     const updateMatrix = () =>{
         const newMatrix = [...matrix];
-        newMatrix[row][col] = totemState.heldTotem
-        matrixState.setMatrix(prev => newMatrix)
+        newMatrix[row][col] = 'f'
 
     }
 
@@ -89,14 +77,13 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, mouseDownState, pos, tot
 
     // still having issues with the entire on mouse sequence, need to refactor so that if it leaves the square then it turns back to normal
     return(
-        <div className={`tile udc ${matrix[row][col]}`} 
+        <div className={`tile ${tileFocus} ${matrix[row][col]}`} 
             ref={drop}
             onMouseEnter={e=>handleMouseEnter(e)}
             onMouseDown={()=> setMouseDown(true)}
             onMouseUp={()=> setMouseDown(false)}
         >
-           {matrix[row][col] === 's' && <SvgTotem totemType={'s'} setHeldTotem={totemState.setHeldTotem}/>}
-           {matrix[row][col] === 'e' && <SvgTotem totemType={'e'} setHeldTotem={totemState.setHeldTotem}/>}
+           {}
         </div>
     );
 
