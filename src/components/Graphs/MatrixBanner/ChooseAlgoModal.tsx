@@ -27,10 +27,10 @@ const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState}) =
       <div className='modal-overlay' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
           <div className="modal-content fdc">
             {algoChoices.map((algo: string, idx: number)=>
+
               <p key={idx} style={{color:'black'}} onClick={()=> setChosenAlgo(algo)}>
                 {algo}
               </p>
-            
             
             )}
           </div>

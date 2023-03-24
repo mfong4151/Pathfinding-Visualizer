@@ -39,7 +39,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   }, [matrixDim])
 
   return (
-    <div className='banner fdr'>
+    <div className='banner udc-left fdr'>
 
           <button   
               className='sq-buttons banner-button udc'
@@ -48,31 +48,32 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
             {`Change to ${matrixNodes ? 'nodes' : 'matrix'}`}
           </button>
 
-          <button  className='sq-buttons banner-button udc'onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}
-              >
+          <button  className='sq-buttons banner-button udc'onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}>
               Reset Matrix
           </button>
-          {matrixNodes && <div className='fdr'>
 
+          {matrixNodes && <div className='fdr udc-left'>
 
             <form>
               <input placeholder='Set height' onChange={e => handleOnChange(e,'height')}/>
 
             </form>
             <form>
-              <input placeholder='Set width' onChange={e => handleOnChange(e,'width')}>
+              <input placeholder='Set width' onChange={e => handleOnChange(e,'width')}/>
 
-              </input>
             </form>
-            <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
-              {chosenAlgo}
-            </button>
             
           </div>}
+
+          <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
+            {chosenAlgo}
+          </button>
+          
           
           {chooseAlgoModal &&
             <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/>
           }
+
         </div>
   )
 }
