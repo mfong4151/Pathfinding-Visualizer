@@ -1,19 +1,29 @@
 import './graphs.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
-import { bfsItterator } from './utils/algorithims/matrixBFS';
+import { pos } from '../types/positions';
+
+const MAP_ALGO = {
+                  
+                  }
+
+
 
 const Graphs: React.FC = ()=>{
-    const [matrixNodes, setMatrixNodes] = useState(true); //true === matrix, false === nodes
-    const [matrixDim, setMatrixDim]  = useState({y: 30, x: 30});
+    const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
+    const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
     const [matrix, setMatrix] = useState<string[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
-    const [chosenAlgo, setChosenAlgo] = useState('Choose your algorithim')
-    const [nodes, setNodes] = useState([]);
+    const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
+    const [nodes, setNodes] = useState<any[]>([]);
     const matrixState = {matrix, setMatrix};
-    const bfsIter = new bfsItterator('konnichwa mf')
+    let itterator;
 
+    useEffect(()=>{
+      
+
+    },[chosenAlgo])
 
     return(
       <div className='font-color'>
@@ -26,7 +36,7 @@ const Graphs: React.FC = ()=>{
             </section>
             <div className='adjbar'/>
             <section id='page-right' className='udc tab-bg'>
-              {matrixNodes && <GraphMatrix matrixState={matrixState}/>}
+                {matrixNodes && <GraphMatrix matrixState={matrixState}/>}
 
             </section>  
 
