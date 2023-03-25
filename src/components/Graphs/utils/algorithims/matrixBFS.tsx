@@ -1,34 +1,30 @@
+import DIRS from "./dirs";
 
-const matrixBFS = (matrix:Array<Array<string>>, start : Array<number>, target : Array<number>): Array<Array<number>> =>{
-    const res: Array<number>[] = [];
-    const visited = new Set<string>();
-    const rows = matrix.length;
-    const cols = matrix[0].length;
-    const q: Array<Array<number>> = [start];
-    const dirs: Array<Array<number>> = [[0, 1], [1, 0], [-1, 0], [0, -1]];
-    let i, j;
-    
-    while (q.length){
-        const curr: Array<number> = q.shift()!;
-        visited.add(`${curr[0]},${curr[1]}`)
+export class bfsItterator{
+    root:string;
+    res: number[] = [];
+    visited = new Set<string>();
+    q: number[][];
 
-    
-        for(const dir of dirs){
-            const i=  curr[0] + dir[0];
-            const j = curr[1] + dir[1];
-            
-            if(i >= rows || i < 0 || j >= cols || j < 0 || visited.has(`${i},${j}`)){
-                continue
-            }
-            
-            res.push([i, j])
-            if(i === target[0] && j == target[1]) return res;            
-            q.push([i, j])
-        }
-
+    constructor(root:string){
+        this.root = root;
+        this.q = [];
+        this.res = []
+        this.visited = new Set()
     }
 
-    return res;
+    next(){
+        if(this.q.length <= 0)return []
+
+        const node:number[] = this.q.shift()!;
+  
+        for (const dir of DIRS) {
+            this.q.push([node[0] + dir[0], node[1] + dir[1]]);
+
+            }
+    }
+    
 }
 
-export default matrixBFS;
+
+// export default matrixBFS;

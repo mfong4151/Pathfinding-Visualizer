@@ -3,6 +3,7 @@ import { useState } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
+import { bfsItterator } from './utils/algorithims/matrixBFS';
 
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState(true); //true === matrix, false === nodes
@@ -11,7 +12,7 @@ const Graphs: React.FC = ()=>{
     const [chosenAlgo, setChosenAlgo] = useState('Choose your algorithim')
     const [nodes, setNodes] = useState([]);
     const matrixState = {matrix, setMatrix};
-    
+    const bfsIter = new bfsItterator('konnichwa mf')
 
 
     return(
@@ -22,7 +23,6 @@ const Graphs: React.FC = ()=>{
         
          <div className='page-body'>
             <section id='page-left' className='tab-bg'>
-              Test
             </section>
             <div className='adjbar'/>
             <section id='page-right' className='udc tab-bg'>
