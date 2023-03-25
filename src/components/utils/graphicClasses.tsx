@@ -1,4 +1,5 @@
 
+
 export class GraphicNode{
     id: number;
     type: string;

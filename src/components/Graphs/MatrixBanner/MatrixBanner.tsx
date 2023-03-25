@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { createNewMatrix } from '../utils/graphUtils'
 import { useState } from 'react'
 import ChooseAlgoModal from './ChooseAlgoModal'
+import { pos, startStop } from '../../types/positions'
 
 interface Props{
   matrixBannerStates:{
@@ -13,6 +14,8 @@ interface Props{
     setMatrixDim: React.Dispatch<React.SetStateAction<{y: number, x:number}>>
     chosenAlgo: string,
     setChosenAlgo: React.Dispatch<React.SetStateAction<string>>
+    startEndPos: startStop,
+    setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>
   }
 }
 

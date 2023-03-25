@@ -1,19 +1,19 @@
 import DIRS from "./dirs";
 
 export class bfsItterator{
-    root:string;
     res: number[] = [];
     visited = new Set<string>();
     q: number[][];
     matrix:string[][];
     rows:number;
     cols:number;
+    end: number[]
 
-    constructor(root:string, matrix:string[][] ){
-        this.root = root;
-        this.q = [];
-        this.res = []
-        this.visited = new Set()
+    constructor(start:number[], end:number[], matrix:string[][] ){
+        this.q = [start];
+        this.end = end;
+        this.res = [];
+        this.visited = new Set();
         this.matrix = matrix;
         this.rows = matrix.length;
         this.cols = matrix[0].length;

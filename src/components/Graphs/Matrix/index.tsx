@@ -1,17 +1,26 @@
 import React, { useState} from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
-import { Props} from "../commonInterface/modelMatrixState"
 import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import SvgTotem from './SvgTotem'
 import CellTotem from "./CellTotem";
 
+export interface Props{
+    matrixState:{
+        matrix: Array<any>;
+        setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
+    }
+    startEndState:{
+        startEndPos:startStop;
+        setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
+    }
+} 
 
 
-const GraphMatrix: React.FC<Props> = ({matrixState})=>{
+
+const GraphMatrix: React.FC<Props> = ({matrixState, startEndState})=>{
     const {matrix} = matrixState;
-    const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
 
 
     return(
@@ -35,7 +44,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState})=>{
                                 <GraphMatrixItem 
                                     matrixState={matrixState}
                                     cellValue={cellValue} 
-                                    startEndState={{startEndPos, setStartEndPos}} 
+                                    startEndState={startEndState} 
                                     pos={{y, x}}
                                     key={`${y}${x}`}
                                 
