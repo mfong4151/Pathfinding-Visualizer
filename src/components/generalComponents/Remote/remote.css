@@ -1,9 +1,26 @@
+
+#remote> *{
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
+
+/* button styles, svg styles, etc */
+
 .remote-btn{
     background-color: var(--color-charcol);
 }
 
 .svg-style{
     color: var(--color-white)
+}
+
+.svg-style:hover{
+    color:var(--color-yellow-pineapple);
+}
+
+.svg-style:active{
+    color:var(--color-black-foreground)
 }
 
 .rotate-svg{

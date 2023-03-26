@@ -12,21 +12,21 @@ const Graphs: React.FC = ()=>{
     const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
     const [matrix, setMatrix] = useState<string[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
-    const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
     const [nodes, setNodes] = useState<any[]>([]);
     const matrixState = {matrix, setMatrix};
-    let itterator;
 
     
 
     return(
       <div className='font-color'>
 
-        <MatrixBanner matrixBannerStates={{matrixNodes, setMatrixNodes, setMatrix, matrix, matrixDim, setMatrixDim, chosenAlgo, setChosenAlgo, startEndPos, setStartEndPos}}/>  
+        <MatrixBanner matrixBannerStates={{matrixNodes, setMatrixNodes, setMatrix, matrix, matrixDim, setMatrixDim, startEndPos, setStartEndPos}}/>  
 
         
          <div className='page-body'>
             <section id='page-left' className='tab-bg'>
+
+
             </section>
             <div className='adjbar'/>
             <section id='page-right' className='udc tab-bg'>

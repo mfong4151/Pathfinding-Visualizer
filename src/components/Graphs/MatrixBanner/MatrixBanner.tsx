@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { createNewMatrix } from '../utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
-import { pos, startStop } from '../../types/positions';
+import {startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
+import '../../Graphs/graphs.css'
 
 interface Props{
   matrixBannerStates:{
@@ -13,8 +14,6 @@ interface Props{
     setMatrix: React.Dispatch<React.SetStateAction<Array<Array<string>>>>,
     matrixDim: {y: number, x:number},
     setMatrixDim: React.Dispatch<React.SetStateAction<{y: number, x:number}>>
-    chosenAlgo: string,
-    setChosenAlgo: React.Dispatch<React.SetStateAction<string>>
     startEndPos: startStop,
     setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>
   }
@@ -22,7 +21,9 @@ interface Props{
 
 const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
-  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, chosenAlgo, setChosenAlgo} = matrixBannerStates;
+  const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
+
+  const {matrixNodes, setMatrixNodes, setMatrix, matrixDim, setMatrixDim} = matrixBannerStates;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -43,7 +44,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   }, [matrixDim])
 
   return (
-    <div className='banner udc-left fdr'>
+    <div id='banner' className='udc-left fdr'>
 
           <button   
               className='sq-buttons banner-button udc'
@@ -52,7 +53,9 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
             {`Change to ${matrixNodes ? 'nodes' : 'matrix'}`}
           </button>
 
-          <button  className='sq-buttons banner-button udc'onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}>
+          <button  
+              className='sq-buttons banner-button udc'
+              onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}>
               Reset Matrix
           </button>
 

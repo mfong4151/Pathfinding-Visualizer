@@ -3,7 +3,7 @@
   --color-charcol:#282828;
   --color-white: #FFFFFF;
   --color-transparent:transparent;
-  
+  --color-yellow-pineapple:#FEE12B;
 }
 
 
@@ -51,10 +51,17 @@ code {
 
 /* general design styles */
 
-.banner{
+#banner{
   min-height: 48px;
 
 }
+
+#banner > *{
+  margin-left:.5rem;
+  margin-right:.5rem;
+}
+
+
 
 /* designs for each of the pannels on main page */
 
@@ -90,7 +97,7 @@ code {
 
 .adjbar{
   height:100%;
-  width:20px;
+  width:8px;
 }
 .sq-buttons{
   background-color: var(--color-charcol);

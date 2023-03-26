@@ -9,6 +9,9 @@ interface Props{
 
 const Remote:React.FC<Props> = () => {
 
+  let itterator;
+
+
   // useEffect(()=>{
       
   //   switch(chosenAlgo){
@@ -23,24 +26,24 @@ const Remote:React.FC<Props> = () => {
   // },[chosenAlgo])
   return (
     <div id='remote'>
-      <button id='skip-back' className='remote-btn'>
+      <button id='skip-back' className='remote-btn sq-buttons'>
         <SkipBack/>
       </button>
-      <button  id='rewind' className='remote-btn'>
+      <button  id='rewind' className='remote-btn sq-buttons'>
         <Rewind/>
       </button>
 
-      <button id='play' className='remote-btn'>
+      <button id='play' className='remote-btn sq-buttons'>
         <Play/>
       </button>
-      <button id='pause' className='remote-btn'>
+      <button id='pause' className='remote-btn sq-buttons'>
         <Pause/>
       </button>
-      <button id='fastforward' className='remote-btn' >
+      <button id='fastforward' className='remote-btn sq-buttons' >
         <FastForward/>
       </button>
 
-      <button id='skip-forward' className='remote-btn'>
+      <button id='skip-forward' className='remote-btn sq-buttons'>
         <SkipForward/>
       </button>
     </div>
@@ -48,7 +51,13 @@ const Remote:React.FC<Props> = () => {
 }
 
 const Play:React.FC = () => (
-        <svg fill='#FFFFFF' height='auto' width='60px' version='1.1' viewBox='0 0 485 485'>
+        <svg fill='currentColor' 
+            height='auto' 
+            width='60px' 
+            version='1.1' 
+            viewBox='0 0 485 485'
+            className='svg-style'
+            >
         <g>
         	<path d='M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
         		s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026
@@ -61,7 +70,14 @@ const Play:React.FC = () => (
 
 
 const Pause:React.FC = () =>(
-    <svg fill='#FFFFFF' height='auto' width='60px' version='1.1' id='Layer_1' viewBox='0 0 485 485'>
+    <svg 
+      fill='currentColor' 
+      height='auto' 
+      width='60px' 
+      version='1.1' 
+      viewBox='0 0 485 485'
+      className='svg-style'
+      >
       <g>
         <path d='M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
           s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026
@@ -74,7 +90,13 @@ const Pause:React.FC = () =>(
   )
 
 const FastForward:React.FC = () => (
-      <svg fill='#FFFFFF' height='auto' width='60px' version='1.1' viewBox='0 0 321.9 321.9'>
+      <svg fill='currentColor' 
+          height='auto' 
+          width='60px' 
+          version='1.1' 
+          viewBox='0 0 321.9 321.9'
+          className='svg-style'
+          >
           <g>
            <g>
              <path d='M315.6,149.301l-147.1-98.2c-2-1.1-4.6-2.2-7.2-2.2v0c-7.9,0-14.2,6.3-14.2,14.2v71.9l-125.5-84c-2.1-1.1-4.7-2.1-7.4-2.1
@@ -86,7 +108,14 @@ const FastForward:React.FC = () => (
       </svg>)
 
 const Rewind:React.FC = ( ) => (
-    <svg fill='#FFFFFF' height='auto' width='60px' version='1.1' viewBox='0 0 321.9 321.9' className='rotate-svg'>
+    <svg 
+        fill='currentColor' 
+        height='auto' 
+        width='60px' 
+        version='1.1' 
+        viewBox='0 0 321.9 321.9' 
+        className='rotate-svg svg-style'
+        >
       <g>
         <g>
           <path d='M315.6,149.301l-147.1-98.2c-2-1.1-4.6-2.2-7.2-2.2v0c-7.9,0-14.2,6.3-14.2,14.2v71.9l-125.5-84c-2.1-1.1-4.7-2.1-7.4-2.1
@@ -100,7 +129,13 @@ const Rewind:React.FC = ( ) => (
 
 
 const SkipForward:React.FC = () => (
-    <svg fill='#FFFFFF' height='auto' width='60px' version='1.1'  viewBox='0 0 60 60'  className='rotate-svg'>
+    <svg 
+      fill='currentColor' 
+      height='auto' 
+      width='60px' 
+      version='1.1'  
+      viewBox='0 0 60 60'  
+      className='rotate-svg svg-style'>
     <g>
       <path d='M45.467,14.116c-0.326-0.174-0.723-0.15-1.031,0.058l-22,15C22.164,29.36,22,29.669,22,30s0.164,0.64,0.437,0.826l22,15
         C44.606,45.941,44.803,46,45,46c0.16,0,0.321-0.038,0.467-0.116C45.795,45.711,46,45.371,46,45V15
@@ -114,7 +149,14 @@ const SkipForward:React.FC = () => (
 )
 
 const SkipBack:React.FC = () => (
-  <svg fill='#FFFFFF' height='auto' width='60px' version='1.1'  viewBox='0 0 60 60' >
+  <svg 
+    fill='currentColor' 
+    height='auto' 
+    width='60px' 
+    version='1.1'  
+    viewBox='0 0 60 60' 
+    className='svg-style'
+    >
   <g>
     <path d='M45.467,14.116c-0.326-0.174-0.723-0.15-1.031,0.058l-22,15C22.164,29.36,22,29.669,22,30s0.164,0.64,0.437,0.826l22,15
       C44.606,45.941,44.803,46,45,46c0.16,0,0.321-0.038,0.467-0.116C45.795,45.711,46,45.371,46,45V15
