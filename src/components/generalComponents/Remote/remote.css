@@ -1,0 +1,11 @@
+.remote-btn{
+    background-color: var(--color-charcol);
+}
+
+.svg-style{
+    color: var(--color-white)
+}
+
+.rotate-svg{
+    transform:rotate(180deg)
+}

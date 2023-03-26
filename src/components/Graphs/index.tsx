@@ -6,13 +6,7 @@ import MatrixBanner from './MatrixBanner/MatrixBanner';
 import { pos, startStop } from '../types/positions';
 import { bfsItterator } from './utils/algorithims/matrixBFS';
 
-const MAP_ALGO = {
-    'BFS': bfsItterator,
-    
-                  }
-
-
-
+  
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
     const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
@@ -23,18 +17,7 @@ const Graphs: React.FC = ()=>{
     const matrixState = {matrix, setMatrix};
     let itterator;
 
-    useEffect(()=>{
-      
-      switch(chosenAlgo){
-        case "BFS":
-          itterator = new bfsItterator([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrix);
-          break
-        
-        default:
-          break
-      }
-
-    },[chosenAlgo])
+    
 
     return(
       <div className='font-color'>

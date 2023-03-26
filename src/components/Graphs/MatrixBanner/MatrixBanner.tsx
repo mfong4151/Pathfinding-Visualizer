@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
-import { createNewMatrix } from '../utils/graphUtils'
-import { useState } from 'react'
-import ChooseAlgoModal from './ChooseAlgoModal'
-import { pos, startStop } from '../../types/positions'
+import React, { useEffect } from 'react';
+import { createNewMatrix } from '../utils/graphUtils';
+import { useState } from 'react';
+import ChooseAlgoModal from './ChooseAlgoModal';
+import { pos, startStop } from '../../types/positions';
+import Remote from '../../generalComponents/Remote';
 
 interface Props{
   matrixBannerStates:{
@@ -73,9 +74,9 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
           </button>
           
           
-          {chooseAlgoModal &&
-            <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/>
-          }
+          {chooseAlgoModal && <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/> }
+
+          <Remote/>
 
         </div>
   )
