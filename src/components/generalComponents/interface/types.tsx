@@ -1,8 +1,7 @@
+import { pos } from "../../types/positions";
+
 export type canvasMatrixObject = {
-    pos:{
-        i: number;
-        j: number;
-    }
+    pos: pos
     hasNode: boolean;
     canvasItemDim: {
         width: number,

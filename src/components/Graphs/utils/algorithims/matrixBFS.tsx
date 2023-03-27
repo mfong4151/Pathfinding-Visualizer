@@ -1,25 +1,17 @@
+import { MatrixItterator } from "../../../utils/itterator";
 import DIRS from "./dirs";
 
-export class BFSItteratorMatrix{
-    res: number[] = [];
-    visited = new Set<string>();
-    q: number[][];
-    matrix:string[][];
-    rows:number;
-    cols:number;
-    end: number[]
+export class BFSItteratorMatrix extends MatrixItterator{
+    private q: number[][];
+
 
     constructor(start:number[], end:number[], matrix:string[][] ){
+        super(start,end, matrix)
         this.q = [start];
-        this.end = end;
-        this.res = [];
-        this.visited = new Set();
-        this.matrix = matrix;
-        this.rows = matrix.length;
-        this.cols = matrix[0].length;
+ 
     }
 
-    isValidNext(){
+    public isValidNext():boolean{
         if (this.q.length < 0) return false;
 
         const node:number[]= this.q[0];
@@ -32,7 +24,7 @@ export class BFSItteratorMatrix{
         return true;
     }
 
-    next(){
+    public next(): number[]{
         if(this.q.length <= 0)return []
 
         const node:number[] = this.q.shift()!;
@@ -45,8 +37,8 @@ export class BFSItteratorMatrix{
     }
     
     //used for changing colors on past squares
-    reanimatePastChanges(){
+    // public reanimatePastChanges(){
 
-    }
+    // }
 }
 

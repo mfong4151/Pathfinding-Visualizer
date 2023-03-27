@@ -27,11 +27,38 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState})=>{
         <div className="fdc">
             <DndProvider backend={HTML5Backend}>
 
-                <div className='toolbar fdr'>
-                    <SvgTotem totemType='s'/>
-                    <SvgTotem totemType='e'/>
-                    <CellTotem totemType='w'/>
-                    <CellTotem totemType='erase'/>
+                <div className='toolbar fdr sb'>
+                    <div className="drag-icon-holder udc fdc">
+                         <SvgTotem totemType='s'/>
+                         <p>Start</p>
+                         
+                    </div>
+                    <div className="drag-icon-holder udc fdc">
+                         <SvgTotem totemType='e'/>
+                         <p>Stop</p>
+
+                    </div>
+                    <div className="drag-icon-holder udc fdc">
+                        <CellTotem totemType='w'/>
+                        <p>Create Wall</p>
+
+                    </div>
+                    <div className="drag-icon-holder udc fdc">
+                        <CellTotem totemType='erase'/>
+                        <p>Erase wall</p>
+
+                    </div>
+
+                    
+                    <div className="drag-icon-holder udc fdc">
+                        <CellTotem totemType='toggle-path'/>
+                        <p>TogglePath</p>
+
+                    </div>
+
+
+
+
                     
                 </div>
 

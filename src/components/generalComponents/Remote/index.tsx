@@ -10,15 +10,16 @@ interface Props{
     chosenAlgo: string;
     matrixState: matrixState;
     startEndPos: startStop;
-
+    setConsoleContent: React.Dispatch<React.SetStateAction<any>>;
+    isPlaying: boolean,
+    setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
-const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
+const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying, setIsPlaying}) => {
 
   const currItterator = useRef<itterator>(null);
-  const setMatrixRef = useRef<boolean>(true);
-  let allowSetMatrix = setMatrixRef.current;
+  const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -49,23 +50,24 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
         break
     }
 
-    allowSetMatrix = false;
+    allowSetMatrix.current = false;
     return
 };
 
   useEffect(()=>{
     
-    if(allowSetMatrix) switch(chosenAlgo)
+    if(allowSetMatrix.current) switch(chosenAlgo)
     
     {
       case 'BFS':
         currItterator.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
         break
       
+
       default:
         break
     }
-    allowSetMatrix = true;
+    allowSetMatrix.current = true;
 
   },[chosenAlgo, matrix])
 

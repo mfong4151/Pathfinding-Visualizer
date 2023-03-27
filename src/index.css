@@ -37,6 +37,10 @@ code {
   align-items: center;
 }
 
+.sb{
+  display:flex;
+  justify-content: space-between;
+}
 
 .fdc{
   display: flex;
@@ -46,6 +50,11 @@ code {
 .fdr{
   display: flex;
   flex-direction: row;
+}
+
+.fw{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -81,7 +90,8 @@ code {
 }
 
 #page-left{
-
+  display:flex;
+  justify-content: center;
   width:39%;
   height:100%;
   background-color: var(--color-charcol);
@@ -141,4 +151,9 @@ code {
   height:auto;
   margin-top: 4%;
   border-radius: 1rem;
+}
+
+.toolbar{ 
+  margin-left:2rem;
+  margin-right:2rem;   
 }

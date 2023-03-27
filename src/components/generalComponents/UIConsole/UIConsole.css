@@ -1,0 +1,14 @@
+#console {
+    width: 90%;
+    height: 50%;
+    background-color: black;
+    color: white;
+    margin: 1rem;
+    margin-top:2rem;
+
+}
+
+.console-spacing{
+  margin:2rem;
+
+}

@@ -13,9 +13,12 @@ interface Props{
     matrix: string[][],
     setMatrix: React.Dispatch<React.SetStateAction<string[][]>>,
     matrixDim: pos,
-    setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
+    setMatrixDim: React.Dispatch<React.SetStateAction<pos>>,
     startEndPos: startStop,
-    setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>
+    setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>,
+    setConsoleContent: React.Dispatch<React.SetStateAction<any>>,
+    isPlaying: boolean,
+    setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
   }
 }
 
@@ -23,7 +26,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
 
-  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, startEndPos} = matrixBannerStates;
+  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, startEndPos, setConsoleContent, isPlaying, setIsPlaying} = matrixBannerStates;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -59,7 +62,8 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
               Reset Matrix
           </button>
 
-          {matrixNodes && <div className='fdr udc-left'>
+          {matrixNodes && 
+          <div className='fdr udc-left'>
 
             <form>
               <input placeholder='Set height' onChange={e => handleOnChange(e,'height')}/>
@@ -79,7 +83,13 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
           
           {chooseAlgoModal && <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/> }
 
-          <Remote chosenAlgo={chosenAlgo} matrixState={{matrix, setMatrix}} startEndPos={startEndPos}/>
+          <Remote chosenAlgo={chosenAlgo} 
+                  matrixState={{matrix, setMatrix}} 
+                  startEndPos={startEndPos} 
+                  setConsoleContent={setConsoleContent}
+                  isPlaying={isPlaying}
+                  setIsPlaying={setIsPlaying}
+            />
 
         </div>
   )
