@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createNewMatrix } from '../utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
-import {startStop } from '../../types/positions';
+import {pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
 
@@ -10,10 +10,10 @@ interface Props{
   matrixBannerStates:{
     matrixNodes: boolean,
     setMatrixNodes: React.Dispatch<React.SetStateAction<boolean>>,
-    matrix: Array<Array<string>>,
-    setMatrix: React.Dispatch<React.SetStateAction<Array<Array<string>>>>,
-    matrixDim: {y: number, x:number},
-    setMatrixDim: React.Dispatch<React.SetStateAction<{y: number, x:number}>>
+    matrix: string[][],
+    setMatrix: React.Dispatch<React.SetStateAction<string[][]>>,
+    matrixDim: pos,
+    setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
     startEndPos: startStop,
     setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>
   }
@@ -23,7 +23,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
 
-  const {matrixNodes, setMatrixNodes, setMatrix, matrixDim, setMatrixDim} = matrixBannerStates;
+  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, startEndPos} = matrixBannerStates;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -79,7 +79,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
           
           {chooseAlgoModal && <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/> }
 
-          <Remote/>
+          <Remote chosenAlgo={chosenAlgo} matrixState={{matrix, setMatrix}} startEndPos={startEndPos}/>
 
         </div>
   )

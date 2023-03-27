@@ -1,53 +1,89 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import './remote.css'
-
+import {matrixState} from '../../types/state'
+import { startStop } from '../../types/positions';
+import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
+import { DFSIteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
+import { itterator } from '../../types/itterator';
 
 interface Props{
-    
+    chosenAlgo: string;
+    matrixState: matrixState;
+    startEndPos: startStop;
+
 }
 
 
-const Remote:React.FC<Props> = () => {
+const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
 
-  let itterator;
+  const currItterator = useRef<itterator>(null)
 
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const buttonId = e.currentTarget.id;
 
-  // useEffect(()=>{
+    switch (buttonId) {
+      case 'skip-back':
+        // handle skip back button click
+        break;
+      case 'rewind':
+        // handle rewind button click
+        break;
+      case 'play':
+        // handle play button click
+        break;
+      case 'pause':
+        // handle pause button click
+        break;
+      case 'fast-forward':
+        // handle fast-forward button click
+        break;
+      case 'skip-forward':
+        // handle skip forward button click
+        break;
+      default:
+        console.warn('Unhandled button click: ' + buttonId);
+  }
+};
+
+  useEffect(()=>{
       
-  //   switch(chosenAlgo){
-  //     case 'BFS':
-  //       itterator = new bfsItterator([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrix);
-  //       break
+    switch(chosenAlgo){
+      case 'BFS':
+        currItterator.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
+        break
       
-  //     default:
-  //       break
-  //   }
+      default:
+        break
+    }
 
-  // },[chosenAlgo])
-  return (
-    <div id='remote'>
-      <button id='skip-back' className='remote-btn sq-buttons'>
-        <SkipBack/>
-      </button>
-      <button  id='rewind' className='remote-btn sq-buttons'>
-        <Rewind/>
-      </button>
+    console.log(currItterator.current)
+  },[chosenAlgo])
 
-      <button id='play' className='remote-btn sq-buttons'>
-        <Play/>
-      </button>
-      <button id='pause' className='remote-btn sq-buttons'>
-        <Pause/>
-      </button>
-      <button id='fastforward' className='remote-btn sq-buttons' >
-        <FastForward/>
-      </button>
 
-      <button id='skip-forward' className='remote-btn sq-buttons'>
-        <SkipForward/>
-      </button>
-    </div>
-  )
+return (
+  <div id='remote'>
+    <button id='skip-back' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <SkipBack/>
+    </button>
+    <button  id='rewind' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <Rewind/>
+    </button>
+
+    <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <Play/>
+    </button>
+    <button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <Pause/>
+    </button>
+    <button id='fast-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <FastForward/>
+    </button>
+
+    <button id='skip-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      <SkipForward/>
+    </button>
+  </div>
+);
 }
 
 const Play:React.FC = () => (

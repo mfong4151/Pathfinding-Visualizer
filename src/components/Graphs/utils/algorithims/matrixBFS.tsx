@@ -1,6 +1,6 @@
 import DIRS from "./dirs";
 
-export class bfsItterator{
+export class BFSItteratorMatrix{
     res: number[] = [];
     visited = new Set<string>();
     q: number[][];
