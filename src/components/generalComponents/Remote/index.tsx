@@ -16,11 +16,16 @@ interface Props{
 
 const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
 
-  const currItterator = useRef<itterator>(null)
+  const currItterator = useRef<itterator>(null);
+  const setMatrixRef = useRef<boolean>(true);
+  let allowSetMatrix = setMatrixRef.current;
+  const {matrix, setMatrix} = matrixState;
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const buttonId = e.currentTarget.id;
-
+    const newMatrix: string[][] = [...matrix];
+    
+    setMatrix(prev => newMatrix)
     switch (buttonId) {
       case 'skip-back':
         // handle skip back button click
@@ -43,12 +48,16 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
       default:
         break
     }
+
+    allowSetMatrix = false;
     return
 };
 
   useEffect(()=>{
-      
-    switch(chosenAlgo){
+    
+    if(allowSetMatrix) switch(chosenAlgo)
+    
+    {
       case 'BFS':
         currItterator.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
         break
@@ -56,9 +65,9 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
       default:
         break
     }
+    allowSetMatrix = true;
 
-    console.log(currItterator.current)
-  },[chosenAlgo])
+  },[chosenAlgo, matrix])
 
 
 return (

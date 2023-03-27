@@ -1,5 +1,5 @@
 import './graphs.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
