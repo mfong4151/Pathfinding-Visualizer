@@ -20,7 +20,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos}) => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const buttonId = e.currentTarget.id;
-
+    'hewwo'
     switch (buttonId) {
       case 'skip-back':
         // handle skip back button click
