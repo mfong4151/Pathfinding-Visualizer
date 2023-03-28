@@ -8,18 +8,23 @@ import CellTotem from "./CellTotem";
 
 export interface Props{
     matrixState:{
-        matrix: Array<any>;
-        setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
+        matrix: string[][];
+        setMatrix: React.Dispatch<React.SetStateAction<string[][]>>;
     }
     startEndState:{
         startEndPos:startStop;
         setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
     }
+    consoleContentState:{
+        consoleContent: any[]
+        setConsoleContent:React.Dispatch<React.SetStateAction<any[]>>;
+    }
+    
 } 
 
 
 
-const GraphMatrix: React.FC<Props> = ({matrixState, startEndState})=>{
+const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleContentState})=>{
     const {matrix} = matrixState;
 
 
@@ -55,10 +60,6 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState})=>{
                         <p>TogglePath</p>
 
                     </div>
-
-
-
-
                     
                 </div>
 
@@ -72,9 +73,10 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState})=>{
                                     matrixState={matrixState}
                                     cellValue={cellValue} 
                                     startEndState={startEndState} 
+                                    consoleContentState={consoleContentState}
                                     pos={{y, x}}
                                     key={`${y}${x}`}
-                                
+                                    
                                 />)
                             }
                         

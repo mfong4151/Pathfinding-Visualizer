@@ -15,13 +15,29 @@ const Graphs: React.FC = ()=>{
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [nodes, setNodes] = useState<any[]>([]);
     const matrixState = {matrix, setMatrix};
+    const [errors, setErrors] = useState<Array<string>>([''])
 
     
 
     return(
       <div className='font-color'>
 
-        <MatrixBanner matrixBannerStates={{matrixNodes, setMatrixNodes, setMatrix, matrix, matrixDim, setMatrixDim, startEndPos, setStartEndPos, setConsoleContent, isPlaying, setIsPlaying}}/>  
+        <MatrixBanner matrixBannerStates={
+                      {
+                        matrixNodes, 
+                        setMatrixNodes, 
+                        setMatrix, 
+                        matrix, 
+                        matrixDim,
+                        setMatrixDim,
+                        startEndPos,
+                        setStartEndPos,
+                        setConsoleContent,
+                        isPlaying,
+                        setIsPlaying,
+                        errors,
+                        setErrors
+                      }}/>  
 
         
          <div className='page-body'>
@@ -32,7 +48,11 @@ const Graphs: React.FC = ()=>{
             <div className='adjbar'/>
 
             <section id='page-right' className='udc tab-bg'>
-                {matrixNodes && <GraphMatrix matrixState={matrixState} startEndState ={{startEndPos, setStartEndPos}}/>}
+                {matrixNodes && 
+                  <GraphMatrix 
+                    matrixState={matrixState} 
+                    startEndState ={{startEndPos, setStartEndPos}}
+                    consoleContentState={{consoleContent, setConsoleContent}}/>}
             </section>  
 
         </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createNewMatrix } from '../utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
-import {pos, startStop } from '../../types/positions';
+import { pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
 
@@ -19,14 +19,20 @@ interface Props{
     setConsoleContent: React.Dispatch<React.SetStateAction<any>>,
     isPlaying: boolean,
     setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
+    errors: string[],
+    setErrors: React.Dispatch<React.SetStateAction<string[]>>
   }
 }
 
 const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
-
-  const {matrixNodes, setMatrixNodes, matrix, setMatrix, matrixDim, setMatrixDim, startEndPos, setConsoleContent, isPlaying, setIsPlaying} = matrixBannerStates;
+  const {
+          matrixNodes, setMatrixNodes, matrix, setMatrix, 
+          matrixDim, setMatrixDim, startEndPos, setConsoleContent, 
+          isPlaying, setIsPlaying, errors, setErrors
+        
+        } = matrixBannerStates;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -89,6 +95,7 @@ const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
                   setConsoleContent={setConsoleContent}
                   isPlaying={isPlaying}
                   setIsPlaying={setIsPlaying}
+                
             />
 
         </div>

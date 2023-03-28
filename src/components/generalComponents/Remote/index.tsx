@@ -26,7 +26,6 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying
     const buttonId = e.currentTarget.id;
     const newMatrix: string[][] = [...matrix];
     
-    setMatrix(prev => newMatrix)
     switch (buttonId) {
       case 'skip-back':
         // handle skip back button click
@@ -49,6 +48,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying
       default:
         break
     }
+    setMatrix(prev => newMatrix)
 
     allowSetMatrix.current = false;
     return

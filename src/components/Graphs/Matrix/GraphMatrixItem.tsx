@@ -3,18 +3,14 @@ import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../generalComponents/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../types/positions";
+import { consoleContentState, matrixState, startEndState} from "../../types/state";
 
 interface Props{
-    matrixState:{
-        matrix: Array<any>;
-        setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
-    }
+    matrixState: matrixState;
     cellValue: string;
-    startEndState:{
-        startEndPos: startStop;
-        setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>
-    }
-    pos:pos;
+    startEndState: startEndState;
+    consoleContentState: consoleContentState;
+    pos:pos
 
 } 
 
