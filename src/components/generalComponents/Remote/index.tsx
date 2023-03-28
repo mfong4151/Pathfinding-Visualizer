@@ -24,10 +24,14 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
   const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
 
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const animateChanges = (): void =>{
+
+  }
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const buttonId = e.currentTarget.id;
     const newMatrix: string[][] = [...matrix];
     const newConsoleContent: consoleContent = {};
+
     switch (buttonId) {
       case 'skip-back':
         // handle skip back button click
@@ -88,13 +92,16 @@ return (
     </button>
 
     {
-      !isPlaying ? 
-        <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
+      !isPlaying 
+        ? <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
           <Play/>
-        </button> :
-        <button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
+        </button> 
+
+        :<button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
           <Pause/>
-        </button>}
+        </button>
+      }
+      
     <button id='fast-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <FastForward/>
     </button>
