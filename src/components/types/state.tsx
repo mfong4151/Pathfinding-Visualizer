@@ -1,3 +1,4 @@
+import { consoleContent } from "./objects";
 import { startStop } from "./positions";
 
 
@@ -10,8 +11,8 @@ export type isPlayingState = {
 
 
 export type  consoleContentState = {
-    consoleContent: any[]
-    setConsoleContent:React.Dispatch<React.SetStateAction<any[]>>;
+    consoleContent: consoleContent
+    setConsoleContent:React.Dispatch<React.SetStateAction<consoleContent>>;
 }
 
 export type errorsState = {

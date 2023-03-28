@@ -6,6 +6,7 @@ import { pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
 import { errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
+import { consoleContent } from '../../types/objects';
 
 interface Props{
   matrixNodeState: matrixNodeState;
@@ -15,7 +16,7 @@ interface Props{
     setMatrixDim: React.Dispatch<React.SetStateAction<pos>>,
   }
   startEndPosState: startEndPosState
-  setConsoleContent: React.Dispatch<React.SetStateAction<any>>,
+  setConsoleContent: React.Dispatch<React.SetStateAction<consoleContent>>,
   isPlayingState: isPlayingState,
   errorsState: errorsState,
 

@@ -2,9 +2,10 @@ import React, { useState} from 'react';
 import './UIConsole.css';
 import HowTo from './HowTo';
 import RenderedContent from './RenderedContent';
+import { consoleContent } from '../../types/objects';
 
 type Props = {
-  consoleContent: any[];
+  consoleContent: consoleContent;
   isPlaying: boolean;
 
 }

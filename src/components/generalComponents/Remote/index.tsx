@@ -5,18 +5,19 @@ import { startStop } from '../../types/positions';
 import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
 import { DFSIteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
+import { consoleContent } from '../../types/objects';
 
 interface Props{
     chosenAlgo: string;
     matrixState: matrixState;
     startEndPos: startStop;
-    setConsoleContent: React.Dispatch<React.SetStateAction<any>>;
+    setConsoleContent: React.Dispatch<React.SetStateAction<consoleContent>>;
     isPlaying: boolean,
     setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
-const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying, setIsPlaying}) => {
+const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  setConsoleContent, isPlaying, setIsPlaying}) => {
 
   const currItterator = useRef<itterator>(null);
   const allowSetMatrix = useRef<boolean>(true);
@@ -25,7 +26,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const buttonId = e.currentTarget.id;
     const newMatrix: string[][] = [...matrix];
-    
+    const newConsoleContent: consoleContent = {};
     switch (buttonId) {
       case 'skip-back':
         // handle skip back button click
@@ -34,7 +35,6 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying
         // handle rewind button click
         break;
       case 'play':
-        // handle play button click
         break;
       case 'pause':
         // handle pause button click
@@ -49,7 +49,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos, isPlaying
         break
     }
     setMatrix(prev => newMatrix)
-
+    if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
     allowSetMatrix.current = false;
     return
 };

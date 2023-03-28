@@ -1,13 +1,15 @@
 import React from "react";
+import { consoleContent } from "../../types/objects";
+
 
 type Props = {
-  consoleContent: any[];
+  consoleContent: consoleContent;
 };
 
 const RenderedContent: React.FC<Props> = ({ consoleContent }) => {
   return (
     <>
-      {consoleContent.map((content, index) => (
+      {Object?.keys(consoleContent).map((content, index) => (
         <p key={index}>{content}</p>
       ))}
     </>

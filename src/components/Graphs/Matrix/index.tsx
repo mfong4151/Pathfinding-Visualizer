@@ -5,6 +5,7 @@ import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import SvgTotem from './SvgTotem'
 import CellTotem from "./CellTotem";
+import { consoleContentState } from "../../types/state";
 
 export interface Props{
     matrixState:{
@@ -15,11 +16,7 @@ export interface Props{
         startEndPos:startStop;
         setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
     }
-    consoleContentState:{
-        consoleContent: any[]
-        setConsoleContent:React.Dispatch<React.SetStateAction<any[]>>;
-    }
-    
+    consoleContentState: consoleContentState;
 } 
 
 
