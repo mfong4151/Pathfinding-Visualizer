@@ -5,34 +5,33 @@ import ChooseAlgoModal from './ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
+import { errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
 
 interface Props{
-  matrixBannerStates:{
-    matrixNodes: boolean,
-    setMatrixNodes: React.Dispatch<React.SetStateAction<boolean>>,
-    matrix: string[][],
-    setMatrix: React.Dispatch<React.SetStateAction<string[][]>>,
+  matrixNodeState: matrixNodeState;
+  matrixState: matrixState;
+  matrixDimState:{
     matrixDim: pos,
     setMatrixDim: React.Dispatch<React.SetStateAction<pos>>,
-    startEndPos: startStop,
-    setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>,
-    setConsoleContent: React.Dispatch<React.SetStateAction<any>>,
-    isPlaying: boolean,
-    setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
-    errors: string[],
-    setErrors: React.Dispatch<React.SetStateAction<string[]>>
   }
+  startEndPosState: startEndPosState
+  setConsoleContent: React.Dispatch<React.SetStateAction<any>>,
+  isPlayingState: isPlayingState,
+  errorsState: errorsState,
+
+  
 }
 
-const MatrixBanner:React.FC<Props> = ({matrixBannerStates}) => {
+const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimState,  startEndPosState,  setConsoleContent,  isPlayingState,  errorsState}) => {
+
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
-  const {
-          matrixNodes, setMatrixNodes, matrix, setMatrix, 
-          matrixDim, setMatrixDim, startEndPos, setConsoleContent, 
-          isPlaying, setIsPlaying, errors, setErrors
-        
-        } = matrixBannerStates;
+  const {matrixNodes, setMatrixNodes} = matrixNodeState;
+  const {matrix, setMatrix} = matrixState;
+  const { matrixDim,setMatrixDim} = matrixDimState;
+  const  {startEndPos, setStartEndPos} = startEndPosState;
+  const  {isPlaying, setIsPlaying} = isPlayingState;
+  const {errors, setErrors} = errorsState;
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{

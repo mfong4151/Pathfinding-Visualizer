@@ -13,31 +13,24 @@ const Graphs: React.FC = ()=>{
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     const [consoleContent, setConsoleContent] = useState<any>([])
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    const [nodes, setNodes] = useState<any[]>([]);
     const matrixState = {matrix, setMatrix};
     const [errors, setErrors] = useState<Array<string>>([''])
 
-    
 
     return(
       <div className='font-color'>
 
-        <MatrixBanner matrixBannerStates={
-                      {
-                        matrixNodes, 
-                        setMatrixNodes, 
-                        setMatrix, 
-                        matrix, 
-                        matrixDim,
-                        setMatrixDim,
-                        startEndPos,
-                        setStartEndPos,
-                        setConsoleContent,
-                        isPlaying,
-                        setIsPlaying,
-                        errors,
-                        setErrors
-                      }}/>  
+        <MatrixBanner 
+        
+                matrixNodeState={{matrixNodes, setMatrixNodes}}
+                matrixState = {{matrix, setMatrix}}
+                matrixDimState= {{ matrixDim,setMatrixDim}}
+                startEndPosState ={{ startEndPos, setStartEndPos}}
+                setConsoleContent = {setConsoleContent}
+                isPlayingState = {{isPlaying, setIsPlaying}}
+                errorsState = {{errors, setErrors}}
+                
+          />  
 
         
          <div className='page-body'>
