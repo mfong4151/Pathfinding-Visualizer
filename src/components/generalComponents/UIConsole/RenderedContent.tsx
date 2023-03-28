@@ -9,8 +9,8 @@ type Props = {
 const RenderedContent: React.FC<Props> = ({ consoleContent }) => {
   return (
     <>
-      {Object?.keys(consoleContent).map((content, index) => (
-        <p key={index}>{content}</p>
+      {Object?.values(consoleContent).map((content, index) => (
+        <p className="console-spacing" key={index}>{content}</p>
       ))}
     </>
   );

@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react'
 import './remote.css'
-import {matrixState} from '../../types/state'
+import {consoleContentState, matrixState} from '../../types/state'
 import { startStop } from '../../types/positions';
 import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
 import { DFSIteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
@@ -11,13 +11,14 @@ interface Props{
     chosenAlgo: string;
     matrixState: matrixState;
     startEndPos: startStop;
-    setConsoleContent: React.Dispatch<React.SetStateAction<consoleContent>>;
+    consoleContentState: consoleContentState
     isPlaying: boolean,
     setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
-const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  setConsoleContent, isPlaying, setIsPlaying}) => {
+const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
+  const {setConsoleContent} = consoleContentState;
 
   const currItterator = useRef<itterator>(null);
   const allowSetMatrix = useRef<boolean>(true);
@@ -35,8 +36,13 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  setConso
         // handle rewind button click
         break;
       case 'play':
+
+        newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
+        setIsPlaying(prev => !isPlaying)
         break;
       case 'pause':
+        setIsPlaying(prev => !isPlaying)
+
         // handle pause button click
         break;
       case 'fast-forward':
@@ -81,12 +87,14 @@ return (
       <Rewind/>
     </button>
 
-    <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
-      <Play/>
-    </button>
-    <button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
-      <Pause/>
-    </button>
+    {
+      !isPlaying ? 
+        <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
+          <Play/>
+        </button> :
+        <button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
+          <Pause/>
+        </button>}
     <button id='fast-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <FastForward/>
     </button>

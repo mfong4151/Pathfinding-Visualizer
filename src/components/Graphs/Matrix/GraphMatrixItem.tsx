@@ -22,7 +22,7 @@ const CONDITIONAL_STYLING:{[key:string]: string} = {'w' : 'wall' ,
                                                     }   
 
 //probably will want to refactor to take props
-const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEndState}) =>{
+const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, consoleContentState, pos, startEndState}) =>{
     const {matrix, setMatrix} = matrixState;
     const {startEndPos} = startEndState;
     const {y, x} = pos; 
@@ -40,7 +40,8 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEnd
                 newMatrix[y][x] = 's'
                 newStart.y = y;
                 newStart.x = x;
-                
+                consoleContentState.setConsoleContent(prev => ({'msg': `The location to start at has been set to ${newStart.y}, ${newStart.x}` }))
+
                 break
             case 'e':
                 const newEnd: pos = newStartEndPos.end
@@ -48,13 +49,14 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, pos, startEnd
                 newMatrix[y][x] = 'e'
                 newEnd.y = y;
                 newEnd.x = x;
-                
+                consoleContentState.setConsoleContent(prev => ({'msg': `The location to end at has been set to ${newEnd.y}, ${newEnd.x}` }))
+
                 break
             default:
                 return                
         }
 
-
+        
         newMatrix[y][x] = droppedTotem
         setMatrix(newMatrix)
         return

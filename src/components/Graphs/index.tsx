@@ -6,6 +6,7 @@ import MatrixBanner from './MatrixBanner/MatrixBanner';
 import { pos, startStop } from '../types/positions';
 import { consoleContent } from '../types/objects';
 import UIConsole from '../generalComponents/UIConsole';
+import { consoleContentState, errorsState } from '../types/state';
 
   
 const Graphs: React.FC = ()=>{
@@ -15,29 +16,32 @@ const Graphs: React.FC = ()=>{
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     const [consoleContent, setConsoleContent] = useState<consoleContent>({})
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    const matrixState = {matrix, setMatrix};
     const [errors, setErrors] = useState<Array<string>>([''])
 
+    const matrixState = {matrix, setMatrix};
+    const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
+    const errorsState:errorsState = {errors, setErrors};
 
     return(
       <div className='font-color'>
 
         <MatrixBanner 
-        
                 matrixNodeState={{matrixNodes, setMatrixNodes}}
                 matrixState = {{matrix, setMatrix}}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
                 startEndPosState ={{ startEndPos, setStartEndPos}}
-                setConsoleContent = {setConsoleContent}
+                consoleContentState = {consoleContentState}
                 isPlayingState = {{isPlaying, setIsPlaying}}
-                errorsState = {{errors, setErrors}}
+                errorsState = {errorsState}
                 
           />  
 
         
          <div className='page-body'>
             <section id='page-left' className='tab-bg'>
-              <UIConsole consoleContent={consoleContent} isPlaying={isPlaying}/>
+              <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}
+              
+              />
             </section>
 
             <div className='adjbar'/>

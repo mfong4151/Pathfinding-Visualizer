@@ -5,8 +5,9 @@ import ChooseAlgoModal from './ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
-import { errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
+import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
 import { consoleContent } from '../../types/objects';
+import matrixDescriptions from '../utils/descriptions';
 
 interface Props{
   matrixNodeState: matrixNodeState;
@@ -16,14 +17,14 @@ interface Props{
     setMatrixDim: React.Dispatch<React.SetStateAction<pos>>,
   }
   startEndPosState: startEndPosState
-  setConsoleContent: React.Dispatch<React.SetStateAction<consoleContent>>,
+  consoleContentState: consoleContentState;
   isPlayingState: isPlayingState,
   errorsState: errorsState,
 
   
 }
 
-const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimState,  startEndPosState,  setConsoleContent,  isPlayingState,  errorsState}) => {
+const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
@@ -51,6 +52,14 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
     setMatrix(prev => createNewMatrix(matrixDim.y, matrixDim.x))
 
   }, [matrixDim])
+
+  useEffect(()=>{
+    if(chosenAlgo !== 'Choose your algorithim')
+       consoleContentState.setConsoleContent(prev => ({'desc':matrixDescriptions[chosenAlgo]}))
+
+  }, [chosenAlgo])
+
+
 
   return (
     <div id='banner' className='udc-left fdr'>
@@ -92,7 +101,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
           <Remote chosenAlgo={chosenAlgo} 
                   matrixState={{matrix, setMatrix}} 
                   startEndPos={startEndPos} 
-                  setConsoleContent={setConsoleContent}
+                  consoleContentState={consoleContentState}
                   isPlaying={isPlaying}
                   setIsPlaying={setIsPlaying}
                 

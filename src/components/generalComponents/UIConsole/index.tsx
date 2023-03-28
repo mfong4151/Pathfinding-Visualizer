@@ -1,27 +1,32 @@
-import React, { useState} from 'react';
+import React from 'react';
 import './UIConsole.css';
 import HowTo from './HowTo';
 import RenderedContent from './RenderedContent';
 import { consoleContent } from '../../types/objects';
+import { errorsState } from '../../types/state';
 
 type Props = {
   consoleContent: consoleContent;
   isPlaying: boolean;
-
+  errors: errorsState;
 }
 
 const UIConsole: React.FC<Props> = ({ consoleContent, isPlaying }) => {
-  const [errors, setErrors] = useState<string[]>([]);
+  
 
-
-  return (
+    return (
 
     <div id="console">
-      {!isPlaying && <HowTo/>}
-      {isPlaying && <RenderedContent consoleContent={consoleContent}/>}
-      
-    </div>
-  );
+      { Object.keys(consoleContent).length > 0 
+          ? <RenderedContent consoleContent={consoleContent}/>
+          :  <HowTo/> 
+      }
+      </div>
+   
+  )
+  
+ 
+  ;
 };
 
 export default UIConsole;
