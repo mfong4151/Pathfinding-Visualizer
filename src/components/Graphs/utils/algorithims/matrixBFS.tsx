@@ -26,7 +26,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
         if( this.visited.has(pos) || 
             x < 0 || x >= this.cols ||
             y< 0 || y >= this.rows || 
-            this.matrix[y][x] === 'w'
+            this.matrix[y][x].val === 'w'
             )
     
             return false;

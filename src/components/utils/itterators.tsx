@@ -8,7 +8,7 @@ export class MatrixItterator{
     public rows:number;
     public cols:number;
     public end: number[];
-    public startObj: pathObject;
+    public start: number[];
     public prev: number[];
     public res: number[];
     
@@ -16,7 +16,7 @@ export class MatrixItterator{
         this.end = end;
         this.res = [];
         this.prev = [-1, -1];
-        this.startObj = {node: start, prev:this.prev};
+        this.start = start
         this.visited = new Set();
         this.matrix = matrix;
         this.rows = matrix.length;
@@ -49,8 +49,7 @@ export class MatrixItterator{
     //except for these, these actually do stuff
 
     public isStart(node:number[]):boolean{
-
-        if (node[0] === this.startObj.node[0] && node[1] === this.startObj.node[1]) return true;
+        if (node[0] === this.start[0] && node[1] === this.start[1]) return true;
         return false
 
     }

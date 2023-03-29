@@ -58,19 +58,19 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
     const itterateForward = ():void =>{
       
-      while(!activeIttr.isValidNext()) {
+   
+      if(!activeIttr.isValidNext()) {
         activeIttr.discardInvalidNode();
-        console.log(activeIttr.showContainer())
-      }
-      
-      coords = activeIttr.next()
-      console.log(activeIttr.showContainer())
-      
-      if (!activeIttr.isStart(coords) || !activeIttr.isEnd(coords)){
-        let currEle: HTMLElement;
-        currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
-        currEle.className = `${currEle?.className} visited-1`
-      }
+
+      } else  {
+        coords = activeIttr.next()
+        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
+          let currEle: HTMLElement;
+          currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
+          currEle.className = `${currEle?.className} visited-1`
+        }}
+        
+    
       // setTimeout(()=>{
       // }, 1000);
 
