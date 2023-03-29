@@ -6,6 +6,7 @@ import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
 import { DFSIteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
 import { consoleContent } from '../../types/objects';
+import sleep from './utils/sleep';
 
 interface Props{
     chosenAlgo: string;
@@ -28,12 +29,28 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const buttonId = e.currentTarget.id;
-    const newMatrix: string[][] = [...matrix];
+    let newMatrix: string[][] = [...matrix];
+    const activeIttr = currIttr.current;
     const newConsoleContent: consoleContent = {};
-
+    let coords :number[];
+    
+    if (!activeIttr) return 
+    
     const itterateForward = ():void =>{
+      let currEle: HTMLElement;
 
+
+      while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
       
+      coords = activeIttr.next()
+      
+      if (!activeIttr.isStart(coords))
+      setTimeout(()=>{
+        currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
+        currEle.className = `${currEle?.className} visited-1`
+      }, 1000);
+
+
     }
 
 
@@ -48,15 +65,22 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       case 'play':
 
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
+      
         setIsPlaying(prev => !isPlaying)
+        while(!activeIttr.isEnd()){
+            itterateForward();
+          }
+        
         break;
+
       case 'pause':
         setIsPlaying(prev => !isPlaying)
 
         // handle pause button click
         break;
+
       case 'fast-forward':
-        itterateForward();
+        if(!activeIttr.isEnd()) itterateForward();
         break;
       case 'skip-forward':
         // handle skip forward button click
@@ -64,10 +88,8 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       default:
         break
     }
-    setMatrix(prev => newMatrix)
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
     allowSetMatrix.current = false;
-
     return
 };
 
@@ -77,7 +99,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     
     {
       case 'BFS':
-        currIttr.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
+        currIttr.current = new BFSItteratorMatrix([startEndPos.start.x, startEndPos.start.y], [startEndPos.end.x, startEndPos.end.y], matrixState.matrix);
         break
       
 
@@ -85,8 +107,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         break
     }
     allowSetMatrix.current = true;
-
-    console.log(currIttr.current)
+    
 
   },[chosenAlgo, matrix])
 

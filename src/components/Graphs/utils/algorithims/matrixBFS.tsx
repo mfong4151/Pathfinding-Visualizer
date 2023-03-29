@@ -6,15 +6,14 @@ import DIRS from "./dirs";
 
 
 export class BFSItteratorMatrix extends MatrixItterator{
-    protected q: pathObject[]  
+    public q: pathObject[]  
 
     constructor(start:number[], end:number[], matrix:string[][] ){
         super(start,end, matrix)
         this.q = [{node: start, path:[start]}];
-        this.visited.add(`${start[0]},${start[1]}`)
         this.end = end;
-        this.prev = [-1, -1];
     }
+
 
     public isValidNext():boolean{
         if (this.q.length < 0) return false;
@@ -23,19 +22,28 @@ export class BFSItteratorMatrix extends MatrixItterator{
         const y:number =  first.node[1];
         const pos: string = `${x},${y}`;
         
+        
         if( this.visited.has(pos) || 
             x < 0 || x >= this.cols ||
             y< 0 || y >= this.rows || 
             this.matrix[y][x] === 'w'
-            ) 
-            
+            )
+    
             return false;
+                
+        
+            
 
         return true;
     }
+    
+    public discardInvalidNode():void{
+        this.q.shift()
 
-    public next(): void{
-        if(this.q.length <= 0) return //do i need this line?
+    }
+
+    public next():number[]{
+        if(this.q.length <= 0) return []
 
         const {node, path} = this.q.shift()!;
         this.prev = node;
@@ -43,8 +51,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
         const x: number = node[0];
         const cords: string = `${x},${y}`;
         this.visited.add(cords)
-        
-        if (!this.isStart(node)) this.matrix[y][x] = 'v'
+        if (!this.isStart(node)) this.matrix[y][x] = 'v1'
 
         const newPath: number[][] = [...path, [x, y]]
 
@@ -52,17 +59,15 @@ export class BFSItteratorMatrix extends MatrixItterator{
         for (const [dx, dy] of DIRS) {
             const newPos = [x + dx, y + dy]
             this.q.push({node: newPos, path: newPath} );
-
         }
         
 
-        return;
+        return node;
     }
 
     public isEnd(): boolean{
-        if (this.q.length === 0) return true;
-        if (this.q[0].node[0] === this.end[0] && this.q[0].node[1] !== this.end[1]) return false;
-        return true;
+        if ( (this.q.length === 0) || this.q[0].node[0] === this.end[0] && this.q[0].node[1] === this.end[1]) return true;
+        return false;
     }
     
     //used for changing colors on past squares

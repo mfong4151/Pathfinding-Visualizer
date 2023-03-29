@@ -2,15 +2,15 @@ import { pathObject } from "../types/classes";
 
 export class MatrixItterator{
     protected dirs: number[][];
-    protected res: number[];
     protected visited: Set<string>;
-    protected matrix:string[][];
-    protected rows:number;
-    protected cols:number;
-    protected end: number[];
-    protected startObj: pathObject;
-    protected prev: number[];
-
+    public matrix:string[][];
+    public rows:number;
+    public cols:number;
+    public end: number[];
+    public startObj: pathObject;
+    public prev: number[];
+    public res: number[];
+    
     constructor(start:number[], end:number[], matrix:string[][]){
         this.end = end;
         this.res = [];

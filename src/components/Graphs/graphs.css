@@ -15,8 +15,7 @@
 }
 
 .visited-1{
-    background-color: var(--color);
-    border:1px var(--color-white) solid;
+    background-color: var(--color-blue-visited-1);
 
 }
 

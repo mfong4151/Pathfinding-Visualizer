@@ -17,9 +17,6 @@ interface Props{
 
 
 const CONDITIONAL_STYLING:{[key:string]: string} = {'w' : 'wall' ,
-                                                    'v1' : 'visited-1',
-                                                    'v2' : 'visited-2',
-                                                    'v3' : 'visited-3',
                                                     }   
 
 //probably will want to refactor to take props
@@ -100,7 +97,8 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, cellValue, consoleConten
 
     return(
         <div 
-            className={`tile udc ${CONDITIONAL_STYLING[cellValue] ? CONDITIONAL_STYLING[cellValue] : ''}`} 
+            id={`cell-${x}-${y}`}
+            className={`tile udc ${cellValue === 'w' ? 'wall' : ''}`} 
             ref={drop}
         >
            {cellValue === 's'  && <SvgTotem totemType={cellValue}/>}
