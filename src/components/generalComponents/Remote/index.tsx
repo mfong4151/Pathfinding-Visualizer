@@ -6,6 +6,7 @@ import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
 import { DFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
+import assignActiveItterator from './utils/assignActiveItter';
 
 interface Props{
     chosenAlgo: string;
@@ -24,33 +25,11 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
   const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
     
-  const activeIttr = currIttr.current;
-
+  
   let coords :number[] = [-1, -1];
   
-
-
-  const resetMatrixStyling = ():void => {
-    
-
-  }
-
-  const itterateForward = ():void =>{
-    let currEle: HTMLElement;
-    
-    if (!activeIttr) return 
-    console.log(activeIttr.isEnd(coords))
-    while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
   
-    coords = activeIttr.next()
-    
-    if (!activeIttr.isStart(coords))
-    setTimeout(()=>{
-      currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
-      currEle.className = `${currEle?.className} visited-1`
-    }, 1000);
-
-  }
+  
 
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -58,10 +37,47 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     e.stopPropagation();
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
+
+    const activeIttr = currIttr.current;
+
+    //used with the reset button
+    const resetMatrixStyling = ():void => {
+      const exclusions = new Set(['s', 'w', 'e'])
+
+      for(let i:number = 0; i < matrix.length; i++)
+        for(let j:number = 0; j < matrix[0].length; j++){
+          if (exclusions.has(matrix[i][j].val)) continue;
+          
+          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc'
+        }
+        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
+    }
+
+    const itterateForward = ():void =>{
+      
+      if (!activeIttr) return 
+      console.log(activeIttr.isEnd(coords))
+      while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
+    
+      coords = activeIttr.next()
+      
+      if (!activeIttr.isStart(coords))
+      setTimeout(()=>{
+        let currEle: HTMLElement;
+        currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
+        currEle.className = `${currEle?.className} visited-1`
+      }, 1000);
+
+    }
+
+
+
+
     if (!activeIttr) return 
 
     switch (buttonId) {
       case 'reset':
+        resetMatrixStyling();
         break;
       case 'rewind':
         break;
@@ -94,19 +110,8 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
   useEffect(()=>{
     
-    if(allowSetMatrix.current) switch(chosenAlgo)
-    
-    {
-      case 'BFS':
-        currIttr.current = new BFSItteratorMatrix([startEndPos.start.x, startEndPos.start.y], [startEndPos.end.x, startEndPos.end.y], matrixState.matrix);
-        break
-      case 'DFS':
-        currIttr.current = new DFSItteratorMatrix([startEndPos.start.x, startEndPos.start.y], [startEndPos.end.x, startEndPos.end.y], matrixState.matrix);
-        break
+    if(allowSetMatrix.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
 
-      default:
-        break
-    }
     allowSetMatrix.current = true;
     
 
