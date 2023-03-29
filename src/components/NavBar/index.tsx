@@ -6,6 +6,11 @@ const NavBar = () => {
     <nav className="NavBar">
       <ul>
         <li>
+          <NavLink to="/" className="activeLink">
+            Home
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/graphs" className="activeLink">
             Graphs
           </NavLink>
