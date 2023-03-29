@@ -20,17 +20,23 @@ interface Props{
 const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
   const {setConsoleContent} = consoleContentState;
 
-  const currItterator = useRef<itterator>(null);
+  const currIttr = useRef<itterator>(null);
   const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
 
-  const animateChanges = (): void =>{
+ 
 
-  }
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const buttonId = e.currentTarget.id;
     const newMatrix: string[][] = [...matrix];
     const newConsoleContent: consoleContent = {};
+
+    const itterateForward = ():void =>{
+
+      
+    }
+
+
 
     switch (buttonId) {
       case 'skip-back':
@@ -50,7 +56,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         // handle pause button click
         break;
       case 'fast-forward':
-        // handle fast-forward button click
+        itterateForward();
         break;
       case 'skip-forward':
         // handle skip forward button click
@@ -61,6 +67,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     setMatrix(prev => newMatrix)
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
     allowSetMatrix.current = false;
+
     return
 };
 
@@ -70,7 +77,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     
     {
       case 'BFS':
-        currItterator.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
+        currIttr.current = new BFSItteratorMatrix([startEndPos.start.y, startEndPos.start.x], [startEndPos.end.y, startEndPos.end.x], matrixState.matrix);
         break
       
 
@@ -78,6 +85,8 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         break
     }
     allowSetMatrix.current = true;
+
+    console.log(currIttr.current)
 
   },[chosenAlgo, matrix])
 
@@ -101,7 +110,7 @@ return (
           <Pause/>
         </button>
       }
-      
+
     <button id='fast-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <FastForward/>
     </button>

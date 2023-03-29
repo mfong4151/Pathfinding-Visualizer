@@ -14,11 +14,14 @@
     background-color: var(--color-charcol);
 }
 
-.over-tile{
-    width: 28px;
-    height: 28px;
-    border:1px rgb(175, 216, 248) solid;
+.visited-1{
+    background-color: var(--color);
+    border:1px var(--color-white) solid;
+
 }
+
+
+
 
 .wall{
     background-color: var(--color-white);

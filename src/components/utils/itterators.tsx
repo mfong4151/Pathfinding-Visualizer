@@ -1,3 +1,5 @@
+import { pathObject } from "../types/classes";
+
 export class MatrixItterator{
     protected dirs: number[][];
     protected res: number[];
@@ -6,13 +8,13 @@ export class MatrixItterator{
     protected rows:number;
     protected cols:number;
     protected end: number[];
-    protected path: number[];
+    protected startObj: pathObject;
     protected prev: number[];
 
     constructor(start:number[], end:number[], matrix:string[][]){
         this.end = end;
-        this.path = [];
         this.res = [];
+        this.startObj = {node: start, path: [start]};
         this.visited = new Set();
         this.matrix = matrix;
         this.rows = matrix.length;
@@ -23,14 +25,15 @@ export class MatrixItterator{
     
 
     //meant to be overridden, used as a reference.
-    //All these calsses should exist on the child classes
+    //All these methods should exist on the child classes
     public isValidNext():boolean {
 
         return true;
     }
 
-    public next(): number[]{
-        return [-1, -1]
+
+    public next(){
+        return 
     }
 
     public isEnd():boolean{
@@ -38,6 +41,16 @@ export class MatrixItterator{
         return true;
 
     }
+
+    //except for these, these actually do stuff
+
+    public isStart(node:number[]):boolean{
+
+        if (node[0] === this.startObj.node[0] && node[1] === this.startObj.node[1]) return true;
+        return false
+
+    }
+
     public reanimatePastChanges(): string[][]{
         return this.matrix;
     }

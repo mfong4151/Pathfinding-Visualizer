@@ -4,6 +4,7 @@ import { ItemTypes } from "../../generalComponents/DSACanvas/utils/dragDropConst
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../types/positions";
 import { consoleContentState, matrixState, startEndState} from "../../types/state";
+import '../../Graphs/graphs.css'
 
 interface Props{
     matrixState: matrixState;

@@ -1,2 +1,4 @@
-
-export type path = number[];
+export type pathObject = {
+    node: number[],
+    path: number[][],
+};

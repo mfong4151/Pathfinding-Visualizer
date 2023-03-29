@@ -1,49 +1,67 @@
-import { MatrixItterator } from "../../../utils/itterator";
+import { pathObject } from "../../../types/classes";
+import { MatrixItterator } from "../../../utils/itterators";
 import DIRS from "./dirs";
 
 
 
-export class BFSItteratorMatrix extends MatrixItterator{
-    private q: number[][];
 
+export class BFSItteratorMatrix extends MatrixItterator{
+    protected q: pathObject[]  
 
     constructor(start:number[], end:number[], matrix:string[][] ){
         super(start,end, matrix)
-        this.q = [start];
+        this.q = [{node: start, path:[start]}];
+        this.visited.add(`${start[0]},${start[1]}`)
         this.end = end;
+        this.prev = [-1, -1];
     }
 
     public isValidNext():boolean{
         if (this.q.length < 0) return false;
-
-        const x:number =  this.q[0][0];
-        const y:number=  this.q[0][1];
+        const first = this.q[0]
+        const x:number =  first.node[0];
+        const y:number =  first.node[1];
         const pos: string = `${x},${y}`;
         
         if( this.visited.has(pos) || 
-            x < 0 || y< 0 || x >= this.cols || y >= this.rows || 
-            this.matrix[y][x] === 'w') 
+            x < 0 || x >= this.cols ||
+            y< 0 || y >= this.rows || 
+            this.matrix[y][x] === 'w'
+            ) 
             
             return false;
 
         return true;
     }
 
-    public next(): number[]{
-        if(this.q.length <= 0)return []
+    public next(): void{
+        if(this.q.length <= 0) return //do i need this line?
 
-        const node:number[] = this.q.shift()!;
-        this.visited.add(`${node[0]},${node[1]}`)
+        const {node, path} = this.q.shift()!;
         this.prev = node;
-        for (const dir of DIRS)  this.q.push([node[0] + dir[0], node[1] + dir[1]]);
+        const y: number = node[1];
+        const x: number = node[0];
+        const cords: string = `${x},${y}`;
+        this.visited.add(cords)
+        
+        if (!this.isStart(node)) this.matrix[y][x] = 'v'
+
+        const newPath: number[][] = [...path, [x, y]]
+
+        //load the queue
+        for (const [dx, dy] of DIRS) {
+            const newPos = [x + dx, y + dy]
+            this.q.push({node: newPos, path: newPath} );
+
+        }
         
 
-        return node;
+        return;
     }
 
     public isEnd(): boolean{
         if (this.q.length === 0) return true;
-        if (this.q[0][0] === this.end[0] && this.q[0][1] !== this.end[1]) return false;
+        if (this.q[0].node[0] === this.end[0] && this.q[0].node[1] !== this.end[1]) return false;
         return true;
     }
     
