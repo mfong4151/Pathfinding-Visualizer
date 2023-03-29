@@ -41,14 +41,16 @@ export class BFSItteratorMatrix extends MatrixItterator{
 
     public next():number[]{
         if(this.q.length <= 0) return []
-
-        const {pos, prev} = this.q.shift()!;
+        
+        const curr:pathObject = this.q.shift()!;
+        const {pos, prev} = curr;
         this.prev = pos;
         const y: number = pos[1];
         const x: number = pos[0];
         const cords: string = `${x},${y}`;
         this.visited.add(cords)
-        
+        if(!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
+        if (this.isEnd(pos)) this.endFound = true;
 
         //load the queue
         for (const [dx, dy] of DIRS) {
@@ -60,32 +62,43 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return pos;
     }
 
+    public isQueueEmpty():boolean{
+        return !(this.q.length > 0)
+    }
+
     public isEnd(node:number[]): boolean{
 
-        if ( (this.q.length === 0) || node[0] === this.end[0] && node[1] === this.end[1]) return true;
+        if (node[0] === this.end[0] && node[1] === this.end[1]) return true;
         return false;
     }
     
     public preformFullAlgo():pathObject[]{
-        while (this.q.length > 0) {
-            const node:pathObject = this.q.shift()!;
-            const x: number = node.pos[0];
-            const y: number = node.pos[1];
+        while (!this.isQueueEmpty()) {
+            const curr:pathObject = this.q.shift()!;
+            const x: number = curr.pos[0];
+            const y: number = curr.pos[1];
             const visitedPos: string = `${x},${y}`;
-            if( this.visited.has(visitedPos) || x < 0 || x >= this.cols ||  y< 0 || y >= this.rows || this.matrix[y][x].val === 'w'        ) continue
-            
-            this.visited.add(visitedPos)
-            this.res.push(node)
+            if( this.visited.has(visitedPos) || x < 0 || x >= this.cols ||  y< 0 || y >= this.rows || this.matrix[y][x].val === 'w') continue
             
 
-            if (node.pos[0] === this.end[0]&& node.pos[1] === this.end[1]) break;
+            this.visited.add(visitedPos)
+            this.res.push(curr)
+            
+            
+            if (this.isEnd(curr.pos)){
+                this.matrix[y][x] = {val: 'e', prev:curr.prev}
+                this.endFound = true;
+                break;
+            }
+            if(!this.isStart(curr.pos)) 
+                this.matrix[y][x] = {val: '', prev:curr.prev}
             
             for (const [dx, dy] of this.dirs) {
-                this.q.push({pos:[x + dx, y + dy], prev: node.pos})
+                this.q.push({pos:[x + dx, y + dy], prev: curr.pos})
               }
             }
 
-        return this.res;
+            return this.res;
     }
 
     public showContainer():number[][]{

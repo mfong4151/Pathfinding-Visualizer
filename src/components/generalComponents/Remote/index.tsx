@@ -37,12 +37,21 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
 
-    if (!activeIttr) return 
+    if (!activeIttr) {
+      newConsoleContent['msg'] = 'You need to select an algo!'
+      setConsoleContent(prev => newConsoleContent)
+      return 
+    }
 
-    const styleElement = (coords:number[]):void =>{
+    const styleElement = (coords:number[], style: string):void =>{
       let currEle: HTMLElement;
       currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!;
-      currEle.className = `${currEle?.className} visited-1`;
+      currEle.className = `${currEle?.className} ${style}`;
+    }
+
+    const styleShortestPath = (path:number[][]):void =>{
+      console.log(path)
+      for(const p of path) styleElement(p, 'shortest-path')
     }
 
     //used with the reset button 
@@ -67,14 +76,16 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
       } else  {
         coords = activeIttr.next()
-        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords);
+        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords, 'visited-1');
         }
 
     }
 
     const play = ():void  =>{
       const res:pathObject[] = activeIttr.preformFullAlgo()
-      for(const i of res) if(!activeIttr.isStart(i.pos) && !activeIttr.isEnd(i.pos))  styleElement(i.pos)
+      for(const i of res) 
+        if(!activeIttr.isStart(i.pos) && !activeIttr.isEnd(i.pos))  
+        styleElement(i.pos, 'visited-1')
 
     }
 
@@ -91,6 +102,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
         setIsPlaying(prev => !isPlaying)
         play()
+        // styleShortestPath(activeIttr.generateShortestPath())
         break;
 
       case 'pause':
@@ -127,9 +139,9 @@ return (
     <button id='reset' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <SkipBack/>
     </button>
-    <button  id='rewind' className='remote-btn sq-buttons' onClick={handleOnClick}>
+    {/* <button  id='rewind' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <Rewind/>
-    </button>
+    </button> */}
 
     {
       !isPlaying 

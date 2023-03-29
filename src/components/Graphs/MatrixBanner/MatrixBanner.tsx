@@ -48,6 +48,13 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
     return
   }
 
+  const resetMatrix = ():void =>{
+    setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))
+ 
+    
+    
+  }
+
   useEffect(()=>{
     setMatrix(prev => createNewMatrix(matrixDim.y, matrixDim.x))
 
@@ -73,7 +80,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
 
           <button  
               className='sq-buttons banner-button udc'
-              onClick={() => setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))}>
+              onClick={resetMatrix }>
               Reset Matrix
           </button>
 

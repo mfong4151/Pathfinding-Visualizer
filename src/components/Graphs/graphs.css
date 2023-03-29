@@ -19,7 +19,9 @@
 
 }
 
-
+.shortest-path{
+    background-color: var(--color-yellow-pineapple);
+}
 
 
 .wall{

@@ -11,9 +11,9 @@ export class MatrixItterator{
     public start: number[];
     public prev: number[];
     public res: pathObject[];
-    public foundEnd: boolean;
+    public endFound: boolean;
     
-    constructor(start:number[], end:number[], matrix:matrixItemObject ){
+    constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
         this.end = end;
         this.res = [];
         this.prev = [-1, -1];
@@ -22,7 +22,7 @@ export class MatrixItterator{
         this.matrix = matrix;
         this.rows = matrix.length;
         this.cols = matrix[0].length;
-        this.foundEnd = false;
+        this.endFound = false;
         this.dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]];
     }
     
@@ -61,10 +61,16 @@ export class MatrixItterator{
     }
 
     public generateShortestPath():number[][]{
-        if (!this.foundEnd) return [[]]
+        if (!this.endFound) return [[]]
+        const res: number[][] = []
+        let curr:matrixItemObject = this.matrix[this.end[1]][this.end[0]]
+    
+        while ((curr.prev[0] !== this.start[0]) && (curr.prev[1] !== this.start[1])){
+            res.push(curr.prev)
+            curr = this.matrix[curr.prev[1]][curr.prev[0]]
+        }
 
-        
-        return [[]]
+        return res
     }
 
     public reanimatePastChanges(): matrixItemObject {
