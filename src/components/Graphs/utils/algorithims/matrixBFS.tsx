@@ -11,7 +11,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
         super(start,end, matrix)
-        this.q = [{node: start, path:[start]}];
+        this.q = [{node: start, prev: this.prev}];
     }
 
 
@@ -42,19 +42,18 @@ export class BFSItteratorMatrix extends MatrixItterator{
     public next():number[]{
         if(this.q.length <= 0) return []
 
-        const {node, path} = this.q.shift()!;
+        const {node, prev} = this.q.shift()!;
         this.prev = node;
         const y: number = node[1];
         const x: number = node[0];
         const cords: string = `${x},${y}`;
         this.visited.add(cords)
 
-        const newPath: number[][] = [...path, [x, y]]
 
         //load the queue
         for (const [dx, dy] of DIRS) {
             const newPos = [x + dx, y + dy]
-            this.q.push({node: newPos, path: newPath} );
+            this.q.push({node: newPos, prev:node} );
         }
         
 
@@ -68,6 +67,14 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return false;
     }
     
+    public showContainer():number[][]{
+        const q:number[][] = [];
+
+        for(const i of this.q)q.push(i.node)
+        
+        return q
+    }
+
     //used for changing colors on past squares
     // public reanimatePastChanges(){
 

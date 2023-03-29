@@ -37,47 +37,52 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     e.stopPropagation();
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
-
     const activeIttr = currIttr.current;
 
+    if (!activeIttr) return 
+
     //used with the reset button
-    const resetMatrixStyling = ():void => {
-      const exclusions = new Set(['s', 'w', 'e'])
+    const resetMatrixItterator = ():void => {
+      const exclusions = new Set(['s', 'w', 'e']);
 
       for(let i:number = 0; i < matrix.length; i++)
         for(let j:number = 0; j < matrix[0].length; j++){
+
           if (exclusions.has(matrix[i][j].val)) continue;
-          
-          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc'
+          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
+
         }
-        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
+
+        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
     }
 
     const itterateForward = ():void =>{
       
-      if (!activeIttr) return 
-      console.log(activeIttr.isEnd(coords))
-      while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
-    
-      coords = activeIttr.next()
+      while(!activeIttr.isValidNext()) {
+        activeIttr.discardInvalidNode();
+        console.log(activeIttr.showContainer())
+      }
       
-      if (!activeIttr.isStart(coords))
-      setTimeout(()=>{
+      coords = activeIttr.next()
+      console.log(activeIttr.showContainer())
+      
+      if (!activeIttr.isStart(coords) || !activeIttr.isEnd(coords)){
         let currEle: HTMLElement;
         currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
         currEle.className = `${currEle?.className} visited-1`
-      }, 1000);
+      }
+      // setTimeout(()=>{
+      // }, 1000);
 
     }
 
 
 
 
-    if (!activeIttr) return 
 
     switch (buttonId) {
       case 'reset':
-        resetMatrixStyling();
+        resetMatrixItterator();
         break;
       case 'rewind':
         break;

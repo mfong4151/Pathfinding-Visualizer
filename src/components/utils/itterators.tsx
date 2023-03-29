@@ -15,13 +15,13 @@ export class MatrixItterator{
     constructor(start:number[], end:number[], matrix:matrixItemObject ){
         this.end = end;
         this.res = [];
-        this.startObj = {node: start, path: [start]};
+        this.prev = [-1, -1];
+        this.startObj = {node: start, prev:this.prev};
         this.visited = new Set();
         this.matrix = matrix;
         this.rows = matrix.length;
         this.cols = matrix[0].length;
         this.dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]];
-        this.prev = [-1, -1];
     }
     
 
@@ -32,6 +32,9 @@ export class MatrixItterator{
         return true;
     }
 
+    public showContainer(): number[][]{
+        return [[]]
+    }
 
     public next(){
         return 

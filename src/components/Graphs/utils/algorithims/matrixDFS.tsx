@@ -7,7 +7,7 @@ export class DFSItteratorMatrix extends MatrixItterator {
 
   constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
       super(start, end, matrix)
-      this.stack = [{node: start, path: [start]}]
+      this.stack = [{node: start, prev: this.prev}]
   }
 
   public isValidNext(): boolean {
@@ -35,7 +35,7 @@ export class DFSItteratorMatrix extends MatrixItterator {
   public next(): number[] {
       if (this.stack.length <= 0) return [];
 
-      const { node, path } = this.stack[this.stack.length - 1];
+      const { node, prev } = this.stack[this.stack.length - 1];
       this.prev = node;
       const y: number = node[1];
       const x: number = node[0];
@@ -43,12 +43,11 @@ export class DFSItteratorMatrix extends MatrixItterator {
       this.visited.add(cords)
       if (!this.isStart(node)) this.matrix[y][x] = 'v1'
 
-      const newPath: number[][] = [...path, [x, y]]
 
       // Load the stack
       for (const [dx, dy] of this.dirs) {
           const newPos = [x + dx, y + dy]
-          this.stack.push({node: newPos, path: newPath});
+          this.stack.push({node: newPos, prev: node});
       }
 
       return node;
