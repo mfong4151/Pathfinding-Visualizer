@@ -3,10 +3,9 @@ import './remote.css'
 import {consoleContentState, matrixState} from '../../types/state'
 import { startStop } from '../../types/positions';
 import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
-import { DFSIteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
+import { DFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
-import { consoleContent } from '../../types/objects';
-import sleep from './utils/sleep';
+import { consoleContent, matrixItemObject } from '../../types/objects';
 
 interface Props{
     chosenAlgo: string;
@@ -24,63 +23,63 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
   const currIttr = useRef<itterator>(null);
   const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
+    
+  const activeIttr = currIttr.current;
 
- 
+  let coords :number[] = [-1, -1];
+  
 
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    const buttonId = e.currentTarget.id;
-    let newMatrix: string[][] = [...matrix];
-    const activeIttr = currIttr.current;
-    const newConsoleContent: consoleContent = {};
-    let coords :number[];
+
+  const resetMatrixStyling = ():void => {
+    
+
+  }
+
+  const itterateForward = ():void =>{
+    let currEle: HTMLElement;
     
     if (!activeIttr) return 
+    console.log(activeIttr.isEnd(coords))
+    while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
+  
+    coords = activeIttr.next()
     
-    const itterateForward = ():void =>{
-      let currEle: HTMLElement;
+    if (!activeIttr.isStart(coords))
+    setTimeout(()=>{
+      currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
+      currEle.className = `${currEle?.className} visited-1`
+    }, 1000);
+
+  }
 
 
-      while(!activeIttr.isValidNext()) activeIttr.discardInvalidNode();
-      
-      coords = activeIttr.next()
-      
-      if (!activeIttr.isStart(coords))
-      setTimeout(()=>{
-        currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
-        currEle.className = `${currEle?.className} visited-1`
-      }, 1000);
-
-
-    }
-
-
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    const buttonId = e.currentTarget.id;
+    const newConsoleContent: consoleContent = {};
+    if (!activeIttr) return 
 
     switch (buttonId) {
-      case 'skip-back':
-        // handle skip back button click
+      case 'reset':
         break;
       case 'rewind':
-        // handle rewind button click
         break;
       case 'play':
 
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
-      
         setIsPlaying(prev => !isPlaying)
-        while(!activeIttr.isEnd()){
-            itterateForward();
-          }
+        
         
         break;
 
       case 'pause':
         setIsPlaying(prev => !isPlaying)
 
-        // handle pause button click
         break;
 
       case 'fast-forward':
-        if(!activeIttr.isEnd()) itterateForward();
+        if(!activeIttr.isEnd(coords)) itterateForward();
         break;
       case 'skip-forward':
         // handle skip forward button click
@@ -101,7 +100,9 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       case 'BFS':
         currIttr.current = new BFSItteratorMatrix([startEndPos.start.x, startEndPos.start.y], [startEndPos.end.x, startEndPos.end.y], matrixState.matrix);
         break
-      
+      case 'DFS':
+        currIttr.current = new DFSItteratorMatrix([startEndPos.start.x, startEndPos.start.y], [startEndPos.end.x, startEndPos.end.y], matrixState.matrix);
+        break
 
       default:
         break
@@ -114,7 +115,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
 return (
   <div id='remote'>
-    <button id='skip-back' className='remote-btn sq-buttons' onClick={handleOnClick}>
+    <button id='reset' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <SkipBack/>
     </button>
     <button  id='rewind' className='remote-btn sq-buttons' onClick={handleOnClick}>
@@ -132,7 +133,10 @@ return (
         </button>
       }
 
-    <button id='fast-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
+    <button id='fast-forward' className='remote-btn sq-buttons' 
+        onClick={handleOnClick}
+      >
+
       <FastForward/>
     </button>
 

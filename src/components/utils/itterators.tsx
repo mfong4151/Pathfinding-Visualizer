@@ -1,9 +1,10 @@
 import { pathObject } from "../types/classes";
+import { matrixItemObject } from "../types/objects";
 
 export class MatrixItterator{
     protected dirs: number[][];
     protected visited: Set<string>;
-    public matrix:string[][];
+    public matrix:matrixItemObject ;
     public rows:number;
     public cols:number;
     public end: number[];
@@ -11,7 +12,7 @@ export class MatrixItterator{
     public prev: number[];
     public res: number[];
     
-    constructor(start:number[], end:number[], matrix:string[][]){
+    constructor(start:number[], end:number[], matrix:matrixItemObject ){
         this.end = end;
         this.res = [];
         this.startObj = {node: start, path: [start]};
@@ -36,11 +37,11 @@ export class MatrixItterator{
         return 
     }
 
-    public isEnd():boolean{
+    // public isEnd(node:number):boolean{
         
-        return true;
+    //     return true;
 
-    }
+    // }
 
     //except for these, these actually do stuff
 
@@ -51,7 +52,7 @@ export class MatrixItterator{
 
     }
 
-    public reanimatePastChanges(): string[][]{
+    public reanimatePastChanges(): matrixItemObject {
         return this.matrix;
     }
 

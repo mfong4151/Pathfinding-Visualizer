@@ -5,13 +5,11 @@ import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import SvgTotem from './SvgTotem'
 import CellTotem from "./CellTotem";
-import { consoleContentState } from "../../types/state";
+import { consoleContentState, matrixState } from "../../types/state";
+import { matrixItemObject } from "../../types/objects";
 
 export interface Props{
-    matrixState:{
-        matrix: string[][];
-        setMatrix: React.Dispatch<React.SetStateAction<string[][]>>;
-    }
+    matrixState:matrixState;
     startEndState:{
         startEndPos:startStop;
         setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
@@ -61,14 +59,14 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                 </div>
 
                 <div className="matrix">
-                    {matrix.map((row : string[], y: number)=>   
+                    {matrix.map((row : matrixItemObject[], y: number)=>   
                         <div id={`row-${y}`} className='udc' key={y}>
                             {
-                                row.map((cellValue: string, x: number) =>
+                                row.map((matrixItemObject: matrixItemObject, x: number) =>
                                 
                                 <GraphMatrixItem 
                                     matrixState={matrixState}
-                                    cellValue={cellValue} 
+                                    matrixItemObject={matrixItemObject} 
                                     startEndState={startEndState} 
                                     consoleContentState={consoleContentState}
                                     pos={{y, x}}

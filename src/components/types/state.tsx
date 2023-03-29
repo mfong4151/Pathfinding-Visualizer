@@ -1,4 +1,4 @@
-import { consoleContent } from "./objects";
+import { consoleContent, matrixItemObject } from "./objects";
 import { startStop } from "./positions";
 
 
@@ -24,8 +24,8 @@ export type errorsState = {
 // Matrix state
 
 export type matrixState = {
-    matrix: string[][];
-    setMatrix: React.Dispatch<React.SetStateAction<Array<any>>>;
+    matrix: matrixItemObject[][];
+    setMatrix: React.Dispatch<React.SetStateAction<matrixItemObject[][]>>;
 }
 
 export type startEndState = {

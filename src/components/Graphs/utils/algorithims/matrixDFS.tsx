@@ -1,61 +1,62 @@
-export class DFSIteratorMatrix {
-    private visited: boolean[][];
-    private matrix: number[][];
-    private numRows: number;
-    private numCols: number;
-    private row: number;
-    private col: number;
-    private dirs: number[][];
-  
-    constructor(matrix: number[][]) {
-      this.visited = matrix.map(row => row.map(() => false));
-      this.matrix = matrix;
-      this.numRows = matrix.length;
-      this.numCols = matrix[0].length;
-      this.row = 0;
-      this.col = 0;
-      this.dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]];
-    }
-  
-    hasNext(): boolean {
-      return this.row < this.numRows && this.col < this.numCols;
-    }
-  
-    next(): number {
-      if (!this.hasNext()) {
-        throw new Error('No more elements in matrix');
-      }
-  
-      const value = this.matrix[this.row][this.col];
-      this.visited[this.row][this.col] = true;
-  
-      let nextRow = this.row;
-      let nextCol = this.col;
-      for (const [dr, dc] of this.dirs) {
-        const r = this.row + dr;
-        const c = this.col + dc;
-        if (r >= 0 && r < this.numRows && c >= 0 && c < this.numCols && !this.visited[r][c]) {
-          nextRow = r;
-          nextCol = c;
-          break;
-        }
-      }
-  
-      if (nextRow === this.row && nextCol === this.col) {
-        // Reached a dead end, backtrack
-        while (nextRow === this.row && nextCol === this.col) {
-          if (this.col > 0) {
-            this.col--;
-          } else {
-            this.col = this.numCols - 1;
-            this.row--;
-          }
-        }
-      } else {
-        this.row = nextRow;
-        this.col = nextCol;
-      }
-  
-      return value;
-    }
+import { MatrixItterator } from "../../../utils/itterators";
+import { pathObject } from "../../../types/classes";
+import { matrixItemObject } from "../../../types/objects";
+
+export class DFSItteratorMatrix extends MatrixItterator {
+  public stack: pathObject[]
+
+  constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
+      super(start, end, matrix)
+      this.stack = [{node: start, path: [start]}]
   }
+
+  public isValidNext(): boolean {
+      if (this.stack.length <= 0) return false;
+      const last = this.stack[this.stack.length - 1]
+      const x: number =  last.node[0];
+      const y: number =  last.node[1];
+      const pos: string = `${x},${y}`;
+      
+      
+      if (this.visited.has(pos) || 
+          x < 0 || x >= this.cols ||
+          y < 0 || y >= this.rows || 
+          this.matrix[y][x] === 'w') {
+              return false;
+      }
+
+      return true;
+  }
+
+  public discardInvalidNode(): void {
+      this.stack.pop()
+  }
+
+  public next(): number[] {
+      if (this.stack.length <= 0) return [];
+
+      const { node, path } = this.stack[this.stack.length - 1];
+      this.prev = node;
+      const y: number = node[1];
+      const x: number = node[0];
+      const cords: string = `${x},${y}`;
+      this.visited.add(cords)
+      if (!this.isStart(node)) this.matrix[y][x] = 'v1'
+
+      const newPath: number[][] = [...path, [x, y]]
+
+      // Load the stack
+      for (const [dx, dy] of this.dirs) {
+          const newPos = [x + dx, y + dy]
+          this.stack.push({node: newPos, path: newPath});
+      }
+
+      return node;
+  }
+
+  public isEnd(): boolean {
+      if (this.stack.length === 0) return true;
+      if (this.stack[this.stack.length - 1].node[0] === this.end[0] && this.stack[this.stack.length - 1].node[1] === this.end[1]) return true;
+      return false;
+  }
+}

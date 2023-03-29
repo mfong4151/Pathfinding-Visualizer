@@ -7,12 +7,12 @@ import { pos, startStop } from '../types/positions';
 import { consoleContent } from '../types/objects';
 import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
-
+import { matrixItemObject } from '../types/objects';
   
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
     const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
-    const [matrix, setMatrix] = useState<string[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
+    const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     const [consoleContent, setConsoleContent] = useState<consoleContent>({})
     const [isPlaying, setIsPlaying] = useState<boolean>(false);

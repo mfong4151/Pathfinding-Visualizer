@@ -1,4 +1,5 @@
 import { pathObject } from "../../../types/classes";
+import { matrixItemObject } from "../../../types/objects";
 import { MatrixItterator } from "../../../utils/itterators";
 import DIRS from "./dirs";
 
@@ -8,10 +9,9 @@ import DIRS from "./dirs";
 export class BFSItteratorMatrix extends MatrixItterator{
     public q: pathObject[]  
 
-    constructor(start:number[], end:number[], matrix:string[][] ){
+    constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
         super(start,end, matrix)
         this.q = [{node: start, path:[start]}];
-        this.end = end;
     }
 
 
@@ -30,10 +30,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
             )
     
             return false;
-                
-        
             
-
         return true;
     }
     
@@ -51,7 +48,6 @@ export class BFSItteratorMatrix extends MatrixItterator{
         const x: number = node[0];
         const cords: string = `${x},${y}`;
         this.visited.add(cords)
-        if (!this.isStart(node)) this.matrix[y][x] = 'v1'
 
         const newPath: number[][] = [...path, [x, y]]
 
@@ -65,8 +61,10 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return node;
     }
 
-    public isEnd(): boolean{
-        if ( (this.q.length === 0) || this.q[0].node[0] === this.end[0] && this.q[0].node[1] === this.end[1]) return true;
+    public isEnd(node:number[] = [-1, -1]): boolean{
+
+
+        if ( (this.q.length === 0) || node[0] === this.end[0] && node[1] === this.end[1]) return true;
         return false;
     }
     
