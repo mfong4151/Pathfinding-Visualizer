@@ -1,4 +1,4 @@
-import { MatrixItterator } from "../../../utils/itterators";
+import { MatrixItterator } from "./matrixItterator";
 import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
 export class DFSItteratorMatrix extends MatrixItterator {

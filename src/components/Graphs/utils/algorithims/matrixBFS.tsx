@@ -1,6 +1,6 @@
 import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
-import { MatrixItterator } from "../../../utils/itterators";
+import { MatrixItterator } from "./matrixItterator";
 import DIRS from "./dirs";
 
 

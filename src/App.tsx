@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/index'
 import Graphs from './components/Graphs/index'
-import Trees from './components/Trees/index'
-import LinkedLists from './components/LinkedLists/index'
+import NodePage from './components/generalComponents/NodePage';
 
 const App: React.FC = () => {
   
@@ -10,9 +9,11 @@ const App: React.FC = () => {
     <div className="app">
       <NavBar/>
       <Routes>
+
         <Route path="/graphs" Component={Graphs}/>
-        <Route path="/trees" Component={Trees}/>  
-        <Route path="/linked_lists" Component={LinkedLists}/>  
+        {/* <Route path="/trees" Component={()=><NodePage type={'trees'}/>}/>  
+        <Route path="/linked_lists" Component={()=><NodePage type={'linkedlists'}/>}/>   */}
+       
       </Routes>
     </div>
   );

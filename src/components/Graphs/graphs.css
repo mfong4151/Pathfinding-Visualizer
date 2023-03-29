@@ -1,4 +1,9 @@
+#matrix-tab{
+    width:auto;
+}
+
 #matrix{
+    width:auto;
     display:grid;
     grid-template-columns: repeat(10, 12vmax);
     grid-template-rows: repeat(10, 12vmax);

@@ -70,7 +70,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
 
   return (
     <div id='banner' className='udc-left fdr'>
-
+        <div className='udc fdr'>
           <button   
               className='sq-buttons banner-button udc'
               onClick={()=> setMatrixNodes(!matrixNodes)}
@@ -104,6 +104,8 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
           
           
           {chooseAlgoModal && <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/> }
+        </div>
+        <div>
 
           <Remote chosenAlgo={chosenAlgo} 
                   matrixState={{matrix, setMatrix}} 
@@ -111,10 +113,11 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
                   consoleContentState={consoleContentState}
                   isPlaying={isPlaying}
                   setIsPlaying={setIsPlaying}
-                
-            />
+                  
+                  />
 
         </div>
+    </div>
   )
 }
 

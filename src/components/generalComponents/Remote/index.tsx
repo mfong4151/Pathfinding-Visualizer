@@ -50,7 +50,6 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     }
 
     const styleShortestPath = (path:number[][]):void =>{
-      console.log(path)
       for(const p of path) styleElement(p, 'shortest-path')
     }
 
@@ -100,9 +99,10 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       case 'play':
 
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
-        setIsPlaying(prev => !isPlaying)
+        // setIsPlaying(prev => !isPlaying)
         play()
         // styleShortestPath(activeIttr.generateShortestPath())
+
         break;
 
       case 'pause':
@@ -170,8 +170,8 @@ return (
 
 const Play:React.FC = () => (
         <svg fill='currentColor' 
-            height='auto' 
-            width='60px' 
+            height='45px' 
+            width='45px' 
             version='1.1' 
             viewBox='0 0 485 485'
             className='svg-style'
@@ -190,8 +190,8 @@ const Play:React.FC = () => (
 const Pause:React.FC = () =>(
     <svg 
       fill='currentColor' 
-      height='auto' 
-      width='60px' 
+      height='45px' 
+      width='45px' 
       version='1.1' 
       viewBox='0 0 485 485'
       className='svg-style'
@@ -209,8 +209,8 @@ const Pause:React.FC = () =>(
 
 const FastForward:React.FC = () => (
       <svg fill='currentColor' 
-          height='auto' 
-          width='60px' 
+          height='45px' 
+          width='45px' 
           version='1.1' 
           viewBox='0 0 321.9 321.9'
           className='svg-style'
@@ -228,8 +228,8 @@ const FastForward:React.FC = () => (
 const Rewind:React.FC = ( ) => (
     <svg 
         fill='currentColor' 
-        height='auto' 
-        width='60px' 
+        height='45px' 
+        width='45px' 
         version='1.1' 
         viewBox='0 0 321.9 321.9' 
         className='rotate-svg svg-style'
@@ -249,8 +249,8 @@ const Rewind:React.FC = ( ) => (
 const SkipForward:React.FC = () => (
     <svg 
       fill='currentColor' 
-      height='auto' 
-      width='60px' 
+      height='45px' 
+      width='45px' 
       version='1.1'  
       viewBox='0 0 60 60'  
       className='rotate-svg svg-style'>
@@ -269,8 +269,8 @@ const SkipForward:React.FC = () => (
 const SkipBack:React.FC = () => (
   <svg 
     fill='currentColor' 
-    height='auto' 
-    width='60px' 
+    height='45px' 
+    width='45px' 
     version='1.1'  
     viewBox='0 0 60 60' 
     className='svg-style'

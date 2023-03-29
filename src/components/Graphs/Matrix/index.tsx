@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
 import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
@@ -24,7 +24,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
 
     return(
-        <div className="fdc">
+        <div id='matrix-tab' className="fdc">
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr sb'>
@@ -50,11 +50,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                     </div>
 
                     
-                    <div className="drag-icon-holder udc fdc">
-                        <CellTotem totemType='toggle-path'/>
-                        <p>TogglePath</p>
-
-                    </div>
+            
                     
                 </div>
 

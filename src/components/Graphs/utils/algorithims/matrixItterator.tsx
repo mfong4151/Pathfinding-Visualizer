@@ -1,5 +1,5 @@
-import { pathObject } from "../types/classes";
-import { matrixItemObject } from "../types/objects";
+import { pathObject } from "../../../types/classes";
+import { matrixItemObject } from "../../../types/objects";
 
 export class MatrixItterator{
     protected dirs: number[][];
