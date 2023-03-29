@@ -1,4 +1,4 @@
 export type pathObject = {
-    node: number[],
+    pos: number[],
     prev: number[],
 };

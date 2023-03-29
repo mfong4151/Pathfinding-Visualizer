@@ -10,7 +10,8 @@ export class MatrixItterator{
     public end: number[];
     public start: number[];
     public prev: number[];
-    public res: number[];
+    public res: pathObject[];
+    public foundEnd: boolean;
     
     constructor(start:number[], end:number[], matrix:matrixItemObject ){
         this.end = end;
@@ -21,6 +22,7 @@ export class MatrixItterator{
         this.matrix = matrix;
         this.rows = matrix.length;
         this.cols = matrix[0].length;
+        this.foundEnd = false;
         this.dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]];
     }
     
@@ -40,6 +42,10 @@ export class MatrixItterator{
         return 
     }
 
+    public preformFullAlgo(): pathObject[]{
+
+        return []
+    }
     // public isEnd(node:number):boolean{
         
     //     return true;
@@ -52,6 +58,13 @@ export class MatrixItterator{
         if (node[0] === this.start[0] && node[1] === this.start[1]) return true;
         return false
 
+    }
+
+    public generateShortestPath():number[][]{
+        if (!this.foundEnd) return [[]]
+
+        
+        return [[]]
     }
 
     public reanimatePastChanges(): matrixItemObject {

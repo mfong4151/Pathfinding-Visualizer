@@ -7,6 +7,7 @@ import { DFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
+import { pathObject } from '../../types/classes';
 
 interface Props{
     chosenAlgo: string;
@@ -25,11 +26,8 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
   const allowSetMatrix = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
     
-  
   let coords :number[] = [-1, -1];
-  
-  
-  
+
 
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -41,7 +39,13 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
     if (!activeIttr) return 
 
-    //used with the reset button
+    const styleElement = (coords:number[]):void =>{
+      let currEle: HTMLElement;
+      currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!;
+      currEle.className = `${currEle?.className} visited-1`;
+    }
+
+    //used with the reset button 
     const resetMatrixItterator = ():void => {
       const exclusions = new Set(['s', 'w', 'e']);
 
@@ -57,26 +61,22 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     }
 
     const itterateForward = ():void =>{
-      
-   
+    
       if(!activeIttr.isValidNext()) {
         activeIttr.discardInvalidNode();
 
       } else  {
         coords = activeIttr.next()
-        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
-          let currEle: HTMLElement;
-          currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!
-          currEle.className = `${currEle?.className} visited-1`
-        }}
-        
-    
-      // setTimeout(()=>{
-      // }, 1000);
+        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords);
+        }
 
     }
 
+    const play = ():void  =>{
+      const res:pathObject[] = activeIttr.preformFullAlgo()
+      for(const i of res) if(!activeIttr.isStart(i.pos) && !activeIttr.isEnd(i.pos))  styleElement(i.pos)
 
+    }
 
 
 
@@ -90,8 +90,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
         setIsPlaying(prev => !isPlaying)
-        
-        
+        play()
         break;
 
       case 'pause':
