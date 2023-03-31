@@ -48,7 +48,7 @@ const Graphs: React.FC = ()=>{
               />
             </section>
 
-            <div className='adjbar udc' ref={adjBarRef}>
+            <div id='adjbar' className='udc' ref={adjBarRef}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 14" width="2" height="14" fill="currentColor" className="text-gray-3 dark:text-dark-gray-3 transition -translate-y-6 group-hover:text-white dark:group-hover:text-white">
                 <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 1)"/>
                 <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 7)"/>

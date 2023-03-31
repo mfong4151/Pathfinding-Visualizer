@@ -5,6 +5,7 @@
   --color-transparent:transparent;
   --color-yellow-pineapple:#FEE12B;
   --color-blue-visited-1:#092ad0;
+  --color-blue-adjbar: #0A84FF;
 
 }
 
@@ -104,16 +105,21 @@ code {
 }
 
 #page-right{
-  width:60%;
+  width:60.5%;
   height:100%;
   background-color: var(--color-charcol);
 
 }
 
-.adjbar{
+#adjbar{
   height:100%;
-  max-width:2px;
+  width:8px;
 }
+
+#adjbar:hover{
+  background-color: var(--color-blue-adjbar)
+}
+
 .sq-buttons{
   background-color: var(--color-charcol);
   color: var(--color-white);
