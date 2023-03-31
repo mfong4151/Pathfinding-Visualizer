@@ -1,4 +1,26 @@
 .splash-page{
-    margin-left:4rem;
+    margin-top:2rem;
     color:var(--color-white)
+}
+
+.splash-section{
+    margin-left:4rem;
+    width:50%;
+    height:100vh;
+    background-color: var(--color-charcol);
+}
+
+#separator{
+    background-color: black;
+    width:2rem;
+    height:100vh;
+}
+
+#updates{
+
+  
+}
+    
+#blog-messages{
+
 }
