@@ -32,9 +32,9 @@
     height:100vh;
 }
 
-#updates{
-
-  
+#timeline-block{
+    max-height:30vh;
+    overflow-y: auto;
 }
     
 #blog-messages{

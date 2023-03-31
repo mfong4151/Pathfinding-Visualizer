@@ -36,9 +36,9 @@ const RenderUpdates: React.FC = () => {
   return (
     <div>
       {updates.map((update:string, idx:number) =>
-          <div className='fdr' key={idx}>
+          <div key={idx}>
             <h3>{`${update.split(':')[0]}:`} </h3>
-            <p >{`${update.split(':')[1]}`}</p>
+            <p className='update text'>{`${update.split(':')[1]}`}</p>
           </div>
       )}
     </div>
@@ -47,9 +47,9 @@ const RenderUpdates: React.FC = () => {
 
 const RenderTimeline: React.FC = () => {
   return (
-    <div>
+    <div id='timeline-block'>
         {timelines.map((status:string, idx:number) =>
-          <div className='fdr' key={idx}>
+          <div className='fdc' key={idx}>
             <h3>{`${status.split(':')[0]}:`} </h3>
             <p >{`${status.split(':')[1]}`}</p>
           </div>
@@ -62,7 +62,7 @@ const RenderTimeline: React.FC = () => {
 
 
 
-const updates:string[] = [
+const timelines:string[] = [
   "4/1 Fix basic styling: Trying to make the page more responsive and just good looking in general. The main style ripped off Leetcode, so it would be great to get the responsive page updating.",
   "4/3 Fix matrix sizing: I’m going to stick with doing the Matrix for now. I feel like there’s a lot that can be improved, so I want to see that through",
   "4/5 Add A* and other matrix search algorithims: Pretty straight forward, want to get more algos up.",
@@ -73,7 +73,7 @@ const updates:string[] = [
 
 ];
 
-const timelines: string[] = [
+const updates: string[] = [
 
 
 ];
