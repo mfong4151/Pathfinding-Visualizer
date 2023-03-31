@@ -34,6 +34,11 @@ code {
   align-items: center;
 }
 
+.udc-no-vertical{
+  display:flex;
+  justify-content: center;
+}
+
 .udc-left{
   display: flex;
   justify-content: start;
@@ -97,7 +102,7 @@ code {
 
 #page-left{
   display:flex;
-  justify-content: center;
+  justify-content: flex-end;
   width:39.5%;
   height:100%;
   background-color: var(--color-charcol);
@@ -105,7 +110,7 @@ code {
 }
 
 #page-right{
-  width:60.5%;
+  width:100%;
   height:100%;
   background-color: var(--color-charcol);
 
@@ -113,7 +118,7 @@ code {
 
 #adjbar{
   height:100%;
-  width:8px;
+  min-width:10px;
   background-color: var(--color-black-foreground);
 
 }
@@ -122,6 +127,9 @@ code {
   background-color: var(--color-blue-adjbar)
 }
 
+#adjbar:active{
+  cursor: grabbing;
+}
 .sq-buttons{
   background-color: var(--color-charcol);
   color: var(--color-white);
