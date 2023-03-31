@@ -4,10 +4,22 @@
 }
 
 .splash-section{
-    margin-left:4rem;
+    margin-left:3rem;
+    margin-right:3rem;
     width:50%;
     height:100vh;
     background-color: var(--color-charcol);
+}
+
+.splash-section > h2{
+    margin-top:3rem;
+    margin-left:3rem;
+}
+
+.splash-section > h1{
+    font-size: 4rem;
+    margin-top:3rem;
+    margin-left:3rem;
 }
 
 #separator{

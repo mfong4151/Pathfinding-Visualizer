@@ -1,6 +1,8 @@
 import React from 'react'
 import './splash.css'
 
+const aboutThisProject: string =  ''
+
 const Splash:React.FC = () => {
  
     
@@ -9,12 +11,12 @@ const Splash:React.FC = () => {
       <div className="splash-page fdr">
         <section id="updates" className="splash-section">
           <h2>Updates</h2>
-          {RenderUpdates()}
+            <RenderUpdates/>
+          <h2>Timeline</h2>
+            <RenderTimeline/>
         </section>
-        <div id='separator'/>
         <section id="blog-messages" className="splash-section">
-          <h2>Blog</h2>
-          {RenderTimeline()}
+          <h1>About this Project</h1>
         </section>
       </div>
     );
@@ -24,7 +26,7 @@ const Splash:React.FC = () => {
 
 
 
-const RenderUpdates = () => {
+const RenderUpdates: React.FC = () => {
   return (
     <div>
       
@@ -32,7 +34,7 @@ const RenderUpdates = () => {
   )
 }
 
-const RenderTimeline = () => {
+const RenderTimeline: React.FC = () => {
   return (
     <div>
       
