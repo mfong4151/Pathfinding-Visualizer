@@ -112,7 +112,7 @@ code {
 
 .adjbar{
   height:100%;
-  width:8px;
+  max-width:2px;
 }
 .sq-buttons{
   background-color: var(--color-charcol);

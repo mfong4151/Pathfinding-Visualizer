@@ -1,5 +1,5 @@
 import './graphs.css'
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
@@ -14,14 +14,18 @@ const Graphs: React.FC = ()=>{
     const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
     const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
+    const matrixState = {matrix, setMatrix};
+    
     const [consoleContent, setConsoleContent] = useState<consoleContent>({})
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [errors, setErrors] = useState<Array<string>>([''])
-
-    const matrixState = {matrix, setMatrix};
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
 
+    const adjBarRef = useRef(null)
+
+
+    
     return(
       <div className='font-color'>
 
@@ -44,7 +48,13 @@ const Graphs: React.FC = ()=>{
               />
             </section>
 
-            <div className='adjbar'/>
+            <div className='adjbar udc' ref={adjBarRef}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 14" width="2" height="14" fill="currentColor" className="text-gray-3 dark:text-dark-gray-3 transition -translate-y-6 group-hover:text-white dark:group-hover:text-white">
+                <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 1)"/>
+                <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 7)"/>
+                <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"/>
+              </svg>
+            </div>
 
             <section id='page-right' className='udc tab-bg'>
                 {matrixNodes && 
