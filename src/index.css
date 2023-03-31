@@ -98,7 +98,7 @@ code {
 #page-left{
   display:flex;
   justify-content: center;
-  width:39%;
+  width:39.5%;
   height:100%;
   background-color: var(--color-charcol);
 
@@ -114,6 +114,8 @@ code {
 #adjbar{
   height:100%;
   width:8px;
+  background-color: var(--color-black-foreground);
+
 }
 
 #adjbar:hover{
