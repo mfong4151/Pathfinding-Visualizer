@@ -15,16 +15,17 @@ export interface Props{
         setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
     }
     consoleContentState: consoleContentState;
+    matrixRef:React.MutableRefObject<any>;
 } 
 
 
 
-const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleContentState})=>{
+const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleContentState, matrixRef})=>{
     const {matrix} = matrixState;
 
 
     return(
-        <div id='matrix-tab' className="fdc">
+        <div id='matrix-tab' className="fdc" ref={matrixRef}>
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr sb'>

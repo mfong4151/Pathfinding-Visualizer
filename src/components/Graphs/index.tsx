@@ -9,7 +9,9 @@ import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
 import { matrixItemObject } from '../types/objects';
 import useWindowSize from '../customHooks/useWindowSize';
-  
+
+const BREAK_POINT: number = 10;
+
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
     const [matrixDim, setMatrixDim]  = useState<pos>({y: 20, x: 20});
@@ -22,10 +24,12 @@ const Graphs: React.FC = ()=>{
     const [errors, setErrors] = useState<Array<string>>([''])
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
+
     const pageLeftRef = useRef<any>();
     const pageRightRef = useRef<any>();
     const adjBarRef = useRef<any>();
-    
+    const matrixRef = useRef<any>();
+
     useEffect(()=>{
       const resizeableLeft = pageLeftRef.current;
       const stylesLeft: CSSStyleDeclaration = window.getComputedStyle(resizeableLeft!);
@@ -61,8 +65,18 @@ const Graphs: React.FC = ()=>{
       }
     }, [])
     
+
+    //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
-      console.log(windowDim.width)
+      console.log('shibal')
+      
+
+      if (pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT){
+        console.log('shibal')
+
+
+      }
+
     },[windowDim.width])
    
     return(
@@ -101,7 +115,9 @@ const Graphs: React.FC = ()=>{
                   <GraphMatrix 
                     matrixState={matrixState} 
                     startEndState ={{startEndPos, setStartEndPos}}
-                    consoleContentState={{consoleContent, setConsoleContent}}/>}
+                    consoleContentState={{consoleContent, setConsoleContent}}
+                    matrixRef = {matrixRef}
+                    />}
             </section>  
 
         </div>
