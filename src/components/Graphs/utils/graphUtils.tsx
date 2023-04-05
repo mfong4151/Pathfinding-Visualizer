@@ -2,7 +2,7 @@ import { matrixItemObject } from "../../types/objects";
 
 
 
-export const createNewMatrix = (numRows :Number, numCols :Number) : matrixItemObject[][] =>{
+export const createNewMatrix = (numRows :number, numCols :number) : matrixItemObject[][] =>{
     const matrix = []
     let newRow;
     let id= 0;

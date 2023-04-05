@@ -81,7 +81,12 @@ code {
   margin-right:.5rem;
 }
 
-
+.univ-padding{
+  margin: 0rem 2rem;
+}
+.univ-padding-y{
+  margin: 0rem 2rem;
+}
 
 /* designs for each of the pannels on main page */
 

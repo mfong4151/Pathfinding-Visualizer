@@ -25,7 +25,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
 
     return(
-        <div id='matrix-tab' className="fdc" ref={matrixRef}>
+        <div id='matrix-tab' className="fdc univ-padding" ref={matrixRef}>
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr sb'>

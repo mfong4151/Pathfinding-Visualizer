@@ -11,7 +11,7 @@ import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 
-const BREAK_POINT: number = 10;
+const BREAK_POINT: number = 65;
 
 const Graphs: React.FC = ()=>{
     const {matrixNodes, setMatrixNodes, matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
@@ -19,7 +19,7 @@ const Graphs: React.FC = ()=>{
     
     const matrixState = {matrix, setMatrix};
     const windowDim = useWindowSize()
-    
+
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
 
@@ -68,10 +68,14 @@ const Graphs: React.FC = ()=>{
     useEffect(()=>{
       
 
-      if (pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT){
-        console.log('shibal')
+      if (pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT && matrix[0].length >= 3){
+        setMatrix(createNewMatrix(matrix.length, matrix[0].length -1))
 
+      } else if (matrix[0].length < matrixDim.x ){
 
+        setMatrix(createNewMatrix(matrix.length, matrix[0].length + 1))
+
+        
       }
 
     },[windowDim.width])
