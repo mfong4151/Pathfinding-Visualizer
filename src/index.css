@@ -176,5 +176,6 @@ code {
 
 .toolbar{ 
   margin-left:2rem;
-  margin-right:2rem;   
+  margin-right:2rem;
+  width:auto;
 }

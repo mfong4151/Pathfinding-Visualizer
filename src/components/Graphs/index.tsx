@@ -8,47 +8,47 @@ import { consoleContent } from '../types/objects';
 import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
 import { matrixItemObject } from '../types/objects';
+import useWindowSize from '../customHooks/useWindowSize';
   
 const Graphs: React.FC = ()=>{
     const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
-    const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
+    const [matrixDim, setMatrixDim]  = useState<pos>({y: 20, x: 20});
     const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     const matrixState = {matrix, setMatrix};
-    
+    const windowDim = useWindowSize()
     const [consoleContent, setConsoleContent] = useState<consoleContent>({})
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [errors, setErrors] = useState<Array<string>>([''])
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
-    const pageLeftRef = useRef<any>()
-    const adjBarRef = useRef<any>()
-
+    const pageLeftRef = useRef<any>();
+    const pageRightRef = useRef<any>();
+    const adjBarRef = useRef<any>();
+    
     useEffect(()=>{
-      const resizeableDiv = pageLeftRef.current;
-      const styles: CSSStyleDeclaration = window.getComputedStyle(resizeableDiv!);
-      let width:number = parseInt(styles.width, 10)
+      const resizeableLeft = pageLeftRef.current;
+      const stylesLeft: CSSStyleDeclaration = window.getComputedStyle(resizeableLeft!);
+      let widthLeft:number = parseInt(stylesLeft.width, 10)
 
       let x:number = 0;
-      let y:number = 0;
       
       const onMouseMoveLRResize =  (e:any) =>{
         const dx: number = e.clientX - x;
-        width = width + dx;
+        widthLeft = widthLeft + dx;
         x = e.clientX
-        resizeableDiv.style.width! = `${width}px`
+        resizeableLeft.style.width! = `${widthLeft}px`
       }
       
       const onMouseUpLRResize = (e:any) => document.removeEventListener("mousemove", onMouseMoveLRResize);
 
       const onMouseDownRightResize = (e:any) =>{
         x = e.clientX;
-        resizeableDiv.style.left = styles.left
-        resizeableDiv.style.right = null;
+        resizeableLeft.style.left = stylesLeft.left
+        resizeableLeft.style.right = null;
         document.addEventListener("mousemove", onMouseMoveLRResize);
         document.addEventListener("mouseup", onMouseUpLRResize);
 
-        
 
       }
 
@@ -60,7 +60,10 @@ const Graphs: React.FC = ()=>{
 
       }
     }, [])
-
+    
+    useEffect(()=>{
+      console.log(windowDim.width)
+    },[windowDim.width])
    
     return(
       <div className='font-color'>
@@ -76,8 +79,8 @@ const Graphs: React.FC = ()=>{
           />  
 
         
-         <div className='page-body' ref={pageLeftRef}>
-            <section id='page-left' className='tab-bg' >
+         <div className='page-body'>
+            <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical'>
 
                 <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
@@ -93,7 +96,7 @@ const Graphs: React.FC = ()=>{
             
             </section>
 
-            <section id='page-right' className='udc tab-bg'>
+            <section id='page-right' className='udc tab-bg' ref={pageRightRef}>
                 {matrixNodes && 
                   <GraphMatrix 
                     matrixState={matrixState} 
