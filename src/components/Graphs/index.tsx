@@ -4,24 +4,22 @@ import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import { pos, startStop } from '../types/positions';
-import { consoleContent } from '../types/objects';
 import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
 import { matrixItemObject } from '../types/objects';
+import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
+import useMatrixStates from './customHooks/useMatrixStates';
 
 const BREAK_POINT: number = 10;
 
 const Graphs: React.FC = ()=>{
-    const [matrixNodes, setMatrixNodes] = useState<boolean>(true); //true === matrix, false === nodes
-    const [matrixDim, setMatrixDim]  = useState<pos>({y: 20, x: 20});
-    const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
-    const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
+    const {matrixNodes, setMatrixNodes, matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
+    const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
+    
     const matrixState = {matrix, setMatrix};
     const windowDim = useWindowSize()
-    const [consoleContent, setConsoleContent] = useState<consoleContent>({})
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    const [errors, setErrors] = useState<Array<string>>([''])
+    
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
 
@@ -68,7 +66,6 @@ const Graphs: React.FC = ()=>{
 
     //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
-      console.log('shibal')
       
 
       if (pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT){
@@ -84,7 +81,7 @@ const Graphs: React.FC = ()=>{
 
         <MatrixBanner 
                 matrixNodeState={{matrixNodes, setMatrixNodes}}
-                matrixState = {{matrix, setMatrix}}
+                matrixState = {matrixState}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
                 startEndPosState ={{ startEndPos, setStartEndPos}}
                 consoleContentState = {consoleContentState}
