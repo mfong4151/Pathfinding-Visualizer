@@ -7,6 +7,7 @@ import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../utils/descriptions';
+import { resetStyleSync, styleElement, styleElementSync } from '../utils/matrixStyling';
 
 interface Props{
   matrixNodeState: matrixNodeState;
@@ -51,8 +52,12 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
   }
 
   const resetMatrix = ():void =>{
+    for(let i: number = 0; i  < matrix.length; i ++)
+      for(let j: number = 0; j  < matrix.length; j ++){
+        resetStyleSync([i, j], 'tile udc')
+      }
     setMatrix(createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
-
+    
   }
 
   useEffect(()=>{

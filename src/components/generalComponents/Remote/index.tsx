@@ -5,7 +5,7 @@ import { startStop } from '../../types/positions';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-import { styleElement } from './utils/matrixStyling';
+import { styleElement } from '../../Graphs/utils/matrixStyling';
 
 interface Props{
     chosenAlgo: string;
