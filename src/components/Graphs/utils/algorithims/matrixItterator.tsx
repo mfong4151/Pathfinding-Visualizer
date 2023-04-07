@@ -10,7 +10,7 @@ export class MatrixItterator{
     public end: number[];
     public start: number[];
     public prev: number[];
-    public res: pathObject[];
+    public res: matrixItemObject[];
     public endFound: boolean;
     
     constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
@@ -42,7 +42,7 @@ export class MatrixItterator{
         return 
     }
 
-    public preformFullAlgo(): pathObject[]{
+    public preformFullAlgo(): matrixItemObject[]{
 
         return []
     }

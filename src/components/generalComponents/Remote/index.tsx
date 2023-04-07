@@ -2,12 +2,10 @@ import React, {useRef, useEffect} from 'react'
 import './remote.css'
 import {consoleContentState, matrixState} from '../../types/state'
 import { startStop } from '../../types/positions';
-import { BFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixBFS';
-import { DFSItteratorMatrix } from '../../Graphs/utils/algorithims/matrixDFS';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-import { pathObject } from '../../types/classes';
+import { styleElement } from './utils/styling';
 
 interface Props{
     chosenAlgo: string;
@@ -43,16 +41,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       return 
     }
 
-    const styleElement = (coords:number[], style: string):void =>{
-      let currEle: HTMLElement;
-      currEle = document.getElementById(`cell-${coords[0]}-${coords[1]}`)!;
-      currEle.className = `${currEle?.className} ${style}`;
-    }
-
-    const styleShortestPath = (path:number[][]):void =>{
-      for(const p of path) styleElement(p, 'shortest-path')
-    }
-
+    
     //used with the reset button 
     const resetMatrixItterator = ():void => {
       const exclusions = new Set(['s', 'w', 'e']);
@@ -81,11 +70,17 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     }
 
     const play = ():void  =>{
-      const res:pathObject[] = activeIttr.preformFullAlgo()
-      for(const i of res) 
-        if(!activeIttr.isStart(i.pos) && !activeIttr.isEnd(i.pos))  
-        styleElement(i.pos, 'visited-1')
+      const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+      for(let i:number = 0; i < res.length; i ++){
 
+        const node:matrixItemObject = res[i];
+        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
+         
+            
+            styleElement(node.pos, 'visited-1', i)
+        }
+        
+      }
     }
 
 
@@ -135,7 +130,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
 
 return (
-  <div id='remote'>
+  <div id='remote fdr'>
     <button id='reset' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <SkipBack/>
     </button>

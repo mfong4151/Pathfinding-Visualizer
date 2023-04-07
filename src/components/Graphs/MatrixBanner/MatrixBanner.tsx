@@ -6,7 +6,6 @@ import { pos, startStop } from '../../types/positions';
 import Remote from '../../generalComponents/Remote';
 import '../../Graphs/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
-import { consoleContent } from '../../types/objects';
 import matrixDescriptions from '../utils/descriptions';
 
 interface Props{
@@ -38,14 +37,13 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
     e.preventDefault();
-    e.stopPropagation()
+    e.stopPropagation();
 
     const newMatrixDim = {...matrixDim}
     if (origin === 'height') newMatrixDim['y'] = Number(e.target.value);
     else newMatrixDim['x'] = Number(e.target.value);
 
     setMatrixDim(prev => newMatrixDim)
-    return
   }
 
   const resetMatrix = ():void =>{
@@ -70,7 +68,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
 
   return (
     <div id='banner' className='udc-left fdr'>
-        <div className='udc fdr'>
+        <div className='udc fdr univ-padding'>
           <button   
               className='sq-buttons banner-button udc'
               onClick={()=> setMatrixNodes(!matrixNodes)}
@@ -87,11 +85,11 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
           {matrixNodes && 
           <div className='fdr udc-left'>
 
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
               <input placeholder='Set height' onChange={e => handleOnChange(e,'height')}/>
 
             </form>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
               <input placeholder='Set width' onChange={e => handleOnChange(e,'width')}/>
 
             </form>

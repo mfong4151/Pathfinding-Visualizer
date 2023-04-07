@@ -17,9 +17,6 @@ interface Props{
 } 
 
 
-const CONDITIONAL_STYLING:{[key:string]: string} = {'w' : 'wall' ,
-                                                    }   
-
 //probably will want to refactor to take props
 const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consoleContentState, pos, startEndState}) =>{
     const {matrix, setMatrix} = matrixState;

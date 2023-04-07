@@ -1,4 +1,3 @@
-import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
 import { MatrixItterator } from "./matrixItterator";
 import DIRS from "./dirs";
@@ -7,7 +6,7 @@ import DIRS from "./dirs";
 
 
 export class BFSItteratorMatrix extends MatrixItterator{
-    public q: pathObject[]  
+    public q: matrixItemObject[]  
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
         super(start,end, matrix)
@@ -42,7 +41,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
     public next():number[]{
         if(this.q.length <= 0) return []
         
-        const curr:pathObject = this.q.shift()!;
+        const curr:matrixItemObject = this.q.shift()!;
         const {pos, prev} = curr;
         this.prev = pos;
         const y: number = pos[1];
@@ -72,9 +71,9 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return false;
     }
     
-    public preformFullAlgo():pathObject[]{
+    public preformFullAlgo():matrixItemObject[]{
         while (!this.isQueueEmpty()) {
-            const curr:pathObject = this.q.shift()!;
+            const curr:matrixItemObject = this.q.shift()!;
             const x: number = curr.pos[0];
             const y: number = curr.pos[1];
             const visitedPos: string = `${x},${y}`;
