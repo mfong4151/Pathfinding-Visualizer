@@ -18,7 +18,7 @@ interface Props{
 
 
 const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
-  const {setConsoleContent} = consoleContentState;
+  const {consoleContent, setConsoleContent} = consoleContentState;
 
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
@@ -48,7 +48,6 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
       for(let i:number = 0; i < matrix.length; i++)
         for(let j:number = 0; j < matrix[0].length; j++){
-
           if (exclusions.has(matrix[i][j].val)) continue;
           document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
 
@@ -58,18 +57,17 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     }
 
     const itterateForward = ():void =>{
-      const msg:consoleContent = {}
+      
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
         
-         msg['msg'] = `At this point, the node [${invalidPos[0]},${invalidPos[1]}] was already visited, so we don't revisit it `
-        
+         newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it `
+
       } else  {
         coords = activeIttr.next()
         if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords, 'visited-1');
         }
-      
-      setConsoleContent(msg)
+
     }
 
     const play = ():void  =>{
