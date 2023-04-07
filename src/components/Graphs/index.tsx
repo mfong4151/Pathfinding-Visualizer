@@ -10,15 +10,16 @@ import { matrixItemObject } from '../types/objects';
 import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
+import { windowDim } from '../types/windowDim';
 
-const BREAK_POINT: number = 65;
+const BREAK_POINT: number = 65; //break point of where we don't refacotr
 
 const Graphs: React.FC = ()=>{
     const {matrixNodes, setMatrixNodes, matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
     
     const matrixState = {matrix, setMatrix};
-    const windowDim = useWindowSize()
+    const windowDim: windowDim = useWindowSize()
 
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};

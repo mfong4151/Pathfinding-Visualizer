@@ -23,6 +23,10 @@ interface Props{
   
 }
 
+//temporary fix
+const MATRIX_HARD_LIMIT_Y: number = 40;
+const MATRIX_HARD_LIMIT_X: number = 80; 
+
 const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
@@ -47,14 +51,14 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
   }
 
   const resetMatrix = ():void =>{
-    setMatrix(createNewMatrix(matrixDim.y, matrixDim.x))
- 
-    
-    
+    setMatrix(createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
+
   }
 
   useEffect(()=>{
-    setMatrix(prev => createNewMatrix(matrixDim.y, matrixDim.x))
+
+    
+    setMatrix(prev => createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
 
   }, [matrixDim])
 

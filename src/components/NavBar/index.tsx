@@ -15,7 +15,7 @@ const NavBar = () => {
             Graphs
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="/trees" className="activeLink">
             Trees
           </NavLink>
@@ -24,7 +24,7 @@ const NavBar = () => {
           <NavLink to="/linked_lists" className="activeLink">
             Linked Lists
           </NavLink>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

@@ -12,8 +12,8 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" Component={Splash}/>
         <Route path="/graphs" Component={Graphs}/>
-        {/* <Route path="/trees" Component={()=><NodePage type={'trees'}/>}/>  
-        <Route path="/linked_lists" Component={()=><NodePage type={'linkedlists'}/>}/>   */}
+        <Route path="/trees" Component={()=><NodePage type={'trees'}/>}/> 
+        <Route path="/linked_lists" Component={()=><NodePage type={'linkedlists'}/>}/> 
        
       </Routes>
     </div>
