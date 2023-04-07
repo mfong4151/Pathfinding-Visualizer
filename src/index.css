@@ -135,6 +135,12 @@ code {
 #adjbar:active{
   cursor: grabbing;
 }
+
+.console-holder{
+  width:100%
+}
+
+
 .sq-buttons{
   background-color: var(--color-charcol);
   color: var(--color-white);

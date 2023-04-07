@@ -97,7 +97,7 @@ const Graphs: React.FC = ()=>{
         
          <div className='page-body'>
             <section id='page-left' className='tab-bg'ref={pageLeftRef} >
-              <div className='udc-no-vertical'>
+              <div className='udc-no-vertical console-holder'>
 
                 <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
               </div>
