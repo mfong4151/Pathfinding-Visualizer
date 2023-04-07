@@ -33,9 +33,9 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return true;
     }
     
-    public discardInvalidNode():void{
-        this.q.shift()
-
+    public discardInvalidNode():number[]{
+        const node: matrixItemObject = this.q.shift()!
+        return node.pos
     }
 
     public next():number[]{

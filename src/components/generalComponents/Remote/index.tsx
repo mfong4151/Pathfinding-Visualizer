@@ -21,7 +21,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
   const {setConsoleContent} = consoleContentState;
 
   const currIttr = useRef<itterator>(null);
-  const allowSetMatrix = useRef<boolean>(true);
+  const allowSetIttr = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
     
   let coords :number[] = [-1, -1];
@@ -58,15 +58,18 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     }
 
     const itterateForward = ():void =>{
-    
+      const msg:consoleContent = {}
       if(!activeIttr.isValidNext()) {
-        activeIttr.discardInvalidNode();
-
+         const invalidPos:number[] = activeIttr.discardInvalidNode()!
+        
+         msg['msg'] = `At this point, the node [${invalidPos[0]},${invalidPos[1]}] was already visited, so we don't revisit it `
+        
       } else  {
         coords = activeIttr.next()
         if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords, 'visited-1');
         }
-
+      
+      setConsoleContent(msg)
     }
 
     const play = ():void  =>{
@@ -115,15 +118,15 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         break
     }
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
-    allowSetMatrix.current = false;
+    allowSetIttr.current = false;
     return
 };
 
   useEffect(()=>{
     
-    if(allowSetMatrix.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
+    if(allowSetIttr.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
 
-    allowSetMatrix.current = true;
+    allowSetIttr.current = true;
     
 
   },[chosenAlgo, matrix])
