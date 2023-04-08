@@ -18,15 +18,13 @@ interface Props{
 
 
 const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
-  const {consoleContent, setConsoleContent} = consoleContentState;
+  const {setConsoleContent} = consoleContentState;
 
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
   const {matrix, setMatrix} = matrixState;
     
   let coords :number[] = [-1, -1];
-
-
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -43,18 +41,18 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
 
     
     //used with the reset button 
-    const resetMatrixItterator = ():void => {
-      const exclusions = new Set(['s', 'w', 'e']);
+   const resetMatrixItterator = ():void => {
+    const exclusions = new Set(['s', 'w', 'e']);
 
-      for(let i:number = 0; i < matrix.length; i++)
-        for(let j:number = 0; j < matrix[0].length; j++){
-          if (exclusions.has(matrix[i][j].val)) continue;
-          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
+    for(let i:number = 0; i < matrix.length; i++)
+      for(let j:number = 0; j < matrix[0].length; j++){
+        if (exclusions.has(matrix[i][j].val)) continue;
+        document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
 
-        }
+      }
 
-        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
-    }
+      currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
+  }
 
     const itterateForward = ():void =>{
       
@@ -76,22 +74,21 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         const node:matrixItemObject = res[i];
         if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElement(node.pos, 'visited-1', i)
       }
+      styleShortestPath(activeIttr.generateShortestPath())
+
     }
 
 
 
     switch (buttonId) {
       case 'reset':
+        newConsoleContent['resetting'] = `Resetting the board so you can play everything again :3`
         resetMatrixItterator();
         break;
-      case 'rewind':
-        break;
-      case 'play':
 
+      case 'play':
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
-        // setIsPlaying(prev => !isPlaying)
         play()
-        styleShortestPath(activeIttr.generateShortestPath())
 
         break;
 
@@ -109,6 +106,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       default:
         break
     }
+
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
     allowSetIttr.current = false;
     return
@@ -129,9 +127,7 @@ return (
     <button id='reset' className='remote-btn sq-buttons' onClick={handleOnClick}>
       <SkipBack/>
     </button>
-    {/* <button  id='rewind' className='remote-btn sq-buttons' onClick={handleOnClick}>
-      <Rewind/>
-    </button> */}
+
 
     {
       !isPlaying 

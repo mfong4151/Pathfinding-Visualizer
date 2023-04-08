@@ -64,13 +64,11 @@ export class MatrixItterator{
         if (!this.endFound) return [[]]
         const res: number[][] = []
         let curr:matrixItemObject = this.matrix[this.end[1]][this.end[0]]
-    
-        while ((curr.prev[0] !== this.start[0]) && (curr.prev[1] !== this.start[1])){
+        while (!(curr.prev[0] == this.start[0] && curr.prev[1] == this.start[1])){
             res.push(curr.prev)
             curr = this.matrix[curr.prev[1]][curr.prev[0]]
         }
-
-        return res
+        return res.reverse()
     }
 
     public reanimatePastChanges(): matrixItemObject {

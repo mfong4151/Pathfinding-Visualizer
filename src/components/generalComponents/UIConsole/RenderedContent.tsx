@@ -7,7 +7,6 @@ type Props = {
 };
 
 const RenderedContent: React.FC<Props> = ({ consoleContent }) => {
-  console.log(consoleContent)
   return (
     <>
       {Object?.values(consoleContent).map((content, index) => (

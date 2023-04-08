@@ -27,5 +27,5 @@ export const resetStyleSync = (coords:number[], style: string, stagger: number =
 
 
 export  const styleShortestPath = (path:number[][]):void =>{
-    for(const p of path) styleElement(p, 'shortest-path')
+    for(let i:number = 0; i < path.length; i++) styleElement(path[i], 'shortest-path', i)
   }
