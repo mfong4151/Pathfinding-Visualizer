@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../../generalComponents/DSACanvas/utils/dragDropConstraints';
-import '../../../Graphs/graphs.css'
+import '../../../Matricies/graphs.css'
 
 interface Props{
   totemType: string;

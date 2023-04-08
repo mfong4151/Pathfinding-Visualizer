@@ -1,7 +1,7 @@
 import './graphs.css'
 import { useState, useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
-import { createNewMatrix } from "./utils/graphUtils";
+import { createNewMatrix } from "./MatrixBanner/Remote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import { pos, startStop } from '../types/positions';
 import UIConsole from '../generalComponents/UIConsole';
@@ -14,7 +14,7 @@ import { windowDim } from '../types/windowDim';
 
 const BREAK_POINT: number = 65; //break point of where we don't refacotr
 
-const Graphs: React.FC = ()=>{
+const Matricies: React.FC = ()=>{
     const {matrixNodes, setMatrixNodes, matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
     
@@ -130,4 +130,4 @@ const Graphs: React.FC = ()=>{
 }
 
 
-export default Graphs;
+export default Matricies;

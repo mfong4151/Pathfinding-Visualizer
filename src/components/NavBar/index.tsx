@@ -11,6 +11,11 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/matricies" className="activeLink">
+            Matricies
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/graphs" className="activeLink">
             Graphs
           </NavLink>

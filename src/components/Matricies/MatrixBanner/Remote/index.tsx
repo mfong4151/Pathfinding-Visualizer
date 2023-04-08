@@ -1,11 +1,11 @@
 import React, {useRef, useEffect} from 'react'
 import './remote.css'
-import {consoleContentState, matrixState} from '../../types/state'
-import { startStop } from '../../types/positions';
-import { itterator } from '../../types/itterator';
-import { consoleContent, matrixItemObject } from '../../types/objects';
+import { consoleContentState, matrixState } from '../../../types/state';
+import { startStop } from '../../../types/positions';
+import { itterator, } from '../../../types/itterator';
+import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-import { styleElement } from '../../Graphs/utils/matrixStyling';
+import { styleElement, styleShortestPath } from '../../utils/matrixStyling';
 
 interface Props{
     chosenAlgo: string;
@@ -73,14 +73,8 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
       for(let i:number = 0; i < res.length; i ++){
-
         const node:matrixItemObject = res[i];
-        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
-         
-            
-            styleElement(node.pos, 'visited-1', i)
-        }
-        
+        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElement(node.pos, 'visited-1', i)
       }
     }
 
@@ -97,7 +91,7 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
         // setIsPlaying(prev => !isPlaying)
         play()
-        // styleShortestPath(activeIttr.generateShortestPath())
+        styleShortestPath(activeIttr.generateShortestPath())
 
         break;
 

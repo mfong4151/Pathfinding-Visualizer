@@ -1,8 +1,8 @@
-import { startStop } from "../../../types/positions";
-import { BFSItteratorMatrix } from "../../../Graphs/utils/algorithims/matrixBFS";
-import { DFSItteratorMatrix } from "../../../Graphs/utils/algorithims/matrixDFS";
-import { itterator } from "../../../types/itterator";
-import { matrixItemObject } from "../../../types/objects";
+import { startStop } from "../../../../types/positions";
+import { BFSItteratorMatrix } from "../../../utils/algorithims/matrixBFS";
+import { DFSItteratorMatrix } from "../../../utils/algorithims/matrixDFS";
+import { itterator } from "../../../../types/itterator";
+import { matrixItemObject } from "../../../../types/objects";
 
 const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix: matrixItemObject[][]) =>{
     

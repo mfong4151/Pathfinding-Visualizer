@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { createNewMatrix } from '../utils/graphUtils';
+import { createNewMatrix } from './Remote/utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
-import Remote from '../../generalComponents/Remote';
-import '../../Graphs/graphs.css'
+import Remote from './Remote';
+import '../../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync, styleElement, styleElementSync } from '../utils/matrixStyling';
