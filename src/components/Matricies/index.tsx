@@ -3,10 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./MatrixBanner/Remote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
-import { pos, startStop } from '../types/positions';
 import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
-import { matrixItemObject } from '../types/objects';
 import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';

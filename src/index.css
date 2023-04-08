@@ -6,6 +6,8 @@
   --color-yellow-pineapple:#FEE12B;
   --color-blue-visited-1:#092ad0;
   --color-blue-adjbar: #0A84FF;
+  --color-tile-blue: rgb(175, 216, 248);
+  
 
 }
 
@@ -178,10 +180,7 @@ code {
 
   position: absolute;
   background-color: var(--color-white);
-  left:600px;
-  width:180px;
   height:auto;
-  margin-top: 4%;
   border-radius: 1rem;
 }
 

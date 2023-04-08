@@ -15,7 +15,7 @@
 .tile{
     width: 28px;
     height: 28px;
-    border:1px rgb(175, 216, 248) solid;
+    border:1px var(--color-tile-blue) solid;
     background-color: var(--color-charcol);
 }
 
@@ -35,3 +35,13 @@
 
 }
 
+
+/* forms for setting height and width */
+
+.set-dim-form{
+    background-color: black;
+    min-height:32px;
+    border-radius: 1rem;
+    color: var(--color-white);
+    padding-left:1rem;
+}

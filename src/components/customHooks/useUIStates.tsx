@@ -13,7 +13,7 @@ type genericStates = {
 
 const useUIStates = (): genericStates  => {
 
-    const [consoleContent, setConsoleContent] = useState<consoleContent>({})
+    const [consoleContent, setConsoleContent] = useState<consoleContent>(new Map())
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([''])
 

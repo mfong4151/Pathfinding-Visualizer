@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createNewMatrix } from './Remote/utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
@@ -34,6 +34,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   const  {startEndPos, setStartEndPos} = startEndPosState;
   const  {isPlaying, setIsPlaying} = isPlayingState;
   const {errors, setErrors} = errorsState;
+  const chooseAlgoRef = useRef<any>()
 
 
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
@@ -43,7 +44,6 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     const newMatrixDim = {...matrixDim}
     if (origin === 'height') newMatrixDim['y'] = Number(e.target.value);
     else newMatrixDim['x'] = Number(e.target.value);
-
     setMatrixDim(prev => newMatrixDim)
   }
 
@@ -85,23 +85,27 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
         
           <div className='fdr udc-left'>
 
-            <form onSubmit={e => e.preventDefault()}>
-              <input placeholder='Set height' onChange={e => handleOnChange(e,'height')}/>
+            <form className='udc-left' onSubmit={e => e.preventDefault()}>
+              <input placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e,'height')}/>
 
-            </form>
-            <form onSubmit={e => e.preventDefault()}>
-              <input placeholder='Set width' onChange={e => handleOnChange(e,'width')}/>
+ 
+              <input placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e,'width')}/>
 
             </form>
             
           </div>
 
-          <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
+          <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)} ref={chooseAlgoRef}>
             {chosenAlgo}
           </button>
           
           
-          {chooseAlgoModal && <ChooseAlgoModal chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} chooseAlgoState={{chosenAlgo, setChosenAlgo}}/> }
+          {chooseAlgoModal && 
+            <ChooseAlgoModal 
+              chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} 
+              chooseAlgoState={{chosenAlgo, setChosenAlgo}}
+              chooseAlgoButton = {chooseAlgoRef.current}
+              /> }
         </div>
         <div>
 
