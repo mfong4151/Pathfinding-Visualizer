@@ -1,7 +1,14 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const HowTo: React.FC = () => {
-  return <div className="console-spacing">The DSA (Data Structures and Algorithms) Visualizer is a web application that provides an interactive and visual representation of various data structures and algorithms. It allows users to see how data structures such as arrays, stacks, queues, trees, graphs, and more work, and how different algorithms such as sorting, searching, and pathfinding are implemented. The application also provides a platform for users to practice and improve their understanding of these concepts. With its user-friendly interface and comprehensive functionality, the DSA Visualizer is a valuable tool for students, developers, and anyone interested in learning more about data structures and algorithms.</div>;
+  const location:any = useLocation()
+  // const route = location.
+
+  return <div className="console-spacing">
+    {`Welcome to the DSA visualizer, you are currently viewing ${location.pathname.slice(1)}. To get started, try dragging and dropping some of the items in the toolbar to the right on to the matrix`}
+
+  </div>;
 };
 
 export default HowTo;
