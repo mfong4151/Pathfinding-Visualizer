@@ -35,6 +35,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
+    
     if (!activeIttr) {
       newConsoleContent['msg'] = 'You need to select an algo!'
       setConsoleContent(prev => newConsoleContent)

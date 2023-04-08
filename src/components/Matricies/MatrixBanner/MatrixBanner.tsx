@@ -10,7 +10,6 @@ import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync, styleElement, styleElementSync } from '../utils/matrixStyling';
 
 interface Props{
-  matrixNodeState: matrixNodeState;
   matrixState: matrixState;
   matrixDimState:{
     matrixDim: pos,
@@ -20,19 +19,16 @@ interface Props{
   consoleContentState: consoleContentState;
   isPlayingState: isPlayingState,
   errorsState: errorsState,
-
-  
 }
 
 //temporary fix
 const MATRIX_HARD_LIMIT_Y: number = 40;
 const MATRIX_HARD_LIMIT_X: number = 80; 
 
-const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
+const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
-  const {matrixNodes, setMatrixNodes} = matrixNodeState;
   const {matrix, setMatrix} = matrixState;
   const { matrixDim,setMatrixDim} = matrixDimState;
   const  {startEndPos, setStartEndPos} = startEndPosState;
@@ -78,12 +74,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
   return (
     <div id='banner' className='udc-left fdr'>
         <div className='udc fdr univ-padding'>
-          <button   
-              className='sq-buttons banner-button udc'
-              onClick={()=> setMatrixNodes(!matrixNodes)}
-              >
-            {`Change to ${matrixNodes ? 'nodes' : 'matrix'}`}
-          </button>
+      
 
           <button  
               className='sq-buttons banner-button udc'
@@ -91,7 +82,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
               Reset Matrix
           </button>
 
-          {matrixNodes && 
+        
           <div className='fdr udc-left'>
 
             <form onSubmit={e => e.preventDefault()}>
@@ -103,7 +94,7 @@ const MatrixBanner:React.FC<Props> = ({matrixNodeState,  matrixState, matrixDimS
 
             </form>
             
-          </div>}
+          </div>
 
           <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)}>
             {chosenAlgo}

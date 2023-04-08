@@ -15,7 +15,7 @@ import { windowDim } from '../types/windowDim';
 const BREAK_POINT: number = 65; //break point of where we don't refacotr
 
 const Matricies: React.FC = ()=>{
-    const {matrixNodes, setMatrixNodes, matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
+    const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
     
     const matrixState = {matrix, setMatrix};
@@ -85,7 +85,6 @@ const Matricies: React.FC = ()=>{
       <div className='font-color'>
 
         <MatrixBanner 
-                matrixNodeState={{matrixNodes, setMatrixNodes}}
                 matrixState = {matrixState}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
                 startEndPosState ={{ startEndPos, setStartEndPos}}
@@ -113,13 +112,12 @@ const Matricies: React.FC = ()=>{
             </section>
 
             <section id='page-right' className='udc tab-bg' ref={pageRightRef}>
-                {matrixNodes && 
                   <GraphMatrix 
                     matrixState={matrixState} 
                     startEndState ={{startEndPos, setStartEndPos}}
                     consoleContentState={{consoleContent, setConsoleContent}}
                     matrixRef = {matrixRef}
-                    />}
+                    />
             </section>  
 
         </div>
