@@ -57,16 +57,28 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
 
     const itterateForward = ():void =>{
-      
+
+      //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
-         newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
+
+         if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length){
+          newConsoleContent['msg'] = `At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` 
+         } else{
+           newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
+
+         }
 
       } else  {
         coords = activeIttr.next()
+      
         if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
+
+          newConsoleContent['Visited'] = `At this point we visit the point [${coords[0]}, ${coords[1]}]`
           styleElement(coords, 'visited-1');
           
+
+          //Handle various cases, for some reason switch case doesnt work here
           if (activeIttr instanceof BFSItteratorMatrix){
             newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
@@ -83,7 +95,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       }
     }
 
-    
 
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
@@ -91,7 +102,13 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         const node:matrixItemObject = res[i];
         if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElement(node.pos, 'visited-1', i)
       }
-      styleShortestPath(activeIttr.generateShortestPath())
+      if (activeIttr.endFound){
+        styleShortestPath(activeIttr.generateShortestPath())
+      } else{
+
+        newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
+
+      }
 
     }
 
