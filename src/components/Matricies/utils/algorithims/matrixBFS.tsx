@@ -46,8 +46,9 @@ export class BFSItteratorMatrix extends MatrixItterator{
         this.prev = pos;
         const y: number = pos[1];
         const x: number = pos[0];
-        const cords: string = `${x},${y}`;
-        this.visited.add(cords)
+
+        this.visited.add(`${x},${y}`)
+
         if(!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
         if (this.isEnd(pos)) this.endFound = true;
 

@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
 import { consoleContentState, matrixState } from '../../../types/state';
 import { startStop } from '../../../types/positions';
@@ -6,6 +6,9 @@ import { itterator, } from '../../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
 import { styleElement, styleShortestPath } from '../../utils/matrixStyling';
+import { BFSItteratorMatrix } from '../../utils/algorithims/matrixBFS';
+import { DFSItteratorMatrix } from '../../utils/algorithims/matrixDFS';
+import convertContainer from './utils/convertContainer';
 
 interface Props{
     chosenAlgo: string;
@@ -17,7 +20,7 @@ interface Props{
 }
 
 
-const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
+const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
   const {setConsoleContent} = consoleContentState;
 
   const currIttr = useRef<itterator>(null);
@@ -32,16 +35,14 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
-
     if (!activeIttr) {
       newConsoleContent['msg'] = 'You need to select an algo!'
       setConsoleContent(prev => newConsoleContent)
       return 
     }
 
-    
     //used with the reset button 
-   const resetMatrixItterator = ():void => {
+    const resetMatrixItterator = ():void => {
     const exclusions = new Set(['s', 'w', 'e']);
 
     for(let i:number = 0; i < matrix.length; i++)
@@ -52,21 +53,36 @@ const Remote:React.FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleC
       }
 
       currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
-  }
+    }
 
     const itterateForward = ():void =>{
       
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
-        
-         newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it `
+         newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
 
       } else  {
         coords = activeIttr.next()
-        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)) styleElement(coords, 'visited-1');
-        }
+        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
+          styleElement(coords, 'visited-1');
+          
+          if (activeIttr instanceof BFSItteratorMatrix){
+            newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
+          } else if (activeIttr instanceof DFSItteratorMatrix){
+            newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
+
+      
+          } else{
+            return 
+          }
+
+
+        }
+      }
     }
+
+    
 
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
@@ -154,7 +170,7 @@ return (
 );
 }
 
-const Play:React.FC = () => (
+const Play:FC = () => (
         <svg fill='currentColor' 
             height='45px' 
             width='45px' 
@@ -173,7 +189,7 @@ const Play:React.FC = () => (
   )
 
 
-const Pause:React.FC = () =>(
+const Pause:FC = () =>(
     <svg 
       fill='currentColor' 
       height='45px' 
@@ -193,7 +209,7 @@ const Pause:React.FC = () =>(
     </svg>
   )
 
-const FastForward:React.FC = () => (
+const FastForward:FC = () => (
       <svg fill='currentColor' 
           height='45px' 
           width='45px' 
@@ -211,7 +227,7 @@ const FastForward:React.FC = () => (
           </g>
       </svg>)
 
-const Rewind:React.FC = ( ) => (
+const Rewind:FC = ( ) => (
     <svg 
         fill='currentColor' 
         height='45px' 
@@ -232,7 +248,7 @@ const Rewind:React.FC = ( ) => (
     )
 
 
-const SkipForward:React.FC = () => (
+const SkipForward:FC = () => (
     <svg 
       fill='currentColor' 
       height='45px' 
@@ -252,7 +268,7 @@ const SkipForward:React.FC = () => (
 
 )
 
-const SkipBack:React.FC = () => (
+const SkipBack:FC = () => (
   <svg 
     fill='currentColor' 
     height='45px' 
