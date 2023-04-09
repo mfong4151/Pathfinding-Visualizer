@@ -83,7 +83,6 @@ const Matricies: React.FC = ()=>{
    
     return(
       <div className='font-color'>
-
         <MatrixBanner 
                 matrixState = {matrixState}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
@@ -97,10 +96,8 @@ const Matricies: React.FC = ()=>{
          <div className='page-body'>
             <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
-
                 <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
               </div>
-
               <div id='adjbar' className='udc' ref={adjBarRef}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 14" width="2" height="14" fill="currentColor" className="text-gray-3 dark:text-dark-gray-3 transition -translate-y-6 group-hover:text-white dark:group-hover:text-white">
                   <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 1)"/>
@@ -108,7 +105,6 @@ const Matricies: React.FC = ()=>{
                   <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"/>
                 </svg>
               </div>
-            
             </section>
 
             <section id='page-right' className='udc tab-bg' ref={pageRightRef}>
