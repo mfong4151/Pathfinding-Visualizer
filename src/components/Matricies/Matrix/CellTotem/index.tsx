@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../../../generalComponents/DSACanvas/utils/dragDropConstraints';
+import { ItemTypes } from '../../../generalComponents/Nodulars/DSACanvas/utils/dragDropConstraints';
 import '../../../Matricies/graphs.css'
 
 interface Props{

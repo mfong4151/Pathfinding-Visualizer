@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "../../generalComponents/DSACanvas/utils/dragDropConstraints";
+import { ItemTypes } from "../../generalComponents/Nodulars/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../types/positions";
 import { consoleContentState, matrixState, startEndState} from "../../types/state";

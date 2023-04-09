@@ -4,7 +4,7 @@ import {DndProvider} from "react-dnd"
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import CanvasNode from './CanvasNode';
 import { generateDefaultCanvas } from './utils/canvasContents';
-import { canvasMatrixObject } from '../interface/types';
+import { canvasMatrixObject } from '../../interface/types';
 
 const DEFAULT_ITEM_WIDTH:number = 80;
 const DEFAULT_ITEM_HEIGHT:number = 80;

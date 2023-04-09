@@ -1,9 +1,9 @@
 import { useEffect, useRef} from "react";
-import DSACanvas from '../DSACanvas'
+import DSACanvas from './DSACanvas'
 import { consoleContentState, errorsState } from "../../types/state";
 import useUIStates from "../../customHooks/useUIStates";
 import useWindowSize from "../../customHooks/useWindowSize";
-import UIConsole from "../UIConsole";
+import UIConsole from "./UIConsole";
 import Banner from './Banner'
 
 //"Nodular" just refers to anything dealing with Nodes

@@ -1,4 +1,4 @@
-import { canvasMatrixObject, canItemDims } from "../../interface/types";
+import { canvasMatrixObject, canItemDims } from "../../../interface/types";
 
 
 export const generateDefaultCanvas = (canvasWidth: number, canvasHeight: number, canvasItemDim: canItemDims  ) => {
