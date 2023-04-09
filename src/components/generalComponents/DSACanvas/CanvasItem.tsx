@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import CanvasNode from './CanvasNode';
 import { Props } from '../interface/CanvasGridItemProps';
 import {useDrop} from 'react-dnd'

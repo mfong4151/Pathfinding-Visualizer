@@ -1,6 +1,5 @@
 import React from 'react'
 import './splash.css'
-import { updateSourceFile } from 'typescript';
 
 const aboutThisProject: string =  "This project started off as a side project to help me learn typescript, but gradually became a \
                                     a general tool to help explain the way DSA works. I've personally felt that visual aids are always\

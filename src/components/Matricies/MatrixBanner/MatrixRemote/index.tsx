@@ -1,4 +1,4 @@
-import React, {FC, useRef, useEffect, useState} from 'react'
+import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
 import { consoleContentState, matrixState } from '../../../types/state';
 import { startStop } from '../../../types/positions';
@@ -9,7 +9,6 @@ import { styleElement, styleShortestPath } from '../../utils/matrixStyling';
 import { BFSItteratorMatrix } from '../../utils/algorithims/matrixBFS';
 import { DFSItteratorMatrix } from '../../utils/algorithims/matrixDFS';
 import convertContainer from './utils/convertContainer';
-import { useLocation } from 'react-router-dom';
 
 interface Props{
     chosenAlgo: string;
@@ -26,7 +25,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
-  const {matrix, setMatrix} = matrixState;
+  const {matrix} = matrixState;
 
 
   let coords :number[] = [-1, -1];
@@ -100,10 +99,13 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+      
       for(let i:number = 0; i < res.length; i ++){
         const node:matrixItemObject = res[i];
         if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElement(node.pos, 'visited-1', i)
+
       }
+
       if (activeIttr.endFound){
         styleShortestPath(activeIttr.generateShortestPath())
       } else{

@@ -42,14 +42,17 @@ export class BFSItteratorMatrix extends MatrixItterator{
         if(this.q.length <= 0) return []
         
         const curr:matrixItemObject = this.q.shift()!;
-        const {pos, prev} = curr;
+        const {pos} = curr;
         this.prev = pos;
         const y: number = pos[1];
         const x: number = pos[0];
 
         this.visited.add(`${x},${y}`)
 
+        //Mark new node as curr conditionally
         if(!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
+
+        //Mark the end found if we have in fact found the end
         if (this.isEnd(pos)) this.endFound = true;
 
         //load the queue
@@ -84,19 +87,19 @@ export class BFSItteratorMatrix extends MatrixItterator{
             this.visited.add(visitedPos)
             this.res.push(curr)
             
-            
+            //Exit loop if we find the end
             if (this.isEnd(curr.pos)){
                 this.matrix[y][x] = {val: 'e', prev:curr.prev}
                 this.endFound = true;
                 break;
             }
-            if(!this.isStart(curr.pos)) 
-                this.matrix[y][x] = {val: '', prev:curr.prev}
+
+            if(!this.isStart(curr.pos))  this.matrix[y][x] = {val: '', prev:curr.prev}
             
             for (const [dx, dy] of this.dirs) {
                 this.q.push({pos:[x + dx, y + dy], prev: curr.pos})
-              }
             }
+        }
 
             return this.res;
     }

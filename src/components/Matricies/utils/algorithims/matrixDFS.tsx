@@ -16,13 +16,12 @@ export class DFSItteratorMatrix extends MatrixItterator {
         const last = this.stack[this.stack.length - 1];
         const x: number = last.pos[0];
         const y: number = last.pos[1];
+
         const pos: string = `${x},${y}`;
         if (
             this.visited.has(pos) ||
-            x < 0 ||
-            x >= this.cols ||
-            y < 0 ||
-            y >= this.rows ||
+            x < 0 ||  x >= this.cols ||
+            y < 0 ||  y >= this.rows ||
             this.matrix[y][x].val === 'w'
         )
             return false;
@@ -37,10 +36,10 @@ export class DFSItteratorMatrix extends MatrixItterator {
         if (this.stack.length <= 0) return [];
 
         const curr: pathObject = this.stack.pop()!;
-        const { pos, prev } = curr;
+        const { pos } = curr;
         this.prev = pos;
-        const y: number = pos[1];
         const x: number = pos[0];
+        const y: number = pos[1];
         const cords: string = `${x},${y}`;
         this.visited.add(cords);
 

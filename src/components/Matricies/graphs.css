@@ -45,3 +45,11 @@
     color: var(--color-white);
     padding-left:1rem;
 }
+
+.drag-icon-holder{
+    min-width:100px;
+    min-height:100px;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+  }
+  

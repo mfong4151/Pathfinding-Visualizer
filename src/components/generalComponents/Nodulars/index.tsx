@@ -1,11 +1,14 @@
 import { useState, useRef} from "react";
 import DSACanvas from '../DSACanvas'
 
+
+//"Nodular" just refers to anything dealing with nodes.
+
 interface Props{
     type:string;
 }
 
-const NodePage: React.FC<Props> = ({type})=>{
+const Nodular: React.FC<Props> = ({type})=>{
     const [nodes, setNodes] = useState({});
     const adjBarRef = useRef<HTMLDivElement>(null)
     const adjBarLeft = adjBarRef?.current?.offsetLeft;
@@ -34,4 +37,4 @@ const NodePage: React.FC<Props> = ({type})=>{
 }
 
 
-export default NodePage;
+export default Nodular;

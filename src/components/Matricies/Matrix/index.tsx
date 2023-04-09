@@ -29,22 +29,22 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr sb'>
-                    <div className="drag-icon-holder udc fdc">
+                    <div className="hover-over drag-icon-holder udc fdc">
                          <SvgTotem totemType='s'/>
                          <p>Start</p>
                          
                     </div>
-                    <div className="drag-icon-holder udc fdc">
+                    <div className="hover-over drag-icon-holder udc fdc">
                          <SvgTotem totemType='e'/>
                          <p>Stop</p>
 
                     </div>
-                    <div className="drag-icon-holder udc fdc">
+                    <div className="hover-over drag-icon-holder udc fdc">
                         <CellTotem totemType='w'/>
                         <p>Create Wall</p>
 
                     </div>
-                    <div className="drag-icon-holder udc fdc">
+                    <div className="hover-over drag-icon-holder udc fdc">
                         <CellTotem totemType='erase'/>
                         <p>Erase wall</p>
 

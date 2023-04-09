@@ -1,7 +1,7 @@
 import './graphs.css'
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
-import { createNewMatrix } from "./MatrixBanner/Remote/utils/graphUtils";
+import { createNewMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import UIConsole from '../generalComponents/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
@@ -9,6 +9,8 @@ import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
+
+//For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
 const BREAK_POINT: number = 65; //break point of where we don't refacotr
 

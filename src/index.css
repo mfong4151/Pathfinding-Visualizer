@@ -1,3 +1,8 @@
+@font-face {
+  font-family: open-sans;
+  src: url();
+}
+
 :root{
   --color-black-foreground:#1A1A1A;
   --color-charcol:#282828;
@@ -5,7 +10,7 @@
   --color-transparent:transparent;
   --color-yellow-pineapple:#FEE12B;
   --color-blue-visited-1:#092ad0;
-  --color-blue-adjbar: #0A84FF;
+  --color-blue-hover: #0A84FF;
   --color-tile-blue: rgb(175, 216, 248);
   
 
@@ -131,7 +136,7 @@ code {
 }
 
 #adjbar:hover{
-  background-color: var(--color-blue-adjbar)
+  background-color: var(--color-blue-hover)
 }
 
 #adjbar:active{
@@ -147,7 +152,7 @@ code {
   background-color: var(--color-charcol);
   color: var(--color-white);
   border-radius: .5rem;
-  border: 0;
+  border: 2px solid transparent;
 }
 
 .banner-button{
@@ -189,3 +194,8 @@ code {
   margin-right:2rem;
   width:auto;
 }
+
+.hover-over:hover{
+  border: 2px solid var(--color-blue-hover)
+}
+

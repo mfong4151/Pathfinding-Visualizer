@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { createNewMatrix } from './Remote/utils/graphUtils';
+import { createNewMatrix } from './MatrixRemote/utils/graphUtils';
 import { useState } from 'react';
-import ChooseAlgoModal from './ChooseAlgoModal';
+import ChooseAlgoModal from '../../generalComponents/Nodulars/Banner/ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
-import Remote from './Remote';
+import Remote from './MatrixRemote';
 import '../../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../utils/descriptions';
@@ -57,7 +57,6 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   }
 
   useEffect(()=>{
-
     
     setMatrix(prev => createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
 
@@ -77,7 +76,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
       
 
           <button  
-              className='sq-buttons banner-button udc'
+              className='sq-buttons hover-over banner-button udc'
               onClick={resetMatrix }>
               Reset Matrix
           </button>
@@ -87,15 +86,12 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
             <form className='udc-left' onSubmit={e => e.preventDefault()}>
               <input placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e,'height')}/>
-
- 
               <input placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e,'width')}/>
-
             </form>
             
           </div>
 
-          <button className='sq-buttons banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)} ref={chooseAlgoRef}>
+          <button className='sq-buttons hover-over banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)} ref={chooseAlgoRef}>
             {chosenAlgo}
           </button>
           
