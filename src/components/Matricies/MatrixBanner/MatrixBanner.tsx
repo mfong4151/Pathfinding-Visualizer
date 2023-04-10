@@ -5,9 +5,9 @@ import ChooseAlgoModal from '../../Nodulars/Banner/ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
 import Remote from './MatrixRemote';
 import '../../Matricies/graphs.css'
-import { consoleContentState, errorsState, isPlayingState, matrixNodeState, matrixState, startEndPosState } from '../../types/state';
+import { consoleContentState, errorsState, isPlayingState, matrixState, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../utils/descriptions';
-import { resetStyleSync, styleElement, styleElementSync } from '../utils/matrixStyling';
+import { resetStyleSync } from '../utils/matrixStyling';
 
 interface Props{
   matrixState: matrixState;
