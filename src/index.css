@@ -9,7 +9,10 @@
   --color-white: #FFFFFF;
   --color-transparent:transparent;
   --color-yellow-pineapple:#FEE12B;
-  --color-blue-visited-1:#092ad0;
+  --color-blue-visiting: #e2dbf8;
+  --color-blue-visited: #1837cf;
+  --color-shortest-path-start: #649089;
+  --color-shortest-path-end:#00e700;
   --color-blue-hover: #0A84FF;
   --color-tile-blue: rgb(175, 216, 248);
   --open-sans-font-family: 'open-sans'
@@ -197,6 +200,11 @@ code {
   margin-right:2rem;
   margin-bottom:1rem;
   width:auto;
+}
+
+.toolbar-text{
+  font-size: 20px;
+  font-weight:600;
 }
 
 .hover-over:hover{

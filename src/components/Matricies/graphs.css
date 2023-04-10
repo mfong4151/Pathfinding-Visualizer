@@ -23,32 +23,32 @@
 
 @keyframes blueTransition {
     0% {
-      background-color: #e2dbf8;
+      background-color: var(--color-blue-visiting);
     }
     100% {
-      background-color: #1837cf;
+      background-color: var(--color-blue-visited);
     }
   }
 
 
 .visited-1{
-    background-color: var(--color-blue-visited-1);
+    background-color: var(--color-blue-visited);
     animation: blueTransition 5s linear;
 }
 
 @keyframes greenTransition {
     0% {
-      background-color: #649089; 
+      background-color: var(--color-shortest-path-start); 
     }
     100% {
-      background-color: #00e700;
+      background-color: var(--color-shortest-path-end);
     }
   }
 
 
 
 .shortest-path{
-    background-color: #00e700;
+    background-color: var(--color-shortest-path-end);
     animation: greenTransition 2s linear;
 
 }
@@ -78,3 +78,4 @@
     border-radius: 1rem;
   }
   
+

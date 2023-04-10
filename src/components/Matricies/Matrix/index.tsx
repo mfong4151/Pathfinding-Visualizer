@@ -31,22 +31,22 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                 <div className='toolbar fdr sb'>
                     <div className="hover-over drag-icon-holder udc fdc">
                          <SvgTotem totemType='s'/>
-                         <p>Start</p>
+                         <p className="toolbar-text">Start</p>
                          
                     </div>
                     <div className="hover-over drag-icon-holder udc fdc">
                          <SvgTotem totemType='e'/>
-                         <p>Stop</p>
+                         <p className="toolbar-text">Stop</p>
 
                     </div>
                     <div className="hover-over drag-icon-holder udc fdc">
                         <CellTotem totemType='w'/>
-                        <p>Create Wall</p>
+                        <p className="toolbar-text">Create Wall</p>
 
                     </div>
                     <div className="hover-over drag-icon-holder udc fdc">
                         <CellTotem totemType='erase'/>
-                        <p>Erase wall</p>
+                        <p className="toolbar-text">Erase wall</p>
 
                     </div>
 

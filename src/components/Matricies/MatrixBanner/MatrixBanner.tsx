@@ -74,15 +74,13 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   return (
     <div id='banner' className='udc-left fdr'>
         <div className='udc fdr univ-padding'>
-      
-
+          
           <button  
               className='sq-buttons hover-over banner-button udc'
               onClick={resetMatrix }>
               Reset Matrix
           </button>
 
-        
           <div className='fdr udc-left'>
 
             <form className='udc-left' onSubmit={e => e.preventDefault()}>
