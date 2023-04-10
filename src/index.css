@@ -162,8 +162,9 @@ code {
 }
 
 .banner-button{
+  font-size:18px;
   height:2rem;
-  width:8rem;
+  width:auto;
 }
 
 
@@ -196,7 +197,7 @@ code {
 }
 
 
-refers to the general toolbar used to 
+/* Refers to toolbar thats above the matrix/canvas */
 
 .toolbar{ 
   margin-left:2rem;

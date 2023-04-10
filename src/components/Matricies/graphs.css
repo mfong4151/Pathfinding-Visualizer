@@ -64,6 +64,7 @@
 /* forms for setting height and width */
 
 .set-dim-form{
+    font-size:16px;
     background-color: black;
     min-height:32px;
     border-radius: 1rem;
