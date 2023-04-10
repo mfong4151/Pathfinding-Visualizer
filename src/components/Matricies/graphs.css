@@ -21,7 +21,7 @@
 }
 
 
-@keyframes blueTransition {
+@keyframes blue-transition {
     0% {
       background-color: var(--color-blue-visiting);
     }
@@ -33,10 +33,10 @@
 
 .visited-1{
     background-color: var(--color-blue-visited);
-    animation: blueTransition 5s linear;
+    animation: blue-transition 5s linear;
 }
 
-@keyframes greenTransition {
+@keyframes green-transition {
     0% {
       background-color: var(--color-shortest-path-start); 
     }
@@ -49,7 +49,7 @@
 
 .shortest-path{
     background-color: var(--color-shortest-path-end);
-    animation: greenTransition 2s linear;
+    animation: green-transition 2s linear;
 
 }
 
