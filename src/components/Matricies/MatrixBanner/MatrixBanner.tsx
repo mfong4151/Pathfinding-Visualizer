@@ -49,11 +49,12 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
   const resetMatrix = ():void =>{
     for(let i: number = 0; i  < matrix.length; i ++)
-      for(let j: number = 0; j  < matrix.length; j ++){
-        resetStyleSync([i, j], 'tile udc')
-      }
+    for(let j: number = 0; j  < matrix[0].length; j ++){
+      resetStyleSync([j, i], 'tile udc')
+    }
+
     setMatrix(createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
-    
+   
   }
 
   useEffect(()=>{
