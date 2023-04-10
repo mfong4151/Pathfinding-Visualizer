@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Start from './Start'
 import End from './End'
-import { ItemTypes } from '../../../generalComponents/Nodulars/DSACanvas/utils/dragDropConstraints'
+import { ItemTypes } from '../../../Nodulars/DSACanvas/utils/dragDropConstraints'
 import {useUseDrag} from '../../../customHooks/useReactDND'
 import { useDrag } from 'react-dnd'
 

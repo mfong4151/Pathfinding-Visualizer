@@ -20,11 +20,11 @@ const NavBar = () => {
             Graphs
           </NavLink>
         </li> */}
-        <li>
+        {/* <li>
           <NavLink to="/trees" className="activeLink">
             Trees
           </NavLink>
-        </li>
+        </li> */}
         {/* <li>
           <NavLink to="/linked_lists" className="activeLink">
             Linked Lists

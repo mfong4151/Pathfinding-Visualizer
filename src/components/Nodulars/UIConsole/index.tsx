@@ -2,9 +2,8 @@ import React from 'react';
 import './UIConsole.css';
 import HowTo from './HowTo';
 import RenderedContent from './RenderedContent';
-import { consoleContent } from '../../../types/objects';
-import { errorsState } from '../../../types/state';
-
+import { consoleContent } from '../../types/objects';
+import { errorsState } from '../../types/state';
 type Props = {
   consoleContent: consoleContent;
   isPlaying: boolean;

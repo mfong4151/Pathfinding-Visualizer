@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
 import { createNewMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
-import UIConsole from '../generalComponents/Nodulars/UIConsole';
+import UIConsole from '../Nodulars/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
 import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';

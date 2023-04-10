@@ -199,6 +199,7 @@ code {
 }
 
 .hover-over:hover{
-  border: 2px solid var(--color-blue-hover)
+  border: 2px solid var(--color-blue-hover);
+  transition: border 0.2s ease-in;
 }
 

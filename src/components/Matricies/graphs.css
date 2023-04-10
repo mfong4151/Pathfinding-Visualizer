@@ -19,13 +19,37 @@
     background-color: var(--color-charcol);
 }
 
+
+@keyframes blueTransition {
+    0% {
+      background-color: #c5d5f5;
+    }
+    100% {
+      background-color: #0b2edf;
+    }
+  }
+
+
 .visited-1{
     background-color: var(--color-blue-visited-1);
-
+    animation: blueTransition 3s linear;
 }
 
+@keyframes greenTransition {
+    0% {
+      background-color: #1f2c11; 
+    }
+    100% {
+      background-color: #64e911;
+    }
+  }
+
+
+
 .shortest-path{
-    background-color: var(--color-yellow-pineapple);
+    background-color:#64e911;
+    animation: greenTransition 2s linear;
+
 }
 
 

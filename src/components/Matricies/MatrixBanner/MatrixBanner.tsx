@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { createNewMatrix } from './MatrixRemote/utils/graphUtils';
 import { useState } from 'react';
-import ChooseAlgoModal from '../../generalComponents/Nodulars/Banner/ChooseAlgoModal';
+import ChooseAlgoModal from '../../Nodulars/Banner/ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
 import Remote from './MatrixRemote';
 import '../../Matricies/graphs.css'

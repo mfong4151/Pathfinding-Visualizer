@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import CanvasNode from './CanvasNode';
-import { Props } from '../../interface/CanvasGridItemProps';
+import { Props } from '../../generalComponents/interface/CanvasGridItemProps';
 import {useDrop} from 'react-dnd'
 import { ItemTypes } from './utils/dragDropConstraints';
 import './DSACanvas.css'
