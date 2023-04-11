@@ -95,9 +95,5 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return q
     }
 
-    //used for changing colors on past squares
-    // public reanimatePastChanges(){
-
-    // }
 }
 
