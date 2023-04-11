@@ -68,13 +68,13 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
 
-         if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length){
+         if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
           newConsoleContent['msg'] = `At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` 
-         } else{
+
+         else
            newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
 
-         }
-
+         
       } else  {
         coords = activeIttr.next()
       
@@ -85,16 +85,13 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
           
 
           //Handle various cases, for some reason switch case doesnt work here
-          if (activeIttr instanceof BFSItteratorMatrix){
-            newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
+          if (activeIttr instanceof BFSItteratorMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
-          } else if (activeIttr instanceof DFSItteratorMatrix){
-            newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
+          else if (activeIttr instanceof DFSItteratorMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
 
       
-          } else{
-            return 
-          }
+          else return 
+          
 
 
         }
@@ -105,11 +102,17 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
       
-      for(let i:number = 0; i < res.length; i ++){
-        const node:matrixItemObject = res[i];
-        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElement(node.pos, 'visited-1', i)
+      const illustrate = async():Promise<void> =>{
+        for(let i:number = 0; i < res.length; i ++){
+          const node:matrixItemObject = res[i];
+          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
+            styleElement(node.pos, 'visited-1', i)
+            await new Promise(resolve => setTimeout(resolve, 10));
+          }
+        }
+      };
 
-      }
+      illustrate().then(()=>{
 
       if (activeIttr.endFound){
         styleShortestPath(activeIttr.generateShortestPath())
@@ -118,7 +121,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
 
       }
-
+      })
     }
 
 
