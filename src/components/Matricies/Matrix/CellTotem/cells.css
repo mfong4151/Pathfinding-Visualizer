@@ -1,0 +1,12 @@
+.tile-display{
+    width: 28px;
+    height: 28px;
+    border:1px var(--color-tile-blue) solid;
+    background-color: var(--color-charcol);
+}
+
+.wall{
+    background-color: var(--color-white);
+    border:1px var(--color-white) solid;
+
+}

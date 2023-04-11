@@ -1,27 +1,25 @@
 import React from 'react'
-import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../../../Nodulars/DSACanvas/utils/dragDropConstraints';
 import '../../../Matricies/graphs.css'
+import './cells.css'
+import { MapConditionalString } from '../../../types/interface';
 
 interface Props{
   totemType: string;
 }
 
+
+
+const MAP_STYLE:MapConditionalString = {
+    'w':'wall'
+}
+
 const CellTotem: React.FC<Props> = ({totemType}) => {
   
 
-  const [collected, drag] = useDrag(()=>({
-    type: ItemTypes.MATRIX_CELL,
-    item:{totemType},
-    collect: (monitor) =>( {
-      isDragging: !!monitor.isDragging()
-
-    })
-  }))
 
 
 return (
-  <div ref={drag} className={`tile ${totemType === 'w' && 'wall'} `}>
+  <div className={`tile-display ${MAP_STYLE[totemType]}`}>
   </div>
 )
 

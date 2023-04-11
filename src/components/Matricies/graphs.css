@@ -20,10 +20,15 @@
     background-color: var(--color-charcol);
 }
 
+.tile:active{
+  cursor: grab;
+}
+
 
 @keyframes blue-transition {
     0% {
-      background-color: var(--color-blue-visiting);
+      /* background-color: var(--color-blue-visiting); */
+      background-color: indigo;
     }
     100% {
       background-color: var(--color-blue-visited);
@@ -33,7 +38,7 @@
 
 .visited-1{
     background-color: var(--color-blue-visited);
-    animation: blue-transition 5s linear;
+    animation: blue-transition 3.5s linear;
 }
 
 @keyframes green-transition {

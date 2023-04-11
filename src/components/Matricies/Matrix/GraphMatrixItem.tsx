@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {Dispatch, useEffect, useRef} from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../Nodulars/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
@@ -13,17 +13,50 @@ interface Props{
     startEndState: startEndState;
     consoleContentState: consoleContentState;
     pos:pos
-
+    mouseDown: boolean
+    setMouseDown: React.Dispatch<React.SetStateAction<boolean>>
 } 
 
 
 //probably will want to refactor to take props
-const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consoleContentState, pos, startEndState}) =>{
+const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consoleContentState, pos, startEndState, mouseDown, setMouseDown}) =>{
     const {matrix, setMatrix} = matrixState;
     const {startEndPos} = startEndState;
     const {y, x} = pos; 
-    
-    const updateStartStop = (itemType :any) =>{
+
+    const [{isOver}, drop] = useDrop(
+        ()=> ({
+            accept: ItemTypes.MATRIX_CELL,
+            drop: (item, monitor) => updateStartStop(item),
+            collect: (monitor) => ({
+                isOver: !!monitor.isOver()
+      
+              })
+            }), [matrix]
+      )  
+
+
+   const handleMouseEnter =(e:any):void =>{
+       const [_ ,j, i ]=e.target.id.split('-')
+       const y = Number(i);
+       const x = Number(j);
+       const exclusions: string[] = ['s', 'e']
+       const newMatrix = [...matrix];
+
+        if (mouseDown && !exclusions.includes(newMatrix[y][x].val)){
+            newMatrix[y][x].val = newMatrix[y][x].val === 'w' ? '' : 'w'
+            setMatrix(prev => newMatrix)
+
+        }
+   
+        return
+    }
+
+    useEffect(()=>{
+        setMouseDown(prev => false)
+    },[isOver])
+
+    const updateStartStop = (itemType :any):void =>{
         const droppedTotem: string= itemType.totemType;
         const newMatrix: matrixItemObject[][] = [...matrix];
         const newStartEndPos:startStop = {...startEndPos}
@@ -58,46 +91,14 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
         return
     }
 
-    const updateWalls = (itemType: any) =>{
-        const currDragging = itemType.totemType;
-        const inclusions: string[] = ['w', 'erase']
-        const exclusions: string[] = ['s', 'e']
-        if (!inclusions.includes(currDragging)) return
 
-        const newMatrix = [...matrix];
-        switch(currDragging){
-            case'w':
-                newMatrix[y][x].val = !exclusions.includes(newMatrix[y][x].val) ? 'w' : newMatrix[y][x].val
-                setMatrix(prev => newMatrix)
-                break
-            case 'erase':
-                newMatrix[y][x].val = !exclusions.includes(newMatrix[y][x].val) ? '' : newMatrix[y][x].val
-                setMatrix(prev => newMatrix)
-                break
-            default:
-                break
-        }
-        
-        
-        return
-    }
-    const [{isOver}, drop] = useDrop(
-        ()=> ({
-            accept: ItemTypes.MATRIX_CELL,
-            drop: (item, monitor) => updateStartStop(item),
-            hover: (item, monitor) => updateWalls(item),
-            collect: (monitor) => ({
-                isOver: !!monitor.isOver()
-      
-              })
-            }), [matrix]
-      )  
 
     return(
         <div 
             id={`cell-${x}-${y}`}
             className={`tile udc ${matrixItemObject.val === 'w' ? 'wall' : ''}`} 
             ref={drop}
+            onMouseEnter={handleMouseEnter}
         >
            {matrixItemObject.val === 's'  && <SvgTotem totemType={matrixItemObject.val}/>}
            {matrixItemObject.val === 'e'  && <SvgTotem totemType={matrixItemObject.val}/>}

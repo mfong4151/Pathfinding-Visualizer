@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {FC} from 'react'
 import Start from './Start'
 import End from './End'
 import { ItemTypes } from '../../../Nodulars/DSACanvas/utils/dragDropConstraints'
@@ -10,7 +10,7 @@ interface Props{
 }
 
 
-const SvgTotem: React.FC<Props> = ({totemType}) => {
+const SvgTotem:FC<Props> = ({totemType}) => {
 
   const [collected, drag] = useDrag(()=>({
       type: ItemTypes.MATRIX_CELL,
@@ -23,7 +23,7 @@ const SvgTotem: React.FC<Props> = ({totemType}) => {
 
 
   return (
-    <div ref={drag}>
+    <div className='matrix-totem' ref={drag}>
       {totemType === 's' && <Start/>}
       {totemType === 'e' && <End/>}
     </div>

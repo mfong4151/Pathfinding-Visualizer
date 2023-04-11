@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
 import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
@@ -7,6 +7,7 @@ import SvgTotem from './SvgTotem'
 import CellTotem from "./CellTotem";
 import { consoleContentState, matrixState } from "../../types/state";
 import { matrixItemObject } from "../../types/objects";
+import { SliderPicker } from "@hello-pangea/color-picker"; //pass on change to this in order to get color
 
 export interface Props{
     matrixState:matrixState;
@@ -19,17 +20,23 @@ export interface Props{
 } 
 
 
-
 const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleContentState, matrixRef})=>{
     const {matrix} = matrixState;
+    const [mouseDown, setMouseDown] = useState<boolean>(false);
+    const [wallColor, setWallColor] = useState<string>('')
+    const [startColor, setStartColor] = useState<string>('')
+    const [endColor, setEndColor] = useState<string>('')
+    const [shortestPathColor, setShortestPathColor] = useState<string>('')
 
 
     return(
         <div id='matrix-tab' className="fdc univ-padding" ref={matrixRef}>
+            {/* <SliderPicker/> */}
             <DndProvider backend={HTML5Backend}>
 
                 <div className='toolbar fdr sb'>
                     <div className="hover-over drag-icon-holder udc fdc">
+
                          <SvgTotem totemType='s'/>
                          <p className="toolbar-text">Start</p>
                          
@@ -41,21 +48,32 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                     </div>
                     <div className="hover-over drag-icon-holder udc fdc">
                         <CellTotem totemType='w'/>
-                        <p className="toolbar-text">Create Wall</p>
+                        <p className="toolbar-text">Wall Color</p>
+
+                    </div>
+                    {/* <div className="hover-over drag-icon-holder udc fdc">
+                        <CellTotem totemType=''/>
+                        <p className="toolbar-text">Start Color</p>
 
                     </div>
                     <div className="hover-over drag-icon-holder udc fdc">
-                        <CellTotem totemType='erase'/>
-                        <p className="toolbar-text">Erase wall</p>
+                        <CellTotem totemType=''/>
+                        <p className="toolbar-text">End Color</p>
 
                     </div>
+                    <div className="hover-over drag-icon-holder udc fdc">
+                        <CellTotem totemType=''/>
+                        <p className="toolbar-text">Shortest Path </p>
 
-                    
-            
+                    </div> */}
+                 
                     
                 </div>
 
-                <div className="matrix">
+                <div className="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
+                    onMouseUp={()=> setMouseDown(prev => false )}
+                    onMouseLeave={()=> setMouseDown(prev => false )}
+                    >
                     {matrix.map((row : matrixItemObject[], y: number)=>   
                         <div id={`row-${y}`} className='udc' key={y}>
                             {
@@ -68,7 +86,8 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                     consoleContentState={consoleContentState}
                                     pos={{y, x}}
                                     key={`${y}${x}`}
-                                    
+                                    mouseDown={mouseDown}
+                                    setMouseDown ={setMouseDown}
                                 />)
                             }
                         
