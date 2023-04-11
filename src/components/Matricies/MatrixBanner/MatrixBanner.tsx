@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {FC, useEffect, useRef } from 'react';
 import { createNewMatrix } from './MatrixRemote/utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from '../../Nodulars/Banner/ChooseAlgoModal';
@@ -91,7 +91,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
           </div>
 
           <button className='sq-buttons hover-over banner-button udc' onClick={()=>setChooseAlgoModal(!chooseAlgoModal)} ref={chooseAlgoRef}>
-            {chosenAlgo}
+            {chosenAlgo} <DownArrow/>
           </button>
           
           
@@ -119,3 +119,12 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 }
 
 export default MatrixBanner
+
+
+const DownArrow: FC =() => (
+  <svg width="24px" height="24px" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" 
+      aria-hidden="true" focusable="false">
+        <path d="M17 11.7494V14.916L12 11.0827L7 14.916V11.7494L12 7.91602L17 11.7494Z" fill="white" transform="rotate(180, 12, 12)">
+        </path>
+    </svg>
+)

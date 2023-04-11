@@ -21,8 +21,7 @@ const ChooseAlgoModal: React.FC<Props> = ({state, setState}) => {
     return (
       <div className="modal">
         <div className='modal-overlay' onClick={()=>setState(!state)}>
-            <div 
-              >
+            <div>
   
             
             </div>

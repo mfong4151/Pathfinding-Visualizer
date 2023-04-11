@@ -1,9 +1,11 @@
 import { MatrixItterator } from "./matrixItterator";
 import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
+import { pos } from "../../../types/positions";
+
 export class DFSItteratorMatrix extends MatrixItterator {
-    public stack: pathObject[];
-    public res: pathObject[];
+    public stack: matrixItemObject[];
+    public res: matrixItemObject[];
 
     constructor(start: number[], end: number[], matrix: matrixItemObject[][]) {
         super(start, end, matrix);
@@ -16,26 +18,26 @@ export class DFSItteratorMatrix extends MatrixItterator {
         const last = this.stack[this.stack.length - 1];
         const x: number = last.pos[0];
         const y: number = last.pos[1];
-
         const pos: string = `${x},${y}`;
-        if (
-            this.visited.has(pos) ||
+        if (this.visited.has(pos) ||
             x < 0 ||  x >= this.cols ||
             y < 0 ||  y >= this.rows ||
             this.matrix[y][x].val === 'w'
-        )
+        ){
             return false;
+        }
         return true;
     }
 
-    public discardInvalidNode(): void {
-        this.stack.pop();
-    }
+    public discardInvalidNode(): number[] {
+        const node: matrixItemObject = this.stack.pop()!
+        return node.pos
+     }
 
     public next(): number[] {
         if (this.stack.length <= 0) return [];
 
-        const curr: pathObject = this.stack.pop()!;
+        const curr: matrixItemObject = this.stack.pop()!;
         const { pos } = curr;
         this.prev = pos;
         const x: number = pos[0];
@@ -51,7 +53,6 @@ export class DFSItteratorMatrix extends MatrixItterator {
             const newPos = [x + dx, y + dy];
             this.stack.push({ pos: newPos, prev: pos });
         }
-
         return pos;
     }
 
@@ -64,9 +65,9 @@ export class DFSItteratorMatrix extends MatrixItterator {
         return false;
     }
 
-    public preformFullAlgo(): pathObject[] {
+    public preformFullAlgo(): matrixItemObject[] {
         while (!this.isContainerEmpty()) {
-            const curr: pathObject = this.stack.pop()!;
+            const curr: matrixItemObject = this.stack.pop()!;
             const x: number = curr.pos[0];
             const y: number = curr.pos[1];
             const visitedPos: string = `${x},${y}`;
