@@ -17,19 +17,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
     public isValidNext():boolean{
         if (this.q.length < 0) return false;
         const first = this.q[0]
-        const x:number =  first.pos[0];
-        const y:number =  first.pos[1];
-        const pos: string = `${x},${y}`;
-        
-        
-        if( this.visited.has(pos) || 
-            x < 0 || x >= this.cols ||
-            y< 0 || y >= this.rows || 
-            this.matrix[y][x].val === 'w'
-            )
-    
-            return false;
-            
+        if (this.outOfRangeOrVisited(first.pos[0], first.pos[1]) )return false;            
         return true;
     }
     
@@ -49,11 +37,8 @@ export class BFSItteratorMatrix extends MatrixItterator{
 
         this.visited.add(`${x},${y}`)
 
-        //Mark new node as curr conditionally
-        if(!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
-
-        //Mark the end found if we have in fact found the end
-        if (this.isEnd(pos)) this.endFound = true;
+        this.assignValueToMatrix(curr, x, y)
+        this.evaluateEnd(curr)
 
         //load the queue
         for (const [dx, dy] of DIRS) {
@@ -69,11 +54,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
         return !(this.q.length > 0)
     }
 
-    public isEnd(node:number[]): boolean{
-
-        if (node[0] === this.end[0] && node[1] === this.end[1]) return true;
-        return false;
-    }
+  
     
     public preformFullAlgo():matrixItemObject[]{
         while (!this.isQueueEmpty()) {
@@ -83,7 +64,6 @@ export class BFSItteratorMatrix extends MatrixItterator{
             const visitedPos: string = `${x},${y}`;
             if( this.visited.has(visitedPos) || x < 0 || x >= this.cols ||  y< 0 || y >= this.rows || this.matrix[y][x].val === 'w') continue
             
-
             this.visited.add(visitedPos)
             this.res.push(curr)
             

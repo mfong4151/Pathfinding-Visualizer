@@ -54,6 +54,34 @@ export class MatrixItterator{
 
     //except for these, these actually do stuff
 
+    public isEnd(node:number[]): boolean{
+
+        if (node[0] === this.end[0] && node[1] === this.end[1]) return true;
+        return false;
+    }
+
+    protected assignValueToMatrix(curr: matrixItemObject, x:number, y:number){
+        if (!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
+
+    }
+
+    protected evaluateEnd(curr:matrixItemObject):void{
+        if (this.isEnd(curr.pos)) this.endFound = true;
+
+    }
+
+    protected outOfRangeOrVisited(x:number, y:number):boolean{
+        const pos: string = `${x},${y}`;
+        return (this.visited.has(pos) ||
+            x < 0 ||  x >= this.cols ||
+            y < 0 ||  y >= this.rows ||
+            this.matrix[y][x].val === 'w'
+        )
+
+
+        
+    }
+
     public isStart(node:number[]):boolean{
         if (node[0] === this.start[0] && node[1] === this.start[1]) return true;
         return false

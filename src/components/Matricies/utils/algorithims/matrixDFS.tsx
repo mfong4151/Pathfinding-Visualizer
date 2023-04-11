@@ -16,16 +16,7 @@ export class DFSItteratorMatrix extends MatrixItterator {
     public isValidNext(): boolean {
         if (this.stack.length <= 0) return false;
         const last = this.stack[this.stack.length - 1];
-        const x: number = last.pos[0];
-        const y: number = last.pos[1];
-        const pos: string = `${x},${y}`;
-        if (this.visited.has(pos) ||
-            x < 0 ||  x >= this.cols ||
-            y < 0 ||  y >= this.rows ||
-            this.matrix[y][x].val === 'w'
-        ){
-            return false;
-        }
+        if (this.outOfRangeOrVisited(last.pos[0], last.pos[1]) )return false;
         return true;
     }
 
@@ -42,11 +33,10 @@ export class DFSItteratorMatrix extends MatrixItterator {
         this.prev = pos;
         const x: number = pos[0];
         const y: number = pos[1];
-        const cords: string = `${x},${y}`;
-        this.visited.add(cords);
-
-        if (!this.isStart(curr.pos) && !(this.isEnd(curr.pos))) this.matrix[y][x] = curr;
-        if (this.isEnd(pos)) this.endFound = true;
+        this.visited.add(`${x},${y}`);
+        
+        this.assignValueToMatrix(curr, x, y)
+        this.evaluateEnd(curr)
 
         // load the stack
         for (const [dx, dy] of this.dirs) {
@@ -60,10 +50,6 @@ export class DFSItteratorMatrix extends MatrixItterator {
         return !(this.stack.length > 0);
     }
 
-    public isEnd(node: number[]): boolean {
-        if (node[0] === this.end[0] && node[1] === this.end[1]) return true;
-        return false;
-    }
 
     public preformFullAlgo(): matrixItemObject[] {
         while (!this.isContainerEmpty()) {
