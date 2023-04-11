@@ -1,7 +1,5 @@
 import { MatrixItterator } from "./matrixItterator";
-import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
-import { pos } from "../../../types/positions";
 
 export class DFSItteratorMatrix extends MatrixItterator {
     public stack: matrixItemObject[];
@@ -34,7 +32,7 @@ export class DFSItteratorMatrix extends MatrixItterator {
         const x: number = pos[0];
         const y: number = pos[1];
         this.visited.add(`${x},${y}`);
-        
+
         this.assignValueToMatrix(curr, x, y)
         this.evaluateEnd(curr)
 
@@ -56,10 +54,10 @@ export class DFSItteratorMatrix extends MatrixItterator {
             const curr: matrixItemObject = this.stack.pop()!;
             const x: number = curr.pos[0];
             const y: number = curr.pos[1];
-            const visitedPos: string = `${x},${y}`;
-            if (this.visited.has(visitedPos) || x < 0 || x >= this.cols || y < 0 || y >= this.rows || this.matrix[y][x].val === 'w') continue;
 
-            this.visited.add(visitedPos);
+            if (this.outOfRangeOrVisited(x, y)) continue;
+
+            this.visited.add(`${x},${y}`);
             this.res.push(curr);
 
             if (this.isEnd(curr.pos)) {

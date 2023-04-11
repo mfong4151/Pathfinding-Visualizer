@@ -77,22 +77,18 @@ export class MatrixItterator{
             y < 0 ||  y >= this.rows ||
             this.matrix[y][x].val === 'w'
         )
-
-
-        
     }
 
     public isStart(node:number[]):boolean{
         if (node[0] === this.start[0] && node[1] === this.start[1]) return true;
-        return false
-
+        return false;
     }
 
     public generateShortestPath():number[][]{
         if (!this.endFound) return [[]]
         const res: number[][] = []
         let curr:matrixItemObject = this.matrix[this.end[1]][this.end[0]]
-        while (!(curr.prev[0] == this.start[0] && curr.prev[1] == this.start[1])){
+        while (!(curr.prev[0] === this.start[0] && curr.prev[1] === this.start[1])){
             res.push(curr.prev)
             curr = this.matrix[curr.prev[1]][curr.prev[0]]
         }

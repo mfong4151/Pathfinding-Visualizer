@@ -61,13 +61,16 @@ export class BFSItteratorMatrix extends MatrixItterator{
             const curr:matrixItemObject = this.q.shift()!;
             const x: number = curr.pos[0];
             const y: number = curr.pos[1];
-            const visitedPos: string = `${x},${y}`;
-            if( this.visited.has(visitedPos) || x < 0 || x >= this.cols ||  y< 0 || y >= this.rows || this.matrix[y][x].val === 'w') continue
+
+            if (this.outOfRangeOrVisited(x, y)) continue;
             
-            this.visited.add(visitedPos)
-            this.res.push(curr)
+            //Keep track of visited spaces in set
+            this.visited.add(`${x},${y}`);
+            //push next item on to res
+            this.res.push(curr);
             
             //Exit loop if we find the end
+            
             if (this.isEnd(curr.pos)){
                 this.matrix[y][x] = {val: 'e', prev:curr.prev}
                 this.endFound = true;
