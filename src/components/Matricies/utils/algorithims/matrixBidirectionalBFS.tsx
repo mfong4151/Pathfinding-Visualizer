@@ -46,7 +46,7 @@ export class BiBFSItterMatrix extends MatrixItterator{
 
     public isValidNext():boolean{
         
-        if (this.activeQ.length < 0) return false;
+        if (this.activeQ.length <= 0) return false;
         const first = this.activeQ[0]
         if (this.outOfRangeOrVisited(first.pos[0], first.pos[1]) )return false;            
         return true;
@@ -81,8 +81,7 @@ export class BiBFSItterMatrix extends MatrixItterator{
         this.activeVisited.add(`${x},${y}`)
 
         this.assignValueToMatrix(curr, x, y)
-        this.evaluateEnd(curr)
-
+        this.checkIntersection(curr)
         //load the queue
         for (const [dx, dy] of DIRS) {
             const newPos = [x + dx, y + dy]
@@ -173,7 +172,7 @@ export class BiBFSItterMatrix extends MatrixItterator{
     }
 
     public isContainerEmpty():boolean{
-        return !(this.startQ.length > 0) && !(this.endQ.length > 0)
+        return !(this.startQ.length > 0) || !(this.endQ.length > 0)
     }
 }
 

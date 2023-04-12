@@ -2,19 +2,17 @@ import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
 import { consoleContentState, matrixState } from '../../../types/state';
 import { startStop } from '../../../types/positions';
-import { itterator, } from '../../../types/itterator';
-import { BFSItterMatrix } from '../../utils/algorithims/matrixBFS';
-import { DFSItterMatrix } from '../../utils/algorithims/matrixDFS';
+import { itterator } from '../../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
 import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../utils/matrixStyling';
-import convertContainer from './utils/convertContainer';
 import Play from '../../../Nodulars/Banner/Remote/svgs/Play';
 import FastForward from '../../../Nodulars/Banner/Remote/svgs/Fastforward';
 import SkipBack from '../../../Nodulars/Banner/Remote/svgs/SkipBack';
 import SkipForward from '../../../Nodulars/Banner/Remote/svgs/SkipForward';
 import Pause from '../../../Nodulars/Banner/Remote/svgs/Pause';
-import { BestFSItterMatrix } from '../../utils/algorithims/matrixBestFirstSearch';
+import { inShortestPathExclusions } from './utils/graphUtils';
+import { forwardConsoleMsgs } from './utils/remoteUtils';
 
 interface Props{
     chosenAlgo: string;
@@ -49,10 +47,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
-    const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
-      activeIttr instanceof DFSItterMatrix || activeIttr instanceof BestFSItterMatrix
-   )
 
+ 
 
     if (!activeIttr || start.x === -1 || end.x === -1) {
       
@@ -64,28 +60,31 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       return 
     }
 
+    
+
     //used with the reset button 
     const reset = ():void => {
     const exclusions = new Set(['s', 'w', 'e']);
 
-    for(let i:number = 0; i < matrix.length; i++)
-      for(let j:number = 0; j < matrix[0].length; j++){
-        if (exclusions.has(matrix[i][j].val)) continue;
-        document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
+      for(let i:number = 0; i < matrix.length; i++)
+        for(let j:number = 0; j < matrix[0].length; j++){
+          if (exclusions.has(matrix[i][j].val)) continue;
+          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
 
-      }
+        }
 
-      currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
+        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
     }
 
     const forward = ():void =>{
       //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
-      
+
       if (activeIttr.isContainerEmpty()){
         newConsoleContent['msg'] = 'In this case, the end point could not be found'
 
       } else if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
+
          if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
           newConsoleContent['msg'] = `At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` 
 
@@ -99,18 +98,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
           newConsoleContent['Visited'] = `At this point we visit the point [${coords[0]}, ${coords[1]}]`
           styleElement(coords, 'visited-1');
-          //Handle various cases, for some reason switch case doesnt work here
-
-          if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
-          else if (activeIttr instanceof DFSItterMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
-          else if (activeIttr instanceof BestFSItterMatrix){
-            const heapCopy:matrixItemObject[] = []
-            for(const pair of [...activeIttr.open.heapArray]) heapCopy.push(pair[1])
-            newConsoleContent['heap'] = `Heap: ${convertContainer(heapCopy)}`
-            
-          } 
-          else return 
-
+          const msg:string[] = forwardConsoleMsgs(activeIttr)
+          newConsoleContent['msg'] = msg[0]
         }
       }
     }
@@ -177,7 +166,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
       case 'fast-forward':
         if(!activeIttr.endFound) forward();
-        else( styleShortestPathSync(activeIttr.generateShortestPath()))
+        else(styleShortestPathSync(activeIttr.generateShortestPath()))
         break;
       case 'skip-forward':
         skipForward()

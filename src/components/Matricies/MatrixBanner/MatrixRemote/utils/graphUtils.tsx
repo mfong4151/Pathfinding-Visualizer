@@ -1,6 +1,7 @@
 import { matrixItemObject } from "../../../../types/objects";
-
-
+import { DFSItterMatrix } from "../../../utils/algorithims/matrixDFS";
+import { itterator } from "../../../../types/itterator";
+import { BestFSItterMatrix } from "../../../utils/algorithims/matrixBestFirstSearch";
 
 export const createNewMatrix = (numRows :number, numCols :number) : matrixItemObject[][] =>{
     const matrix = []
@@ -16,3 +17,7 @@ export const createNewMatrix = (numRows :number, numCols :number) : matrixItemOb
     }
     return matrix;
 }
+
+export const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
+    activeIttr instanceof DFSItterMatrix || activeIttr instanceof BestFSItterMatrix
+ )
