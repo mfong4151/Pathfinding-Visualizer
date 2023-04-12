@@ -80,16 +80,19 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
     const forward = ():void =>{
       //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
-      if(!activeIttr.isValidNext()) {
+      
+      if (activeIttr.isContainerEmpty()){
+        newConsoleContent['msg'] = 'In this case, the end point could not be found'
+
+      } else if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
          if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
           newConsoleContent['msg'] = `At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` 
 
          else
            newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
-
-         
-      } else  {
+    
+      }  else  {
         coords = activeIttr.next()
       
         if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
@@ -97,10 +100,15 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
           newConsoleContent['Visited'] = `At this point we visit the point [${coords[0]}, ${coords[1]}]`
           styleElement(coords, 'visited-1');
           //Handle various cases, for some reason switch case doesnt work here
-          if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
+          if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
           else if (activeIttr instanceof DFSItterMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
-          else if (activeIttr instanceof BestFSItterMatrix) newConsoleContent['heap'] = `Heap: ${convertContainer(activeIttr.open)}`
+          else if (activeIttr instanceof BestFSItterMatrix){
+            const heapCopy:matrixItemObject[] = []
+            for(const pair of [...activeIttr.open.heapArray]) heapCopy.push(pair[1])
+            newConsoleContent['heap'] = `Heap: ${convertContainer(heapCopy)}`
+            
+          } 
           else return 
 
         }
@@ -135,20 +143,16 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
     const skipForward = ():void =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-        for(let i:number = 0; i < res.length; i ++){
+      
+      for(let i:number = 0; i < res.length; i ++){
           const node:matrixItemObject = res[i];
-
-          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
-            styleElementSync(node.pos, 'visited-1-sync')
-          }
+          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElementSync(node.pos, 'visited-1-sync') 
       }
-      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)){
-        styleShortestPathSync(activeIttr.generateShortestPath())
-      } else{
 
-        newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
+      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)) styleShortestPathSync(activeIttr.generateShortestPath())
+      else newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
 
-      }
+    
     }
 
     const test = ():void =>{

@@ -172,5 +172,8 @@ export class BiBFSItterMatrix extends MatrixItterator{
          return res.reverse()
     }
 
+    public isContainerEmpty():boolean{
+        return !(this.startQ.length > 0) && !(this.endQ.length > 0)
+    }
 }
 

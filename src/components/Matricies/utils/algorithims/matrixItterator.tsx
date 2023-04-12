@@ -1,4 +1,3 @@
-import { pathObject } from "../../../types/classes";
 import { matrixItemObject } from "../../../types/objects";
 
 export class MatrixItterator{

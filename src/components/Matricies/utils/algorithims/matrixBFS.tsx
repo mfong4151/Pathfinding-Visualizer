@@ -95,6 +95,8 @@ export class BFSItterMatrix extends MatrixItterator{
         
         return q
     }
-
+    public isContainerEmpty():boolean{
+        return !(this.q.length > 0)
+    }
 }
 
