@@ -26,14 +26,21 @@
 
 
 @keyframes blue-transition {
+    /* from{transform: rotate(0deg);
+    
+    }
+    to{
+      transform:rotate(360deg);
+    } */
+
     0% {
       background-color: var(--color-indigo-visited-0);
     }
-    33%{
+    25%{
       background-color: var(--color-blue-visited-1)
     }
 
-    66%{
+    35%{
       background-color: var(--color-blue-visited-2);
     }
 

@@ -19,8 +19,8 @@ export class MatrixItterator{
         this.start = start
         this.visited = new Set();
         this.matrix = matrix;
-        this.rows = matrix.length;
-        this.cols = matrix[0].length;
+        this.rows = matrix?.length;
+        this.cols = matrix[0]?.length;
         this.endFound = false;
         this.dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]];
     }

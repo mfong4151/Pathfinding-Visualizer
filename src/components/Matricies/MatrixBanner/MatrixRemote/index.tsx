@@ -29,7 +29,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
-  const isAnimated = useRef<boolean>(false);
+  const animationRef = useRef<boolean>(false);
   const {matrix} = matrixState;  
   const {start, end} = startEndPos;
   let coords :number[] = [-1, -1];
@@ -47,7 +47,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
-
+    let hasAnimated = animationRef.current
  
 
     if (!activeIttr || start.x === -1 || end.x === -1) {
@@ -60,12 +60,11 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       return 
     }
 
-    
-
+  
     //used with the reset button 
     const reset = ():void => {
-    const exclusions = new Set(['s', 'w', 'e']);
-
+      const exclusions = new Set(['s', 'w', 'e']);
+      
       for(let i:number = 0; i < matrix.length; i++)
         for(let j:number = 0; j < matrix[0].length; j++){
           if (exclusions.has(matrix[i][j].val)) continue;
@@ -74,6 +73,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         }
 
         currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
+        hasAnimated = false
     }
 
     const forward = ():void =>{
@@ -113,8 +113,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
           const node:matrixItemObject = res[i];
 
           if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
-            styleElement(node.pos, 'visited-1', i)
-            await new Promise(resolve => setTimeout(resolve, 10));
+            styleElementSync(node.pos, 'visited-1')
+            await new Promise(resolve => setTimeout(resolve, Math.min(i / 12, 13)));
           }
         }
       };
@@ -155,8 +155,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
       case 'play':
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
+        // if (hasAnimated) reset()
         play()
-        // test()
         break;
 
       case 'pause':
@@ -165,10 +165,12 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         break;
 
       case 'fast-forward':
+        // if (hasAnimated) reset()
         if(!activeIttr.endFound) forward();
         else(styleShortestPathSync(activeIttr.generateShortestPath()))
         break;
       case 'skip-forward':
+        // if (hasAnimated) reset()
         skipForward()
         break;
       default:
@@ -176,6 +178,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
 
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
+    hasAnimated = true //prevent reanimations
     allowSetIttr.current = false;
     return
 };
