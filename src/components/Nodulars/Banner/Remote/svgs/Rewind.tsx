@@ -7,7 +7,7 @@ const Rewind:FC = ( ) => (
         width='45px' 
         version='1.1' 
         viewBox='0 0 321.9 321.9' 
-        className='rotate-svg svg-style'
+        className='rotate-svg svg-style hover-over'
         >
       <g>
         <g>

@@ -220,3 +220,19 @@ code {
   transition: border 0.2s ease-in;
 }
 
+
+.svg-style{
+  color: var(--color-white)
+}
+
+.svg-style:hover{
+  color:var(--color-blue-hover);
+}
+
+.svg-style:active{
+  color:var(--color-black-foreground)
+}
+
+.rotate-svg{
+  transform:rotate(180deg)
+}

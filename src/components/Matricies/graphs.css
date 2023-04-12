@@ -45,7 +45,7 @@
 
 .visited-1{
     background-color: var(--color-blue-visited-end);
-    animation: blue-transition 3.5s linear;
+    animation: blue-transition 7s linear;
 }
 
 .visited-1-sync{
@@ -73,6 +73,7 @@
 }
 .shortest-path-sync{
     background-color: var(--color-shortest-path-end);
+    animation: green-transition 2s linear;
 }
 
 

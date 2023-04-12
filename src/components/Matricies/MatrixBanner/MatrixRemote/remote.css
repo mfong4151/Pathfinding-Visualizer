@@ -17,7 +17,9 @@
     color: var(--color-white)
 }
 
-
+.svg-style:hover{
+    color:var(--color-blue-hover);
+}
 
 .svg-style:active{
     color:var(--color-black-foreground)
