@@ -104,7 +104,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
         </div>
         <div>
 
-          <Remote chosenAlgo={chosenAlgo} 
+          <Remote 
+                  chosenAlgo={chosenAlgo} 
                   matrixState={{matrix, setMatrix}} 
                   startEndPos={startEndPos} 
                   consoleContentState={consoleContentState}

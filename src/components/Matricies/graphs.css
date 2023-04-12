@@ -27,17 +27,24 @@
 
 @keyframes blue-transition {
     0% {
-      /* background-color: var(--color-blue-visiting); */
-      background-color: indigo;
+      background-color: var(--color-indigo-visited-0);
     }
+    25%{
+      background-color: var(--color-blue-visited-1)
+    }
+
+    50%{
+      background-color: var(--color-blue-visited-2);
+    }
+
     100% {
-      background-color: var(--color-blue-visited);
+      background-color: var(--color-blue-visited-end);
     }
   }
 
 
 .visited-1{
-    background-color: var(--color-blue-visited);
+    background-color: var(--color-blue-visited-end);
     animation: blue-transition 3.5s linear;
 }
 

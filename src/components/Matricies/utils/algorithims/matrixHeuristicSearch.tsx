@@ -3,7 +3,7 @@ import { matrixItemObject } from "../../../types/objects";
 import Heap from 'heap-js';
 
 
-//Bridge class to 
+//Bridge class to handle heursitc searches
 export class matrixHeuristicSearch extends MatrixItterator{
     public open: any;
     

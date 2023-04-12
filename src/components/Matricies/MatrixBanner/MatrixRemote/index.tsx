@@ -121,6 +121,9 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       })
     }
 
+    const skipForward = ():void =>{
+      // console.log(activeIttr.test)
+    }
 
     switch (buttonId) {
       case 'reset':

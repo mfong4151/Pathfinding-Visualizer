@@ -4,7 +4,7 @@ import Heap from "heap-js";
 import DIRS from "./dirs";
 
 
-export class matrixBestFirstSearch extends matrixHeuristicSearch{
+export class MatrixBestFirstSearch extends matrixHeuristicSearch{
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
@@ -18,8 +18,14 @@ export class matrixBestFirstSearch extends matrixHeuristicSearch{
         return Math.abs(y2 - y1) + Math.abs (x2 - x1)
     }
 
+    public test():void{
+
+        return 
+    }
+
     public preformFullAlgo(): matrixItemObject[] {
         let currPair: [number, matrixItemObject];
+
         while (this.open.length){
             currPair = Heap.heappop(this.open)!
             const {pos, prev} = currPair[1]
