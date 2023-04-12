@@ -50,7 +50,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
     const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
-      activeIttr instanceof DFSItterMatrix && activeIttr instanceof BestFSItterMatrix
+      activeIttr instanceof DFSItterMatrix || activeIttr instanceof BestFSItterMatrix
    )
 
 
