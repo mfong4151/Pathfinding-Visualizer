@@ -1,7 +1,7 @@
 import { MatrixItterator } from "./matrixItterator";
 import { matrixItemObject } from "../../../types/objects";
 
-export class DFSItteratorMatrix extends MatrixItterator {
+export class DFSItterMatrix extends MatrixItterator {
     public stack: matrixItemObject[];
     public res: matrixItemObject[];
 
@@ -67,7 +67,7 @@ export class DFSItteratorMatrix extends MatrixItterator {
                 this.markEndPrev(curr, x, y)
                 break;
             }
-            
+
             if (!this.isStart(curr.pos)) this.matrix[y][x] = { val: '', prev: curr.prev };
 
             for (const [dx, dy] of this.dirs) {

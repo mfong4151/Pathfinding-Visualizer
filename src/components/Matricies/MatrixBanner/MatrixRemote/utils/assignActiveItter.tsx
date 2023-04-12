@@ -1,10 +1,10 @@
 import { startStop } from "../../../../types/positions";
-import { BFSItteratorMatrix } from "../../../utils/algorithims/matrixBFS";
-import { DFSItteratorMatrix } from "../../../utils/algorithims/matrixDFS";
+import { BFSItterMatrix } from "../../../utils/algorithims/matrixBFS";
+import { DFSItterMatrix } from "../../../utils/algorithims/matrixDFS";
 import { itterator } from "../../../../types/itterator";
 import { matrixItemObject } from "../../../../types/objects";
-import { MatrixItteratorBiBFS } from "../../../utils/algorithims/matrixBidirectionalBFS";
-import { MatrixBestFirstSearch } from "../../../utils/algorithims/matrixBestFirstSearch";
+import { BiBFSItterMatrix } from "../../../utils/algorithims/matrixBidirectionalBFS";
+import { BestFSItterMatrix } from "../../../utils/algorithims/matrixBestFirstSearch";
 
 const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix: matrixItemObject[][]) =>{
     
@@ -14,17 +14,18 @@ const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix
 
     switch(chosenAlgo) {
       case 'BFS':
-        itter = new BFSItteratorMatrix(start, end, matrix);
+        itter = new BFSItterMatrix(start, end, matrix);
         break
       case 'DFS':
-        itter = new DFSItteratorMatrix(start, end, matrix);
+        itter = new DFSItterMatrix(start, end, matrix);
+        break
+      case 'Best First Search':
+        itter = new BestFSItterMatrix(start, end, matrix);
         break
       case 'Bidirectional BFS':
-        itter = new MatrixItteratorBiBFS(start, end, matrix);
+        itter = new BiBFSItterMatrix(start, end, matrix);
         break
-      // case 'Best First Search':
-      //   itter = new MatrixBestFirstSearch(start, end, matrix);
-      //   break
+
       default:
         itter = null
         break

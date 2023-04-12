@@ -3,11 +3,11 @@ import './remote.css'
 import { consoleContentState, matrixState } from '../../../types/state';
 import { startStop } from '../../../types/positions';
 import { itterator, } from '../../../types/itterator';
+import { BFSItterMatrix } from '../../utils/algorithims/matrixBFS';
+import { DFSItterMatrix } from '../../utils/algorithims/matrixDFS';
 import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
 import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../utils/matrixStyling';
-import { BFSItteratorMatrix } from '../../utils/algorithims/matrixBFS';
-import { DFSItteratorMatrix } from '../../utils/algorithims/matrixDFS';
 import convertContainer from './utils/convertContainer';
 import Play from '../../../Nodulars/Banner/Remote/svgs/Play';
 import FastForward from '../../../Nodulars/Banner/Remote/svgs/Fastforward';
@@ -90,9 +90,9 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
           
 
           //Handle various cases, for some reason switch case doesnt work here
-          if (activeIttr instanceof BFSItteratorMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
+          if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
-          else if (activeIttr instanceof DFSItteratorMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
+          else if (activeIttr instanceof DFSItterMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
 
       
           else return 
@@ -146,6 +146,9 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       }
     }
 
+    const test = ():void =>{
+      activeIttr.next()
+    }
     switch (buttonId) {
       case 'reset':
         newConsoleContent['resetting'] = `Resetting the board so you can play everything again :3`
@@ -155,7 +158,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       case 'play':
         newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
         play()
-
+        // test()
         break;
 
       case 'pause':
@@ -186,7 +189,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     allowSetIttr.current = true;
     
 
-  },[chosenAlgo, matrix])
+  },[chosenAlgo, matrix, startEndPos])
 
 
 return (

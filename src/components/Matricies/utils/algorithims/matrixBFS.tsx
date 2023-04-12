@@ -5,7 +5,7 @@ import DIRS from "./dirs";
 
 
 
-export class BFSItteratorMatrix extends MatrixItterator{
+export class BFSItterMatrix extends MatrixItterator{
     public q: matrixItemObject[]  
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][] ){
@@ -72,7 +72,7 @@ export class BFSItteratorMatrix extends MatrixItterator{
             this.res.push(curr);
 
             this.evaluateEnd(curr)
-            
+
             if (this.endFound){
                 this.markEndPrev(curr, x, y)
                 break;

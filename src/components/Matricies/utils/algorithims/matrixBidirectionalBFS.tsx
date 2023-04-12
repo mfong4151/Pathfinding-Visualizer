@@ -5,7 +5,7 @@ import DIRS from "./dirs";
 
 
 
-export class MatrixItteratorBiBFS extends MatrixItterator{
+export class BiBFSItterMatrix extends MatrixItterator{
     public startQ: matrixItemObject[]  
     public endQ: matrixItemObject[]  
     public queues:matrixItemObject[][]
