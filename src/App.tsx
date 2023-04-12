@@ -11,11 +11,11 @@ const App: React.FC = () => {
     <div className="app">
       <NavBar/>
       <Routes>
-        <Route path="/matricies" Component={Matricies}/>
-        <Route path="/trees" Component={()=><Nodular type={'trees'}/>}/> 
-        <Route path="/linked_lists" Component={()=><Nodular type={'linkedlists'}/>}/> 
-        <Route path="/" Component={Splash}/>
-        <Route path="" Component={Splash}/>
+        <Route path="/" element={<Splash/>}/>
+        <Route path="/matricies" element={<Matricies/>}/>
+        <Route path="/trees" element={<Nodular type={'trees'}/>}/> 
+        <Route path="/linked_lists" element={<Nodular type={'linkedlists'}/>}/> 
+        <Route path="*" element={<Splash/>}/>
        
       </Routes>
     </div>
