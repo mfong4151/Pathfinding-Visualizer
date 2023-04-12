@@ -41,7 +41,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
-    
     if (!activeIttr) {
       newConsoleContent['msg'] = 'You need to select an algo!'
       setConsoleContent(prev => newConsoleContent)
@@ -63,7 +62,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
 
     const itterateForward = ():void =>{
-
       //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
@@ -100,10 +98,10 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-      
       const illustrate = async():Promise<void> =>{
         for(let i:number = 0; i < res.length; i ++){
           const node:matrixItemObject = res[i];
+
           if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
             styleElement(node.pos, 'visited-1', i)
             await new Promise(resolve => setTimeout(resolve, 10));
