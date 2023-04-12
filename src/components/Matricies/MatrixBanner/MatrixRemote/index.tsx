@@ -5,7 +5,7 @@ import { startStop } from '../../../types/positions';
 import { itterator, } from '../../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-import { styleElement, styleShortestPath } from '../../utils/matrixStyling';
+import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../utils/matrixStyling';
 import { BFSItteratorMatrix } from '../../utils/algorithims/matrixBFS';
 import { DFSItteratorMatrix } from '../../utils/algorithims/matrixDFS';
 import convertContainer from './utils/convertContainer';
@@ -122,7 +122,21 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
 
     const skipForward = ():void =>{
-      // console.log(activeIttr.test)
+      const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+        for(let i:number = 0; i < res.length; i ++){
+          const node:matrixItemObject = res[i];
+
+          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
+            styleElementSync(node.pos, 'visited-1-sync')
+          }
+      }
+      if (activeIttr.endFound){
+        styleShortestPathSync(activeIttr.generateShortestPath())
+      } else{
+
+        newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
+
+      }
     }
 
     switch (buttonId) {
@@ -146,7 +160,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         if(!activeIttr.isEnd(coords)) itterateForward();
         break;
       case 'skip-forward':
-        // handle skip forward button click
+        skipForward()
         break;
       default:
         break

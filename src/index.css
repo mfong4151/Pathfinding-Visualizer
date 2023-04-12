@@ -13,8 +13,9 @@
   --color-indigo-visited-0: #4b0082;
   --color-blue-visited-1: #1837cf;
   --color-blue-visited-2: #87CEEB;
-  --color-blue-visited-end: #051f95;
-  --color-shortest-path-start: #649089;
+  --color-blue-visited-end: #270595;
+  --color-shortest-path-0: #649089;
+  --color-shortest-path-1:#00e700;
   --color-shortest-path-end:#D3EEDD;
   --color-blue-hover: #0A84FF;
   --color-tile-blue: rgb(175, 216, 248);

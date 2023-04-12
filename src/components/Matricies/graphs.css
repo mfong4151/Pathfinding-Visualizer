@@ -48,10 +48,18 @@
     animation: blue-transition 3.5s linear;
 }
 
+.visited-1-sync{
+  background-color: var(--color-blue-visited-end);
+}
+
 @keyframes green-transition {
     0% {
-      background-color: var(--color-shortest-path-start); 
+      background-color: var(--color-shortest-path-0); 
     }
+    50%{
+      background-color:var(--color-shortest-path-1);
+    }
+
     100% {
       background-color: var(--color-shortest-path-end);
     }
@@ -62,7 +70,9 @@
 .shortest-path{
     background-color: var(--color-shortest-path-end);
     animation: green-transition 2s linear;
-
+}
+.shortest-path-sync{
+    background-color: var(--color-shortest-path-end);
 }
 
 
