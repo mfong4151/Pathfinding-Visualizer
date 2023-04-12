@@ -53,13 +53,10 @@ export class MatrixItteratorBiBFS extends MatrixItterator{
     }
 
     public checkIntersection(node:matrixItemObject): boolean{
-        const x:number = node.pos[0]
-        const y:number = node.pos[1]
+   
 
-        if (this.otherVisited.has(`${x},${y}`)){
-            this.startPathEnd = [x,y]
-            this.endPathEnd = [node.prev[0], node.prev[1]]
-            console.log(this.startPathEnd, this.endPathEnd)
+        if (this.otherVisited.has(`${node.pos[0]},${node.pos[1]}`)){
+          
             return true;
         }
         return false;
@@ -109,7 +106,20 @@ export class MatrixItteratorBiBFS extends MatrixItterator{
             this.matrix[y][x].val === 'w'
         )
     }
-    
+    public assignPathEnd(node:matrixItemObject):void{
+        //if qNum is 0, then our search came from the start, therefore we need to do work on finding the end
+        if (this.qNum === 0){
+            this.startPathEnd = [node.prev[0],node.prev[1]]
+            this.endPathEnd = [node.pos[0],node.pos[1]]
+            
+        }else{
+            this.startPathEnd = [node.pos[0],node.pos[1]]
+            this.endPathEnd = [node.prev[0],node.prev[1]]
+
+        }
+
+    }
+
     public preformFullAlgo():matrixItemObject[]{
         while (!this.isQueueEmpty()) {
             const curr:matrixItemObject = this.activeQ.shift()!;
@@ -126,7 +136,7 @@ export class MatrixItteratorBiBFS extends MatrixItterator{
             //If one touches the visited of the other then we have reached the end
             
             if (this.checkIntersection(curr)){
-                this.matrix[y][x] = {val: '', prev:curr.prev}
+                this.assignPathEnd(curr)
                 this.endFound = true;
                 break;
             }
@@ -149,15 +159,14 @@ export class MatrixItteratorBiBFS extends MatrixItterator{
         const res: number[][] = []
 
         for(const bidirectPoint of [this.startPathEnd, this.endPathEnd]){
-
+            res.push(bidirectPoint)            
             let curr:matrixItemObject = this.matrix[bidirectPoint[1]][bidirectPoint[0]]
-            
             while (!(curr.prev[0] === this.start[0] && curr.prev[1] === this.start[1] ||
                     curr.prev[0] === this.end[0] && curr.prev[1] === this.end[1]))
-            {
-                res.push(curr.prev)
-                curr = this.matrix[curr.prev[1]][curr.prev[0]]
-            }
+                {
+                    res.push(curr.prev)
+                    curr = this.matrix[curr.prev[1]][curr.prev[0]]
+                }
         }
          return res.reverse()
     }
