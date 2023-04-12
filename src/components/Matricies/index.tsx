@@ -9,6 +9,7 @@ import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
+import ChooseAlgoModal from '../Nodulars/Banner/ChooseAlgoModal';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 

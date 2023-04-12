@@ -60,7 +60,6 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
         const droppedTotem: string= itemType.totemType;
         const newMatrix: matrixItemObject[][] = [...matrix];
         const newStartEndPos:startStop = {...startEndPos}
-        let res:string;
 
         switch(droppedTotem){
             case 's':
@@ -87,7 +86,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
 
         
         newMatrix[y][x].val = droppedTotem
-        setMatrix(newMatrix)
+        setMatrix(prev => newMatrix)
         return
     }
 

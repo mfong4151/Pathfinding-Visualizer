@@ -1,4 +1,4 @@
-import { matrixHeuristicSearch } from "./matrixHeuristicSearch";
+import { matrixHeuristicSearch, minHeapItem } from "./matrixHeuristicSearch";
 import { matrixItemObject } from "../../../types/objects";
 import Heap from "heap-js";
 import DIRS from "./dirs";
@@ -32,7 +32,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         
         while (this.open.length){
             
-            const currPair: any[] = this.open.pop()! //figure out how to type this later
+            const currPair: minHeapItem = this.open.pop()! //figure out how to type this later
             const curr = currPair[1]
             const {pos, prev} = curr
             const [x, y] = pos;
@@ -46,9 +46,10 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
                 this.markEndPrev(curr, x, y)
                 break;
             }
+
             for(const [dx, dy] of DIRS){
                 const next:matrixItemObject = {pos:[x + dx, y + dy] , prev:pos} 
-                this.open.push([this.manhattanHeuristic(next.pos), next])
+                this.open.push([this.manhattanHeuristic([x + dx, y + dy]), next])
     
             }
         }

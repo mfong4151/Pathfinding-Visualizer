@@ -61,7 +61,8 @@ export class DFSItterMatrix extends MatrixItterator {
 
             this.visited.add(`${x},${y}`);
             this.res.push(curr);
-            this.evaluateEnd(curr.pos)
+            
+            this.evaluateEnd(curr)
 
             if (this.endFound) {
                 this.markEndPrev(curr, x, y)

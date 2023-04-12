@@ -14,6 +14,8 @@ import FastForward from '../../../Nodulars/Banner/Remote/svgs/Fastforward';
 import SkipBack from '../../../Nodulars/Banner/Remote/svgs/SkipBack';
 import SkipForward from '../../../Nodulars/Banner/Remote/svgs/SkipForward';
 import Pause from '../../../Nodulars/Banner/Remote/svgs/Pause';
+import { MatrixItterator } from '../../utils/algorithims/matrixItterator';
+import { BestFSItterMatrix } from '../../utils/algorithims/matrixBestFirstSearch';
 
 interface Props{
     chosenAlgo: string;
@@ -39,12 +41,19 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
   // Too many of the variables and functions involved employ closure, so the easiest way to "clean it" up was to stick it in nested functions
   //At the very least in your code editor you can click the > arrow to make it all go away...
 
+
+
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     e.stopPropagation();
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
+    const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
+      activeIttr!.endFound && activeIttr !instanceof DFSItterMatrix && activeIttr !instanceof BestFSItterMatrix
+   )
+
+
     if (!activeIttr || start.x === -1 || end.x === -1) {
       
       if (!activeIttr) newConsoleContent['msg'] = 'You need to select an algo!';
@@ -87,17 +96,12 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
           newConsoleContent['Visited'] = `At this point we visit the point [${coords[0]}, ${coords[1]}]`
           styleElement(coords, 'visited-1');
-          
-
           //Handle various cases, for some reason switch case doesnt work here
           if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
           else if (activeIttr instanceof DFSItterMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
 
-      
           else return 
-          
-
 
         }
       }
@@ -106,6 +110,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
     const play = ():void  =>{
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+
       const illustrate = async():Promise<void> =>{
         for(let i:number = 0; i < res.length; i ++){
           const node:matrixItemObject = res[i];
@@ -118,7 +123,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       };
 
       illustrate().then(()=>{
-      if (activeIttr.endFound){
+      if (inShortestPathExclusions(activeIttr)){
         styleShortestPath(activeIttr.generateShortestPath())
       } else{
 
@@ -137,7 +142,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
             styleElementSync(node.pos, 'visited-1-sync')
           }
       }
-      if (activeIttr.endFound){
+      if (inShortestPathExclusions(activeIttr)){
         styleShortestPathSync(activeIttr.generateShortestPath())
       } else{
 
@@ -182,14 +187,22 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     return
 };
 
-  useEffect(()=>{
-    
-    if(allowSetIttr.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
 
+//covers edge case of if someone hits reset, and then changes the algo they want to see
+  useEffect(()=>{
+    allowSetIttr.current = true;
+  },[chosenAlgo])
+
+  useEffect(()=>{
+    currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
+  },[startEndPos, matrix])
+
+  useEffect(()=>{
+    if(allowSetIttr.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
     allowSetIttr.current = true;
     
 
-  },[chosenAlgo, matrix, startEndPos])
+  },[chosenAlgo])
 
 
 return (
