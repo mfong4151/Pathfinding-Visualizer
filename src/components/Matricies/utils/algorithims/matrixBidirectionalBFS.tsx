@@ -167,6 +167,7 @@ export class MatrixItteratorBiBFS extends MatrixItterator{
                     res.push(curr.prev)
                     curr = this.matrix[curr.prev[1]][curr.prev[0]]
                 }
+            res.reverse()
         }
          return res.reverse()
     }
