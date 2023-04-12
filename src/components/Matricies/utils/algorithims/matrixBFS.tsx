@@ -36,9 +36,12 @@ export class BFSItteratorMatrix extends MatrixItterator{
         const x: number = pos[0];
 
         this.visited.add(`${x},${y}`)
-
         this.assignValueToMatrix(curr, x, y)
         this.evaluateEnd(curr)
+        if (this.endFound){
+            console.log(this.endFound)
+            this.markEndPrev(curr, x, y)
+        }
 
         //load the queue
         for (const [dx, dy] of DIRS) {
@@ -66,14 +69,12 @@ export class BFSItteratorMatrix extends MatrixItterator{
             
             //Keep track of visited spaces in set
             this.visited.add(`${x},${y}`);
-            //push next item on to res
             this.res.push(curr);
+
+            this.evaluateEnd(curr)
             
-            //Exit loop if we find the end
-            
-            if (this.isEnd(curr.pos)){
-                this.matrix[y][x] = {val: 'e', prev:curr.prev}
-                this.endFound = true;
+            if (this.endFound){
+                this.markEndPrev(curr, x, y)
                 break;
             }
 

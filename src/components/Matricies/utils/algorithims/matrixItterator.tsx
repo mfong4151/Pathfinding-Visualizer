@@ -79,12 +79,19 @@ export class MatrixItterator{
         )
     }
 
+    protected markEndPrev(curr:matrixItemObject, x:number, y:number):void{
+        this.matrix[y][x] = {val: 'e', prev:curr.prev}
+    }
+
     public isStart(node:number[]):boolean{
         if (node[0] === this.start[0] && node[1] === this.start[1]) return true;
         return false;
     }
 
+
+
     public generateShortestPath():number[][]{
+
         if (!this.endFound) return [[]]
         const res: number[][] = []
         let curr:matrixItemObject = this.matrix[this.end[1]][this.end[0]]
@@ -95,10 +102,7 @@ export class MatrixItterator{
         return res.reverse()
     }
 
-    public reanimatePastChanges(): matrixItemObject {
-        return this.matrix;
-    }
-
+   
 }
 
 

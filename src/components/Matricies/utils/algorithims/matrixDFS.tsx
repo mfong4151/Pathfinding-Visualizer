@@ -35,7 +35,9 @@ export class DFSItteratorMatrix extends MatrixItterator {
 
         this.assignValueToMatrix(curr, x, y)
         this.evaluateEnd(curr)
-
+        if (this.endFound){
+            this.markEndPrev(curr, x, y)
+        }
         // load the stack
         for (const [dx, dy] of this.dirs) {
             const newPos = [x + dx, y + dy];
@@ -59,12 +61,13 @@ export class DFSItteratorMatrix extends MatrixItterator {
 
             this.visited.add(`${x},${y}`);
             this.res.push(curr);
+            this.evaluateEnd(curr.pos)
 
-            if (this.isEnd(curr.pos)) {
-                this.matrix[y][x] = { val: 'e', prev: curr.prev };
-                this.endFound = true;
+            if (this.endFound) {
+                this.markEndPrev(curr, x, y)
                 break;
             }
+            
             if (!this.isStart(curr.pos)) this.matrix[y][x] = { val: '', prev: curr.prev };
 
             for (const [dx, dy] of this.dirs) {

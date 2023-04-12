@@ -31,9 +31,13 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
   const {matrix} = matrixState;
-
-
+  const {start, end} = startEndPos;
   let coords :number[] = [-1, -1];
+
+
+  //Now I can't say that this is the cleanest code ever written, but hear me out: 
+  // Too many of the variables and functions involved employ closure, so the easiest way to "clean it" up was to stick it in nested functions
+  //At the very least in your code editor you can click the > arrow to make it all go away...
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -41,14 +45,18 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
-    if (!activeIttr) {
-      newConsoleContent['msg'] = 'You need to select an algo!'
+    if (!activeIttr || start.x === -1 || end.x === -1) {
+      
+      if (!activeIttr) newConsoleContent['msg'] = 'You need to select an algo!';
+      else if (start.x === -1) newConsoleContent['msg'] = 'You need to place the starter somewhere! a start!';
+      else newConsoleContent['msg'] = 'You need to select an end!';
+
       setConsoleContent(prev => newConsoleContent)
       return 
     }
 
     //used with the reset button 
-    const resetMatrixItterator = ():void => {
+    const reset = ():void => {
     const exclusions = new Set(['s', 'w', 'e']);
 
     for(let i:number = 0; i < matrix.length; i++)
@@ -61,7 +69,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
     }
 
-    const itterateForward = ():void =>{
+    const forward = ():void =>{
       //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
       if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
@@ -110,7 +118,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       };
 
       illustrate().then(()=>{
-
       if (activeIttr.endFound){
         styleShortestPath(activeIttr.generateShortestPath())
       } else{
@@ -142,7 +149,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     switch (buttonId) {
       case 'reset':
         newConsoleContent['resetting'] = `Resetting the board so you can play everything again :3`
-        resetMatrixItterator();
+        reset();
         break;
 
       case 'play':
@@ -157,7 +164,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         break;
 
       case 'fast-forward':
-        if(!activeIttr.isEnd(coords)) itterateForward();
+        if(!activeIttr.endFound) forward();
+        else( styleShortestPathSync(activeIttr.generateShortestPath()))
         break;
       case 'skip-forward':
         skipForward()
