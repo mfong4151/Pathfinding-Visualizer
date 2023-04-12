@@ -29,11 +29,11 @@
     0% {
       background-color: var(--color-indigo-visited-0);
     }
-    25%{
+    33%{
       background-color: var(--color-blue-visited-1)
     }
 
-    50%{
+    66%{
       background-color: var(--color-blue-visited-2);
     }
 
