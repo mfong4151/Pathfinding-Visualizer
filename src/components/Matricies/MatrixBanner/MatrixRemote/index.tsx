@@ -50,7 +50,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const newConsoleContent: consoleContent = {};
     const activeIttr = currIttr.current;
     const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
-      activeIttr!.endFound && activeIttr !instanceof DFSItterMatrix && activeIttr !instanceof BestFSItterMatrix
+      activeIttr instanceof DFSItterMatrix && activeIttr instanceof BestFSItterMatrix
    )
 
 
@@ -100,7 +100,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
           if (activeIttr instanceof BFSItterMatrix) newConsoleContent['queue'] = `Queue: ${convertContainer(activeIttr.q)}`
 
           else if (activeIttr instanceof DFSItterMatrix) newConsoleContent['stack'] = `Stack: ${convertContainer(activeIttr.stack)}`
-
+          else if (activeIttr instanceof BestFSItterMatrix) newConsoleContent['heap'] = `Heap: ${convertContainer(activeIttr.open)}`
           else return 
 
         }
@@ -123,7 +123,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       };
 
       illustrate().then(()=>{
-      if (inShortestPathExclusions(activeIttr)){
+      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)){
         styleShortestPath(activeIttr.generateShortestPath())
       } else{
 
@@ -142,7 +142,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
             styleElementSync(node.pos, 'visited-1-sync')
           }
       }
-      if (inShortestPathExclusions(activeIttr)){
+      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)){
         styleShortestPathSync(activeIttr.generateShortestPath())
       } else{
 
