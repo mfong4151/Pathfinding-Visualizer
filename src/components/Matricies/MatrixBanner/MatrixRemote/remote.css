@@ -25,9 +25,6 @@
     color:var(--color-blue-hover);
 }
 
-.svg-style:active{
-    color:var(--color-black-foreground)
-}
 
 .rotate-svg{
     transform:rotate(180deg)

@@ -6,6 +6,8 @@
 :root{
   --color-black-foreground:#1A1A1A;
   --color-charcol:#282828;
+  --color-charcol-pressed:#1e1d1d;
+
   --color-white: #FFFFFF;
   --color-transparent:transparent;
   --color-yellow-pineapple:#FEE12B;
@@ -164,6 +166,12 @@ code {
   color: var(--color-white);
   border-radius: .5rem;
   border: 2px solid transparent;
+}
+
+.sq-buttons:active {
+  background-color: var(--color-charcol-pressed);
+  box-shadow: inset 0px 1px 3px;
+  transform: translateY(2px);
 }
 
 .banner-button{

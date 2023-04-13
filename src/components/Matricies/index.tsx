@@ -1,7 +1,7 @@
 import './graphs.css'
 import { useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
-import { createNewMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
+import { createNewMatrix, transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import UIConsole from '../Nodulars/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
@@ -69,19 +69,27 @@ const Matricies: React.FC = ()=>{
 
     //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
-      console.log(matrixRef.current.offsetHeight)
-      const overHeight:boolean = pageRightRef.current.offsetHeight <= matrixRef.current.offsetTop + matrixRef.current.offsetHeight + BREAK_POINT_MAX && matrix.length >= BREAK_POINT_MIN;
-      const overWidth:boolean = pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT_MAX && matrix[0].length >= BREAK_POINT_MIN;
+      const rightDivHeight: number = pageRightRef.current.offsetHeight;
+      const rightDivWidth: number = pageRightRef.current.offsetWidth;
+      const matrixHeight: number = matrixRef.current.offsetHeight;
+      const matrixWidth: number = matrixRef.current.offsetWidth;
+      const tileHeightWidth: number = matrixRef.current.firstChild.firstChild.offsetWidth
+      
+
+      const overHeight:boolean = rightDivHeight <= matrixRef.current.offsetTop + matrixRef.current.offsetHeight + BREAK_POINT_MAX && matrix.length >= BREAK_POINT_MIN;
+      const overWidth:boolean = rightDivWidth <= matrixRef.current.offsetWidth + BREAK_POINT_MAX && matrix[0].length >= BREAK_POINT_MIN;
       const canResizeX :boolean = matrix[0].length < matrixDim.x 
       const canResizeY :boolean = matrix.length < matrixDim.y
-      if (overWidth || overHeight){
-        setMatrix(createNewMatrix(matrix.length - (overHeight ? 1 : 0), matrix[0].length - (overWidth ? 1 : 0)))
 
-      } else if ( canResizeX || canResizeY ){
+      transplantMatrix(40, 20, startEndPos)
+      // if (overWidth || overHeight){
+      //   setMatrix(createNewMatrix(matrix.length - (overHeight ? 1 : 0), matrix[0].length - (overWidth ? 1 : 0)))
 
-        setMatrix(createNewMatrix(matrix.length + (canResizeY ? 1: 0), matrix[0].length + (canResizeX ? 1:0)))
+      // } else if ( canResizeX || canResizeY ){
 
-      }
+      //   setMatrix(createNewMatrix(matrix.length + (canResizeY ? 2: 0), matrix[0].length + (canResizeX ? 1:0)))
+
+      // }
 
     },[windowDim.width, windowDim.height])
     
