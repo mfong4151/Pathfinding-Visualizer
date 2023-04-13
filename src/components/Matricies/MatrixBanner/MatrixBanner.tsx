@@ -22,13 +22,13 @@ interface Props{
 }
 
 //temporary fix
-const MATRIX_HARD_LIMIT_Y: number = 40;
+const MATRIX_HARD_LIMIT_Y: number = 30;
 const MATRIX_HARD_LIMIT_X: number = 80; 
 
 const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
-  const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithim')
+  const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithm')
   const {matrix, setMatrix} = matrixState;
   const { matrixDim,setMatrixDim} = matrixDimState;
   const  {startEndPos, setStartEndPos} = startEndPosState;
@@ -42,8 +42,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     e.stopPropagation();
 
     const newMatrixDim = {...matrixDim}
-    if (origin === 'height') newMatrixDim['y'] = Number(e.target.value);
-    else newMatrixDim['x'] = Number(e.target.value);
+    if (origin === 'height') newMatrixDim.y = Number(e.target.value);
+    else newMatrixDim.x = Number(e.target.value);
     setMatrixDim(prev => newMatrixDim)
   }
 
@@ -72,8 +72,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
 
   return (
-    <div id='banner' className='udc-left fdr'>
-        <div className='udc fdr univ-padding'>
+    <div id='banner' className='sb fdr'>
+        <div className='udc fdr univ-padding banner-holder'>
           
           <button  
               className='sq-buttons hover-over banner-button udc'
@@ -102,7 +102,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
               chooseAlgoButton = {chooseAlgoRef.current}
               /> }
         </div>
-        <div>
+        <div className='udc fdr banner-holder'>
 
           <Remote 
                   chosenAlgo={chosenAlgo} 

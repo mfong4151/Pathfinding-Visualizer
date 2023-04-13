@@ -13,7 +13,8 @@ import ChooseAlgoModal from '../Nodulars/Banner/ChooseAlgoModal';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
-const BREAK_POINT: number = 65; //break point of where we don't refacotr
+const BREAK_POINT_MAX: number = 65; //break point of where we don't refacotr
+const BREAK_POINT_MIN: number = 3;
 
 const Matricies: React.FC = ()=>{
     const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
@@ -68,20 +69,27 @@ const Matricies: React.FC = ()=>{
 
     //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
-      
+      console.log(matrixRef.current.offsetHeight)
+      const overHeight:boolean = pageRightRef.current.offsetHeight <= matrixRef.current.offsetTop + matrixRef.current.offsetHeight + BREAK_POINT_MAX && matrix.length >= BREAK_POINT_MIN;
+      const overWidth:boolean = pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT_MAX && matrix[0].length >= BREAK_POINT_MIN;
+      const canResizeX :boolean = matrix[0].length < matrixDim.x 
+      const canResizeY :boolean = matrix.length < matrixDim.y
+      if (overWidth || overHeight){
+        setMatrix(createNewMatrix(matrix.length - (overHeight ? 1 : 0), matrix[0].length - (overWidth ? 1 : 0)))
 
-      if (pageRightRef.current.offsetWidth <= matrixRef.current.offsetWidth + BREAK_POINT && matrix[0].length >= 3){
-        setMatrix(createNewMatrix(matrix.length, matrix[0].length -1))
+      } else if ( canResizeX || canResizeY ){
 
-      } else if (matrix[0].length < matrixDim.x ){
+        setMatrix(createNewMatrix(matrix.length + (canResizeY ? 1: 0), matrix[0].length + (canResizeX ? 1:0)))
 
-        setMatrix(createNewMatrix(matrix.length, matrix[0].length + 1))
-
-        
       }
 
-    },[windowDim.width])
-   
+    },[windowDim.width, windowDim.height])
+    
+    useEffect(()=>{
+
+    },[])
+
+
     return(
       <div className='font-color'>
         <MatrixBanner 

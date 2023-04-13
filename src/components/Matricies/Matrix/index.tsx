@@ -30,11 +30,11 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
 
     return(
-        <div id='matrix-tab' className="fdc univ-padding" ref={matrixRef}>
+        <div id='matrix-tab' className="fdc univ-padding" >
             {/* <SliderPicker/> */}
             <DndProvider backend={HTML5Backend}>
 
-                <div className='toolbar fdr sb'>
+                <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
                          <SvgTotem totemType='s'/>
@@ -70,9 +70,10 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                     
                 </div>
 
-                <div className="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
+                <div id="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
                     onMouseUp={()=> setMouseDown(prev => false )}
                     onMouseLeave={()=> setMouseDown(prev => false )}
+                    ref={matrixRef}
                     >
                     {matrix.map((row : matrixItemObject[], y: number)=>   
                         <div id={`row-${y}`} className='udc' key={y}>

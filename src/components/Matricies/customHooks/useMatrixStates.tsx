@@ -12,10 +12,12 @@ type matrixStates = {
    startEndPos:startStop;
    setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
 }
+const DEFAULT_MATRIX_Y:number = 30;
+const DEFAULT_MATRIX_X:number = 30;
 
 const useMatrixStates = ():matrixStates => {
     
-    const [matrixDim, setMatrixDim]  = useState<pos>({y: 30, x: 30});
+    const [matrixDim, setMatrixDim]  = useState<pos>({y: DEFAULT_MATRIX_Y, x: DEFAULT_MATRIX_X});
     const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
     const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
 

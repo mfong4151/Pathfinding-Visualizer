@@ -1,13 +1,14 @@
 #matrix-tab{
+    height:auto;
     margin-top:4rem;
     width:auto;
+    display: inline-flex;
 }
 
 #matrix{
-    width:auto;
-    display:grid;
-    grid-template-columns: repeat(10, 12vmax);
-    grid-template-rows: repeat(10, 12vmax);
+  height:auto;
+  width:auto;
+    
 }
 
 

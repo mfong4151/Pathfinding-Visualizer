@@ -1,15 +1,19 @@
 
 
-#remote >  *{
-    margin-left: .25rem;
-    margin-right: .25rem;
-    
+#remote{
+    display: flex;
+    align-items: center;
+    min-width: 300px;
 }
+
 
 
 /* button styles, svg styles, etc */
 
 .remote-btn{
+    padding: 0rem;
+    height:60px;
+    width:60px;
     background-color: var(--color-charcol);
 }
 

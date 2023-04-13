@@ -202,24 +202,24 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
 
 return (
-  <div id='remote fdr'>
-    <button id='reset' className='remote-btn sq-buttons' onClick={handleOnClick}>
+  <div id='remote' className='fdr se'>
+    <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
       <SkipBack/>
     </button>
-
-
     {
       !isPlaying 
-        ? <button id='play' className='remote-btn sq-buttons' onClick={handleOnClick}>
+        ? <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
           <Play/>
         </button> 
 
-        :<button id='pause' className='remote-btn sq-buttons' onClick={handleOnClick}>
+        :<button id='pause' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
           <Pause/>
         </button>
       }
 
-    <button id='fast-forward' className='remote-btn sq-buttons' 
+    <button 
+        id='fast-forward' 
+        className='remote-btn sq-buttons udc' 
         onClick={handleOnClick}
       >
 
