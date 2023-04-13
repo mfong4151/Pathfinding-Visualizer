@@ -19,8 +19,8 @@ const NavBar = () => {
           <NavLink to="/graphs" className="activeLink">
             Graphs
           </NavLink>
-        </li> */}
-        {/* <li>
+        </li>
+        <li>
           <NavLink to="/trees" className="activeLink">
             Trees
           </NavLink>

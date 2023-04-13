@@ -189,6 +189,10 @@ code {
   overflow-y:auto;
 }
 
+.modal{
+  position:absolute;
+}
+
 .modal-overlay{
   width: 100vw;
   height: 100vh;

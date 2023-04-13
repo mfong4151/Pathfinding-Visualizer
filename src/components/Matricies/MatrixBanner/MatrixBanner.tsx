@@ -95,12 +95,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
           </button>
           
           
-          {chooseAlgoModal && 
-            <ChooseAlgoModal 
-              chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} 
-              chooseAlgoState={{chosenAlgo, setChosenAlgo}}
-              chooseAlgoButton = {chooseAlgoRef.current}
-              /> }
+        
         </div>
         <div className='udc fdr banner-holder'>
 
@@ -115,6 +110,12 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
                   />
 
         </div>
+        {chooseAlgoModal && 
+            <ChooseAlgoModal 
+              chooseModalState ={{chooseAlgoModal, setChooseAlgoModal}} 
+              chooseAlgoState={{chosenAlgo, setChosenAlgo}}
+              chooseAlgoButton = {chooseAlgoRef.current}
+              /> }
     </div>
   )
 }

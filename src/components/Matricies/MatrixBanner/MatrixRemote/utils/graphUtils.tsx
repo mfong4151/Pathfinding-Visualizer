@@ -24,22 +24,29 @@ export const transplantMatrix = (numRows: number, numCols: number, startEndPos: 
     const newMatrix = createNewMatrix(numRows, numCols)
     const newStartEnd:startStop = {...startEndPos}
 
-    for(const pos of [newStartEnd.start, newStartEnd.end]){
-        const replace:string = pos === newStartEnd.start ? 's': 'e'
+    //God this is an annoying edge case:
+    //If the user wants to be stinky then I just decide what they're gunna look at :P
+    if(newMatrix.length < 3 || newMatrix[0].length < 3){
+        const newMatrix = createNewMatrix(2, 2)
+        newMatrix[0][0].val = 's'
+        newMatrix[1][1].val = 'e'
+        newStartEnd.start.x = 0;
+        newStartEnd.start.y = 0;
+        newStartEnd.end.x = 1;
+        newStartEnd.end.y = 1;
+        
+        return [newMatrix, newStartEnd]
+    }
+
+    for( const pos of [newStartEnd.start, newStartEnd.end]){
+        
+        const replacement:string = pos === newStartEnd.start ? 's': 'e'
         const x: number = pos.x;
         const y: number = pos.y;
         
-        if(x < newMatrix[0].length || y < newMatrix.length){
+        if (x === -1 || y === -1) continue
 
-            
-        }else{
-            newMatrix[y][x].val = replace
-        }
-        
-        
-       
-        // if(newStartEnd.pos.x < newMatrix.length)
-
+        newMatrix[Math.min(newMatrix.length, y)][Math.min(newMatrix[0].length, x)].val = replacement
     }
 
     return [newMatrix, newStartEnd]
