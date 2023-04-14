@@ -154,7 +154,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     
     public isValidNext():boolean {
         if (this.open.heapArray.length <= 0) return false;
-        const first = this.open.top(1)[0][1]
+        const first:matrixItemObject = this.open.top(1)[0][1]
         if (this.outOfRangeOrVisited(first.pos[0], first.pos[1])) return false;
         return true;
     }
@@ -208,4 +208,3 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     }
 }
 ```
-
