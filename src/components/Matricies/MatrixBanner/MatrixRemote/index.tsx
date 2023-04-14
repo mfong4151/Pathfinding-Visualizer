@@ -45,16 +45,16 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     e.preventDefault();
     e.stopPropagation();
     const buttonId = e.currentTarget.id;
-    const newConsoleContent: consoleContent = {};
+    const newConsoleContent: consoleContent = [];
     const activeIttr = currIttr.current;
     let hasAnimated = animationRef.current
  
 
     if (!activeIttr || start.x === -1 || end.x === -1) {
       
-      if (!activeIttr) newConsoleContent['msg'] = 'You need to select an algo!';
-      else if (start.x === -1) newConsoleContent['msg'] = 'You need to place the starter somewhere! a start!';
-      else newConsoleContent['msg'] = 'You need to select an end!';
+      if (!activeIttr) newConsoleContent.push('You need to select an algo!');
+      else if (start.x === -1) newConsoleContent.push('You need to place the starter somewhere! a start!');
+      else newConsoleContent.push('You need to select an end!');
 
       setConsoleContent(prev => newConsoleContent)
       return 
@@ -80,26 +80,26 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
 
       if (activeIttr.isContainerEmpty()){
-        newConsoleContent['msg'] = 'In this case, the end point could not be found'
+        newConsoleContent.push('In this case, the end point could not be found')
 
       } else if(!activeIttr.isValidNext()) {
          const invalidPos:number[] = activeIttr.discardInvalidNode()!
 
          if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
-          newConsoleContent['msg'] = `At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` 
+          newConsoleContent.push(`At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` )
 
          else
-           newConsoleContent['msg'] = `At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` 
+           newConsoleContent.push(`At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` )
     
       }  else  {
         coords = activeIttr.next()
       
         if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
 
-          newConsoleContent['Visited'] = `At this point we visit the point [${coords[0]}, ${coords[1]}]`
+          newConsoleContent.push(`At this point we visit the point [${coords[0]}, ${coords[1]}]`)
           styleElement(coords, 'visited-1');
           const msg:string[] = forwardConsoleMsgs(activeIttr)
-          newConsoleContent['msg'] = msg[0]
+          newConsoleContent.push(msg[0])
         }
       }
     }
@@ -124,7 +124,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         styleShortestPath(activeIttr.generateShortestPath())
       } else{
 
-        newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
+        newConsoleContent.push('In this scenario, the endpoint could not be reached.')
 
       }
       })
@@ -139,7 +139,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       }
 
       if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)) styleShortestPathSync(activeIttr.generateShortestPath())
-      else newConsoleContent['No end'] = 'In this scenario, the endpoint could not be reached.'
+      else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
 
     
     }
@@ -149,12 +149,12 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
     switch (buttonId) {
       case 'reset':
-        newConsoleContent['resetting'] = `Resetting the board so you can play everything again :3`
+        newConsoleContent.push(`Resetting the board so you can play everything again :3`)
         reset();
         break;
 
       case 'play':
-        newConsoleContent['playing'] = `Currently showing the playthrough for ${chosenAlgo}`
+        newConsoleContent.push(`Currently showing the playthrough for ${chosenAlgo}`)
         // if (hasAnimated) reset()
         play()
         break;

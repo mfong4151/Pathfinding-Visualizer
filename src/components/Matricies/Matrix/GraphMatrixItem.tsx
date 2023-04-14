@@ -68,7 +68,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
                 newMatrix[y][x].val = 's'
                 newStart.y = y;
                 newStart.x = x;
-                consoleContentState.setConsoleContent(prev => ({'msg': `The location to start at has been set to ${newStart.y}, ${newStart.x}` }))
+                consoleContentState.setConsoleContent(prev => ([`The location to start at has been set to ${newStart.y}, ${newStart.x}`]))
 
                 break
             case 'e':
@@ -77,7 +77,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
                 newMatrix[y][x].val = 'e'
                 newEnd.y = y;
                 newEnd.x = x;
-                consoleContentState.setConsoleContent(prev => ({'msg': `The location to end at has been set to ${newEnd.y}, ${newEnd.x}` }))
+                consoleContentState.setConsoleContent(prev => ([`The location to end at has been set to ${newEnd.y}, ${newEnd.x}`]))
 
                 break
             default:
