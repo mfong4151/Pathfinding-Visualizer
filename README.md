@@ -6,7 +6,6 @@ This project is open to collaborators, please message me before making any pull 
 
 ## Live Link
 
-
 http://maxfongdev.com/DSA-Visualizer/
 
 As of now, only the matricies section is availible for public release.
@@ -15,10 +14,11 @@ As of now, only the matricies section is availible for public release.
 
 1) I personally enjoy abusing my 36" widescreen to view the screen, so I tend to expand the width...a lot
 
-
 2) Place a start and a stop on the grid. At this point you can also draw walls.
 
-3) Press play. Watch the pretty colors :D. 
+3) Select the algorithm you want to pick from the algo dropdown
+
+4) Press play. Watch the pretty colors :D. 
 
 
 ## Data Structures
@@ -101,10 +101,10 @@ export default Graphs;
 In this case the above code section works, it just didn't preform well. You could drag the resizing hook over and it would jump erratically from one side to the other. Credits to itsCodingDoctor for supplying the fix: https://www.youtube.com/watch?v=Af7iCwhQSRs:
 
 ```typescript
-  const pageLeftRef = useRef<HTMLDivElement>(null);
+    //Within react component: 
+    const pageLeftRef = useRef<HTMLDivElement>(null);
     const pageRightRef = useRef<HTMLDivElement>(null);
     const adjBarRef = useRef<HTMLDivElement>(null);
-    const matrixRef = useRef<any>();
 
     useEffect(()=>{
 
