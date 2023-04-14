@@ -20,13 +20,14 @@ As of now, only the matricies section is availible for public release.
 
 4) Press play. Watch the pretty colors :D. 
 
-## Future Features
+## Planned Features
 
-- Implementation of A* on matricies
-- Choose your own color scheme
-- Change the wall color
-- A series of my favorite wall presets (does anyone remember Whitney's gym from Pokemon gen 2?).
-- Trees, graphs, and linked lists
+- Implementation of A* on matricies 4/21
+- Choose your own color scheme 4/28
+- Change the wall color 5/5
+- A series of my favorite wall presets (does anyone remember Whitney's gym from Pokemon gen 2?). 5/12
+- Trees, graphs, and linked lists TBD
+
 ## UI Features
 
 ### ReactDND
@@ -208,3 +209,4 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     }
 }
 ```
+
