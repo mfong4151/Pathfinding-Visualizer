@@ -27,15 +27,17 @@ const Matricies: React.FC = ()=>{
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
 
-    const pageLeftRef = useRef<any>();
+    const pageLeftRef = useRef<HTMLDivElement>(null);
     const pageRightRef = useRef<HTMLDivElement>(null);
-    const adjBarRef = useRef<any>();
+    const adjBarRef = useRef<HTMLDivElement>(null);
     const matrixRef = useRef<any>();
 
     useEffect(()=>{
+
       const resizeableLeft = pageLeftRef.current;
       const stylesLeft: CSSStyleDeclaration = window.getComputedStyle(resizeableLeft!);
       let widthLeft:number = parseInt(stylesLeft.width, 10)
+      if(!resizeableLeft) return 
 
       let x:number = 0;
       
@@ -49,9 +51,10 @@ const Matricies: React.FC = ()=>{
       const onMouseUpLRResize = (e:any) => document.removeEventListener("mousemove", onMouseMoveLRResize);
 
       const onMouseDownRightResize = (e:any) =>{
+
         x = e.clientX;
         resizeableLeft.style.left = stylesLeft.left
-        resizeableLeft.style.right = null;
+        resizeableLeft.style.right = '';
         document.addEventListener("mousemove", onMouseMoveLRResize);
         document.addEventListener("mouseup", onMouseUpLRResize);
 
@@ -59,6 +62,7 @@ const Matricies: React.FC = ()=>{
       }
 
       const resizerRight = adjBarRef.current
+      if(!resizerRight) return 
       resizerRight.addEventListener("mousedown", onMouseDownRightResize);
 
       return ()=> {
@@ -77,16 +81,12 @@ const Matricies: React.FC = ()=>{
       const rightDivHeight: number = rightDiv.offsetHeight;
       const rightDivWidth: number = rightDiv.offsetWidth;
 
-      console.log()
-      
       const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
       const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
       const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
-
-
-      const[newMatrix, newStartEnd] = transplantMatrix(maxNumRows, maxNumCols, startEndPos)
-   
-
+      //There should be a way to increase preformance of rerendering the grid, but for right now im content with this
+      
+      const[newMatrix, newStartEnd] = transplantMatrix(Math.min(matrixDim.y, maxNumRows), Math.min(matrixDim.x,maxNumCols), startEndPos)
       setMatrix(newMatrix)
       setStartEndPos(newStartEnd)
 
