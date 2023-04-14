@@ -195,7 +195,6 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 ```
 
 
-
 ## Reflections on the Use of ChatGPT
 
 ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React components, but I would be lying if I said that it did all the heavy lifting. Up to the first release, I intentionally restricted limited myself to doing the TS typing on my own. Certain inherent limitations of using ChatGPT became apparent when I tried to put together classes to handle algorithmic itterators. This section reflects on some of the roadblocks I had when interacting with ChatGPT. If you're more interested in the project itself, then skip this section (doesn't hurt my feelings :)).

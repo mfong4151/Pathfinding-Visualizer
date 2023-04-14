@@ -6,7 +6,9 @@ import Matricies from './components/Matricies/index'
 import Splash from './components/Splash';
 
 const App: React.FC = () => {
-  
+
+
+
   return (
     <div className="app">
       <NavBar/>
@@ -16,7 +18,7 @@ const App: React.FC = () => {
         <Route path="/trees" element={<Nodular type={'trees'}/>}/> 
         <Route path="/linked_lists" element={<Nodular type={'linkedlists'}/>}/> 
         <Route path="*" element={<Splash/>}/>
-       
+        
       </Routes>
     </div>
   );

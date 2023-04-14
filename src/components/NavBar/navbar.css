@@ -31,4 +31,11 @@
   .activeLink {
     font-weight: bold;
   }
+
+  .my-links-holder{
+    min-width:80px;
+  }
   
+  .github-linkedin-header{
+    max-height:30px;
+  }
