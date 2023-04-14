@@ -76,33 +76,23 @@ const Matricies: React.FC = ()=>{
 
       const rightDivHeight: number = rightDiv.offsetHeight;
       const rightDivWidth: number = rightDiv.offsetWidth;
-      const matrixHeight: number = matrixDiv.offsetHeight;
-      const matrixWidth: number = matrixDiv.offsetWidth;
-      const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
-      const maxNumRows = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
-      const maxNumCols = Math.floor((rightDivHeight - BREAK_POINT_MAX)/tileHeightWidth)
 
-      const overHeight:boolean = rightDivHeight <= matrixDiv.offsetTop + matrixDiv.offsetHeight + BREAK_POINT_MAX && matrix.length >= BREAK_POINT_MIN;
-      const overWidth:boolean = rightDivWidth <= matrixDiv.offsetWidth + BREAK_POINT_MAX && matrix[0].length >= BREAK_POINT_MIN;
-      const canResizeX :boolean = matrix[0].length < matrixDim.x 
-      const canResizeY :boolean = matrix.length < matrixDim.y
+      console.log()
+      
+      const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
+      const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
+      const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
+
 
       const[newMatrix, newStartEnd] = transplantMatrix(maxNumRows, maxNumCols, startEndPos)
+   
 
-      if (overWidth || overHeight){
-        setMatrix(createNewMatrix(matrix.length - (overHeight ? 1 : 0), matrix[0].length - (overWidth ? 1 : 0)))
-
-      } else if ( canResizeX || canResizeY ){
-
-        setMatrix(createNewMatrix(matrix.length + (canResizeY ? 2: 0), matrix[0].length + (canResizeX ? 1:0)))
-
-      }
+      setMatrix(newMatrix)
+      setStartEndPos(newStartEnd)
 
     },[windowDim.width, windowDim.height])
     
-    useEffect(()=>{
 
-    },[])
 
 
     return(
