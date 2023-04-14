@@ -84,7 +84,7 @@ return (
 
 ```
 
-Inside assignActiveItter is just a switch-case statement that will assign the itterator conditional on what chosenAlgo is.
+Inside .assignActiveItter() is just a switch-case statement that will assign the itterator conditional on what chosenAlgo is.
 
 Next I abstracted the different functions of itterators into several instance methods in order to conditionally render changes to the DOM based on what step of the algorithm we were at. For all the flack that OOP gets, I believe that this was a good case example of where it shines:
 
@@ -193,3 +193,4 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     }
 }
 ```
+
