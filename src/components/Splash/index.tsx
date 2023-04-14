@@ -62,10 +62,8 @@ const RenderTimeline: React.FC = () => {
 
 
 const timelines:string[] = [
-  "4/1 Fix basic styling: Trying to make the page more responsive and just good looking in general. The main style ripped off Leetcode, so it would be great to get the responsive page updating.",
-  "4/3 Fix matrix sizing: I’m going to stick with doing the Matrix for now. I feel like there’s a lot that can be improved, so I want to see that through",
-  "4/5 Add A* and other matrix search algorithims: Pretty straight forward, want to get more algos up.",
-  "4/7 Add Nodes: Add nodes for trees. This will be the groundwork for every other section",
+
+  "4/14 Add A* and other matrix search algorithims: Pretty straight forward, want to get more algos up.",
   "4/17 Add tree algorithim iterators: BFS, and DFS inorder, postorder, preorder",
   "4/24: Add graph: Back to graphs! I’ll be adding node versions for these as well.",
   "4/31: Add any styling touchup",
@@ -73,6 +71,6 @@ const timelines:string[] = [
 ];
 
 const updates: string[] = [
-
+  "4/14/23: Basic "
 
 ];

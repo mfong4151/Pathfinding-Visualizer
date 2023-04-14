@@ -1,21 +1,31 @@
 # Background
 
-This project is as much a TypeScript project, as a Frontend project, as a DSA project. The main design of this  visualizer for several common data structures and algorithms, including matrices, graph nodes, trees, and linked lists. I’ve loved working with React, and I felt like this would be a good way to pick up Typescript. 
+This project is as much a TypeScript project, as a Frontend project, as a DSA project. The main design of this  visualizer for several common data structures and algorithms, including matrices, graph nodes, trees, and linked lists. As of right now, only matricies are implemented. I’ve loved working with React, and I felt like this would be a good way to pick up TypeScript. 
+
+This project is open to collaborators, please message me before making any pull requests about considered contributions.
 
 ## Live Link
 
 
+http://maxfongdev.com/DSA-Visualizer/
+
+As of now, only the matricies section is availible for public release.
+
+## How to use: Matricies
+
+1) I personally enjoy abusing my 36" widescreen to view the screen, so I tend to expand the width...a lot
 
 
-## Usage
+2) Place a start and a stop on the grid. At this point you can also draw walls.
 
-To use the visualizer, simply open the project in your preferred code editor and run the development server. Then, navigate to the appropriate page for the data structure or algorithm you wish to visualize.
+3) Press play. Watch the pretty colors :D . 
+
 
 ## Data Structures
 
 ### Matrices
 
-Obvious inspiration and credit must be given to Clement Milhaesque who popularized the pathfinding visualizer, and made a tutorial for it on his Youtube channel. To react-dnd was used to make the start and stop markers drag and droppable. Walls are turned on and off via click and drag.
+Obvious inspiration and credit must be given to Clement Milhaesque who popularized the pathfinding visualizer, and made a tutorial for it on his Youtube channel. The library react-dnd was used to make the start and stop markers drag and droppable. Huge shout out to the Original React team at Meta who made this wonderful library. Walls are turned on and off via click and drag.
 
 ## Algorithms
 
@@ -29,17 +39,20 @@ he BFS algorithm traverses the matrix or graph in a "breadth-first" manner, visi
 
 ### Bidirectional Breadth-First Search
 
-The Bidirectional BFS algorithm is an optimized version of the BFS algorithm that searches two ends of a graph or matrix simultaneously. The search starts from the initial node and the goal node, exploring nodes in a "breadth-first" manner. The algorithm stops when the two searches meet. This algorithm is useful when you want to find the shortest path between two nodes in a graph or matrix.
+The Bidirectional BFS algorithm is an optimized version of the BFS algorithm that searches two ends of a graph or matrix simultaneously. The search starts from the initial node and the goal node, exploring nodes in a "breadth-first" manner. The algorithm stops when the two searches meet. This algorithm is useful when you want to find the shortest path between two nodes in a graph or matrix. Also, it's really visually satisfying.
 
 ### Best-First Search
 
-Best First Search: The Best First Search algorithm is a graph traversal algorithm that uses a heuristic to search for the most promising path towards the goal node. In this sense it's the first "heuristic" based  It evaluates each node based on its estimated distance to the goal node and explores the node with the smallest estimated distance first. This algorithm is useful in finding the shortest path between two nodes.
+Best First Search: The Best First Search algorithm is a graph traversal algorithm that uses a heuristic to search for the most promising path towards the goal node. In this sense it's the first "heuristic" based  It evaluates each node based on its estimated distance to the goal node and explores the node with the smallest estimated distance first. This algorithm is useful in finding the shortest path between two nodes. It is usually more preformant than BFS.
 
 ## Use of ChatGPT
 
 ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React components, but I would be lying if I said that it did all the heavy lifting. I intentionally restricted limited myself to doing the TS typing on my own. Certain inherent limitations of using ChatGPT became apparent when I tried to put together classes to handle algorithmic itterators. 
 
-Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole.
+Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is Data structures and algorithms. It will surely get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the the seven stages of grief, but just as a user. 
+
+First, there are just some things that it couldn't handle. If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. 
 
 As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. 
 
+The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much 
