@@ -56,7 +56,7 @@ Let me be clear: ChatGPT and generative technology are powerful technologies, an
 
 If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. 
 
-` ` `typescript
+```typescript
 
 import { useState, useRef, useEffect } from "react";
 
@@ -97,7 +97,7 @@ const Graphs: React.FC = () => {
 export default Graphs;
 
 
-` ` `
+```
 
 
 
