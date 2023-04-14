@@ -20,7 +20,22 @@ As of now, only the matricies section is availible for public release.
 
 4) Press play. Watch the pretty colors :D. 
 
+## Future Features
+
+- Implementation of A* on matricies
+- Choose your own color scheme
+- Change the wall color
+- A series of my favorite wall presets (does anyone remember Whitney's gym from Pokemon gen 2?).
+- Trees, graphs, and linked lists
 ## UI Features
+
+### ReactDND
+
+The drag and drop on the grid is satisfying...for me at least.
+
+### Expandable grid
+
+Again...it's really satisfying to watch these on the fullscreen. You can expand the canvas size in order to see the algo effects at scale.
 
 
 ## Featured Data Structures
@@ -110,8 +125,8 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         
         while (this.open.length){
             
-            const currPair: minHeapItem = this.open.pop()! //figure out how to type this later
-            const curr = currPair[1]
+            const currPair: minHeapItem = this.open.pop()!
+            const curr: matrixItemObject = currPair[1]
             const {pos, prev} = curr
             const [x, y] = pos;
 
@@ -154,7 +169,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         if(this.open.length <= 0) return []
 
         const currPair: minHeapItem = this.open.pop()!         
-        const curr = currPair[1]
+        const curr: matrixItemObject = currPair[1]
         const {pos} = curr;
         this.prev = pos;
         const y: number = pos[1];
@@ -172,7 +187,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         for (const [dx, dy] of DIRS) {
             const newPos = [x + dx, y + dy]
             const next: matrixItemObject = {pos: newPos, prev:pos} 
-            const cost = this.manhattanHeuristic(newPos);
+            const cost: number = this.manhattanHeuristic(newPos);
             Heap.heappush(this.open, [cost, next]);
         }
         
