@@ -18,41 +18,89 @@ As of now, only the matricies section is availible for public release.
 
 2) Place a start and a stop on the grid. At this point you can also draw walls.
 
-3) Press play. Watch the pretty colors :D . 
+3) Press play. Watch the pretty colors :D. 
 
 
 ## Data Structures
 
 ### Matrices
 
-Obvious inspiration and credit must be given to Clement Milhaesque who popularized the pathfinding visualizer, and made a tutorial for it on his Youtube channel. The library react-dnd was used to make the start and stop markers drag and droppable. Huge shout out to the Original React team at Meta who made this wonderful library. Walls are turned on and off via click and drag.
+Obvious inspiration and credit must be given to Clement Milhaesque who popularized the pathfinding visualizer, and made a tutorial for it on his Youtube channel. The library react-dnd was used to make the start and stop markers drag and droppable. Huge shout out to the original React team at Meta who made this wonderful library. Walls are turned on and off via click and drag.
 
 ## Algorithms
 
 ### Depth-First Search (DFS)
 
-The DFS algorithm traverses the matrix in a "depth-first" manner, visiting all nodes in one direction before moving on. Usually the go to for your Leetcode problems, but I have to say when I finally saw how it works I was a bit let down. Either way, important to know how this works.
+The DFS algorithm traverses the matrix in a "depth-first" manner, visiting all nodes in one direction before moving on. Usually the go to for your Leetcode problems, but I have to say when I finally saw how it works I was a bit let down. Either way, it's a bread and butter staple of DSA diet. DFS is used to implement other algorithms, so its important to at least understand how it works.
 
 ### Breadth-First Search (BFS)
 
-he BFS algorithm traverses the matrix or graph in a "breadth-first" manner, visiting all nodes at a given level before moving on to the next level. This algorithm is useful when you want to explore all the neighbors of a node before moving on to its neighbors' neighbors. It is commonly used in shortest path and connectivity problems. This is the first "shortest path" algorithim that I have implemented
+he BFS algorithm traverses the matrix or graph in a "breadth-first" manner, visiting all nodes at a given level before moving on to the next level. This algorithm is useful when you want to explore all the neighbors of a node before moving on to its neighbors' neighbors. It is commonly used in shortest path and connectivity problems. This is the first "shortest path" algorithim that I have implemented.
 
 ### Bidirectional Breadth-First Search
 
-The Bidirectional BFS algorithm is an optimized version of the BFS algorithm that searches two ends of a graph or matrix simultaneously. The search starts from the initial node and the goal node, exploring nodes in a "breadth-first" manner. The algorithm stops when the two searches meet. This algorithm is useful when you want to find the shortest path between two nodes in a graph or matrix. Also, it's really visually satisfying.
+The Bidirectional BFS algorithm is an optimized version of the BFS algorithm that searches two ends of a graph or matrix simultaneously. The search starts from the initial node and the goal node, exploring nodes in a "breadth-first" manner. The algorithm stops when the two searches meet. This algorithm is useful when you want to find the shortest path between two nodes in a graph or matrix. Also, it's really visually satisfying to watch.
 
 ### Best-First Search
 
 Best First Search: The Best First Search algorithm is a graph traversal algorithm that uses a heuristic to search for the most promising path towards the goal node. In this sense it's the first "heuristic" based  It evaluates each node based on its estimated distance to the goal node and explores the node with the smallest estimated distance first. This algorithm is useful in finding the shortest path between two nodes. It is usually more preformant than BFS.
 
-## Use of ChatGPT
+## Reflections on the Use of ChatGPT
 
-ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React components, but I would be lying if I said that it did all the heavy lifting. I intentionally restricted limited myself to doing the TS typing on my own. Certain inherent limitations of using ChatGPT became apparent when I tried to put together classes to handle algorithmic itterators. 
+ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React components, but I would be lying if I said that it did all the heavy lifting. Up to the first release, I intentionally restricted limited myself to doing the TS typing on my own. Certain inherent limitations of using ChatGPT became apparent when I tried to put together classes to handle algorithmic itterators. 
 
-Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is Data structures and algorithms. It will surely get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the the seven stages of grief, but just as a user. 
+Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is Data structures and algorithms. It will surely get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the seven stages of grief, but just as a user. 
 
-First, there are just some things that it couldn't handle. If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. 
+# Exhibit A : Resizing divs: there are just some things that it couldn't handle
+
+
+If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. 
+
+` ` `typescript
+
+import { useState, useRef, useEffect } from "react";
+
+const Graphs: React.FC = () => {
+  const [pageLeftWidth, setPageLeftWidth] = useState<number>(300);
+  const pageLeftRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      if (pageLeftRef.current) {
+        const offsetRight = window.innerWidth - (pageLeftRef.current.offsetLeft + pageLeftWidth);
+        const newWidth = e.pageX - pageLeftRef.current.offsetLeft;
+        if (newWidth > 0 && offsetRight > 0) {
+          setPageLeftWidth(newWidth);
+        }
+      }
+    };
+    document.addEventListener("mousemove", onMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [pageLeftWidth]);
+
+  return (
+    <div className='font-color'>
+      {/* ... */}
+      <div className='page-body'>
+        <section id='page-left' className='tab-bg' ref={pageLeftRef} style={{ width: pageLeftWidth }}>
+          {/* Content of page-left */}
+        </section>
+        {/* ... */}
+      </div>
+    </div>
+  );
+};
+
+export default Graphs;
+
+
+` ` `
+
+
 
 As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. 
 
-The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much 
+The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward.
