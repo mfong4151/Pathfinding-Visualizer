@@ -51,7 +51,7 @@ ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React componen
 
 Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is Data structures and algorithms. It will surely get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the seven stages of grief, but just as a user. 
 
-# Exhibit A : Resizing divs: there are just some things that it couldn't handle
+### Exhibit A : Resizing divs: there are just some things that it couldn't handle
 
 
 If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. 
