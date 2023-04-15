@@ -37,7 +37,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   const chooseAlgoRef = useRef<any>()
 
 
-  const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
+  const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
     e.preventDefault();
     e.stopPropagation();
     
@@ -84,8 +84,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
           <div className='fdr udc-left'>
 
             <form className='udc-left' onSubmit={e => e.preventDefault()}>
-              <input id='height' placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e,'height')}/>
-              <input id='width' placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e,'width')}/>
+              <input id='height' placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e)}/>
+              <input id='width' placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e)}/>
             </form>
             
           </div>
