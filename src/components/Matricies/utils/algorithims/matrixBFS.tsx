@@ -39,7 +39,6 @@ export class BFSItterMatrix extends MatrixItterator{
         this.assignValueToMatrix(curr, x, y)
         this.evaluateEnd(curr)
         if (this.endFound){
-            console.log(this.endFound)
             this.markEndPrev(curr, x, y)
         }
 

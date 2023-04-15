@@ -73,18 +73,18 @@ const Matricies: React.FC = ()=>{
 
     //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
-      const rightDiv = pageRightRef.current;
-      const matrixDiv = matrixRef.current;
-      if(!rightDiv && !matrixDiv && !matrixDiv.firstChild && !matrixDiv.firstChild.firstChild) return 
+      const rightDiv = pageRightRef.current!;
+      const matrixDiv = matrixRef.current!;
+      if(!rightDiv && !matrixDiv) return 
 
-      const rightDivHeight: number = rightDiv? rightDiv.offsetHeight :0 ;
-      const rightDivWidth: number = rightDiv?  rightDiv.offsetWidth : 0;
+      const rightDivHeight: number = rightDiv.offsetHeight;
+      const rightDivWidth: number = rightDiv.offsetWidth;
 
       const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
       const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
       const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
       //There should be a way to increase preformance of rerendering the grid, but for right now im content with this
-      
+
       const[newMatrix, newStartEnd] = transplantMatrix(Math.min(matrixDim.y, maxNumRows), Math.min(matrixDim.x,maxNumCols), startEndPos)
       setMatrix(newMatrix)
       setStartEndPos(newStartEnd)

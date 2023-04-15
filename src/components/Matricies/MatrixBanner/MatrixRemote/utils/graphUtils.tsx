@@ -43,10 +43,8 @@ export const transplantMatrix = (numRows: number, numCols: number, startEndPos: 
         const replacement:string = pos === newStartEnd.start ? 's': 'e'
         const x: number = pos.x;
         const y: number = pos.y;
-        
         if (x === -1 || y === -1) continue
-
-        newMatrix[Math.min(newMatrix.length, y)][Math.min(newMatrix[0].length, x)].val = replacement
+        newMatrix[Math.min(newMatrix.length - 1, y)][Math.min(newMatrix[0].length - 1, x)].val = replacement
     }
 
     return [newMatrix, newStartEnd]

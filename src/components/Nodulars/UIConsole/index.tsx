@@ -12,7 +12,6 @@ type Props = {
 
 const UIConsole: React.FC<Props> = ({ consoleContent, isPlaying }) => {
   
-    console.log(consoleContent)
     return (
 
     <div id="console">
