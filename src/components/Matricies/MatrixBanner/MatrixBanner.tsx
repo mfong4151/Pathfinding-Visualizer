@@ -40,9 +40,9 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>, origin: string) =>{
     e.preventDefault();
     e.stopPropagation();
-
+    
     const newMatrixDim = {...matrixDim}
-    if (origin === 'height') newMatrixDim.y = Number(e.target.value);
+    if (e.target.id === 'height') newMatrixDim.y = Number(e.target.value);
     else newMatrixDim.x = Number(e.target.value);
     setMatrixDim(prev => newMatrixDim)
   }
@@ -84,8 +84,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
           <div className='fdr udc-left'>
 
             <form className='udc-left' onSubmit={e => e.preventDefault()}>
-              <input placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e,'height')}/>
-              <input placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e,'width')}/>
+              <input id='height' placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e,'height')}/>
+              <input id='width' placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e,'width')}/>
             </form>
             
           </div>
