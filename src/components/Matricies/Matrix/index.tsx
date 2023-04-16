@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
 import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
@@ -8,6 +8,7 @@ import CellTotem from "./CellTotem";
 import { consoleContentState, matrixState } from "../../types/state";
 import { matrixItemObject } from "../../types/objects";
 import { SliderPicker } from "@hello-pangea/color-picker"; //pass on change to this in order to get color
+import EditColorModal from "./EditColorModal";
 
 export interface Props{
     matrixState:matrixState;
@@ -24,16 +25,28 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     const {matrix} = matrixState;
     const [mouseDown, setMouseDown] = useState<boolean>(false);
     const [wallColor, setWallColor] = useState<string>('')
+    //We might be able to bust these out into a custom hook and reuse them 
     const [startColor, setStartColor] = useState<string>('')
-    const [endColor, setEndColor] = useState<string>('')
     const [shortestPathColor, setShortestPathColor] = useState<string>('')
-
+    const [colorModal, setColorModal] = useState<string>('')
+    const [shortestPathColorModal, setShortestPathColorModal] = useState<string>('')
+    const [endColor, setEndColor] = useState<string>('')
+    const startPosBtnRef = useRef<HTMLButtonElement>(null);
 
     return(
         <div id='matrix-tab' className="fdc univ-padding" >
-            {/* <SliderPicker/> */}
             <DndProvider backend={HTML5Backend}>
 
+                {/* <div id='swap-colors-toolbar fdr'>
+                    <div className="hover-over drag-icon-holder udc fdc">
+
+                    <button className="tile" ref={startPosBtnRef} onClick={() =>setColorModal('start')}>
+                        Button
+                    </button>
+
+                    </div>
+
+                </div> */}
                 <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
@@ -51,23 +64,12 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                         <p className="toolbar-text">Wall Color</p>
 
                     </div>
-                    {/* <div className="hover-over drag-icon-holder udc fdc">
-                        <CellTotem totemType=''/>
-                        <p className="toolbar-text">Start Color</p>
 
-                    </div>
-                    <div className="hover-over drag-icon-holder udc fdc">
-                        <CellTotem totemType=''/>
-                        <p className="toolbar-text">End Color</p>
+                    {/* {colorModal ==='start' && <EditColorModal 
+                                                position={{left:startPosBtnRef.current!.offsetLeft, 
+                                                            top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
+                                                colorModalState={{colorModal, setColorModal}}/>} */}
 
-                    </div>
-                    <div className="hover-over drag-icon-holder udc fdc">
-                        <CellTotem totemType=''/>
-                        <p className="toolbar-text">Shortest Path </p>
-
-                    </div> */}
-                 
-                    
                 </div>
 
                 <div id="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
