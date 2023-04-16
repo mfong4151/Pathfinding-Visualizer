@@ -380,4 +380,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 
 ChatGPT's code attempts to access the heap via indexing, which in this case is not possible. It must be accessed via the .top() method. I don't blame it, but this does show that you can't completely take the human out of the loop. In this case it was faster to refactor the code than it was to mess around with another query.
 
-The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward.
+
+The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward. Despite the fact that I've tried as much to steel man arguments for its faults, it's fairly clear that the gains made were substantial. I ask readers to just take it on faith that I could do a lot of the work ChatGPT did, but it would have taken me a lot longer.
+
+To say ChatGPT only took care of 80% of the work is petty; by taking care of 80% of the work, it opened me up to add value to the last 20%. 
