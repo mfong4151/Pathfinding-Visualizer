@@ -9,8 +9,7 @@ import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
-import e from 'express';
-import { pos } from '../types/positions';
+import Test from '../../Test';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 const BREAK_POINT_MAX: number = 65; //break point of where we don't refacotr
@@ -81,8 +80,8 @@ const Matricies: React.FC = ()=>{
 
       const rightDivHeight: number = rightDiv.offsetHeight;  
       const rightDivWidth: number = rightDiv.offsetWidth;
-
       const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
+      
       const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
       const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
       //There should be a way to increase preformance of rerendering the grid, but for right now im content with this
@@ -107,7 +106,6 @@ const Matricies: React.FC = ()=>{
                 errorsState = {errorsState}    
           />  
 
-        
          <div className='page-body'>
             <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
@@ -138,7 +136,7 @@ const Matricies: React.FC = ()=>{
             </section>  
 
         </div>
-      
+        <Test i={matrixRef}/>
       </div>
     );
 

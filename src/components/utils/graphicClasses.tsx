@@ -1,5 +1,5 @@
 
-
+//probably gunna bust this into smaller classes
 export class GraphicNode{
     id: number;
     type: string;
