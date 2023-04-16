@@ -45,7 +45,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         }
        
 
-        return this.res;
+        return this.res
     }
 
     

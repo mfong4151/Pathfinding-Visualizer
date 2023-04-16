@@ -215,7 +215,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 
 ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React components, but I would be lying if I said that it did all the heavy lifting. Up to the first release, I intentionally restricted limited myself to doing the TS typing on my own. Certain inherent limitations of using ChatGPT became apparent when I tried to put together classes to handle algorithmic itterators. This section reflects on some of the roadblocks I had when interacting with ChatGPT. If you're more interested in the project itself, then skip this section (doesn't hurt my feelings :)).
 
-Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is Data structures and algorithms. It will surely get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the seven stages of grief, but just as a user. 
+Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is data structures and algorithms. It will get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the seven stages of grief, but just as a user. 
 
 ### Exhibit A : Resizing divs: there are just some things that it couldn't handle
 
@@ -314,6 +314,67 @@ In this case the above code section works, it just didn't preform well. You coul
 ```
 
 
-As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. 
+As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. Because of how the itterator stacks, queues, and heaps took matrixItemObjects, ChatGPT wasn't able to produce helpful code. It became more helpful once I provided it with examples of what I had already done, namely the parent class, and the BFS itterator. The issue I ran into was namely dealing with the itterators that utilized the heap-js library. In particular, I tried to have ChatGPT make the step itterators for Best First Search:
+
+ChatGPT's result:
+
+```typescript
+
+export class BestFSItterMatrix extends matrixHeuristicSearch{
+
+    constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
+        super(start, end, matrix)
+        const first: matrixItemObject = {pos:this.start, prev: [-1, -1]}
+        Heap.heappush(this.open, [this.manhattanHeuristic(first.pos), first])
+    }
+
+    //...
+    
+
+    public isValidNext():boolean {
+        if (this.open.length <= 0) return false;
+        const first = this.open[0][1]
+        if (this.outOfRangeOrVisited(first.pos[0], first.pos[1])) return false;
+        return true;
+    }
+
+    public discardInvalidNode():number[]{
+        const node: matrixItemObject = this.open[0][1]
+        Heap.heappop(this.open);
+        return node.pos
+    }
+
+}
+```
+
+My code: 
+```typescript
+
+export class BestFSItterMatrix extends matrixHeuristicSearch{
+
+    constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
+        super(start, end, matrix)
+        const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
+        Heap.heappush(this.open, [this.manhattanHeuristic(top.pos), top])
+    }
+
+    public isValidNext():boolean {
+        if (this.open.heapArray.length <= 0) return false;
+        const top:matrixItemObject = this.open.top(1)[0][1];
+        if (this.outOfRangeOrVisited(top.pos[0], top.pos[1])) return false;
+        return true;
+    }
+
+    public discardInvalidNode():number[]{
+        const node: matrixItemObject = this.open.top(1)[0][1];
+        Heap.heappop(this.open);
+        return node.pos
+    }
+
+}
+
+```
+
+ChatGPT's code attempts to access the heap via indexing, which in this case is not possible. It must be accessed via the .top() method. I don't blame it, but this does show that you can't completely take the human out of the loop. In this case it was faster to refactor the code than it was to mess around with another query.
 
 The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward.
