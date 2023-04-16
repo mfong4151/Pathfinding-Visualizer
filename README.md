@@ -320,6 +320,9 @@ ChatGPT's result:
 
 ```typescript
 
+//My query: Hey ChatGPT, I’m looking to get help adding a couple instance methods to some code. I’ve created a step-itterator for several common pathfinding algorithims in matricies. I’ve made a class for Greedy Best First Search. What I want you to do is produce equivalent methods for  all the methods on BFSItterMatrix that aren’t already on BestFSItterMatrix. Please note that Heap is a class from a library, heap-js, and if you don’t know how to handle the methods for heaps, please leave pseudo code instead:
+
+
 export class BestFSItterMatrix extends matrixHeuristicSearch{
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
@@ -347,7 +350,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 }
 ```
 
-My code: 
+My edits: 
 ```typescript
 
 export class BestFSItterMatrix extends matrixHeuristicSearch{
