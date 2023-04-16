@@ -8,8 +8,8 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
-        const first: matrixItemObject = {pos:this.start, prev: [-1, -1]}
-        Heap.heappush(this.open, [this.manhattanHeuristic(first.pos), first])
+        const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
+        Heap.heappush(this.open, [this.manhattanHeuristic(top.pos), top])
     }
 
     public manhattanHeuristic(nodePos:number[]):number{
@@ -22,9 +22,9 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         
         while (this.open.length){
             
-            const currPair: minHeapItem = this.open.pop()! //figure out how to type this later
-            const curr = currPair[1]
-            const {pos, prev} = curr
+            const currPair: minHeapItem = this.open.pop()!; //figure out how to type this later
+            const curr: matrixItemObject = currPair[1];
+            const {pos} = curr;
             const [x, y] = pos;
 
             if (this.outOfRangeOrVisited(x, y)) continue
@@ -51,13 +51,13 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     
     public isValidNext():boolean {
         if (this.open.heapArray.length <= 0) return false;
-        const first = this.open.top(1)[0][1]
-        if (this.outOfRangeOrVisited(first.pos[0], first.pos[1])) return false;
+        const top:matrixItemObject = this.open.top(1)[0][1];
+        if (this.outOfRangeOrVisited(top.pos[0], top.pos[1])) return false;
         return true;
     }
 
     public discardInvalidNode():number[]{
-        const node: matrixItemObject = this.open.top(1)[0][1]
+        const node: matrixItemObject = this.open.top(1)[0][1];
         Heap.heappop(this.open);
         return node.pos
     }
@@ -66,7 +66,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
         if(this.open.length <= 0) return []
 
         const currPair: minHeapItem = this.open.pop()!         
-        const curr = currPair[1]
+        const curr:matrixItemObject = currPair[1];
         const {pos} = curr;
         this.prev = pos;
         const y: number = pos[1];
@@ -82,10 +82,10 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 
         //load the queue
         for (const [dx, dy] of DIRS) {
-            const newPos = [x + dx, y + dy]
-            const next: matrixItemObject = {pos: newPos, prev:pos} 
+            const newPos:[number, number] = [x + dx, y + dy];
+            const next: matrixItemObject = {pos: newPos, prev:pos} ;
             const cost = this.manhattanHeuristic(newPos);
-            Heap.heappush(this.open, [cost, next]);
+            Heap.heappush(this.open, [cost, next])
         }
         
 
@@ -99,7 +99,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
     public showContainer():number[][]{
         const open:number[][] = [];
 
-        for(const i of this.open)open.push(i[1].pos)
+        for(const i of this.open) open.push(i[1].pos)
         
         return open
     }
