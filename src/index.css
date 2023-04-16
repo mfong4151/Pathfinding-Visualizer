@@ -178,8 +178,10 @@ code {
   font-size:18px;
   height:2.2rem;
   width:auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
 
 
 /* general modal styles */

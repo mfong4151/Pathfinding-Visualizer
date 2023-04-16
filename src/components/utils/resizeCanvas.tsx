@@ -1,5 +1,8 @@
 import { pos } from "../types/positions";
 
+
+//This might need ot be refactored to handle canvases
+
 export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixDiv:any):[number, number] =>{
         
     if(!rightDiv && !matrixDiv) return [-1, -1];
