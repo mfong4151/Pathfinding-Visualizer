@@ -217,104 +217,9 @@ ChatGPT-3.5 and 4 were heavily used to assist creation of vanilla React componen
 
 Let me be clear: ChatGPT and generative technology are powerful technologies, and I'm very confident that if I had given it more scope and context to what I was doing (in the form of the unreleased Github CopilotX or any other similar service), it would expedite the job that much more. If anything, this section should server more as: 1) a commentary on the current state of pair coding with ChatGPT; 2) A reflection on what I think this means for software engineers as a whole. I believe that this reflection might be insightful on the limits of ChatGPT, areas it seems to be having trouble with is data structures and algorithms. It will get there eventually, and I write this taking neither the side of the AI evangelist, nor the average SWE in the denial stage of the seven stages of grief, but just as a user. 
 
-### Exhibit A : Resizing divs: there are just some things that it couldn't handle
 
 
-If you've hovered over the div that divides the console and the canvas, you might have noticed that you can resize your screen. This was the original code snippet provided by ChatGPT-3.5:
-
-```typescript
-
-import { useState, useRef, useEffect } from "react";
-
-const Graphs: React.FC = () => {
-  const [pageLeftWidth, setPageLeftWidth] = useState<number>(300);
-  const pageLeftRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      if (pageLeftRef.current) {
-        const offsetRight: number = window.innerWidth - (pageLeftRef.current.offsetLeft + pageLeftWidth);
-        const newWidth:number = e.pageX - pageLeftRef.current.offsetLeft;
-        if (newWidth > 0 && offsetRight > 0) {
-          setPageLeftWidth(newWidth);
-        }
-      }
-    };
-    document.addEventListener("mousemove", onMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-    };
-  }, [pageLeftWidth]);
-
-  return (
-    <div className='font-color'>
-      {/* ... */}
-      <div className='page-body'>
-        <section id='page-left' className='tab-bg' ref={pageLeftRef} style={{ width: pageLeftWidth }}>
-          {/* Content of page-left */}
-        </section>
-        {/* ... */}
-      </div>
-    </div>
-  );
-};
-
-export default Graphs;
-
-```
-
-In this case the above code section works, it just didn't preform well. You could drag the resizing hook over and it would jump erratically from one side to the other. Credits to itsCodingDoctor for supplying the fix: https://www.youtube.com/watch?v=Af7iCwhQSRs:
-
-```typescript
-    //Within react component: 
-    const pageLeftRef = useRef<HTMLDivElement>(null);
-    const pageRightRef = useRef<HTMLDivElement>(null);
-    const adjBarRef = useRef<HTMLDivElement>(null);
-
-    useEffect(()=>{
-
-      const resizeableLeft = pageLeftRef.current;
-      const stylesLeft: CSSStyleDeclaration = window.getComputedStyle(resizeableLeft!);
-      let widthLeft:number = parseInt(stylesLeft.width, 10)
-      if(!resizeableLeft) return 
-
-      let x:number = 0;
-      
-      const onMouseMoveLRResize =  (e:any) =>{
-        const dx: number = e.clientX - x;
-        widthLeft = widthLeft + dx;
-        x = e.clientX
-        resizeableLeft.style.width! = `${widthLeft}px`
-      }
-      
-      const onMouseUpLRResize = (e:any) => document.removeEventListener("mousemove", onMouseMoveLRResize);
-
-      const onMouseDownRightResize = (e:any) =>{
-
-        x = e.clientX;
-        resizeableLeft.style.left = stylesLeft.left
-        resizeableLeft.style.right = '';
-        document.addEventListener("mousemove", onMouseMoveLRResize);
-        document.addEventListener("mouseup", onMouseUpLRResize);
-
-
-      }
-
-      const resizerRight = adjBarRef.current
-      if(!resizerRight) return 
-      resizerRight.addEventListener("mousedown", onMouseDownRightResize);
-
-      return ()=> {
-        resizerRight.removeEventListener("mousedown", onMouseDownRightResize)
-
-      }
-    }, [])
-
-```
-
-
-As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. Because of how the itterator stacks, queues, and heaps took matrixItemObjects, ChatGPT wasn't able to produce helpful code. It became more helpful once I provided it with examples of what I had already done, namely the parent class, and the BFS itterator. The issue I ran into was namely dealing with the itterators that utilized the heap-js library. In particular, I tried to have ChatGPT make the step itterators for Best First Search:
+As I discussed above, a large part of my project was creating the "step-by-step" playback effect of an itterator. Because of how the itterator stacks, queues, and heaps took matrixItemObjects, ChatGPT wasn't able to produce the first version of the BFS itterator. It became more helpful once I provided it with examples of what I had already done, namely the parent class, and the BFS itterator. The issue I ran into was namely dealing with the itterators that utilized the heap-js library. In particular, I tried to have ChatGPT make the step itterators for Best First Search:
 
 ChatGPT's result:
 
@@ -378,9 +283,7 @@ export class BestFSItterMatrix extends matrixHeuristicSearch{
 
 ```
 
-ChatGPT's code attempts to access the heap via indexing, which in this case is not possible. It must be accessed via the .top() method. I don't blame it, but this does show that you can't completely take the human out of the loop. In this case it was faster to refactor the code than it was to mess around with another query.
+ChatGPT's code attempts to access the heap via indexing, which in this case is not possible. It must be accessed via the .top() method. I don't blame it, but this does show that you can't completely take the human out of the loop. In this case it was faster to refactor the code than it was to mess around with another query. As far as my understanding goes, heap-js creates two properties on creating the heap data structure: the array itself, and the heap (compare this to Python where the array is "heapified"). 
 
-
-The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward. Despite the fact that I've tried as much to steel man arguments for its faults, it's fairly clear that the gains made were substantial. I ask readers to just take it on faith that I could do a lot of the work ChatGPT did, but it would have taken me a lot longer.
-
-To say ChatGPT only took care of 80% of the work is petty; by taking care of 80% of the work, it opened me up to add value to the last 20%. 
+The first public release of this project was on 4/14/2023, and its safe to say that I will use ChatGPT for much more of the project going forward. 
+To say ChatGPT only took care of 80% of the work sounds really petty; by taking care of 80% of the work, it freed me up to add value to the last 20%. There were several important things that ChatGPT could not take care of: the inital itterators, window resizing effects, and namely, the transition effects which are so satisfying to watch. But what it can do is impressive, and I don't shrug and what it will be able to do 4-5 years from now.
