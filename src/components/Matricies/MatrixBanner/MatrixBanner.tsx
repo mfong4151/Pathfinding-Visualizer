@@ -51,14 +51,16 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     setMatrixDim(prev => newMatrixDim)
   }
 
-  const resetMatrix = ():void =>{
-    for(let i: number = 0; i  < matrix.length; i ++)
-    for(let j: number = 0; j  < matrix[0].length; j ++){
-      resetStyleSync([j, i], 'tile udc')  
-    }
+  const handleOnClick= ():void =>{
+    if(!pageRightDiv || !matrixDiv) return 
 
-    setMatrix(createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
-   
+    for(let i: number = 0; i  < matrix.length; i ++)
+      for(let j: number = 0; j  < matrix[0].length; j ++){
+        resetStyleSync([j, i], 'tile udc')  
+    }
+    const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+    setMatrix(prev => createNewMatrix(rows, cols))
+    setStartEndPos(prev => ({start:{y: -1, x: -1}, end: {y: -1, x: -1}}))
   }
 
   useEffect(()=>{
@@ -86,7 +88,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
           
           <button  
               className='sq-buttons hover-over banner-button udc'
-              onClick={resetMatrix }>
+              onClick={handleOnClick}>
               Reset Matrix
           </button>
 
