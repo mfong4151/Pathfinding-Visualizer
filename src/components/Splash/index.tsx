@@ -71,6 +71,6 @@ const timelines:string[] = [
 ];
 
 const updates: string[] = [
-  "4/14/23: Basic "
+  "4/14/23: Basic MVP implemented. Check out the project!"
 
 ];

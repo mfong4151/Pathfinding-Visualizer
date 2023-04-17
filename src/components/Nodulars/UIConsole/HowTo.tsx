@@ -13,7 +13,7 @@ const HowTo: React.FC = () => {
         {`Welcome to the DSA visualizer, you are currently viewing ${location.pathname.slice(1)}.`}
       </p>
       <p>
-        To get started, try dragging and dropping some of the items in the start and stop  to the right on to the matrix
+        To get started, try dragging and dropping the start and stop icons to the right on to the matrix
       </p>
       <p>
         You can draw and erase walls by clicking on the matrix

@@ -15,8 +15,7 @@ import { startStop } from '../types/positions';
 import { calculateResize } from '../utils/resizeCanvas';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
-const BREAK_POINT_MAX: number = 65; //break point of where we don't refacotr
-const BOTTOM_BREAK_POINT: number = 120; //Basically used to
+
 
 const Matricies: React.FC = ()=>{
     const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
@@ -90,7 +89,7 @@ const Matricies: React.FC = ()=>{
       setMatrix(newMatrix)
       setStartEndPos(newStartEnd)
 
-    },[windowDim, windowDim])
+    },[windowDim])
     
 
 
