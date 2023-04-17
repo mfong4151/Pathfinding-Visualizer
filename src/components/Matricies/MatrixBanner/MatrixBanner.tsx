@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef } from 'react';
-import { createNewMatrix } from './MatrixRemote/utils/graphUtils';
+import { createNewMatrix, transplantMatrix } from './MatrixRemote/utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from '../../Nodulars/Banner/ChooseAlgoModal';
 import { pos, startStop } from '../../types/positions';
@@ -8,6 +8,8 @@ import '../../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixState, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync } from '../utils/matrixStyling';
+import { calculateResize} from '../../utils/resizeCanvas'
+import { matrixItemObject } from '../../types/objects';
 
 interface Props{
   matrixState: matrixState;
@@ -19,13 +21,15 @@ interface Props{
   consoleContentState: consoleContentState;
   isPlayingState: isPlayingState,
   errorsState: errorsState,
+  pageRightDiv: HTMLDivElement | null,
+  matrixDiv: HTMLDivElement | null, 
 }
 
 //temporary fix
 const MATRIX_HARD_LIMIT_Y: number = 30;
 const MATRIX_HARD_LIMIT_X: number = 80; 
 
-const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState}) => {
+const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState, pageRightDiv, matrixDiv}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithm')
@@ -58,9 +62,14 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   }
 
   useEffect(()=>{
-    
-    setMatrix(prev => createNewMatrix(Math.min(matrixDim.y, MATRIX_HARD_LIMIT_Y), Math.min(matrixDim.x, MATRIX_HARD_LIMIT_X)))
 
+    if (!pageRightDiv || !matrixDiv) return
+    
+    const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+    const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
+    setMatrix(prev => newMatrix)
+    setStartEndPos(prev => newStartEnd)
+    
   }, [matrixDim])
 
   useEffect(()=>{

@@ -103,7 +103,9 @@ const Matricies: React.FC = ()=>{
                 startEndPosState ={{ startEndPos, setStartEndPos}}
                 consoleContentState = {consoleContentState}
                 isPlayingState = {{isPlaying, setIsPlaying}}
-                errorsState = {errorsState}    
+                errorsState = {errorsState}
+                pageRightDiv = {pageRightRef.current}
+                matrixDiv = {matrixRef.current}
           />  
 
          <div className='page-body'>
