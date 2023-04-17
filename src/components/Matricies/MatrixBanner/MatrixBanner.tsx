@@ -41,7 +41,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     e.preventDefault();
     e.stopPropagation();
     
-    const newMatrixDim = {...matrixDim}
+    const newMatrixDim:pos = {...matrixDim}
     if (e.target.id === 'height') newMatrixDim.y = Number(e.target.value);
     else newMatrixDim.x = Number(e.target.value);
     setMatrixDim(prev => newMatrixDim)
