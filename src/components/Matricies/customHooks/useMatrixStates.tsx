@@ -14,12 +14,13 @@ type matrixStates = {
 }
 const DEFAULT_MATRIX_Y:number = 30;
 const DEFAULT_MATRIX_X:number = 30;
+const DEFAULT_POS:number = -1;
 
 const useMatrixStates = ():matrixStates => {
     
     const [matrixDim, setMatrixDim]  = useState<pos>({y: DEFAULT_MATRIX_Y, x: DEFAULT_MATRIX_X});
     const [matrix, setMatrix] = useState<matrixItemObject[][]>(createNewMatrix(matrixDim.y, matrixDim.x));
-    const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: -1, x: -1}, end: {y: -1, x: -1}})
+    const [startEndPos, setStartEndPos] = useState<startStop>({start:{y: DEFAULT_POS, x: DEFAULT_POS}, end: {y: DEFAULT_POS, x: DEFAULT_POS}})
 
     return {
         matrixDim, 

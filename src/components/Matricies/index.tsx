@@ -10,6 +10,9 @@ import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
 import Test from '../../Test';
+import { matrixItemObject } from '../types/objects';
+import { startStop } from '../types/positions';
+import { calculateResize } from '../utils/resizeCanvas';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 const BREAK_POINT_MAX: number = 65; //break point of where we don't refacotr
@@ -31,6 +34,7 @@ const Matricies: React.FC = ()=>{
     const matrixRef = useRef<any>();
 
     
+
 
     useEffect(()=>{
 
@@ -75,24 +79,18 @@ const Matricies: React.FC = ()=>{
     //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     useEffect(()=>{
 
-      const rightDiv = pageRightRef.current!;
+      const pageRightDiv = pageRightRef.current!;
       const matrixDiv = matrixRef.current!;  
-      if(!rightDiv && !matrixDiv) return 
-      
 
-      const rightDivHeight: number = rightDiv.offsetHeight;  
-      const rightDivWidth: number = rightDiv.offsetWidth;
-      const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth
+      if(!pageRightDiv && !matrixDiv) return 
       
-      const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
-      const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
-      //There should be a way to increase preformance of rerendering the grid, but for right now im content with this
-
-      const[newMatrix, newStartEnd] = transplantMatrix(Math.min(matrixDim.y, maxNumRows), Math.min(matrixDim.x,maxNumCols), startEndPos)
+      const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+      const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
+     
       setMatrix(newMatrix)
       setStartEndPos(newStartEnd)
 
-    },[windowDim.width, windowDim.height])
+    },[windowDim, windowDim])
     
 
 
@@ -140,7 +138,7 @@ const Matricies: React.FC = ()=>{
             </section>  
 
         </div>
-        {/* <Test i={matrixRef}/> */}
+        <Test i={matrixRef}/>
       </div>
     );
 
