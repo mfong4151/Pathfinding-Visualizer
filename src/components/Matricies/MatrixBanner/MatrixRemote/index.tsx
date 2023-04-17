@@ -40,7 +40,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
   //At the very least in your code editor you can click the > arrow to make it all go away...
 
 
-
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     e.stopPropagation();
@@ -106,8 +105,9 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
 
     const play = ():void  =>{
+      setIsPlaying(prev => true)
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-
+      
       const illustrate = async():Promise<void> =>{
         for(let i:number = 0; i < res.length; i ++){
           const node:matrixItemObject = res[i];
@@ -127,7 +127,11 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         newConsoleContent.push('In this scenario, the endpoint could not be reached.')
 
       }
+        setIsPlaying(prev => false)
+
       })
+
+
     }
 
     const skipForward = ():void =>{
@@ -154,6 +158,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         break;
 
       case 'play':
+
         newConsoleContent.push(`Currently showing the playthrough for ${chosenAlgo}`)
         // if (hasAnimated) reset()
         play()
@@ -180,6 +185,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
     hasAnimated = true //prevent reanimations
     allowSetIttr.current = false;
+
     return
 };
 

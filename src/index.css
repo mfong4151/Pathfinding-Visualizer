@@ -124,6 +124,12 @@ code {
 
 }
 
+/* to make things conditionally unclickable */
+.unclickable {
+  pointer-events: none;
+}
+
+
 #page-left{
   display:flex;
   justify-content: flex-end;

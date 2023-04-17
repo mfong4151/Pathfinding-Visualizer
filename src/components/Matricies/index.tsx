@@ -30,6 +30,8 @@ const Matricies: React.FC = ()=>{
     const adjBarRef = useRef<HTMLDivElement>(null);
     const matrixRef = useRef<any>();
 
+    
+
     useEffect(()=>{
 
       const resizeableLeft = pageLeftRef.current;
@@ -96,7 +98,7 @@ const Matricies: React.FC = ()=>{
 
 
     return(
-      <div className='font-color'>
+      <div className={`font-color ${isPlaying && 'unclickable'}`}>
         <MatrixBanner 
                 matrixState = {matrixState}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
@@ -138,7 +140,7 @@ const Matricies: React.FC = ()=>{
             </section>  
 
         </div>
-        <Test i={matrixRef}/>
+        {/* <Test i={matrixRef}/> */}
       </div>
     );
 

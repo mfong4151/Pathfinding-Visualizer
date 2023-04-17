@@ -26,8 +26,7 @@ interface Props{
 }
 
 //temporary fix
-const MATRIX_HARD_LIMIT_Y: number = 30;
-const MATRIX_HARD_LIMIT_X: number = 80; 
+
 
 const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState, pageRightDiv, matrixDiv}) => {
 
@@ -61,6 +60,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
     setMatrix(prev => createNewMatrix(rows, cols))
     setStartEndPos(prev => ({start:{y: -1, x: -1}, end: {y: -1, x: -1}}))
+    return
   }
 
   useEffect(()=>{
