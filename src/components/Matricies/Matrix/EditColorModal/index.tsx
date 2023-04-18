@@ -49,7 +49,12 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, color1, colo
             </div>
           </div>
         </div>
-        {tileColorModal && <EditTileColorModal position={{left: subModalPos.left, top:subModalPos.top}} editTileState={{tileColorModal, setTileColorModal}}/>}
+        {tileColorModal && <EditTileColorModal 
+                            position={{left: subModalPos.left, top:subModalPos.top}} 
+                            editTileState={{tileColorModal, setTileColorModal}}
+                            // color = {}
+                            // setColor = {}
+                            />}
       </div>
     );
   };

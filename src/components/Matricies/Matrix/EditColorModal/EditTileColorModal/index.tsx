@@ -1,5 +1,5 @@
 import { SliderPicker } from "@hello-pangea/color-picker";
-import { setBoolean } from "../../../../types/setState";
+import { setBoolean, setString } from "../../../../types/setState";
 
 interface Props {
     position: { left: number; top: number };
@@ -7,6 +7,8 @@ interface Props {
       tileColorModal: boolean
       setTileColorModal: setBoolean
     }
+    // color:string
+    // setColor: setString
   }
 
 const EditTileColorModal: React.FC<Props> = ({ position, editTileState}) => {
@@ -24,7 +26,7 @@ const EditTileColorModal: React.FC<Props> = ({ position, editTileState}) => {
           <div className="modal-overlay" onClick={() => editTileState.setTileColorModal(prev => false)}>
             <div className="modal-content" style={customStyle}  onClick={handleOnClick}
                   >
-              <SliderPicker/>
+              {/* <SliderPicker onChange={}/> */}
               </div>
           </div>
         </div>
