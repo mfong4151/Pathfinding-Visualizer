@@ -3,8 +3,8 @@ import { SliderPicker } from "@hello-pangea/color-picker";
 interface ModalProps {
     position: { left: number; top: number };
     colorModalState:{
-      colorModal:string;
-      setColorModal:React.Dispatch<React.SetStateAction<string>>
+      editColorModal:boolean;
+      setEditColorModal:React.Dispatch<React.SetStateAction<boolean>>
     }
   }
   
@@ -20,7 +20,7 @@ const EditColorModal: React.FC<ModalProps> = ({ position, colorModalState}) => {
       <div
         className="modal"
       >
-        <div className="modal-overlay" onClick={() => colorModalState.setColorModal(prev => '')}>
+        <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(prev => false)}>
           <div className="modal-content" 
                 style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
                 onClick={handleOnClick}

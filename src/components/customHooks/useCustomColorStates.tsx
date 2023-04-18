@@ -1,24 +1,26 @@
 import React, { useState } from "react"
+import { setBoolean, setString } from "../types/setState"
 
 type states = {
     startColor: string,
-    setStartColor:  React.Dispatch<React.SetStateAction<string>>,
+    setStartColor:  setString,
     shortestPathColor:string,
-    setShortestPathColor: React.Dispatch<React.SetStateAction<string>>,
-    editColorModal: string,
-    setEditColorModal: React.Dispatch<React.SetStateAction<string>>,
+    setShortestPathColor: setString,
+    editColorModal: boolean,
+    setEditColorModal: setBoolean,
     endColor : string,
-    setEndColor: React.Dispatch<React.SetStateAction<string>>,
-
+    setEndColor: setString,
+    customTransition: boolean,
+    setCustomTransition: setBoolean,
 }
 
 const useEditColorStates = (): states  => {
 
     const [startColor, setStartColor] = useState<string>('')
     const [shortestPathColor, setShortestPathColor] = useState<string>('')
-    const [editColorModal , setEditColorModal] = useState<string>('')
+    const [editColorModal , setEditColorModal] = useState<boolean>(false);
     const [endColor, setEndColor] = useState<string>('')
-
+    const [customTransition, setCustomTransition] = useState<boolean>(false)
     
   return {
        
@@ -29,7 +31,9 @@ const useEditColorStates = (): states  => {
      editColorModal , 
      setEditColorModal,
      endColor, 
-     setEndColor
+     setEndColor,
+     customTransition,
+     setCustomTransition
 
     }
 
