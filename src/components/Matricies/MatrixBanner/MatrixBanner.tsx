@@ -9,7 +9,7 @@ import { consoleContentState, errorsState, isPlayingState, matrixState, startEnd
 import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync } from '../utils/matrixStyling';
 import { calculateResize} from '../../utils/resizeCanvas'
-import { matrixItemObject } from '../../types/objects';
+import useCanvasResize from '../../customHooks/useCanvasResize';
 
 interface Props{
   matrixState: matrixState;
@@ -63,16 +63,9 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     return
   }
 
-  useEffect(()=>{
+  useCanvasResize(pageRightDiv!, matrixDiv!, matrixDim, startEndPos, setMatrix, setStartEndPos, [matrixDim])
 
-    if (!pageRightDiv || !matrixDiv) return
-    
-    const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
-    const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
-    setMatrix(prev => newMatrix)
-    setStartEndPos(prev => newStartEnd)
-    
-  }, [matrixDim])
+
 
   useEffect(()=>{
     if(chosenAlgo !== 'Choose your algorithm')
