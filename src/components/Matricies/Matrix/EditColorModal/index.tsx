@@ -1,4 +1,3 @@
-import { SliderPicker } from "@hello-pangea/color-picker";
 
 interface ModalProps {
     position: { left: number; top: number };
@@ -25,7 +24,8 @@ const EditColorModal: React.FC<ModalProps> = ({ position, colorModalState}) => {
                 style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
                 onClick={handleOnClick}
                 >
-            <SliderPicker/>
+
+
             </div>
         </div>
       </div>
