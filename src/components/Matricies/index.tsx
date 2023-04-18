@@ -13,6 +13,7 @@ import Test from '../../Test';
 import { matrixItemObject } from '../types/objects';
 import { startStop } from '../types/positions';
 import { calculateResize } from '../utils/resizeCanvas';
+import useCanvasResize from '../customHooks/useCanvasResize';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
@@ -32,8 +33,6 @@ const Matricies: React.FC = ()=>{
     const adjBarRef = useRef<HTMLDivElement>(null);
     const matrixRef = useRef<any>();
 
-    
-
 
     useEffect(()=>{
 
@@ -46,7 +45,7 @@ const Matricies: React.FC = ()=>{
       
       const onMouseMoveLRResize =  (e:any) =>{
         const dx: number = e.clientX - x;
-        widthLeft = widthLeft + dx;
+        widthLeft = widthLeft + (1.5 * dx);
         x = e.clientX
         resizeableLeft.style.width! = `${widthLeft}px`
       }
@@ -73,15 +72,15 @@ const Matricies: React.FC = ()=>{
 
       }
     }, [])
-    
 
-    //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
+    // //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
+
     useEffect(()=>{
 
       const pageRightDiv = pageRightRef.current!;
       const matrixDiv = matrixRef.current!;  
 
-      if(!pageRightDiv && !matrixDiv) return 
+      if(isPlaying  || (!pageRightDiv && !matrixDiv)) return 
       
       const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
       const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
@@ -134,7 +133,7 @@ const Matricies: React.FC = ()=>{
                     consoleContentState={{consoleContent, setConsoleContent}}
                     matrixRef = {matrixRef}
                     />
-            </section>  
+            </section>    
 
         </div>
         <Test i={matrixRef}/>

@@ -1,14 +1,18 @@
-import React, { SetStateAction, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { matrixItemObject } from '../types/objects';
 import { calculateResize } from '../utils/resizeCanvas';
 import { pos } from '../types/positions';
 import { startStop } from '../types/positions';
 import { transplantMatrix } from '../Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
+import { setMatItemObjMatrix, setStartStop } from '../types/setState';
 
+
+//Matrix refers to the matrix that is displayed on the page. This could be the canvas matrix, or for matricies the matrix itself.
 const useCanvasResize = (pageRightDiv:HTMLDivElement, matrixDiv:HTMLDivElement, matrixDim:pos, 
-        startEndPos: startStop, setMatrix: React.Dispatch<SetStateAction<matrixItemObject[][]>>, 
-        setStartEndPos: React.Dispatch<SetStateAction<startStop>>, dependancies:any[]):void => {
-
+        startEndPos: startStop, setMatrix: setMatItemObjMatrix, 
+        setStartEndPos:setStartStop, dependancies:any[]= []):void => {
+    
+  console.log(dependancies)
   useEffect(() => {
     // const pageRightDiv = pageRightRef.current!;
     // const matrixDiv = matrixRef.current!;

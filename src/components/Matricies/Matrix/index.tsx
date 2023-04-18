@@ -27,25 +27,16 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     const [wallColor, setWallColor] = useState<string>('')
     
     //We might be able to bust these out into a custom hook and reuse them 
-    const { startColor, 
-        setStartColor,
-        shortestPathColor, 
-        setShortestPathColor,
-        editColorModal , 
-        setEditColorModal,
-        endColor, 
-        setEndColor,
-        
-    } = useEditColorStates();
+    const { startColor, setStartColor, shortestPathColor, setShortestPathColor, editColorModal , setEditColorModal, endColor, setEndColor } = useEditColorStates();
         
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
 
 
     return(
-        <div id='matrix-tab' className="fdc univ-padding" >
+        <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
 
-                <div id='swap-colors-toolbar fdr'>
+                {/* <div id='swap-colors-toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
                     <button className="tile" ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
@@ -54,7 +45,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                </div>
+                </div> */}
                 <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
