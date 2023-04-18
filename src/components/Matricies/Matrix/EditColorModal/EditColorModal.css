@@ -1,0 +1,10 @@
+
+.edit-color-modal{
+    margin-left:1rem;
+    height:100%;
+}
+.edit-color-tile{
+    width: 28px;
+    height: 28px;
+    border:1px var(--color-tile-blue) solid;
+  }

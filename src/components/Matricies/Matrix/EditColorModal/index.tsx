@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EditTileColorModal from './EditTileColorModal';
+import './EditColorModal.css'
 
 interface Props {
     position: { left: number; top: number };
@@ -22,29 +23,30 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, color1, colo
       e.stopPropagation();
       e.preventDefault();
       const button = e.target as HTMLButtonElement;
-      const { offsetLeft, offsetTop } = button;
-      setSubModalPos({ left: offsetLeft, top: offsetTop });
+      const { offsetLeft, offsetWidth, offsetTop, offsetHeight } = button;
+      setSubModalPos(prev => ({ left: position.left + offsetLeft + offsetWidth, top: position.top + offsetTop + offsetHeight }));
       setTileColorModal(true);
     };
   
     return (
       <div className="modal">
         <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(false)}>
-          <div className="modal-content fdc sb"
-               style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
-          >
-            <button className="edit-color-tile" onClick={handleOnClick}>
-              Color 1
-            </button>
-            <button className="edit-color-tile" onClick={handleOnClick}>
-              Color 2
-            </button>
-            <button className="edit-color-tile" onClick={handleOnClick}>
-              Color 3
-            </button>
-            <button className="edit-color-tile" onClick={handleOnClick}>
-              Color 4
-            </button>
+          <div className="modal-content" style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}>
+            <div className="edit-color-modal fdc sb">
+
+              <button className="edit-color-tile" onClick={handleOnClick}>
+                Color 1
+              </button>
+              <button className="edit-color-tile" onClick={handleOnClick}>
+                Color 2
+              </button>
+              <button className="edit-color-tile" onClick={handleOnClick}>
+                Color 3
+              </button>
+              <button className="edit-color-tile" onClick={handleOnClick}>
+                Color 4
+              </button>
+            </div>
           </div>
         </div>
         {tileColorModal && <EditTileColorModal position={{left: subModalPos.left, top:subModalPos.top}} editTileState={{tileColorModal, setTileColorModal}}/>}

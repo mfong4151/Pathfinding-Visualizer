@@ -260,8 +260,3 @@ code {
   transform:rotate(180deg)
 }
 
-.edit-color-tile{
-  width: 28px;
-  height: 28px;
-  border:1px var(--color-tile-blue) solid;
-}

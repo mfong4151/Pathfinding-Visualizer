@@ -11,6 +11,8 @@ interface Props {
 
 const EditTileColorModal: React.FC<Props> = ({ position, editTileState}) => {
 
+    const customStyle = { left: position.left, top: position.top, height:`40px`, width:`200px`}
+
     const handleOnClick = (e:any):void =>{
       e.stopPropagation();
       e.preventDefault();
@@ -23,7 +25,7 @@ const EditTileColorModal: React.FC<Props> = ({ position, editTileState}) => {
         >
           <div className="modal-overlay" onClick={() => editTileState.setTileColorModal(prev => false)}>
             <div className="modal-content" 
-                  style={{ left: position.left, top: position.top, height:`40px`, width:`200px`}}
+                  style={customStyle}
                   onClick={handleOnClick}
                   >
               <SliderPicker/>
