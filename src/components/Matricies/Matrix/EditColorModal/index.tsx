@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useState } from "react";
+import EditTileColorModal from './EditTileColorModal';
 
 interface ModalProps {
     position: { left: number; top: number };
@@ -13,45 +14,38 @@ interface ModalProps {
     
   }
   
-const EditColorModal: React.FC<ModalProps> = ({ position, colorModalState, color1, color2, color3, color4}) => {
-  const color1Ref = useRef<HTMLButtonElement>(null);
-  const color2Ref = useRef<HTMLButtonElement>(null);
-  const color3Ref = useRef<HTMLButtonElement>(null);
-  const color4Ref = useRef<HTMLButtonElement>(null);
-
-
-
-  const handleOnClick = (e:any):void =>{
-    e.stopPropagation();
-    e.preventDefault();
-    
-  }
-
+const EditColorModal: React.FC = () => {
+    const [position, setPosition] = useState<{left: number; top: number}>({left: 0, top: 0});
+    const [tileColorModal, setTileColorModal] = useState(false);
+  
+    const handleOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      const button = event.target as HTMLButtonElement;
+      const { offsetLeft, offsetTop } = button;
+      setPosition({ left: offsetLeft, top: offsetTop });
+      setTileColorModal(true);
+    };
+  
     return (
-      <div
-        className="modal"
-      >
-        <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(prev => false)}>
-          <div className="modal-content fdc sb" 
-                style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
-                onClick={handleOnClick}
-                >
-                
-                <button className="edit-color-tile" style={{backgroundColor:color1}} ref={color1Ref}>
-
-                </button>
-                <button className="edit-color-tile" style={{backgroundColor:color2}} ref={color2Ref}>
-
-                </button>
-                <button className="edit-color-tile" style={{backgroundColor:color3}} ref={color3Ref}>
-
-                </button>
-                <button className="edit-color-tile" style={{backgroundColor:color4}} ref={color4Ref}>
-
-                </button>
-
-            </div>
+      <div className="modal">
+        <div className="modal-overlay" onClick={() => setTileColorModal(false)}>
+          <div className="modal-content fdc sb"
+               style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
+          >
+            <button className="edit-color-tile" onClick={handleOnClick}>
+              Color 1
+            </button>
+            <button className="edit-color-tile" onClick={handleOnClick}>
+              Color 2
+            </button>
+            <button className="edit-color-tile" onClick={handleOnClick}>
+              Color 3
+            </button>
+            <button className="edit-color-tile" onClick={handleOnClick}>
+              Color 4
+            </button>
+          </div>
         </div>
+        {tileColorModal && <EditTileColorModal position={{left: position.left, top:position.top}} />}
       </div>
     );
   };

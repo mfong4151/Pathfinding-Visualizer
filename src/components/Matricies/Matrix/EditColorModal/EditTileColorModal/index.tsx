@@ -2,13 +2,10 @@ import { SliderPicker } from "@hello-pangea/color-picker";
 
 interface Props {
     position: { left: number; top: number };
-    tileColorState:{
-      editColorModal:boolean;
-      setEditColorModal:React.Dispatch<React.SetStateAction<boolean>>
-    }
+
   }
 
-const EditTileColorModal: React.FC<Props> = ({ position, tileColorState}) => {
+const EditTileColorModal: React.FC<Props> = ({ position}) => {
 
     const handleOnClick = (e:any):void =>{
       e.stopPropagation();
@@ -20,7 +17,7 @@ const EditTileColorModal: React.FC<Props> = ({ position, tileColorState}) => {
         <div
           className="modal"
         >
-          <div className="modal-overlay" onClick={() => tileColorState.setEditColorModal(prev => false)}>
+          <div className="modal-overlay" onClick={() => {}}>
             <div className="modal-content" 
                   style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}
                   onClick={handleOnClick}
