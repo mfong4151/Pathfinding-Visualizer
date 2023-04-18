@@ -79,9 +79,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     <div id='banner' className='sb fdr'>
         <div className='udc fdr univ-padding banner-holder'>
           
-          <button  
-              className='sq-buttons hover-over banner-button udc'
-              onClick={handleOnClick}>
+          <button className='sq-buttons hover-over banner-button udc' onClick={handleOnClick}>
               Reset Matrix
           </button>
 

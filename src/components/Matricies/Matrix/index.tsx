@@ -36,7 +36,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
         <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
 
-                {/* <div id='swap-colors-toolbar fdr'>
+                <div id='swap-colors-toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
                     <button className="tile" ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
@@ -45,7 +45,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                </div> */}
+                </div>
                 <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 

@@ -77,7 +77,6 @@ const Matricies: React.FC = ()=>{
     // //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
     //I use the useEffect here because the matrix isn't resizing properly on first render.
 
-
     useEffect(()=>{
 
       const pageRightDiv = pageRightRef.current!;

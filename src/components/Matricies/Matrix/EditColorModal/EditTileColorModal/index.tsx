@@ -26,7 +26,7 @@ const EditTileColorModal: React.FC<Props> = ({ position, editTileState}) => {
           <div className="modal-overlay" onClick={() => editTileState.setTileColorModal(prev => false)}>
             <div className="modal-content" style={customStyle}  onClick={handleOnClick}
                   >
-              {/* <SliderPicker onChange={}/> */}
+              <SliderPicker />
               </div>
           </div>
         </div>
