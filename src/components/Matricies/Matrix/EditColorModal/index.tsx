@@ -31,8 +31,8 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, color1, colo
     return (
       <div className="modal">
         <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(false)}>
-          <div className="modal-content" style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}>
-            <div className="edit-color-modal fdc sb">
+          <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}>
+            <div className="edit-color-buttons fdc sb">
 
               <button className="edit-color-tile" onClick={handleOnClick}>
                 Color 1

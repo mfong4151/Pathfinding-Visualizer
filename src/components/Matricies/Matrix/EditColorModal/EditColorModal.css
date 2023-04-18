@@ -1,7 +1,12 @@
 
 .edit-color-modal{
+    display: flex;
+    align-items: center;
+}
+
+.edit-color-buttons{
     margin-left:1rem;
-    height:100%;
+    height:80%;
 }
 .edit-color-tile{
     width: 28px;
