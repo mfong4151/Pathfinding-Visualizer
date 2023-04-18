@@ -44,7 +44,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     return(
         <div id='matrix-tab' className="fdc univ-padding" >
             <DndProvider backend={HTML5Backend}>
-
+{/* 
                 <div id='swap-colors-toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
@@ -54,7 +54,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                </div>
+                </div> */}
                 <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
@@ -73,7 +73,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                    {editColorModal && <EditColorModal 
+                    {/* {editColorModal && <EditColorModal 
                                             position={{left:startPosBtnRef.current!.offsetLeft, 
                                                         top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
                                             colorModalState={{editColorModal, setEditColorModal}}
@@ -82,7 +82,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                             color3={"placeholder"}
                                             color4={"placeholder"}
                                         
-                                        />}
+                                        />} */}
 
                 </div>
 
