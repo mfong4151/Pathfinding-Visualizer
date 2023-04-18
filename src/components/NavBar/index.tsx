@@ -38,20 +38,21 @@ const NavBar = () => {
         </li> */}
       </ul>
       <div className="sb my-links-holder">
-        <a href="https://www.linkedin.com/in/mfong415/"
-                  target="_blank" 
-                  className='a-link-spacing' 
-                  >
-                    <img src={github} className='github-linkedin-header'/>
-                </a>
+
 
 
                 <a  href="https://www.github.com/mfong4151/"
                      target="_blank" 
                     className='a-link-spacing' 
                 >
-                    <img src={linkedin} className='github-linkedin-header'/>
+                    <img src={github} className='github-linkedin-header'/>
         </a>
+        <a href="https://www.linkedin.com/in/mfong415/"
+                  target="_blank" 
+                  className='a-link-spacing' 
+                  >
+                    <img src={linkedin} className='github-linkedin-header'/>
+                </a>
       </div>
     </nav>
     

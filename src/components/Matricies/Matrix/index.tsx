@@ -45,7 +45,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
         <div id='matrix-tab' className="fdc univ-padding" >
             <DndProvider backend={HTML5Backend}>
 
-                <div id='swap-colors-toolbar fdr'>
+                {/* <div id='swap-colors-toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
                     <button className="tile" ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
@@ -54,7 +54,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                </div>
+                </div> */}
                 <div className='toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
@@ -73,10 +73,16 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
 
                     </div>
 
-                    {editColorModal && <EditColorModal 
-                                                position={{left:startPosBtnRef.current!.offsetLeft, 
-                                                            top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
-                                                colorModalState={{editColorModal, setEditColorModal}}/>}
+                    {/* {editColorModal && <EditColorModal 
+                                            position={{left:startPosBtnRef.current!.offsetLeft, 
+                                                        top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
+                                            colorModalState={{editColorModal, setEditColorModal}}
+                                            color1={"placeholder"}
+                                            color2={"placeholder"}
+                                            color3={"placeholder"}
+                                            color4={"placeholder"}
+                                        
+                                        />} */}
 
                 </div>
 
