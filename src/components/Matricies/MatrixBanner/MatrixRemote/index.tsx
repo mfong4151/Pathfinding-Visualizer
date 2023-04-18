@@ -212,7 +212,11 @@ return (
     <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
       <SkipBack/>
     </button>
-    {
+
+    <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
+          <Play/>
+      </button> 
+    {/* {
       !isPlaying 
         ? <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
           <Play/>
@@ -221,7 +225,7 @@ return (
         :<button id='pause' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
           <Pause/>
         </button>
-      }
+      } */}
 
     <button 
         id='fast-forward' 
