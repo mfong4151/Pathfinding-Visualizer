@@ -86,7 +86,6 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                                         top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
                                             colorModalState={{editColorModal, setEditColorModal}}
                                             colorStates = {{
-                                                    
                                                             color1,
                                                             color2,
                                                             color3,
@@ -95,14 +94,6 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                                             setColor2, 
                                                             setColor3, 
                                                             setColor4, 
-                                                            shortestPathColor, 
-                                                            setShortestPathColor,
-                                                            editColorModal , 
-                                                            setEditColorModal,
-                                                            customTransition,
-                                                            setCustomTransition
-   
-
                                                         }}
                                         
                                         />}

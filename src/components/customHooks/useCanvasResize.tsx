@@ -12,7 +12,6 @@ const useCanvasResize = (pageRightDiv:HTMLDivElement, matrixDiv:HTMLDivElement, 
         startEndPos: startStop, setMatrix: setMatItemObjMatrix, 
         setStartEndPos:setStartStop, dependancies:any[]= []):void => {
     
-  console.log(dependancies)
   useEffect(() => {
     // const pageRightDiv = pageRightRef.current!;
     // const matrixDiv = matrixRef.current!;
