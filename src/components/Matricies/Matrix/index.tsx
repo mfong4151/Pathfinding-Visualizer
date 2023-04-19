@@ -27,7 +27,24 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     const [wallColor, setWallColor] = useState<string>('')
     
     //We might be able to bust these out into a custom hook and reuse them 
-    const { startColor, setStartColor, shortestPathColor, setShortestPathColor, editColorModal , setEditColorModal, endColor, setEndColor } = useEditColorStates();
+    const {
+       
+        color1,
+        color2,
+        color3,
+        color4,
+        setColor1, 
+        setColor2, 
+        setColor3, 
+        setColor4, 
+        shortestPathColor, 
+        setShortestPathColor,
+        editColorModal , 
+        setEditColorModal,
+        customTransition,
+        setCustomTransition
+   
+       }= useEditColorStates();
         
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -68,10 +85,25 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                             position={{left:startPosBtnRef.current!.offsetLeft, 
                                                         top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
                                             colorModalState={{editColorModal, setEditColorModal}}
-                                            color1={"placeholder"}
-                                            color2={"placeholder"}
-                                            color3={"placeholder"}
-                                            color4={"placeholder"}
+                                            colorStates = {{
+                                                    
+                                                            color1,
+                                                            color2,
+                                                            color3,
+                                                            color4,
+                                                            setColor1, 
+                                                            setColor2, 
+                                                            setColor3, 
+                                                            setColor4, 
+                                                            shortestPathColor, 
+                                                            setShortestPathColor,
+                                                            editColorModal , 
+                                                            setEditColorModal,
+                                                            customTransition,
+                                                            setCustomTransition
+   
+
+                                                        }}
                                         
                                         />}
 
