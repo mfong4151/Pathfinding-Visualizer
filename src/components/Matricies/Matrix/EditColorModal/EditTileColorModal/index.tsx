@@ -21,7 +21,9 @@ const EditTileColorModal: React.FC<Props> = ({ position, editTileState, activeCo
       e.preventDefault();
       
     }
-  
+    
+
+    //Dont try and simplify this, color picker is picky about how the on change is given
     const handleOnChange = (colorResult: ColorResult):void =>{
       setColor!(prev => colorResult.hex)
     }

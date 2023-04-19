@@ -58,18 +58,11 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
           <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}>
             <div className="edit-color-buttons fdc sb">
 
-              <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}>
-                Color 1
-              </button>
-              <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}>
-                Color 2
-              </button>
-              <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}>
-                Color 3
-              </button>
-              <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}>
-                Color 4
-              </button>
+              <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}/>
+              <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}/>
+              <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}/>
+              <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}/>
+              
             </div>
           </div>
         </div>
