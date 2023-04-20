@@ -25,7 +25,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     const {matrix} = matrixState;
     const [mouseDown, setMouseDown] = useState<boolean>(false);
     const [wallColor, setWallColor] = useState<string>('')
-    
+    const {setConsoleContent} = consoleContentState;
     //We might be able to bust these out into a custom hook and reuse them 
     const{ 
         color1,
@@ -53,13 +53,16 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
             <DndProvider backend={HTML5Backend}>
 
                 <div id='swap-colors-toolbar fdr'>
-                    <div className="hover-over drag-icon-holder udc fdc">
+                    <div className="hover-over drag-icon-holder udc fdc" 
+                        onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
+                        onMouseLeave={()=> setConsoleContent([])}
+                        >
 
                         <button className="tile" style={{backgroundColor: color1}} ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
                             
                         </button>
                         <p>
-                            Change your color
+                            Change your colors!
                         </p>
                     </div>
 
