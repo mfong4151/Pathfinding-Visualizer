@@ -27,8 +27,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
     const [wallColor, setWallColor] = useState<string>('')
     
     //We might be able to bust these out into a custom hook and reuse them 
-    const {
-       
+    const{ 
         color1,
         color2,
         color3,
@@ -56,10 +55,12 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                 <div id='swap-colors-toolbar fdr'>
                     <div className="hover-over drag-icon-holder udc fdc">
 
-                    <button className="tile" ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
-                        Button
-                    </button>
-
+                        <button className="tile" style={{backgroundColor: color1}} ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
+                            
+                        </button>
+                        <p>
+                            Change your color
+                        </p>
                     </div>
 
                 </div>
@@ -85,17 +86,8 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                             position={{left:startPosBtnRef.current!.offsetLeft, 
                                                         top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
                                             colorModalState={{editColorModal, setEditColorModal}}
-                                            colorStates = {{
-                                                            color1,
-                                                            color2,
-                                                            color3,
-                                                            color4,
-                                                            setColor1, 
-                                                            setColor2, 
-                                                            setColor3, 
-                                                            setColor4, 
-                                                        }}
-                                        
+                                            colorStates = {{ color1, color2, color3, color4, setColor1, setColor2,setColor3,setColor4}}
+                            
                                         />}
 
                 </div>

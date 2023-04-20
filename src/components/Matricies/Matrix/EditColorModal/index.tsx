@@ -32,11 +32,9 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
           break
         case 'color2':
           activeColorRef.current = {color: color2, setColor: setColor2}
-
           break
         case 'color3':
           activeColorRef.current = {color: color3, setColor: setColor3}
-
           break
         case 'color4':
           activeColorRef.current = {color: color4, setColor: setColor4}
@@ -45,7 +43,6 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
           activeColorRef.current = null
           break
       }
-
 
       const { offsetLeft, offsetWidth, offsetTop, offsetHeight } = button;
       setSubModalPos(prev => ({ left: position.left + offsetLeft + offsetWidth, top: position.top + offsetTop + offsetHeight }));
@@ -62,7 +59,7 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
               <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}/>
               <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}/>
               <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}/>
-              
+
             </div>
           </div>
         </div>

@@ -13,3 +13,8 @@
     height: 28px;
     border:1px var(--color-tile-blue) solid;
   }
+
+.color-picker-modal{
+    width: 200px;
+    height:40px;
+}
