@@ -18,3 +18,14 @@
     width: 200px;
     height:40px;
 }
+
+.change-color-holder{
+    width:auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.change-color-holder > p{
+    color: var(--color-black-foreground);
+}

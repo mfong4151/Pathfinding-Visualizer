@@ -52,30 +52,30 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
     return (
       <div className="modal">
         <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(false)}>
-          <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top, height:`200px`, width:`200px`}}>
+          <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top}}>
             <div className="edit-color-buttons fdc sb">
-              <div className="change-color-holder">
+              <div className="change-color-holder"> 
 
                 <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}/>
-                 <p className="change-color-text">Start color</p>
+                 <p>Start color</p>
                 
               </div>
-              <div className="change-color-holder">
+              <div className="change-color-holder"> 
 
                 <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}/>
-                 <p className="change-color-text">Transition color 1</p>
+                 <p>Transition color 1</p>
                 
               </div>
-              <div className="change-color-holder">
+              <div className="change-color-holder"> 
                 <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}/>
-                 <p className="change-color-text">Transition color 2</p>
+                 <p>Transition color 2</p>
 
                 
               </div>
-              <div className="change-color-holder">
+              <div className="change-color-holder"> 
 
                 <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}/>
-                 <p className="change-color-text">End color</p>
+                 <p>End color</p>
                 
               </div>
 
