@@ -11,7 +11,7 @@ interface Props {
       setEditColorModal:React.Dispatch<React.SetStateAction<boolean>>
     }
    colorStates: ColorStates
-  }
+}
 
 
 const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}) => {
@@ -86,7 +86,7 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
                               position={{left: subModalPos.left, top:subModalPos.top}} 
                               editTileState={{tileColorModal, setTileColorModal}}
                               activeColor = {activeColorRef.current}
-                              />}
+                          />}
       </div>
     );
   };
