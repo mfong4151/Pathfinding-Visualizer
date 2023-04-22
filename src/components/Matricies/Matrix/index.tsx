@@ -9,6 +9,7 @@ import { consoleContentState, matrixState } from "../../types/state";
 import { matrixItemObject } from "../../types/objects";
 import EditColorModal from "./EditColorModal";
 import useEditColorStates from "../../customHooks/useCustomColorStates";
+import DragDropTotems from "./DragDropTotems";
 
 export interface Props{
     matrixState:matrixState;
@@ -47,18 +48,21 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
         
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
 
-
     return(
         <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
                 <div id='toolbar' className="sb">
-                    <div id='toolbar-left sb'>
+                    <div id='toolbar-left'>
                         <div className="hover-over drag-icon-holder udc fdc" 
                             onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
                             onMouseLeave={()=> setConsoleContent([])}
                             >
 
-                            <button className="tile" style={{backgroundColor: color1}} ref={startPosBtnRef} onClick={() =>setEditColorModal(prev => true)}>
+                            <button className="tile" 
+                                    style={{backgroundColor: color1}} 
+                                    ref={startPosBtnRef} 
+                                    onClick={() =>setEditColorModal(prev => true)}
+                                >
 
                             </button>
                             <p>
@@ -68,28 +72,11 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                     </div>
 
 
-               
-                <div className='toolbar-right fdr'>
-                    <div className="hover-over drag-icon-holder udc fdc">
+                    <DragDropTotems/>
 
-                         <SvgTotem totemType='s'/>
-                         <p className="toolbar-text">Start</p>
-                         
-                    </div>
-                    <div className="hover-over drag-icon-holder udc fdc">
-                         <SvgTotem totemType='e'/>
-                         <p className="toolbar-text">Stop</p>
-
-                    </div>
-                    <div className="hover-over drag-icon-holder udc fdc">
-                        <CellTotem totemType='w'/>
-                        <p className="toolbar-text">Wall Color</p>
-
-                    </div>
-
-
-                    </div>
                 </div>
+
+              
                 <div id="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
                     onMouseUp={()=> setMouseDown(prev => false )}
                     onMouseLeave={()=> setMouseDown(prev => false )}
