@@ -73,7 +73,8 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                 </div>
 
               
-                <div id="matrix" onMouseDown={()=> setMouseDown(prev => true)} 
+                <div id="matrix" 
+                    onMouseDown={()=> setMouseDown(prev => true)} 
                     onMouseUp={()=> setMouseDown(prev => false )}
                     onMouseLeave={()=> setMouseDown(prev => false )}
                     ref={matrixRef}
