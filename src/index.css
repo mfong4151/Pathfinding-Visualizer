@@ -224,7 +224,7 @@ code {
 
 /* Refers to toolbar thats above the matrix/canvas */
 
-.toolbar{ 
+.toolbar-right{ 
   display: flex;
   justify-content: end;
   margin-left:2rem;
