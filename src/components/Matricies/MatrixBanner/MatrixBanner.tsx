@@ -69,7 +69,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
   useEffect(()=>{
     if(chosenAlgo !== 'Choose your algorithm')
-       consoleContentState.setConsoleContent(prev => ([matrixDescriptions[chosenAlgo]]))
+       consoleContentState.setConsoleContent(prev => (matrixDescriptions[chosenAlgo]))
 
   }, [chosenAlgo])
 
