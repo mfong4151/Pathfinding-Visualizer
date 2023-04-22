@@ -33,6 +33,10 @@ const Matricies: React.FC = ()=>{
     const adjBarRef = useRef<HTMLDivElement>(null);
     const matrixRef = useRef<any>();
 
+    useEffect(() => {
+      matrixRef.current = document.getElementById("matrix");
+    }, [matrix])
+    
 
     useEffect(()=>{
 

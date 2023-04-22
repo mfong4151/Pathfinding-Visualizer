@@ -108,7 +108,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
                   consoleContentState={consoleContentState}
                   isPlaying={isPlaying}
                   setIsPlaying={setIsPlaying}
-                  
+                  matrixDiv={matrixDiv}
                   />
 
         </div>

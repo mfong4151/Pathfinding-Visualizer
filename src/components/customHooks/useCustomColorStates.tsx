@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { setBoolean, setString } from "../types/setState"
 
 type states = {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import {FC, useRef, useState } from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
 import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
@@ -22,7 +22,7 @@ export interface Props{
 } 
 
 
-const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleContentState, matrixRef})=>{
+const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState, matrixRef})=>{
     const {matrix} = matrixState;
     const [mouseDown, setMouseDown] = useState<boolean>(false);
     const [wallColor, setWallColor] = useState<string>('')
@@ -78,7 +78,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                     onMouseUp={()=> setMouseDown(prev => false )}
                     onMouseLeave={()=> setMouseDown(prev => false )}
                     ref={matrixRef}
-                    >
+                >
                     {matrix.map((row : matrixItemObject[], y: number)=>   
                         <div id={`row-${y}`} className='udc' key={y}>
                             {
