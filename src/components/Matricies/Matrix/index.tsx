@@ -52,7 +52,7 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
         <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
                 <div id='toolbar' className="sb">
-                    <div id='toolbar-left'>
+                    {/* <div id='toolbar-left'>
                         <div className="hover-over drag-icon-holder udc fdc" 
                             onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
                             onMouseLeave={()=> setConsoleContent([])}
@@ -62,14 +62,10 @@ const GraphMatrix: React.FC<Props> = ({matrixState, startEndState, consoleConten
                                     style={{backgroundColor: color1}} 
                                     ref={startPosBtnRef} 
                                     onClick={() =>setEditColorModal(prev => true)}
-                                >
-
-                            </button>
-                            <p>
-                                Change your colors!
-                            </p>
+                                />
+                            <p> Change your colors! </p>
                         </div>
-                    </div>
+                    </div> */}
 
 
                     <DragDropTotems/>

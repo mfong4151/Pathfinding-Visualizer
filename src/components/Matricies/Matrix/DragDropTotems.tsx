@@ -20,7 +20,7 @@ const DragDropTotems:FC = () => {
         </div>
         <div className="hover-over drag-icon-holder udc fdc">
             <CellTotem totemType='w'/>
-            <p className="toolbar-text">Wall Color</p>
+            <p className="toolbar-text">Walls</p>
 
         </div>
 

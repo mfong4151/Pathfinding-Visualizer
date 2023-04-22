@@ -138,7 +138,6 @@ const Matricies: React.FC = ()=>{
             </section>    
 
         </div>
-        <Test i={matrixRef}/>
       </div>
     );
 
