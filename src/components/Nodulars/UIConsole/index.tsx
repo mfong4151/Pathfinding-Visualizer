@@ -15,7 +15,7 @@ const UIConsole: React.FC<Props> = ({ consoleContent, isPlaying }) => {
     return (
 
     <div id="console">
-      { Object.keys(consoleContent).length > 0 
+      { consoleContent.length > 0 
           ? <RenderedContent consoleContent={consoleContent}/>
           :  <HowTo/> 
       }

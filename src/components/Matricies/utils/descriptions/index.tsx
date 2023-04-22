@@ -19,13 +19,14 @@ const descBestFirstSearch:string[] = ["Now we get to our first heuristic based s
                                     "Best First Search is often implemented with a min-heap as opposed to DFS's and BFS's stacks and queues, by heaping the closest tile first, we can give our best guess and where the next best position is is."
                                     ]
 
-
+const descBiBFS: string[] = []
 const matrixDescriptions: descDict = {
  'DFS': descDFS,
  "Dijkstra's Algorithim": descDijkstras,
  'A*':descAStar,
  'BFS': descBFS,
- 'Best First Search': descBestFirstSearch
+ 'Best First Search': descBestFirstSearch,
+ 'Bidirectional BFS':descBiBFS
 }
 
 export default matrixDescriptions;
