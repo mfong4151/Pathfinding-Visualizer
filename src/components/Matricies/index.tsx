@@ -1,5 +1,5 @@
 import './graphs.css'
-import { useRef, useEffect } from "react";
+import {FC, useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
 import {transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
@@ -9,7 +9,6 @@ import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
 import useMatrixStates from './customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
-import Test from '../../Test';
 import { matrixItemObject } from '../types/objects';
 import { startStop } from '../types/positions';
 import { calculateResize } from '../utils/resizeCanvas';
@@ -18,7 +17,7 @@ import useCanvasResize from '../customHooks/useCanvasResize';
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
 
-const Matricies: React.FC = ()=>{
+const Matricies: FC = ()=>{
     const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
     
