@@ -82,6 +82,8 @@ const EditColorModal:FC<Props> = ({position, colorModalState, colorStates}) => {
 
                   </div>
 
+                  <div className="close-button-holder"/>
+
             </div>
           </div>
         </div>
