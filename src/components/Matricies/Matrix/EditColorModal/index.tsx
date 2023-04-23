@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
-import EditTileColorModal from './EditTileColorModal';
+import { useRef, useState, lazy, FC } from "react";
 import './EditColorModal.css'
 import { ColorStates } from "../../../types/interface";
 import { activeColor } from "../../../types/objects";
+import EditTileColorModal from "./EditTileColorModal";
 
 interface Props {
     position: { left: number; top: number };
@@ -14,7 +14,7 @@ interface Props {
 }
 
 
-const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}) => {
+const EditColorModal:FC<Props> = ({position, colorModalState, colorStates}) => {
     const [subModalPos, setSubModalPos] = useState<{left: number; top: number}>({left: 0, top: 0});
     const {color1, color2, color3, color4, setColor1, setColor2, setColor3, setColor4}=  colorStates;
     const [tileColorModal, setTileColorModal] = useState(false); 
@@ -54,39 +54,42 @@ const EditColorModal:React.FC<Props> = ({position, colorModalState, colorStates}
         <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(false)}>
           <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top}}>
             <div className="edit-color-buttons fdc sb">
-              <div className="change-color-holder"> 
 
-                <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}/>
-                 <p>Start color</p>
-                
-              </div>
-              <div className="change-color-holder"> 
+                  <div className="change-color-holder"> 
 
-                <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}/>
-                 <p>Transition color 1</p>
-                
-              </div>
-              <div className="change-color-holder"> 
-                <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}/>
-                 <p>Transition color 2</p>
+                    <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}/>
+                    <p>Start</p>
 
-                
-              </div>
-              <div className="change-color-holder"> 
+                  </div>
+                  <div className="change-color-holder"> 
 
-                <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}/>
-                 <p>End color</p>
-                
-              </div>
+                    <button id='color2' className="edit-color-tile" style={{backgroundColor:color2}} onClick={handleOnClick}/>
+                     <p>Transition 1</p>
+
+                  </div>
+                  <div className="change-color-holder"> 
+                    <button id='color3' className="edit-color-tile" style={{backgroundColor:color3}} onClick={handleOnClick}/>
+                     <p>Transition 2</p>
+
+
+                  </div>
+                  <div className="change-color-holder"> 
+
+                    <button id='color4' className="edit-color-tile" style={{backgroundColor:color4}} onClick={handleOnClick}/>
+                     <p>End </p>
+
+                  </div>
 
             </div>
           </div>
         </div>
-        {tileColorModal && <EditTileColorModal 
-                              position={{left: subModalPos.left, top:subModalPos.top}} 
-                              editTileState={{tileColorModal, setTileColorModal}}
-                              activeColor = {activeColorRef.current}
-                          />}
+        {tileColorModal && 
+
+                        <EditTileColorModal 
+                                position={{left: subModalPos.left, top:subModalPos.top}} 
+                                editTileState={{tileColorModal, setTileColorModal}}
+                                activeColor = {activeColorRef.current}
+                                />}
       </div>
     );
   };

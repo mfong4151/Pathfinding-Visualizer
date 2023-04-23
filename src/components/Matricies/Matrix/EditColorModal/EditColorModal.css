@@ -2,6 +2,7 @@
 .edit-color-modal{
     display: flex;
     align-items: center;
+    width:160px;
 }
 
 .edit-color-buttons{
@@ -14,17 +15,22 @@
     border:1px var(--color-tile-blue) solid;
   }
 
-.color-picker-modal{
-    width: 200px;
-    height:40px;
-}
+
 
 .change-color-holder{
     width:auto;
     display: flex;
     align-items: center;
+    
 }
 
+.change-color-holder > p{
+    padding-left: 1rem;
+}
+.color-picker-modal{
+    width: 200px;
+    height:40px;
+}
 
 .change-color-holder > p{
     color: var(--color-black-foreground);

@@ -152,6 +152,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const test = ():void =>{
       activeIttr.next()
     }
+    
     switch (buttonId) {
       case 'reset':
         newConsoleContent.push(`Resetting the board so you can play everything again :3`)
