@@ -3,7 +3,7 @@ import './EditColorModal.css'
 import { ColorStates } from "../../../types/interface";
 import { activeColor } from "../../../types/objects";
 import EditTileColorModal from "./EditTileColorModal";
-
+import CloseButton from "../../../SVGS/CloseButton";
 interface Props {
     position: { left: number; top: number };
     colorModalState:{
@@ -54,7 +54,9 @@ const EditColorModal:FC<Props> = ({position, colorModalState, colorStates}) => {
         <div className="modal-overlay" onClick={() => colorModalState.setEditColorModal(false)}>
           <div className="modal-content edit-color-modal" style={{ left: position.left, top: position.top}}>
             <div className="edit-color-buttons fdc sb">
-
+                  <div className="close-button-holder">
+                    <CloseButton/>
+                  </div>
                   <div className="change-color-holder"> 
 
                     <button id='color1' className="edit-color-tile" style={{backgroundColor:color1}} onClick={handleOnClick}/>

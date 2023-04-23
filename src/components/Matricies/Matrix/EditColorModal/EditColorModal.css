@@ -14,7 +14,10 @@
     height: 28px;
     border:1px var(--color-tile-blue) solid;
   }
-
+.close-button-holder{
+    display: flex;
+    justify-content: flex-end;
+}
 
 
 .change-color-holder{
