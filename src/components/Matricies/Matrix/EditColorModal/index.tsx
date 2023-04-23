@@ -3,7 +3,7 @@ import './EditColorModal.css'
 import { ColorStates } from "../../../types/interface";
 import { activeColor } from "../../../types/objects";
 import EditTileColorModal from "./EditTileColorModal";
-import CloseButton from "../../../SVGS/CloseButton";
+import {CloseButton} from "../../../SVGS";
 interface Props {
     position: { left: number; top: number };
     colorModalState:{

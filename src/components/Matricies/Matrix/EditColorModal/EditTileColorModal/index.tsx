@@ -3,6 +3,7 @@ import { activeColor } from "../../../../types/objects";
 import { FC} from "react";
 import { ColorResult, SketchPicker } from "@hello-pangea/color-picker";
 import '../../EditColorModal/EditColorModal.css';
+import {CloseButton} from "../../../../SVGS";
 
 interface Props {
     position: { left: number; top: number };
@@ -36,7 +37,9 @@ const EditTileColorModal: FC<Props> = ({ position, editTileState, activeColor}) 
         <div className="modal" >
           <div className="modal-overlay" onClick={() => editTileState.setTileColorModal(prev => false)}>
             <div className="modal-content color-picker-modal" style={{ left: position.left, top: position.top}}  onClick={handleOnClick}>
-
+                 <div className="close-button-holder">
+                    <CloseButton/>
+                  </div>
                 <SketchPicker onChange={handleOnChange}/>
               </div>
           </div>
