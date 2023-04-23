@@ -37,9 +37,9 @@ const EditTileColorModal: FC<Props> = ({ position, editTileState, activeColor}) 
         <div className="modal" >
           <div className="modal-overlay" onClick={() => editTileState.setTileColorModal(prev => false)}>
             <div className="modal-content color-picker-modal" style={{ left: position.left, top: position.top}}  onClick={handleOnClick}>
-                 <div className="close-button-holder">
+                 {/* <div className="close-button-holder">
                     <CloseButton/>
-                  </div>
+                  </div> */}
                 <SketchPicker onChange={handleOnChange}/>
               </div>
           </div>

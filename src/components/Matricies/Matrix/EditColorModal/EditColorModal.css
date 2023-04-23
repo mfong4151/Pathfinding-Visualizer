@@ -17,6 +17,7 @@
 .close-button-holder{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 
@@ -24,7 +25,7 @@
     width:auto;
     display: flex;
     align-items: center;
-    
+    max-height:36px;
 }
 
 .change-color-holder > p{
