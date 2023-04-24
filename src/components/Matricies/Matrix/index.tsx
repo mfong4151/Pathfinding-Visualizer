@@ -52,7 +52,7 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                 <div id='toolbar' className="sb">
 
                     <div id='toolbar-left' className="udc-left">
-                        <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
+                        {/* <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
                             onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
                             onMouseLeave={()=> setConsoleContent([])}
                             >
@@ -63,7 +63,7 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                                     onClick={() =>setEditColorModal(prev => true)}
                                 />
                             <p> Change your colors! </p>
-                        </div>
+                        </div> */}
 
                         {/* future feature */}
                         {/* <div id="favorite-maps">
