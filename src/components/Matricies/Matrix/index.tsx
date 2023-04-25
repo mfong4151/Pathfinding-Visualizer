@@ -8,8 +8,9 @@ import { matrixItemObject } from "../../types/objects";
 import EditColorModal from "./EditColorModal";
 import useEditColorStates from "../../customHooks/useCustomColorStates";
 import DragDropTotems from "./DragDropTotems";
+import styled, {keyframes} from "styled-components";
 
-export interface Props{
+ interface Props{
     matrixState:matrixState;
     startEndState:{
         startEndPos:startStop;
@@ -43,8 +44,10 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
         setCustomTransition
    
        }= useEditColorStates();
-        
+      
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
+
+
 
     return(
         <div id='matrix-tab' className="fdc univ-padding" >   
@@ -52,7 +55,7 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                 <div id='toolbar' className="sb">
 
                     <div id='toolbar-left' className="udc-left">
-                        {/* <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
+                        <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
                             onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
                             onMouseLeave={()=> setConsoleContent([])}
                             >
@@ -60,10 +63,10 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                             <button className="tile" 
                                     style={{backgroundColor: color1}} 
                                     ref={startPosBtnRef} 
-                                    onClick={() =>setEditColorModal(prev => true)}
+                                    onClick ={() =>setEditColorModal(prev => true)}
                                 />
                             <p> Change your colors! </p>
-                        </div> */}
+                        </div>
 
                         {/* future feature */}
                         {/* <div id="favorite-maps">
