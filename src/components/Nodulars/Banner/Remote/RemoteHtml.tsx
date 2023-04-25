@@ -1,9 +1,9 @@
 import {FC}from 'react'
-import SkipBack from '../../../Nodulars/Banner/Remote/svgs/SkipBack';
-import Play from '../../../Nodulars/Banner/Remote/svgs/Play';
-import Pause from '../../../Nodulars/Banner/Remote/svgs/Pause';
-import FastForward from '../../../Nodulars/Banner/Remote/svgs/Fastforward';
-import SkipForward from '../../../Nodulars/Banner/Remote/svgs/SkipForward';
+import SkipBack from './svgs/SkipBack';
+import Play from './svgs/Play';
+import Pause from './svgs/Pause';
+import FastForward from './svgs/Fastforward';
+import SkipForward from './svgs/SkipForward';
 
 interface Props{
   handleOnClick:(e: React.MouseEvent<HTMLButtonElement>) => void;
