@@ -31,20 +31,20 @@ const useEditColorStates = (): states  => {
     
   return {
        
-     color1,
-     color2,
-     color3,
-     color4,
-     setColor1, 
+    color1,
+    color2,
+    color3,
+    color4,
+    setColor1, 
     setColor2, 
     setColor3, 
     setColor4, 
-     shortestPathColor, 
-     setShortestPathColor,
-     editColorModal , 
-     setEditColorModal,
-     customTransition,
-     setCustomTransition
+    shortestPathColor, 
+    setShortestPathColor,
+    editColorModal , 
+    setEditColorModal,
+    customTransition,
+    setCustomTransition
 
     }
 
