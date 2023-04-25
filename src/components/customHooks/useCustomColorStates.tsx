@@ -14,8 +14,8 @@ type states = {
     setShortestPathColor: setString,
     editColorModal: boolean,
     setEditColorModal: setBoolean,
-    customTransition: boolean,
-    setCustomTransition: setBoolean,
+    customTransition: string,
+    setCustomTransition: setString,
 }
 
 const useEditColorStates = (): states  => {
@@ -27,7 +27,7 @@ const useEditColorStates = (): states  => {
 
     const [shortestPathColor, setShortestPathColor] = useState<string>('')
     const [editColorModal , setEditColorModal] = useState<boolean>(false);
-    const [customTransition, setCustomTransition] = useState<boolean>(false)
+    const [customTransition, setCustomTransition] = useState<string>('')
     
   return {
        

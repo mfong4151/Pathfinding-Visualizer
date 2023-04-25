@@ -42,11 +42,11 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
         setEditColorModal,
         customTransition,
         setCustomTransition
-   
+        
        }= useEditColorStates();
       
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
-
+    
 
 
     return(
