@@ -1,4 +1,10 @@
-# Background
+## Live Link
+
+http://maxfongdev.com/DSA-Visualizer/
+
+As of now, only the matricies section is availible for public release.
+
+## Background
 
 This project is as much a TypeScript project, as a Frontend project, as a DSA project. The main design of this  visualizer for several common data structures and algorithms, including matrices, graph nodes, trees, and linked lists. As of right now, only matricies are implemented. I’ve loved working with React, and I felt like this would be a good way to pick up TypeScript. 
 
@@ -7,12 +13,6 @@ This project is open to collaborators, please message me before making any pull 
 ![](https://github.com/mfong4151/DSA-Visualizer/blob/main/gifs/bfsbi.gif)
 
 ![](https://github.com/mfong4151/DSA-Visualizer/blob/main/gifs/bestfirstSearch.gif)
-
-## Live Link
-
-http://maxfongdev.com/DSA-Visualizer/
-
-As of now, only the matricies section is availible for public release.
 
 ## How to use: Matricies
 
