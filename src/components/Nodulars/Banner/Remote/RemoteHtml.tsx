@@ -20,7 +20,7 @@ const RemoteHtml:FC<Props> = ({handleOnClick, isPlaying}) => {
         <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
               <Play/>
           </button> 
-        {
+        {/* {
           !isPlaying 
             ? <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
               <Play/>
@@ -29,7 +29,7 @@ const RemoteHtml:FC<Props> = ({handleOnClick, isPlaying}) => {
             :<button id='pause' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
               <Pause/>
             </button>
-          }
+          } */}
     
         <button 
             id='fast-forward' 

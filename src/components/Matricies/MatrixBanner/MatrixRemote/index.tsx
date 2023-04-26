@@ -13,6 +13,7 @@ import SkipForward from '../../../Nodulars/Banner/Remote/svgs/SkipForward';
 import Pause from '../../../Nodulars/Banner/Remote/svgs/Pause';
 import { inShortestPathExclusions } from './utils/graphUtils';
 import { forwardConsoleMsgs } from './utils/remoteUtils';
+import RemoteHtml from '../../../Nodulars/Banner/Remote/RemoteHtml';
 
 interface Props{
     chosenAlgo: string;
@@ -208,41 +209,8 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   },[chosenAlgo])
 
+  return (<RemoteHtml handleOnClick={handleOnClick} isPlaying={isPlaying}/>)
 
-return (
-  <div id='remote' className='fdr se'>
-    <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
-      <SkipBack/>
-    </button>
-
-    <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
-          <Play/>
-      </button> 
-    {
-      !isPlaying 
-        ? <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
-          <Play/>
-        </button> 
-
-        :<button id='pause' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
-          <Pause/>
-        </button>
-      }
-
-    <button 
-        id='fast-forward' 
-        className='remote-btn sq-buttons udc' 
-        onClick={handleOnClick}
-      >
-
-      <FastForward/>
-    </button>
-
-    <button id='skip-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
-      <SkipForward/>
-    </button>
-  </div>
-);
 }
 
 
