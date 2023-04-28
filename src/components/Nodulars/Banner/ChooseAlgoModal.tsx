@@ -26,9 +26,10 @@ const MAP_LOCATION: MapLocation = {
 }
 
 const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, chooseAlgoButton}) => {
+  const MANUAL_OFFSET_X: number = 8;
   const {chosenAlgo, setChosenAlgo} = chooseAlgoState; 
   const {chooseAlgoModal, setChooseAlgoModal} = chooseModalState;
-  const posLeft: string = `${chooseAlgoButton.offsetLeft}px`
+  const posLeft: string = `${chooseAlgoButton.offsetLeft - MANUAL_OFFSET_X}px`
   const posTop: string = `${chooseAlgoButton.offsetTop +chooseAlgoButton.offsetHeight}px`
   const divWidth: string=  `${chooseAlgoButton.offsetWidth}px`
   const location = useLocation();
