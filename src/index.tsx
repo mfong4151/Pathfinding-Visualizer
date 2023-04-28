@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+console.log(window)
 root.render(
   <React.StrictMode>
     <HashRouter>
