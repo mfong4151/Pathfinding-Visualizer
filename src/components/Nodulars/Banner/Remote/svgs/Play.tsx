@@ -8,6 +8,7 @@ const Play:FC = () => (
     version="1.1" 
     xmlns="http://www.w3.org/2000/svg" 
 	viewBox="0 0 58.752 58.752"
+    className="svg-style"
     >
     <g>
 	    <path d="M52.524,23.925L12.507,0.824c-1.907-1.1-4.376-1.097-6.276,0C4.293,1.94,3.088,4.025,3.088,6.264v46.205
