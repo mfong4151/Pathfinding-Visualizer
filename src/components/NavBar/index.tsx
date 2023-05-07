@@ -11,11 +11,11 @@ const NavBar = () => {
      <div className='my-links-holder'/>
 
       <ul>
-        <li>
+        {/* <li>
           <NavLink to="/" className="activeLink">
             Home
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/matricies" className="activeLink">
             Matricies
