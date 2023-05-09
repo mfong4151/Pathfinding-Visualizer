@@ -1,4 +1,4 @@
-import { useRef, useState, lazy, FC } from "react";
+import { useRef, useState, FC } from "react";
 import './EditColorModal.css'
 import { ColorStates } from "../../../types/interface";
 import { activeColor } from "../../../types/objects";

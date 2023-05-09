@@ -15,6 +15,7 @@
     border:1px var(--color-tile-blue) solid;
   }
 .close-button-holder{
+    margin-top:.5rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
