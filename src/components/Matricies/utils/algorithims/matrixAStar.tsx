@@ -19,7 +19,7 @@ import Heap from "heap-js";
 import DIRS from "./dirs";
 
 
-export class AStar   extends matrixHeuristicSearch{
+export class AStar extends matrixHeuristicSearch{
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
@@ -35,29 +35,6 @@ export class AStar   extends matrixHeuristicSearch{
 
     public preformFullAlgo(): matrixItemObject[] {
         
-        while (this.open.length){
-            
-            const currPair: minHeapItem = this.open.pop()!; //figure out how to type this later
-            const curr: matrixItemObject = currPair[1];
-            const {pos} = curr;
-            const [x, y] = pos;
-
-            if (this.outOfRangeOrVisited(x, y)) continue
-            this.visited.add(`${x},${y}`)
-            this.res.push(curr)
-            
-            this.evaluateEnd(curr)
-            if (this.endFound){
-                this.markEndPrev(curr, x, y)
-                break;
-            }
-
-            for(const [dx, dy] of DIRS){
-                const next:matrixItemObject = {pos:[x + dx, y + dy] , prev:pos} 
-                this.open.push([this.manhattanHeuristic([x + dx, y + dy]), next])
-    
-            }
-        }
        
 
         return this.res
