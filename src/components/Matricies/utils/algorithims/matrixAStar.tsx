@@ -13,25 +13,45 @@
 //       {
 //         row: start.row,
        
-import { matrixHeuristicSearch, minHeapItem } from "./matrixHeuristicSearch";
 import { matrixItemObject } from "../../../types/objects";
 import Heap from "heap-js";
 import DIRS from "./dirs";
+import { MatrixItterator } from "./matrixItterator";
 
+type starHeapItem = [number, number, number, matrixItemObject]
 
-export class AStar extends matrixHeuristicSearch{
+export class AStar extends MatrixItterator{
+    public open: Heap<starHeapItem>;
+ 
+
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
         const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
-        Heap.heappush(this.open, [this.manhattanHeuristic(top.pos), top])
+        this.open = new Heap();
+        const initG = this.calculateG();
+        const initH = this.calculateH();
+        const initF = this.calculateF();
+        Heap.heappush(this.open, [initF, initG, initH, top])
     }
 
-    public manhattanHeuristic(nodePos:number[]):number{
+    private calculateG(currPos:number[], endPos: number[]):number{
+        return 0
+    }
+    private calculateH(currPos:number[], endPos: number[]):number{
+        return 0
+    }
+    private calculateF(currPos:number[], endPos: number[]):number{
+        return 0
+    }
+
+    private pythagoreanHeuristic(nodePos:number[]):number{
+        //gut this out for the pythagorean version
         const [x1, y1] = nodePos;
         const [x2, y2] = this.end;
         return Math.abs(y2 - y1) + Math.abs (x2 - x1)
     }
+
 
     public preformFullAlgo(): matrixItemObject[] {
         
@@ -57,29 +77,12 @@ export class AStar extends matrixHeuristicSearch{
     public next():number[]{
         if(this.open.length <= 0) return []
 
-        const currPair: minHeapItem = this.open.pop()!         
-        const curr:matrixItemObject = currPair[1];
-        const {pos} = curr;
-        this.prev = pos;
-        const y: number = pos[1];
-        const x: number = pos[0];
-
-        this.visited.add(`${x},${y}`)
-        this.assignValueToMatrix(curr, x, y)
-        this.evaluateEnd(curr)
+    
 
         if (this.endFound){
             this.markEndPrev(curr, x, y)
         }
 
-        //load the queue
-        for (const [dx, dy] of DIRS) {
-            const newPos:[number, number] = [x + dx, y + dy];
-            const next: matrixItemObject = {pos: newPos, prev:pos} ;
-            const cost = this.manhattanHeuristic(newPos);
-            Heap.heappush(this.open, [cost, next])
-        }
-        
 
         return pos;
     }
