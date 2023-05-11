@@ -7,14 +7,14 @@ import { MatrixItterator } from "./matrixItterator";
 type starHeapItem = [number, number, number, matrixItemObject]
 
 export class AStar extends MatrixItterator{
-    public open: Heap<starHeapItem>;
+    public open: any;
  
 
 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
         const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
-        this.open = new Heap();
+        this.open = new Heap<starHeapItem>();
         const initG = this.calculateG();
         const initH = this.calculateH();
         const initF = this.calculateF();
