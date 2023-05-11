@@ -22,13 +22,13 @@ export class AStar extends MatrixItterator{
     }
 
     private calculateG(currPos:number[], endPos: number[]):number{
-        return 0
+        return 0;
     }
     private calculateH(currPos:number[], endPos: number[]):number{
-        return 0
+        return 0;
     }
     private calculateF(currPos:number[], endPos: number[]):number{
-        return 0
+        return 0;
     }
 
     private pythagoreanHeuristic(nodePos:number[]):number{
