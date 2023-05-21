@@ -6,82 +6,82 @@ import { MatrixItterator } from "./matrixItterator";
 
 type starHeapItem = [number, number, number, matrixItemObject]
 
-export class AStar extends MatrixItterator{
-    public open: any;
+// export class AStar extends MatrixItterator{
+//     public open: any;
  
 
 
-    constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
-        super(start, end, matrix)
-        const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
-        this.open = new Heap<starHeapItem>();
-        const initG = this.calculateG();
-        const initH = this.calculateH();
-        const initF = this.calculateF();
-        Heap.heappush(this.open, [initF, initG, initH, top])
-    }
+//     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
+//         super(start, end, matrix)
+//         const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
+//         this.open = new Heap<starHeapItem>();
+//         const initG = this.calculateG();
+//         const initH = this.calculateH();
+//         const initF = this.calculateF();
+//         Heap.heappush(this.open, [initF, initG, initH, top])
+//     }
 
-    private calculateG(currPos:number[], endPos: number[]):number{
-        return 0;
-    }
-    private calculateH(currPos:number[], endPos: number[]):number{
-        return 0;
-    }
-    private calculateF(currPos:number[], endPos: number[]):number{
-        return 0;
-    }
+//     private calculateG(currPos:number[], endPos: number[]):number{
+//         return 0;
+//     }
+//     private calculateH(currPos:number[], endPos: number[]):number{
+//         return 0;
+//     }
+//     private calculateF(currPos:number[], endPos: number[]):number{
+//         return 0;
+//     }
 
-    private pythagoreanHeuristic(nodePos:number[]):number{
-        //gut this out for the pythagorean version
-        const [x1, y1] = nodePos;
-        const [x2, y2] = this.end;
-        return Math.abs(y2 - y1) + Math.abs (x2 - x1)
-    }
+//     private pythagoreanHeuristic(nodePos:number[]):number{
+//         //gut this out for the pythagorean version
+//         const [x1, y1] = nodePos;
+//         const [x2, y2] = this.end;
+//         return Math.abs(y2 - y1) + Math.abs (x2 - x1)
+//     }
 
 
-    public preformFullAlgo(): matrixItemObject[] {
+//     public preformFullAlgo(): matrixItemObject[] {
         
        
 
-        return this.res
-    }
+//         return this.res
+//     }
 
     
-    public isValidNext():boolean {
-        if (this.open.heapArray.length <= 0) return false;
-        const top:matrixItemObject = this.open.top(1)[0][1];
-        if (this.outOfRangeOrVisited(top.pos[0], top.pos[1])) return false;
-        return true;
-    }
+//     public isValidNext():boolean {
+//         if (this.open.heapArray.length <= 0) return false;
+//         const top:matrixItemObject = this.open.top(1)[0][1];
+//         if (this.outOfRangeOrVisited(top.pos[0], top.pos[1])) return false;
+//         return true;
+//     }
 
-    public discardInvalidNode():number[]{
-        const node: matrixItemObject = this.open.top(1)[0][1];
-        Heap.heappop(this.open);
-        return node.pos
-    }
+//     public discardInvalidNode():number[]{
+//         const node: matrixItemObject = this.open.top(1)[0][1];
+//         Heap.heappop(this.open);
+//         return node.pos
+//     }
 
-    public next():number[]{
-        if(this.open.length <= 0) return []
+//     public next():number[]{
+//         if(this.open.length <= 0) return []
 
     
 
-        if (this.endFound){
-            this.markEndPrev(curr, x, y)
-        }
+//         if (this.endFound){
+//             this.markEndPrev(curr, x, y)
+//         }
 
 
-        return pos;
-    }
+//         return pos;
+//     }
 
-    public isContainerEmpty():boolean{
-        return !(this.open.heapArray.length > 0)
-    }
+//     public isContainerEmpty():boolean{
+//         return !(this.open.heapArray.length > 0)
+//     }
 
-    public showContainer():number[][]{
-        const open:number[][] = [];
+//     public showContainer():number[][]{
+//         const open:number[][] = [];
 
-        for(const i of this.open) open.push(i[1].pos)
+//         for(const i of this.open) open.push(i[1].pos)
         
-        return open
-    }
-}
+//         return open
+//     }
+// }
