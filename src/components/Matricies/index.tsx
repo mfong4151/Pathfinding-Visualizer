@@ -95,9 +95,6 @@ const Matricies: FC = ()=>{
 
     },[windowDim])
     
-
-
-
     return(
       <div className={`font-color ${isPlaying && 'unclickable'}`}>
         <MatrixBanner 
@@ -112,7 +109,7 @@ const Matricies: FC = ()=>{
           />  
 
          <div className='page-body'>
-            <section id='page-left' className='tab-bg'ref={pageLeftRef} >
+          <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
                 <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
               </div>
@@ -130,7 +127,7 @@ const Matricies: FC = ()=>{
                 </svg>
               </div>
             </section>
-
+            
             <section id='page-right' className='udc-no-vertical tab-bg' ref={pageRightRef}>
                   <GraphMatrix 
                     matrixState={matrixState} 

@@ -77,7 +77,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
   return (
     <div id='banner' className='sb fdr'>
-        <div className='udc fdr univ-padding banner-holder'>
+        <div id='banner-options' className='udc fdr univ-padding banner-holder'>
           
           <button className='sq-buttons hover-over banner-button udc' onClick={handleOnClick}>
               Reset Matrix
@@ -85,7 +85,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
           <div className='fdr udc-left'>
 
-            <form className='udc-left' onSubmit={e => e.preventDefault()}>
+            <form id='change-dims-form' className='udc-left' onSubmit={e => e.preventDefault()}>
               <input id='height' placeholder='Set height' className='set-dim-form udc' onChange={e => handleOnChange(e)}/>
               <input id='width' placeholder='Set width' className='set-dim-form udc' onChange={e => handleOnChange(e)}/>
             </form>

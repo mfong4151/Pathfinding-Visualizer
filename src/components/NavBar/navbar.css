@@ -33,6 +33,13 @@
     font-weight: bold;
   }
 
+  @media screen and(min-width:600px) {
+    
+  }
+
+  @media screen and(max-width:599px) {
+    
+  }
   .my-links-holder{
     min-width:200px;
   }
