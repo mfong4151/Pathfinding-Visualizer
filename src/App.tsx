@@ -7,8 +7,6 @@ import Splash from './components/Splash';
 
 const App: React.FC = () => {
 
-
-
   return (
     <div className="app">
       <NavBar/>

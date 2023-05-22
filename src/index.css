@@ -128,21 +128,40 @@ code {
   pointer-events: none;
 }
 
-
-#page-left{
-  display:flex;
-  justify-content: flex-end;
-  width:39.5%;
-  background-color: var(--color-charcol);
-
+@media screen and (max-width:599px){
+  #page-left{
+    width:0%;
+  
+  }
+  
+  #page-right{
+    
+    height:100%;
+    width:100%;
+    background-color: var(--color-charcol);
+  
+  }
 }
 
-#page-right{
-  height:100%;
-  width:100%;
-  background-color: var(--color-charcol);
 
+@media screen and (min-width:600px) {
+  #page-left{
+    display:flex;
+    justify-content: flex-end;
+    width:39.5%;
+    background-color: var(--color-charcol);
+  
+  }
+  
+  #page-right{
+    height:100%;
+    width:100%;
+    background-color: var(--color-charcol);
+  
+  }
 }
+
+
 
 #adjbar{
   height:auto;
