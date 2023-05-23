@@ -15,7 +15,7 @@ const handleOnClick = (e: MouseEvent<HTMLDivElement> ) => {
 
 const NavBar = () => {
   return (
-    <nav className="navbar sb">
+    <nav className="navbar sb fdc-mobile">
      <div className='my-links-holder'/>
 
       <ul>

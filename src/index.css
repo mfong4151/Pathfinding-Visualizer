@@ -78,6 +78,13 @@ code {
   flex-direction: row;
 }
 
+@media screen and (max-width:599px) {
+  .fdc-mobile{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .fw{
   display: flex;
   flex-wrap: wrap;
