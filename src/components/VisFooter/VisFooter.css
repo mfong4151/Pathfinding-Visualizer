@@ -1,5 +1,5 @@
 
 footer{
-    min-height: 200px;
-    background-color: white;
+    min-height: 500px;
+    background-color: var(--color-charcol);
 }

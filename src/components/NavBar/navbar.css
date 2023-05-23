@@ -1,4 +1,4 @@
-.NavBar {
+.navbar {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -7,7 +7,7 @@
     background-color: var(--color-charcol);
   }
   
-  .NavBar ul {
+  .navbar ul {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
@@ -15,17 +15,17 @@
     padding: 0;
   }
   
-  .NavBar li {
+  .navbar li {
     margin: 0 10px;
   }
   
-  .NavBar a {
+  .navbar a {
     text-decoration: none;
     color: var(--color-white);
 
   }
   
-  .NavBar a:hover {
+  .navbar a:hover {
     color: #666;
   }
   
@@ -38,12 +38,17 @@
   }
 
   @media screen and(max-width:599px) {
-    
+     .navbar{
+      display: flex;
+      flex-direction: column;
+    }
   }
   .my-links-holder{
-    min-width:200px;
-  }
-  
+      display: flex;
+      flex-direction: row;
+      min-width:200px;
+    } 
+    
   .github-linkedin-header{
     max-height:30px;
   }
