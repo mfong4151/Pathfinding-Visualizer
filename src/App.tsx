@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Nodular from './components/Nodulars';
 import NavBar from './components/NavBar/index'
 import Matricies from './components/Matricies/index'
-
+import VisFooter from './components/VisFooter';
 import Splash from './components/Splash';
 
 const App: React.FC = () => {
@@ -18,6 +18,7 @@ const App: React.FC = () => {
         <Route path="*" element={<Splash/>}/>
         
       </Routes>
+      <VisFooter/>
     </div>
   );
 }

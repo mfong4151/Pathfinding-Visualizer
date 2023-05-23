@@ -111,7 +111,7 @@ const Matricies: FC = ()=>{
          <div className='page-body'>
           <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
-                <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
+                {windowDim.width > 600 && <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>}
               </div>
               <div id='adjbar' className='udc' ref={adjBarRef}>
                 <svg 
