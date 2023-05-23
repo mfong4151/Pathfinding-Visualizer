@@ -68,6 +68,11 @@ code {
   justify-content: space-between;
 }
 
+.se{
+  display:flex;
+  justify-content: space-evenly;
+}
+
 .fdc{
   display: flex;
   flex-direction: column;

@@ -1,3 +1,4 @@
+import React, {useRef} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Nodular from './components/Nodulars';
 import NavBar from './components/NavBar/index'
@@ -7,9 +8,12 @@ import Splash from './components/Splash';
 
 const App: React.FC = () => {
 
+  const footerRef = useRef<null |HTMLDivElement>(null)
+  
   return (
     <div className="app">
-      <NavBar/>
+      <NavBar footerRef={footerRef}/>
+
       <Routes>
         <Route path="/" element={<Splash/>}/>
         <Route path="/matricies" element={<Matricies/>}/>
@@ -18,7 +22,10 @@ const App: React.FC = () => {
         <Route path="*" element={<Splash/>}/>
         
       </Routes>
-      <VisFooter/>
+      <div ref={footerRef}>
+        <VisFooter/>
+
+      </div>
     </div>
   );
 }

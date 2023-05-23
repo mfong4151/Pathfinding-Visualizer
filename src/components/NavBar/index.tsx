@@ -1,19 +1,24 @@
-import React, {MouseEvent} from 'react';
+import React, {FC, MouseEvent, MutableRefObject} from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
 import github from '../../assets/github.png' ;
 import linkedin from '../../assets/linkedin.png' ;
 
 
-const handleOnClick = (e: MouseEvent<HTMLDivElement> ) => {
-  e.preventDefault();
-  e.stopPropagation();
+interface Props{
+  footerRef: MutableRefObject<null | HTMLDivElement>
+}
 
-  navigator.clipboard.writeText('mfong415@gmail.com');
-  alert(`Email copied to clipboard: mfong415@gmail.com`);
-};
 
-const NavBar = () => {
+const NavBar:FC<Props> = ({footerRef}) => {
+
+  const handleContactClick = (e:MouseEvent<HTMLDivElement>) =>{
+
+    if (!footerRef.current) return;
+
+    footerRef.current.scrollIntoView({behavior: "smooth"})
+  }
+
   return (
     <nav className="navbar sb fdc-mobile">
      <div className='my-links-holder'/>
@@ -55,7 +60,7 @@ const NavBar = () => {
         <a href="https://www.linkedin.com/in/mfong415/"target="_blank" className='a-link-spacing' >
            <img src={linkedin} className='github-linkedin-header'/>
         </a>
-        <div id='contact-me' className='udc pointer-events' onClick={handleOnClick} > Contact me</div>
+        <div id='contact-me' className='udc pointer-events' onClick={handleContactClick} > Contact me</div>
 
       </div>
     </nav>
