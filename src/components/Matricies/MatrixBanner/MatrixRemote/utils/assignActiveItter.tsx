@@ -5,6 +5,7 @@ import { itterator } from "../../../../types/itterator";
 import { matrixItemObject } from "../../../../types/objects";
 import { BiBFSItterMatrix } from "../../../algorithims/matrixBidirectionalBFS";
 import { BestFSItterMatrix } from "../../../algorithims/matrixBestFirstSearch";
+import { AStar } from "../../../algorithims";
 
 const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix: matrixItemObject[][]) =>{
     
@@ -25,7 +26,10 @@ const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix
       case 'Bidirectional BFS':
         itter = new BiBFSItterMatrix(start, end, matrix);
         break
-
+      
+      case 'AStar':
+        itter = new AStar(start, end, matrix);
+        break
       default:
         itter = null
         break

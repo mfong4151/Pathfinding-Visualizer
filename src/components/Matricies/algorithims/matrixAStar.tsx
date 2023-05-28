@@ -8,9 +8,9 @@ type starHeapItem = [number, number, number, matrixItemObject]
 
 export class AStar extends MatrixItterator{
     public open: any;
- 
 
-
+    //G cost: distance from the start
+    //H cost: distance from the 
     constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
         super(start, end, matrix)
         const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
@@ -35,9 +35,16 @@ export class AStar extends MatrixItterator{
         //gut this out for the pythagorean version
         const [x1, y1] = currPos as [number, number];
         const [x2, y2] = destPos as [number, number];
-        return Math.sqrt(Math.abs(x1 - x2) ** 2 +(Math.abs(y1 - y2)));
+        return Math.floor(Math.sqrt(Math.abs(x1 - x2) ** 2 +(Math.abs(y1 - y2))) * 10);
     }
 
+
+    //Comparator function for chosing onne starHeap item over the other
+    private compareFH(a: starHeapItem, b:starHeapItem):number{
+        const [aF, _, aH, __] = a;
+        const [bF, ___, bH, ____] = a;
+        return aF !== bF ? aF - bF : aH - bH;
+    }
 
     public preformFullAlgo(): matrixItemObject[] {
         
