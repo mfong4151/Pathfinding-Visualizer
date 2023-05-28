@@ -58,10 +58,22 @@ export class AStar extends MatrixItterator{
             this.res.push(curr)
             
             this.evaluateEnd(curr)
+
             if (this.endFound){
                 this.markEndPrev(curr, x, y)
                 break;
             }
+
+            for(const [dx, dy] of DIRS_EIGHT){
+                const next:matrixItemObject = {pos:[x + dx, y + dy] , prev:pos} 
+                const nextG:number = this.calculateG([x, y])
+                const nextH:number = this.calculateH([x, y])
+                const nextF:number = this.calculateF(nextG, nextH)
+
+                this.open.push([nextF,nextG, nextH, next])
+    
+            }
+
         }
        
 
