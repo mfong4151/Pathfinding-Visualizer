@@ -48,7 +48,7 @@ export class AStar extends MatrixItterator{
 
     public preformFullAlgo(): matrixItemObject[] {
         while (this.open.length){
-            const [f, g, h, curr]= this.open.pop()!;
+            const [_f, _g, _h, curr]= this.open.pop()!;
             const {pos}: matrixItemObject = curr;
             const [x, y] = pos;
             
