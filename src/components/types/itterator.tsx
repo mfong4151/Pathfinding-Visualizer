@@ -1,7 +1,7 @@
-import { BFSItterMatrix } from "../Matricies/utils/algorithims/matrixBFS";
-import { BiBFSItterMatrix } from "../Matricies/utils/algorithims/matrixBidirectionalBFS";
-import { DFSItterMatrix } from "../Matricies/utils/algorithims/matrixDFS";
-import { BestFSItterMatrix } from "../Matricies/utils/algorithims/matrixBestFirstSearch";
+import { BFSItterMatrix } from "../Matricies/algorithims/matrixBFS";
+import { BiBFSItterMatrix } from "../Matricies/algorithims/matrixBidirectionalBFS";
+import { DFSItterMatrix } from "../Matricies/algorithims/matrixDFS";
+import { BestFSItterMatrix } from "../Matricies/algorithims/matrixBestFirstSearch";
 
 
 export type itterator = null | BFSItterMatrix | DFSItterMatrix | BiBFSItterMatrix | BestFSItterMatrix;

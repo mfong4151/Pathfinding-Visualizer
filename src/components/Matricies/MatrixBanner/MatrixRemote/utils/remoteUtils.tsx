@@ -1,6 +1,6 @@
 import { itterator } from "../../../../types/itterator";
 import convertContainer from "./convertContainer";
-import { BestFSItterMatrix, DFSItterMatrix, BFSItterMatrix, BiBFSItterMatrix } from "../../../utils/algorithims";
+import { BestFSItterMatrix, DFSItterMatrix, BFSItterMatrix, BiBFSItterMatrix } from "../../../algorithims";
 
 import { matrixItemObject } from "../../../../types/objects";
 

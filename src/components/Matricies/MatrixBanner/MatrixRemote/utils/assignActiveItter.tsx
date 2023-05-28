@@ -1,10 +1,10 @@
 import { startStop } from "../../../../types/positions";
-import { BFSItterMatrix } from "../../../utils/algorithims/matrixBFS";
-import { DFSItterMatrix } from "../../../utils/algorithims/matrixDFS";
+import { BFSItterMatrix } from "../../../algorithims/matrixBFS";
+import { DFSItterMatrix } from "../../../algorithims/matrixDFS";
 import { itterator } from "../../../../types/itterator";
 import { matrixItemObject } from "../../../../types/objects";
-import { BiBFSItterMatrix } from "../../../utils/algorithims/matrixBidirectionalBFS";
-import { BestFSItterMatrix } from "../../../utils/algorithims/matrixBestFirstSearch";
+import { BiBFSItterMatrix } from "../../../algorithims/matrixBidirectionalBFS";
+import { BestFSItterMatrix } from "../../../algorithims/matrixBestFirstSearch";
 
 const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix: matrixItemObject[][]) =>{
     

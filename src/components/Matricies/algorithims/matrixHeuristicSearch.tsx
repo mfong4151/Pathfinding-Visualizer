@@ -1,5 +1,5 @@
 import { MatrixItterator } from "./matrixItterator";
-import { matrixItemObject } from "../../../types/objects";
+import { matrixItemObject } from "../../types/objects";
 import Heap from 'heap-js';
 
 export type minHeapItem = [number, matrixItemObject]

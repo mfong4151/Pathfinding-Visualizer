@@ -1,5 +1,5 @@
 import { MatrixItterator } from "./matrixItterator";
-import { matrixItemObject } from "../../../types/objects";
+import { matrixItemObject } from "../../types/objects";
 
 export class DFSItterMatrix extends MatrixItterator {
     public stack: matrixItemObject[];
