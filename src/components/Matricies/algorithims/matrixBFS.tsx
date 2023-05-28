@@ -1,6 +1,6 @@
 import { matrixItemObject } from "../../types/objects";
 import { MatrixItterator } from "./matrixItterator";
-import DIRS from "./dirs";
+import {DIRS_FOUR} from "./dirs";
 
 
 
@@ -43,7 +43,7 @@ export class BFSItterMatrix extends MatrixItterator{
         }
 
         //load the queue
-        for (const [dx, dy] of DIRS) {
+        for (const [dx, dy] of DIRS_FOUR) {
             const newPos = [x + dx, y + dy]
             this.q.push({pos: newPos, prev:pos} );
         }

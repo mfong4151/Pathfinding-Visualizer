@@ -1,6 +1,6 @@
 import { matrixItemObject } from "../../types/objects";
 import { MatrixItterator } from "./matrixItterator";
-import DIRS from "./dirs";
+import {DIRS_FOUR} from "./dirs";
 
 
 
@@ -83,7 +83,7 @@ export class BiBFSItterMatrix extends MatrixItterator{
         this.assignValueToMatrix(curr, x, y)
         this.checkIntersection(curr)
         //load the queue
-        for (const [dx, dy] of DIRS) {
+        for (const [dx, dy] of DIRS_FOUR) {
             const newPos = [x + dx, y + dy]
             this.activeQ.push({pos: newPos, prev:pos} );
         }
