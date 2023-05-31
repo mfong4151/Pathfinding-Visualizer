@@ -41,14 +41,16 @@ export class AStar extends MatrixItterator{
     //Comparator function for chosing onne starHeap item over the other
     //If there are any issues, it'll probably be here
     private compareFH(a: starHeapItem, b:starHeapItem):number{
-        const [aF, _, aH, __] = a;
-        const [bF, ___, bH, ____] = a;
-        return aF !== bF ? aF - bF : aH - bH;
+        const [aF, _aG, aH] = a;
+        const [bF, _bG, bH] = a;
+        return aF === bF ? aH - bH : aF - bF;
     }
 
     public preformFullAlgo(): matrixItemObject[] {
+        let ctr = 0
         while (this.open.length){
-            const [_f, _g, _h, curr]= this.open.pop()!;
+            const node = this.open.pop()!
+            const [_f, _g, _h, curr]= node;
             const {pos}: matrixItemObject = curr;
             const [x, y] = pos;
             
@@ -63,17 +65,24 @@ export class AStar extends MatrixItterator{
                 this.markEndPrev(curr, x, y)
                 break;
             }
+            
 
             for(const [dx, dy] of DIRS_EIGHT){
-                const next:matrixItemObject = {pos:[x + dx, y + dy] , prev:pos} 
-                const nextG:number = this.calculateG([x, y])
-                const nextH:number = this.calculateH([x, y])
+                const nextX:number = x + dx;
+                const nextY: number = y + dy
+                const nextCoords:matrixItemObject = {pos:[nextX, nextY] , prev:pos} 
+                const nextG:number = this.calculateG([nextX, nextY])
+                const nextH:number = this.calculateH([nextX, nextY])
                 const nextF:number = this.calculateF(nextG, nextH)
 
-                this.open.push([nextF,nextG, nextH, next])
+                this.open.push([nextF,nextG, nextH, nextCoords])
     
             }
-
+            
+            console.log(this.open.heapArray, node)
+            ctr ++
+            if (ctr === 5)
+            break
         }
        
 
