@@ -13,4 +13,5 @@ export class matrixHeuristicSearch extends MatrixItterator{
         this.open = new Heap((a:minHeapItem, b:minHeapItem)=> (a[0] -b[0]));
     
     }
+
 }

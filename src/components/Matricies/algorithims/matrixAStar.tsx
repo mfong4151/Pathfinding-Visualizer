@@ -81,6 +81,10 @@ export class AStar extends MatrixItterator{
     }
 
     
+    public isContainerEmpty():boolean{
+        return !(this.open.heapArray.length > 0)
+    }
+
     public isValidNext():boolean {
         if (this.open.heapArray.length <= 0) return false;
         const top:matrixItemObject = this.open.top(1)[0][1];
@@ -94,22 +98,14 @@ export class AStar extends MatrixItterator{
         return node.pos
     }
 
-    // public next():number[]{
-    //     if(this.open.length <= 0) return []
+    public next():number[]{
+        if(this.open.length <= 0) return []
 
     
 
-    //     if (this.endFound){
-    //         this.markEndPrev(curr, x, y)
-    //     }
 
-
-    //     return pos;
-    // }
-
-    // public isContainerEmpty():boolean{
-    //     return !(this.open.heapArray.length > 0)
-    // }
+        return [1,0];
+    }
 
     // public showContainer():number[][]{
     //     const open:number[][] = [];

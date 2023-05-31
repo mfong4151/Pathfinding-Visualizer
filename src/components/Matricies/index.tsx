@@ -7,7 +7,7 @@ import UIConsole from '../Nodulars/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
 import useUIStates from '../customHooks/useUIStates';
 import useWindowSize from '../customHooks/useWindowSize';
-import useMatrixStates from './customHooks/useMatrixStates';
+import useMatrixStates from '../customHooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
 import { matrixItemObject } from '../types/objects';
 import { startStop } from '../types/positions';
