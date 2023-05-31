@@ -21,7 +21,7 @@ interface MapLocation {
 }
 
 const MAP_LOCATION: MapLocation = {
-  '/matricies':['DFS', 'BFS', 'Best First Search', 'Bidirectional BFS'],
+  '/matricies':['DFS', 'BFS', 'Best First Search', 'Bidirectional BFS', 'A*'],
   '/trees':["Inorder DFS", "Preorder DFS", "Postorder DFS", "BFS"],
 }
 

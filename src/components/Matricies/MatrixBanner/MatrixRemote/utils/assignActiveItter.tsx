@@ -27,7 +27,7 @@ const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix
         itter = new BiBFSItterMatrix(start, end, matrix);
         break
       
-      case 'AStar':
+      case 'A*':
         itter = new AStar(start, end, matrix);
         break
       default:
