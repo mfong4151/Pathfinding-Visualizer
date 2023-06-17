@@ -5,14 +5,14 @@ import {transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import UIConsole from '../Nodulars/UIConsole';
 import { consoleContentState, errorsState } from '../types/state';
-import useUIStates from '../customHooks/useUIStates';
-import useWindowSize from '../customHooks/useWindowSize';
-import useMatrixStates from '../customHooks/useMatrixStates';
+import useUIStates from '../hooks/useUIStates';
+import useWindowSize from '../hooks/useWindowSize';
+import useMatrixStates from '../hooks/useMatrixStates';
 import { windowDim } from '../types/windowDim';
 import { matrixItemObject } from '../types/objects';
 import { startStop } from '../types/positions';
-import { calculateResize } from '../utils/resizeCanvas';
-import useCanvasResize from '../customHooks/useCanvasResize';
+import { calculateResize, calculateResizeMobile} from '../utils/resizeCanvas';
+import useCanvasResize from '../hooks/useCanvasResize';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
@@ -76,8 +76,6 @@ const Matricies: FC = ()=>{
       }
     }, [])
     
-  
-
     useLayoutEffect(()=>{
 
       const pageRightDiv = pageRightRef.current!;
@@ -85,7 +83,9 @@ const Matricies: FC = ()=>{
 
       if(isPlaying  || (!pageRightDiv && !matrixDiv)) return 
       
-      const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+      const [rows, cols]:[number, number] = windowDim.width > 600 
+                                            ? calculateResize(matrixDim, pageRightDiv, matrixDiv)
+                                            : calculateResizeMobile(matrixDim, pageRightDiv, matrixDiv)
       const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
      
       setMatrix(newMatrix)

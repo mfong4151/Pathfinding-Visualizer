@@ -3,7 +3,7 @@ import { pos } from "../types/positions";
 
 //This might need ot be refactored to handle canvases
 
-export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixDiv:any):[number, number] =>{
+export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixDiv: any):[number, number] =>{
         
     if(!rightDiv && !matrixDiv) return [-1, -1];
 
@@ -14,10 +14,20 @@ export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixD
     const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth!
     const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
     const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
+  
 
-
-    //for window
-    if(window.innerWidth > 600) return [Math.min(matrixDim.y, maxNumRows),  Math.min(matrixDim.x,maxNumCols)];
-    //for mobile
-    else return [maxNumRows, maxNumCols]
+    //for browser
+    return [Math.min(matrixDim.y, maxNumRows),  Math.min(matrixDim.x,maxNumCols)];
   }
+
+export const calculateResizeMobile = (matrixDim: pos, rightDiv: HTMLDivElement, matrixDiv:any):[number, number] => {
+
+  const rightDivHeight: number = rightDiv.offsetHeight;  
+  const rightDivWidth: number = rightDiv.offsetWidth;
+  const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth!
+  const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop)/tileHeightWidth)
+  const maxNumCols = Math.floor((rightDivWidth)/tileHeightWidth)
+
+
+  return [maxNumRows, maxNumCols]
+}

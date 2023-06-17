@@ -1,8 +1,8 @@
 import { useEffect, useRef} from "react";
 import DSACanvas from './DSACanvas'
 import { consoleContentState, errorsState } from "../types/state";
-import useUIStates from "../customHooks/useUIStates";
-import useWindowSize from "../customHooks/useWindowSize";
+import useUIStates from "../hooks/useUIStates";
+import useWindowSize from "../hooks/useWindowSize";
 import UIConsole from "./UIConsole";
 import Banner from './Banner'
 

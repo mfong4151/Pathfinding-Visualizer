@@ -9,7 +9,7 @@ import { consoleContentState, errorsState, isPlayingState, matrixState, startEnd
 import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync } from '../utils/matrixStyling';
 import { calculateResize} from '../../utils/resizeCanvas'
-import useCanvasResize from '../../customHooks/useCanvasResize';
+import useCanvasResize from '../../hooks/useCanvasResize';
 
 interface Props{
   matrixState: matrixState;

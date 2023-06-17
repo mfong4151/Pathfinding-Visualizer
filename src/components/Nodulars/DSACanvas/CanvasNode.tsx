@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { ItemTypes } from './utils/dragDropConstraints';
 import './DSACanvas.css'
-import { useUseDrag } from '../../customHooks/useReactDND';
+import { useUseDrag } from '../../hooks/useReactDND';
 
 interface Props{
   setCanvasItemContent:React.Dispatch<React.SetStateAction<boolean>> | null

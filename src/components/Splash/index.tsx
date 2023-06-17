@@ -12,13 +12,8 @@ const Splash:React.FC = () => {
     
   
     return (
-      <div className="splash-page fdr">
-        <section id="updates" className="splash-section">
-          <h2>Updates</h2>
-            <RenderUpdates/>
-          <h2>Timeline</h2>
-            <RenderTimeline/>
-        </section>
+      <div className="splash-page udc fdr">
+
         <section id="blog-messages" className="splash-section">
           <h1>About this Project</h1>
           <p>{aboutThisProject}</p>
