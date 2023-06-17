@@ -15,5 +15,7 @@ export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixD
     const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop -BOTTOM_BREAK_POINT)/tileHeightWidth)
     const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
 
-    return [Math.min(matrixDim.y, maxNumRows),  Math.min(matrixDim.x,maxNumCols)];
+    if(window.innerWidth > 600) return [Math.min(matrixDim.y, maxNumRows),  Math.min(matrixDim.x,maxNumCols)];
+    
+    else return [maxNumRows, maxNumCols]
   }

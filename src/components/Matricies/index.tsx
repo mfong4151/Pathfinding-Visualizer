@@ -1,5 +1,5 @@
 import './graphs.css'
-import {FC, useRef, useEffect } from "react";
+import {FC, useRef, useEffect, useLayoutEffect } from "react";
 import GraphMatrix from './Matrix'
 import {transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
@@ -77,10 +77,8 @@ const Matricies: FC = ()=>{
     }, [])
     
   
-    // //Handles changes in the matrix sizing. if the window resizes, and the matrix is too large, then we cut it down such that its under the set width and height
-    //I use the useEffect here because the matrix isn't resizing properly on first render.
 
-    useEffect(()=>{
+    useLayoutEffect(()=>{
 
       const pageRightDiv = pageRightRef.current!;
       const matrixDiv = matrixRef.current!;  
