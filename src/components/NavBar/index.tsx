@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, MutableRefObject} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './navbar.css';
 import github from '../../assets/github.png' ;
 import linkedin from '../../assets/linkedin.png' ;
@@ -11,7 +11,9 @@ interface Props{
 
 
 const NavBar:FC<Props> = ({footerRef}) => {
+  const loc = useLocation()
 
+  console.log(loc)
   const handleContactClick = (e:MouseEvent<HTMLDivElement>) =>{
 
     if (!footerRef.current) return;
@@ -24,11 +26,11 @@ const NavBar:FC<Props> = ({footerRef}) => {
      <div className='my-links-holder'/>
 
       <ul>
-        {/* <li>
+        <li>
           <NavLink to="/" className="activeLink">
             Home
           </NavLink>
-        </li> */}
+        </li>
         <li>
           <NavLink to="/matricies" className="activeLink">
             Matricies
