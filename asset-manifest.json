@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/DSA-Visualizer/static/css/main.49711887.css",
+    "main.css": "/DSA-Visualizer/static/css/main.22517531.css",
     "main.js": "/DSA-Visualizer/static/js/main.f1fbdeb1.js",
     "static/media/bfsbi.gif": "/DSA-Visualizer/static/media/bfsbi.26a5bed7fc2101929701.gif",
     "static/media/OpenSans-VariableFont_wdth,wght.ttf": "/DSA-Visualizer/static/media/OpenSans-VariableFont_wdth,wght.ceb05254cedfa895b512.ttf",
     "index.html": "/DSA-Visualizer/index.html",
-    "main.49711887.css.map": "/DSA-Visualizer/static/css/main.49711887.css.map",
+    "main.22517531.css.map": "/DSA-Visualizer/static/css/main.22517531.css.map",
     "main.f1fbdeb1.js.map": "/DSA-Visualizer/static/js/main.f1fbdeb1.js.map"
   },
   "entrypoints": [
-    "static/css/main.49711887.css",
+    "static/css/main.22517531.css",
     "static/js/main.f1fbdeb1.js"
   ]
 }
