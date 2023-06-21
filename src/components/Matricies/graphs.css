@@ -1,12 +1,12 @@
 #matrix-tab{
-    height:auto;
+    height:90vh;
     margin-top:4rem;
     width:auto;
     display: inline-flex;
 }
 
 #matrix{
-  height:auto;
+  height:90vh;
   width:auto;
     
 }
