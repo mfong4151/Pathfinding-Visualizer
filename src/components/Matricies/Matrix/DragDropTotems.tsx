@@ -6,7 +6,7 @@ import '../../Matricies/graphs.css'
 
 const DragDropTotems:FC = () => {
   return (
-    <div className='toolbar-right fdr'>
+    <div className='toolbar-right fdc'>
         <div className="hover-over drag-icon-holder udc fdc">
 
              <SvgTotem totemType='s'/>
