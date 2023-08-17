@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/DSA-Visualizer/static/css/main.272b1d57.css",
-    "main.js": "/DSA-Visualizer/static/js/main.4f3125f3.js",
-    "static/media/bfsbi.gif": "/DSA-Visualizer/static/media/bfsbi.26a5bed7fc2101929701.gif",
-    "static/media/OpenSans-VariableFont_wdth,wght.ttf": "/DSA-Visualizer/static/media/OpenSans-VariableFont_wdth,wght.ceb05254cedfa895b512.ttf",
-    "index.html": "/DSA-Visualizer/index.html",
-    "main.272b1d57.css.map": "/DSA-Visualizer/static/css/main.272b1d57.css.map",
-    "main.4f3125f3.js.map": "/DSA-Visualizer/static/js/main.4f3125f3.js.map"
+    "main.css": "/pathfinding-visualizer/static/css/main.68565c7e.css",
+    "main.js": "/pathfinding-visualizer/static/js/main.4bb2820b.js",
+    "static/media/bfsbi.gif": "/pathfinding-visualizer/static/media/bfsbi.26a5bed7fc2101929701.gif",
+    "static/media/OpenSans-VariableFont_wdth,wght.ttf": "/pathfinding-visualizer/static/media/OpenSans-VariableFont_wdth,wght.ceb05254cedfa895b512.ttf",
+    "index.html": "/pathfinding-visualizer/index.html",
+    "main.68565c7e.css.map": "/pathfinding-visualizer/static/css/main.68565c7e.css.map",
+    "main.4bb2820b.js.map": "/pathfinding-visualizer/static/js/main.4bb2820b.js.map"
   },
   "entrypoints": [
-    "static/css/main.272b1d57.css",
-    "static/js/main.4f3125f3.js"
+    "static/css/main.68565c7e.css",
+    "static/js/main.4bb2820b.js"
   ]
 }
