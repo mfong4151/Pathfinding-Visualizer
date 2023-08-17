@@ -7,7 +7,7 @@ import { startStop } from "../../../../types/positions";
 export const createNewMatrix = (numRows :number, numCols :number) : matrixItemObject[][] =>{
     const matrix = []
     let newRow;
-    let id= 0;
+
     for(let i: number = 0; i < numRows; i++){
         newRow = []
         for(let j: number = 0; j < numCols; j++) {

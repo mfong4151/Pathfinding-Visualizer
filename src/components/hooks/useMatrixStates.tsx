@@ -12,8 +12,8 @@ type matrixStates = {
    startEndPos:startStop;
    setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
 }
-const DEFAULT_MATRIX_Y:number = 30;
-const DEFAULT_MATRIX_X:number = 30;
+const DEFAULT_MATRIX_Y:number = 20;
+const DEFAULT_MATRIX_X:number = 20;
 const DEFAULT_POS:number = -1;
 
 const useMatrixStates = ():matrixStates => {

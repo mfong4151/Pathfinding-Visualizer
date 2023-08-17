@@ -12,7 +12,6 @@ import { windowDim } from '../types/windowDim';
 import { matrixItemObject } from '../types/objects';
 import { startStop } from '../types/positions';
 import { calculateResize, calculateResizeMobile} from '../utils/resizeCanvas';
-import useCanvasResize from '../hooks/useCanvasResize';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
@@ -76,16 +75,15 @@ const Matricies: FC = ()=>{
       }
     }, [])
     
-    useLayoutEffect(()=>{
+    useEffect(()=>{
 
       const pageRightDiv = pageRightRef.current!;
       const matrixDiv = matrixRef.current!;  
 
       if(isPlaying  || (!pageRightDiv && !matrixDiv)) return 
       
-      const [rows, cols]:[number, number] = windowDim.width > 600 
-                                            ? calculateResize(matrixDim, pageRightDiv, matrixDiv)
-                                            : calculateResizeMobile(matrixDim, pageRightDiv, matrixDiv)
+      const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+                                            
       const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
      
       setMatrix(newMatrix)
@@ -109,7 +107,7 @@ const Matricies: FC = ()=>{
          <div className='page-body'>
           <section id='page-left' className='tab-bg'ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
-                {windowDim.width > 600 && <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>}
+                <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
               </div>
               <div id='adjbar' className='udc' ref={adjBarRef}>
                 <svg 

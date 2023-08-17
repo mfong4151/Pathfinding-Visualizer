@@ -33,24 +33,9 @@ const NavBar:FC<Props> = ({footerRef}) => {
         </li>
         <li>
           <NavLink to="/matricies" className="activeLink">
-            Matricies
+            Enter the Matrix
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/graphs" className="activeLink">
-          Graphs
-          </NavLink>
-          </li>
-          <li>
-          <NavLink to="/trees" className="activeLink">
-          Trees
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to="/linked_lists" className="activeLink">
-          Linked Lists
-          </NavLink>
-        </li> */}
       </ul>
       <div className="sb my-links-holder">
 

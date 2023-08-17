@@ -100,39 +100,6 @@ code {
 
 
 
-@media screen and (max-width:599px) {
-  #banner{
-    min-height:200px;
-    max-width: 100vw;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  #banner-options{
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-    min-height:175px;
-  }
-
-  #banner > div>  *{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-left:.5rem;
-    margin-right:.5rem;
-  }
-
-  #change-dims-form{
-    min-width:500px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-}
-
 @media screen and (min-width: 600px) {
   #banner{
     min-height: 80px;
@@ -178,27 +145,17 @@ code {
   pointer-events: none;
 }
 
-@media screen and (max-width:599px){
-  #page-left{
-    width:0%;
-    height:0%
-  }
-  
-  #change-dims-form > input{
-    max-width:130px;
-  }
-}
 
-@media screen and (min-width:600px) {
-  #page-left{
-    display:flex;
-    justify-content: flex-end;
-    width:39.5%;
-    background-color: var(--color-charcol);
-  
-  }
+
+#page-left{
+  display:flex;
+  justify-content: flex-end;
+  width:39.5%;
+  background-color: var(--color-charcol);
 
 }
+
+
 
 #page-right{
     
