@@ -10,9 +10,6 @@ const HowTo: React.FC = () => {
   return (
     <div className="console-spacing">
       <p>
-        {`Welcome to the DSA visualizer, you are currently viewing ${location.pathname.slice(1)}.`}
-      </p>
-      <p>
         To get started, try dragging and dropping the start and stop icons to the right on to the matrix.
       </p>
       <p>

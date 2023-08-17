@@ -52,9 +52,34 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
     return(
         <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
-                
+                <div>
+                <div id='toolbar'>
 
-              
+                    {/* <div id='toolbar-left' className="udc-left">
+                        <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
+                            onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
+                            onMouseLeave={()=> setConsoleContent([])}
+                            >
+
+                            <button className="tile" 
+                                    style={{backgroundColor: color1}} 
+                                    ref={startPosBtnRef} 
+                                    onClick ={() =>setEditColorModal(prev => true)}
+                                />
+                            <p> Change your colors! </p>
+                        </div>
+
+                        <div id="favorite-maps">
+                            <button id="favorite-maps" className="sq-buttons hover-over banner-button">
+                                My Favorite Maps
+                            </button>
+                        </div>
+                    </div> */}
+
+
+                    <DragDropTotems/>
+
+                </div>
                 <div id="matrix" 
                     onMouseDown={()=> setMouseDown(prev => true)} 
                     onMouseUp={()=> setMouseDown(prev => false )}
@@ -82,34 +107,8 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                     )}
 
                 </div>
-
-                <div id='toolbar' >
-
-                    {/* <div id='toolbar-left' className="udc-left">
-                        <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
-                            onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
-                            onMouseLeave={()=> setConsoleContent([])}
-                            >
-
-                            <button className="tile" 
-                                    style={{backgroundColor: color1}} 
-                                    ref={startPosBtnRef} 
-                                    onClick ={() =>setEditColorModal(prev => true)}
-                                />
-                            <p> Change your colors! </p>
-                        </div>
-
-                        <div id="favorite-maps">
-                            <button id="favorite-maps" className="sq-buttons hover-over banner-button">
-                                My Favorite Maps
-                            </button>
-                        </div>
-                    </div> */}
-
-
-                    <DragDropTotems/>
-
-                </div>
+            </div>
+                
             </DndProvider>
 
             {editColorModal && <EditColorModal 

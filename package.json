@@ -1,6 +1,6 @@
 {
-  "homepage": "http://mfong4151.github.io/DSA-Visualizer/#",
-  "name": "dsa-visualizer",
+  "homepage": "http://mfong4151.github.io/Pathfinding-Visualizer/#",
+  "name": "pathfinding-visualizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
