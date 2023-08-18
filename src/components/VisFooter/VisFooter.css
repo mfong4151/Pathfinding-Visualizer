@@ -7,6 +7,13 @@ footer{
 
 }
 
+hr{
+    margin: 1rem 0rem;
+    width:80vw;
+    color:grey;
+    height:.5px;
+}
+
 @media screen and (max-width: 599px){
     #vis-footer{
         min-height:400px;

@@ -17,7 +17,8 @@ const VisFooter:FC = () => {
 
 
   return (
-    <footer id='vis-footer'>
+    <footer id='vis-footer' className='fdc'>
+      <hr/>
       <img id='my-qr' src={qrCode} alt="qr code to my site"/>
       <div>
         <p id='my-email' onClick={handleOnClick} className='pointer-events'>Email Me</p>

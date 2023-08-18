@@ -24,38 +24,21 @@ import styled, {keyframes} from "styled-components";
 const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState, matrixRef})=>{
     const {matrix} = matrixState;
     const [mouseDown, setMouseDown] = useState<boolean>(false);
-    const [wallColor, setWallColor] = useState<string>('')
-    const {setConsoleContent} = consoleContentState;
+    const [wallColor, setWallColor] = useState<string>('');
+    const [editColorModal, setEditColorModal] = useState<boolean>(false);
     //We might be able to bust these out into a custom hook and reuse them 
-    const{ 
-        color1,
-        color2,
-        color3,
-        color4,
-        setColor1, 
-        setColor2, 
-        setColor3, 
-        setColor4, 
-        shortestPathColor, 
-        setShortestPathColor,
-        editColorModal , 
-        setEditColorModal,
-        customTransition,
-        setCustomTransition
-        
-       }= useEditColorStates();
+  
       
     const startPosBtnRef = useRef<HTMLButtonElement>(null);
     
-
 
     return(
         <div id='matrix-tab' className="fdc univ-padding" >   
             <DndProvider backend={HTML5Backend}>
                 <div>
-                <div id='toolbar'>
+                    <div id='toolbar' className="fdr udc-right">
 
-                    {/* <div id='toolbar-left' className="udc-left">
+                    {/* <div id='toolbar-left' className="udc">
                         <div id='change-color' className="hover-over drag-icon-holder udc fdc" 
                             onMouseEnter={()=> setConsoleContent(["Click this button to change your color scheme!"])}
                             onMouseLeave={()=> setConsoleContent([])}
@@ -69,17 +52,18 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                             <p> Change your colors! </p>
                         </div>
 
-                        <div id="favorite-maps">
+                        {/* <div id="favorite-maps">
                             <button id="favorite-maps" className="sq-buttons hover-over banner-button">
                                 My Favorite Maps
                             </button>
-                        </div>
-                    </div> */}
+                        </div> 
+                    </div> 
+                        */}
 
 
                     <DragDropTotems/>
 
-                </div>
+                    </div>
                 <div id="matrix" 
                     onMouseDown={()=> setMouseDown(prev => true)} 
                     onMouseUp={()=> setMouseDown(prev => false )}
@@ -115,8 +99,6 @@ const GraphMatrix: FC<Props> = ({matrixState, startEndState, consoleContentState
                                             position={{left:startPosBtnRef.current!.offsetLeft, 
                                                         top:startPosBtnRef!.current!.offsetTop + startPosBtnRef!.current!.offsetHeight}}
                                             colorModalState={{editColorModal, setEditColorModal}}
-                                            colorStates = {{ color1, color2, color3, color4, setColor1, setColor2,setColor3,setColor4}}
-                            
                                         />}
         </div>
     )

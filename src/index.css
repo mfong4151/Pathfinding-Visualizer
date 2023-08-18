@@ -63,6 +63,13 @@ code {
   align-items: center;
 }
 
+.udc-right{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+
 .sb{
   display:flex;
   justify-content: space-between;
@@ -153,6 +160,15 @@ code {
 
 
 
+#page-left,
+#page-right{
+  height:95%;
+  border-top-left-radius: 5px;
+  border-top-right-radius:5px;
+  border-bottom-right-radius: 5px;
+
+}
+
 #page-left{
   display:flex;
   justify-content: flex-end;
@@ -164,8 +180,6 @@ code {
 
 
 #page-right{
-    
-  height:100%;
   width:100%;
   background-color: var(--color-charcol);
 
@@ -215,6 +229,11 @@ code {
   white-space: nowrap;
 }
 
+
+#toolbar{
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
 
 /* general modal styles */
 
