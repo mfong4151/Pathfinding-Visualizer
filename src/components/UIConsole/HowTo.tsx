@@ -2,8 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 const HowTo: React.FC = () => {
-  const location:any = useLocation()
-  // const route = location.
+
 
 
 

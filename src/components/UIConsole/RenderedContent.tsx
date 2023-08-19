@@ -1,5 +1,5 @@
 import React from "react";
-import { consoleContent } from "../../types/objects";
+import { consoleContent } from "../types/objects";
 
 type Props = {
   consoleContent: consoleContent;

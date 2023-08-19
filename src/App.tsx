@@ -1,6 +1,5 @@
 import React, {useRef} from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Nodular from './components/Nodulars';
 import NavBar from './components/NavBar/index'
 import Matricies from './components/Matricies/index'
 import VisFooter from './components/VisFooter';

@@ -33,7 +33,7 @@ const NavBar:FC<Props> = ({footerRef}) => {
         </li>
         <li>
           <NavLink to="/matricies" className="activeLink">
-            Enter the Matrix
+            Matricies
           </NavLink>
         </li>
       </ul>
