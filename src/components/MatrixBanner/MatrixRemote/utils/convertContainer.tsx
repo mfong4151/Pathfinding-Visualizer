@@ -1,4 +1,4 @@
-import { matrixItemObject } from "../../../../../types/objects";
+import { matrixItemObject } from "../../../../types/objects";
 
 const convertContainer = (container:matrixItemObject[]):string =>{
 

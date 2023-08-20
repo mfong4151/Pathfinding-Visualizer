@@ -1,8 +1,8 @@
 import './graphs.css'
 import {FC, useRef, useEffect } from "react";
 import GraphMatrix from './Matrix'
-import {transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
-import MatrixBanner from './MatrixBanner/MatrixBanner';
+import {transplantMatrix } from "../MatrixBanner/MatrixRemote/utils/graphUtils";
+import MatrixBanner from '../MatrixBanner/MatrixBanner';
 import UIConsole from '../UIConsole';
 import { consoleContentState, errorsState } from '../../types/state';
 import useUIStates from '../../hooks/useUIStates';

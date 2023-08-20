@@ -1,19 +1,16 @@
 import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
-import { consoleContentState, matrixState } from '../../../../types/state';
-import { startStop } from '../../../../types/positions';
-import { itterator } from '../../../../types/itterator';
-import { consoleContent, matrixItemObject } from '../../../../types/objects';
+import { consoleContentState, matrixState } from '../../../types/state';
+import { startStop } from '../../../types/positions';
+import { itterator } from '../../../types/itterator';
+import { consoleContent, matrixItemObject } from '../../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../utils/matrixStyling';
-import Play from '../../../Nodulars/Banner/Remote/svgs/Play';
-import FastForward from '../../../Nodulars/Banner/Remote/svgs/Fastforward';
-import SkipBack from '../../../Nodulars/Banner/Remote/svgs/SkipBack';
-import SkipForward from '../../../Nodulars/Banner/Remote/svgs/SkipForward';
-import Pause from '../../../Nodulars/Banner/Remote/svgs/Pause';
+
+import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../Matricies/utils/matrixStyling';
+
 import { inShortestPathExclusions } from './utils/graphUtils';
 import { forwardConsoleMsgs } from './utils/remoteUtils';
-import RemoteHtml from '../../../Nodulars/Banner/Remote/RemoteHtml';
+import RemoteHtml from '../../Nodulars/Banner/Remote/RemoteHtml';
 
 interface Props{
     chosenAlgo: string;
@@ -57,7 +54,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       else if (start.x === -1) newConsoleContent.push('You need to place the starter somewhere! a start!');
       else newConsoleContent.push('You need to select an end!');
 
-      setConsoleContent(prev => newConsoleContent)
+      setConsoleContent(newConsoleContent)
       return 
     }
 
@@ -189,7 +186,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
         break
     }
 
-    if(newConsoleContent) setConsoleContent(prev => newConsoleContent)
+    if(newConsoleContent) setConsoleContent(newConsoleContent)
     hasAnimated = true //prevent reanimations
     allowSetIttr.current = false;
 
