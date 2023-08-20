@@ -20,10 +20,6 @@ interface MapLocation {
   [key: string]: string[];
 }
 
-const MAP_LOCATION: MapLocation = {
-  '/matricies':['DFS', 'BFS', 'Best First Search', 'Bidirectional BFS'],
-  '/trees':["Inorder DFS", "Preorder DFS", "Postorder DFS", "BFS"],
-}
 
 const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, chooseAlgoButton}) => {
   const MANUAL_OFFSET_X: number = 8;
@@ -33,7 +29,7 @@ const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, ch
   const posTop: string = `${chooseAlgoButton.offsetTop +chooseAlgoButton.offsetHeight}px`
   const divWidth: string=  `${chooseAlgoButton.offsetWidth}px`
   const location = useLocation();
-  const algoChoices:string[] = MAP_LOCATION[location.pathname] ? MAP_LOCATION[location.pathname]: []
+  const algoChoices:string[] = ['DFS', 'BFS', 'Best First Search', 'Bidirectional BFS', 'A*']
 
   if (chosenAlgo) document.body.classList.add('active-modal')
   else document.body.classList.remove('active-modal')

@@ -65,6 +65,8 @@ export class MatrixItterator{
     }
 
     protected evaluateEnd(curr:matrixItemObject):void{
+
+        
         if (this.isEnd(curr.pos)) this.endFound = true;
 
     }

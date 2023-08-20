@@ -36,7 +36,6 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   const { matrixDim,setMatrixDim} = matrixDimState;
   const  {startEndPos, setStartEndPos} = startEndPosState;
   const  {isPlaying, setIsPlaying} = isPlayingState;
-  const {errors, setErrors} = errorsState;
   const chooseAlgoRef = useRef<any>()
 
 
@@ -47,7 +46,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
     const newMatrixDim:pos = {...matrixDim}
     if (e.target.id === 'height') newMatrixDim.y = Number(e.target.value);
     else newMatrixDim.x = Number(e.target.value);
-    setMatrixDim(prev => newMatrixDim)
+    setMatrixDim( newMatrixDim)
   }
 
   const handleOnClick= ():void =>{
@@ -58,8 +57,8 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
         resetStyleSync([j, i], 'tile udc')  
     }
     const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
-    setMatrix(prev => createNewMatrix(rows, cols))
-    setStartEndPos(prev => ({start:{y: -1, x: -1}, end: {y: -1, x: -1}}))
+    setMatrix( createNewMatrix(rows, cols))
+    setStartEndPos( {start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     return
   }
 
@@ -69,7 +68,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
 
   useEffect(()=>{
     if(chosenAlgo !== 'Choose your algorithm')
-       consoleContentState.setConsoleContent(prev => (matrixDescriptions[chosenAlgo]))
+       consoleContentState.setConsoleContent( (matrixDescriptions[chosenAlgo]))
 
   }, [chosenAlgo])
 

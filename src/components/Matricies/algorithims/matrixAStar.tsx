@@ -18,18 +18,18 @@ export class AStar extends matrixHeuristicSearch {
     }
     
     public calculateG(currPos: number[]): number {
-        // Calculate the cost to reach the current position from the start
         return this.manhattanHeuristic(currPos);
     }
     
     public calculateF(curr: matrixItemObject): number {
-        // Calculate the total cost (g + h) for the current node
         const g = this.calculateG(curr.pos);
         const h = this.manhattanHeuristic(curr.pos);
         return g + h;
     }
     
     public preformFullAlgo(): matrixItemObject[] {
+
+
         while (this.open.length) {
             const currPair: minHeapItem = this.open.pop()!;
             const curr: matrixItemObject = currPair[1];
@@ -57,7 +57,6 @@ export class AStar extends matrixHeuristicSearch {
                 Heap.heappush(this.open, [nextF, next]);
             }
         }
-
         return this.res;
     }
 

@@ -109,7 +109,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const play = ():void  =>{
       setIsPlaying(prev => true)
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-      
+    
       const illustrate = async():Promise<void> =>{
         for(let i:number = 0; i < res.length; i ++){
           const node:matrixItemObject = res[i];
@@ -122,14 +122,18 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       };
 
       illustrate().then(()=>{
-      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)){
-        styleShortestPath(activeIttr.generateShortestPath())
-      } else{
 
-        newConsoleContent.push('In this scenario, the endpoint could not be reached.')
+      const excluded = inShortestPathExclusions(activeIttr)
 
+      if (!excluded){
+        if (activeIttr.endFound) styleShortestPath(activeIttr.generateShortestPath())
+        else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
       }
-        setIsPlaying(prev => false)
+      else{
+        if (!activeIttr.endFound)newConsoleContent.push('In this scenario, the endpoint could not be reached.')
+      }
+      
+      setIsPlaying(false)
 
       })
 

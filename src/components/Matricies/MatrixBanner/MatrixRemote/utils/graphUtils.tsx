@@ -3,6 +3,7 @@ import { DFSItterMatrix } from "../../../algorithims/matrixDFS";
 import { itterator } from "../../../../../types/itterator";
 import { BestFSItterMatrix } from "../../../algorithims/matrixBestFirstSearch";
 import { startStop } from "../../../../../types/positions";
+import { AStar } from "../../../algorithims";
 
 export const createNewMatrix = (numRows :number, numCols :number) : matrixItemObject[][] =>{
     const matrix = []
@@ -52,6 +53,6 @@ export const transplantMatrix = (numRows: number, numCols: number, startEndPos: 
 
 
 export const inShortestPathExclusions = (activeIttr:itterator):boolean =>(
-    activeIttr instanceof DFSItterMatrix || activeIttr instanceof BestFSItterMatrix
+    activeIttr instanceof DFSItterMatrix || activeIttr instanceof BestFSItterMatrix || activeIttr instanceof AStar
  )
 
