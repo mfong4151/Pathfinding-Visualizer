@@ -92,7 +92,7 @@ const Matricies: FC = ()=>{
     },[windowDim])
     
     return(
-      <div className={`font-color ${isPlaying && 'unclickable'}`}>
+      <div id='page-main' className={`font-color ${isPlaying && 'unclickable'}`}>
         <MatrixBanner 
                 matrixState = {matrixState}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
@@ -105,11 +105,13 @@ const Matricies: FC = ()=>{
           />  
 
          <div className='page-body'>
-          <section id='page-left' className='tab-bg'ref={pageLeftRef} >
+            <section id='page-left' className='tab-bg section-border' ref={pageLeftRef} >
               <div className='udc-no-vertical console-holder'>
                 <UIConsole consoleContent={consoleContent} isPlaying={isPlaying} errors={errorsState}/>
               </div>
-              <div id='adjbar' className='udc' ref={adjBarRef}>
+              
+            </section>
+            <div id='adjbar' className='udc' ref={adjBarRef}>
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 2 14" 
@@ -121,10 +123,8 @@ const Matricies: FC = ()=>{
                   <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 7)"/>
                   <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"/>
                 </svg>
-              </div>
-            </section>
-            
-            <section id='page-right' className='udc-no-vertical tab-bg' ref={pageRightRef}>
+             </div>
+            <section id='page-right' className='udc-no-vertical tab-bg section-border' ref={pageRightRef}>
                   <GraphMatrix 
                     matrixState={matrixState} 
                     startEndState ={{startEndPos, setStartEndPos}}

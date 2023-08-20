@@ -6,7 +6,8 @@
 :root{
   --color-black-foreground:#1A1A1A;
   --color-charcol:#282828;
-  --color-charcol-pressed:#1e1d1d;
+  --color-charcol-header: #1d1c1c;
+  --color-charcol-pressed:#494646;
   --color-white: #FFFFFF;
   --color-transparent:transparent;
   --color-yellow-pineapple:#FEE12B;
@@ -20,7 +21,8 @@
   --color-shortest-path-end:#D3EEDD;
   --color-blue-hover: #0A84FF;
   --color-tile-blue: rgb(175, 216, 248);
-  --open-sans-font-family: 'open-sans'
+  --open-sans-font-family: 'open-sans';
+  --color-grey-border: rgb(211, 207, 207);
 
 }
 
@@ -132,10 +134,6 @@ code {
   margin: 0rem 2rem;
 }
 
-.top-bar-padding{
-  
-}
-
 /* designs for each of the pannels on main page */
 
 
@@ -145,15 +143,25 @@ code {
   color:var(--color-white);
 }
 
+#page-main{
+  height:85vh;
+  width:100vw;
+
+}
+
 .page-body{
-  height:100vh;
+  height:100%;
   width: 100vw;
   display: flex;
   justify-content: space-between;
 
 }
 
-/* to make things conditionally unclickable */
+
+.page-body > *{
+  height: 90%;
+}
+
 .unclickable {
   pointer-events: none;
 }
@@ -162,31 +170,27 @@ code {
 
 #page-left,
 #page-right{
-  height:95%;
-  border-top-left-radius: 5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius: 5px;
-
+  border-radius: 1rem;
 }
 
 #page-left{
+  border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem;
   display:flex;
   justify-content: flex-end;
   width:39.5%;
   background-color: var(--color-charcol);
-
 }
-
 
 
 #page-right{
   width:100%;
   background-color: var(--color-charcol);
-
+  border-top-right-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 #adjbar{
-  height:auto;
   min-width:10px;
   background-color: var(--color-black-foreground);
 
@@ -203,9 +207,6 @@ code {
 .console-holder{
   width:100%
 }
-
-
-
 
 .sq-buttons{
   background-color: var(--color-charcol);
@@ -231,8 +232,13 @@ code {
 
 
 #toolbar{
+  background-color: var(--color-charcol-header);
   padding-top: 2rem;
   padding-bottom: 1rem;
+  margin-bottom:1rem;
+  width:100%;
+  border-top: 1rem;
+  border-top-left-radius:1rem;
 }
 
 /* general modal styles */
@@ -308,5 +314,10 @@ code {
 .pointer-events{
   cursor:pointer;
   
+}
+
+.section-border{
+  border-radius:1.5rem;
+  border: solid 1px var(--color-grey-border);
 }
 

@@ -1,9 +1,8 @@
 #console {
     width:90%;
-    height: 80vh;
+    height: 90%;
     background-color: black;
     color: white;
-    margin: 1rem;
     margin-top:2rem;
     overflow-y: auto;
 }
