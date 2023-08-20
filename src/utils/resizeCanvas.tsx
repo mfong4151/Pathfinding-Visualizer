@@ -12,7 +12,6 @@ export const calculateResize = (matrixDim: pos, rightDiv:HTMLDivElement, matrixD
     const rightDivHeight: number = rightDiv.offsetHeight;  
     const rightDivWidth: number = rightDiv.offsetWidth;
     const tileHeightWidth: number = matrixDiv.firstChild.firstChild.offsetWidth!
-    console.log(matrixDiv.offsetTop)
     const maxNumRows = Math.floor((rightDivHeight -matrixDiv.offsetTop + BOTTOM_BREAK_POINT)/tileHeightWidth)
     const maxNumCols = Math.floor((rightDivWidth - BREAK_POINT_MAX)/tileHeightWidth)
     return [Math.min(matrixDim.y, maxNumRows),  Math.min(matrixDim.x,maxNumCols)];

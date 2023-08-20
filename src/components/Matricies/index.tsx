@@ -85,7 +85,8 @@ const Matricies: FC = ()=>{
       const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
                                             
       const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
-     
+      
+      console.log(newMatrix, newStartEnd)
       setMatrix(newMatrix)
       setStartEndPos(newStartEnd)
 
