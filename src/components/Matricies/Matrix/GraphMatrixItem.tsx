@@ -2,10 +2,10 @@ import React, {Dispatch, useEffect, useRef} from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../Nodulars/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
-import { startStop, pos } from "../../types/positions";
-import { consoleContentState, matrixState, startEndState} from "../../types/state";
+import { startStop, pos } from "../../../types/positions";
+import { consoleContentState, matrixState, startEndState} from "../../../types/state";
 import '../../Matricies/graphs.css'
-import { matrixItemObject } from "../../types/objects";
+import { matrixItemObject } from "../../../types/objects";
 
 interface Props{
     matrixState: matrixState;

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../Matricies/graphs.css'
 import './cells.css'
-import { MapConditionalString } from '../../../types/interface';
+import { MapConditionalString } from '../../../../types/interface';
 
 interface Props{
   totemType: string;

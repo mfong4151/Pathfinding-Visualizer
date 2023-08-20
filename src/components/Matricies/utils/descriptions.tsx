@@ -1,4 +1,4 @@
-import {descDFS, descDijkstras, descAStar, descBFS, descBestFirstSearch, descBiBFS} from '../../utils/descriptions'
+import {descDFS, descDijkstras, descAStar, descBFS, descBestFirstSearch, descBiBFS} from '../../../utils/descriptions'
 
 
 

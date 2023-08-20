@@ -3,7 +3,7 @@ import { matrixItemObject } from '../types/objects';
 import { calculateResize } from '../utils/resizeCanvas';
 import { pos } from '../types/positions';
 import { startStop } from '../types/positions';
-import { transplantMatrix } from '../Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
+import { transplantMatrix } from '../components/Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
 import { setMatItemObjMatrix, setStartStop } from '../types/setState';
 
 

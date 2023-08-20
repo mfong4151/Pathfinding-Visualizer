@@ -1,11 +1,11 @@
 import React, { useRef, useState, FC } from "react";
 import './EditColorModal.css'
-import { ColorStates } from "../../../types/interface";
-import { activeColor } from "../../../types/objects";
+import { ColorStates } from "../../../../types/interface";
+import { activeColor } from "../../../../types/objects";
 import EditTileColorModal from "./EditTileColorModal";
 import {CloseButton} from "../../../SVGS";
-import makeColorTransition from "../../../utils/makeColorTransition";
-import useEditColorStates from "../../../hooks/useCustomColorStates";
+import makeColorTransition from "../../../../utils/makeColorTransition";
+import useEditColorStates from "../../../../hooks/useCustomColorStates";
 interface Props {
     position: { left: number; top: number };
     colorModalState:{
