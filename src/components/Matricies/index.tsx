@@ -5,13 +5,13 @@ import {transplantMatrix } from "./MatrixBanner/MatrixRemote/utils/graphUtils";
 import MatrixBanner from './MatrixBanner/MatrixBanner';
 import UIConsole from '../UIConsole';
 import { consoleContentState, errorsState } from '../../types/state';
-import useUIStates from '../hooks/useUIStates';
-import useWindowSize from '../hooks/useWindowSize';
-import useMatrixStates from '../hooks/useMatrixStates';
+import useUIStates from '../../hooks/useUIStates';
+import useWindowSize from '../../hooks/useWindowSize';
+import useMatrixStates from '../../hooks/useMatrixStates';
 import { windowDim } from '../../types/windowDim';
 import { matrixItemObject } from '../../types/objects';
 import { startStop } from '../../types/positions';
-import { calculateResize} from '../utils/resizeCanvas';
+import { calculateResize} from '../../utils/resizeCanvas';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 

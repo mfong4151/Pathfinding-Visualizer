@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { consoleContent } from "../../types/objects";
+import { consoleContent } from "../types/objects";
 
 type genericStates = {
     consoleContent:consoleContent,

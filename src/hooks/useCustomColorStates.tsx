@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { setBoolean, setString } from "../../types/setState"
+import { setBoolean, setString } from "../types/setState"
 
 type states = {
     color1: string,

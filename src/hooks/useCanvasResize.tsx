@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { matrixItemObject } from '../../types/objects';
+import { matrixItemObject } from '../types/objects';
 import { calculateResize } from '../utils/resizeCanvas';
-import { pos } from '../../types/positions';
-import { startStop } from '../../types/positions';
-import { transplantMatrix } from '../Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
-import { setMatItemObjMatrix, setStartStop } from '../../types/setState';
+import { pos } from '../types/positions';
+import { startStop } from '../types/positions';
+import { transplantMatrix } from '../components/Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
+import { setMatItemObjMatrix, setStartStop } from '../types/setState';
 
 
 //Matrix refers to the matrix that is displayed on the page. This could be the canvas matrix, or for matricies the matrix itself.

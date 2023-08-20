@@ -6,7 +6,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { consoleContentState, matrixState } from "../../../types/state";
 import { matrixItemObject } from "../../../types/objects";
 import EditColorModal from "./EditColorModal";
-import useEditColorStates from "../../hooks/useCustomColorStates";
+import useEditColorStates from "../../../hooks/useCustomColorStates";
 import DragDropTotems from "./DragDropTotems";
 import styled, {keyframes} from "styled-components";
 

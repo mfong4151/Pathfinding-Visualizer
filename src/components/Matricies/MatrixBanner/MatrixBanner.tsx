@@ -8,8 +8,8 @@ import '../../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixState, startEndPosState } from '../../../types/state';
 import matrixDescriptions from '../utils/descriptions';
 import { resetStyleSync } from '../utils/matrixStyling';
-import { calculateResize} from '../../utils/resizeCanvas'
-import useCanvasResize from '../../hooks/useCanvasResize';
+import { calculateResize} from '../../../utils/resizeCanvas'
+import useCanvasResize from '../../../hooks/useCanvasResize';
 
 interface Props{
   matrixState: matrixState;
