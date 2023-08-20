@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/index'
 import Matricies from './components/Matricies/index'
-import VisFooter from './components/VisFooter';
+import Footer from './components/Footer';
 import Splash from './components/Splash';
 
 const App: React.FC = () => {
@@ -20,7 +20,7 @@ const App: React.FC = () => {
         
       </Routes>
       <div ref={footerRef}>
-        <VisFooter/>
+        <Footer/>
 
       </div>
     </div>

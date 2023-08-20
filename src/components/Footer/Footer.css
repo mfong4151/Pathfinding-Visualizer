@@ -1,0 +1,32 @@
+footer{
+   
+    max-height: auto;
+    width:100vw;
+    background-color: var(--color-charcol);
+    display: flex;
+
+}
+
+hr{
+    margin: 1rem 0rem;
+    width:80vw;
+    color:grey;
+    height:.5px;
+}
+
+
+
+#contacts{
+    padding-bottom: 1rem;
+}
+
+#my-qr{
+    max-height:170px;
+    max-width:170px;
+
+}
+
+#my-email{
+    color: var(--color-white);
+    font-size: 30px;
+}
