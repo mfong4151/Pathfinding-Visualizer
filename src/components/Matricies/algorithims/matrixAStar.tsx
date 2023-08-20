@@ -1,5 +1,5 @@
 
-import { matrixItemObject } from "../../types/objects";
+import { matrixItemObject } from "../../../types/objects";
 import Heap from "heap-js";
 import {DIRS_EIGHT} from "./dirs";
 import { MatrixItterator } from "./matrixItterator";

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import { matrixItemObject } from '../types/objects';
+import { matrixItemObject } from '../../types/objects';
 import { createNewMatrix } from '../Matricies/MatrixBanner/MatrixRemote/utils/graphUtils';
-import { pos, startStop } from '../types/positions';
+import { pos, startStop } from '../../types/positions';
 
 type matrixStates = {
 

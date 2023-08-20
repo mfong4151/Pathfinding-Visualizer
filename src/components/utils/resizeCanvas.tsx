@@ -1,4 +1,4 @@
-import { pos } from "../types/positions";
+import { pos } from "../../types/positions";
 
 
 //This might need ot be refactored to handle canvases

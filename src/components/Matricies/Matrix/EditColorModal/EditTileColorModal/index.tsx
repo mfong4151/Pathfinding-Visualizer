@@ -1,5 +1,5 @@
-import { setBoolean } from "../../../../types/setState";
-import { activeColor } from "../../../../types/objects";
+import { setBoolean } from "../../../../../types/setState";
+import { activeColor } from "../../../../../types/objects";
 import { FC} from "react";
 import { ColorResult, SketchPicker } from "@hello-pangea/color-picker";
 import '../../EditColorModal/EditColorModal.css';

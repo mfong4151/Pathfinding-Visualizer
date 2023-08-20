@@ -1,4 +1,4 @@
-import { matrixItemObject } from "../../types/objects";
+import { matrixItemObject } from "../../../types/objects";
 import { MatrixItterator } from "./matrixItterator";
 import {DIRS_FOUR} from "./dirs";
 

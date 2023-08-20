@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { windowDim } from '../types/windowDim';
+import { windowDim } from '../../types/windowDim';
 
 
 

@@ -1,8 +1,8 @@
-import { itterator } from "../../../../types/itterator";
+import { itterator } from "../../../../../types/itterator";
 import convertContainer from "./convertContainer";
 import { BestFSItterMatrix, DFSItterMatrix, BFSItterMatrix, BiBFSItterMatrix } from "../../../algorithims";
 
-import { matrixItemObject } from "../../../../types/objects";
+import { matrixItemObject } from "../../../../../types/objects";
 
 export const forwardConsoleMsgs = (activeIttr:itterator):string[]=> {
       

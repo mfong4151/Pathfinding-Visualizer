@@ -1,4 +1,4 @@
-import { pos } from "../../types/positions";
+import { pos } from "./positions";
 
 export interface Props{
     pos:pos;
