@@ -1,6 +1,6 @@
 ## Live Link
 
-http://maxfongdev.com/DSA-Visualizer/
+http://maxfongdev.com/Pathfinding-Visualizer/
 
 As of now, only the matricies section is availible for public release.
 
@@ -10,9 +10,9 @@ This project is as much a TypeScript project, as a Frontend project, as a DSA pr
 
 This project is open to collaborators, please message me before making any pull requests about considered contributions.
 
-![](https://github.com/mfong4151/DSA-Visualizer/blob/main/gifs/bfsbi.gif)
+![](https://github.com/mfong4151/Pathfinding-Visualizer/blob/main/gifs/bfsbi.gif)
 
-![](https://github.com/mfong4151/DSA-Visualizer/blob/main/gifs/bestfirstSearch.gif)
+![](https://github.com/mfong4151/Pathfinding-Visualizer/blob/main/gifs/bestfirstSearch.gif)
 
 ## How to use: Matricies
 

@@ -6,8 +6,8 @@
 .splash-section{
     margin-left:3rem;
     margin-right:3rem;
-    width:90%;
-    height:100vh;
+    width:80%;
+    height:100%;
     background-color: var(--color-charcol);
 }
 
@@ -36,4 +36,15 @@
     max-height:30vh;
     overflow-y: auto;
 }
-    
+
+li{
+    margin-bottom:1rem;
+}
+
+#bfs-bi{
+    width:55vw;
+}
+
+.to-mat{
+    margin-bottom:2rem;
+}

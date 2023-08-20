@@ -1,0 +1,11 @@
+/* #choose-algo-modal{
+
+} */
+
+.algo-choice-item{
+    color: var(--color-black-foreground);
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    font-size: 18px;
+    font-weight: 400;
+}

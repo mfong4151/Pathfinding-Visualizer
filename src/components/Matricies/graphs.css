@@ -1,12 +1,12 @@
 #matrix-tab{
-    height:auto;
-    margin-top:4rem;
+    height:100%;
     width:auto;
     display: inline-flex;
+    flex-direction: row;
 }
 
 #matrix{
-  height:auto;
+  max-height:100%;
   width:auto;
     
 }
@@ -92,6 +92,7 @@
     font-size:16px;
     background-color: black;
     min-height:32px;
+    width:12vw;
     border-radius: 1rem;
     color: var(--color-white);
     padding-left:1rem;
@@ -100,10 +101,10 @@
 
 .drag-icon-holder{
     min-width:100px;
-    min-height:100px;
+    height: 80px;
     border: 2px solid transparent;
     border-radius: 1rem;
-    padding:1rem 0rem;
+    padding-top:1rem;
   }
   
 

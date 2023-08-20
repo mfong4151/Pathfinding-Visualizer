@@ -18,10 +18,10 @@ const CellTotem: React.FC<Props> = ({totemType}) => {
 
 
 
-return (
-  <div className={`tile-display ${MAP_STYLE[totemType]}`}>
-  </div>
-)
+  return (
+    <div className={`tile-display ${MAP_STYLE[totemType]}`}>
+    </div>
+  )
 
 }
 

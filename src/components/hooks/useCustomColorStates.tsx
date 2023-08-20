@@ -20,15 +20,18 @@ type states = {
 
 const useEditColorStates = (): states  => {
 
-    const [color1, setColor1] = useState<string>('')
-    const [color2, setColor2] = useState<string>('')
-    const [color3, setColor3] = useState<string>('')
-    const [color4, setColor4] = useState<string>('')
+    const [color1, setColor1] = useState<string>(' #e2dbf8');
+    const [color2, setColor2] = useState<string>('#4b0082');
+    const [color3, setColor3] = useState<string>('#1837cf');
+    const [color4, setColor4] = useState<string>('#87CEEB');
+    const [color5, setColor5] = useState<string>('#270595');
 
     const [shortestPathColor, setShortestPathColor] = useState<string>('')
     const [editColorModal , setEditColorModal] = useState<boolean>(false);
     const [customTransition, setCustomTransition] = useState<string>('')
     
+    
+      
   return {
        
     color1,

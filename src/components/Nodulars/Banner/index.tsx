@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import ChooseAlgoModal from './ChooseAlgoModal';
+import ChooseAlgoModal from '../../Matricies/MatrixBanner/ChooseAlgoModal';
 
 interface Props{
 

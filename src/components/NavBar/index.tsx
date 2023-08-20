@@ -9,7 +9,6 @@ interface Props{
   footerRef: MutableRefObject<null | HTMLDivElement>
 }
 
-
 const NavBar:FC<Props> = ({footerRef}) => {
 
   const handleContactClick = (e:MouseEvent<HTMLDivElement>) =>{
@@ -24,31 +23,16 @@ const NavBar:FC<Props> = ({footerRef}) => {
      <div className='my-links-holder'/>
 
       <ul>
-        {/* <li>
+        <li>
           <NavLink to="/" className="activeLink">
             Home
           </NavLink>
-        </li> */}
+        </li>
         <li>
           <NavLink to="/matricies" className="activeLink">
             Matricies
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/graphs" className="activeLink">
-          Graphs
-          </NavLink>
-          </li>
-          <li>
-          <NavLink to="/trees" className="activeLink">
-          Trees
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to="/linked_lists" className="activeLink">
-          Linked Lists
-          </NavLink>
-        </li> */}
       </ul>
       <div className="sb my-links-holder">
 

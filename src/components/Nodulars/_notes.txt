@@ -1,1 +1,0 @@
-This component is a general stensil component. If you cannot find the corresponding component (e.g. Remote.tsx) look in here instead.

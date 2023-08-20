@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useRef } from 'react';
-import { createNewMatrix, transplantMatrix } from './MatrixRemote/utils/graphUtils';
+import { createNewMatrix } from './MatrixRemote/utils/graphUtils';
 import { useState } from 'react';
-import ChooseAlgoModal from '../../Nodulars/Banner/ChooseAlgoModal';
-import { pos, startStop } from '../../types/positions';
+import ChooseAlgoModal from './ChooseAlgoModal';
+import { pos } from '../../types/positions';
 import Remote from './MatrixRemote';
 import '../../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixState, startEndPosState } from '../../types/state';
