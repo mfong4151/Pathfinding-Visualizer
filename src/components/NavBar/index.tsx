@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, MutableRefObject} from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './navbar.css';
 import github from '../../assets/github.png' ;
 import linkedin from '../../assets/linkedin.png' ;
@@ -9,11 +9,8 @@ interface Props{
   footerRef: MutableRefObject<null | HTMLDivElement>
 }
 
-
 const NavBar:FC<Props> = ({footerRef}) => {
-  const loc = useLocation()
 
-  console.log(loc)
   const handleContactClick = (e:MouseEvent<HTMLDivElement>) =>{
 
     if (!footerRef.current) return;
