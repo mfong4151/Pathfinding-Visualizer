@@ -1,126 +1,104 @@
-
+import { matrixHeuristicSearch, minHeapItem } from "./matrixHeuristicSearch";
 import { matrixItemObject } from "../../types/objects";
 import Heap from "heap-js";
-import {DIRS_EIGHT} from "./dirs";
-import { MatrixItterator } from "./matrixItterator";
+import { DIRS_EIGHT } from "./dirs"; // You should use DIRS_EIGHT for A* search
 
-type starHeapItem = [number, number, number, matrixItemObject]
-
-export class AStar extends MatrixItterator{
-    public open: any;
-
-    //G cost: distance from the start
-    //H cost: distance from the 
-    constructor(start:number[], end:number[], matrix:matrixItemObject[][]){
-        super(start, end, matrix)
-        const top: matrixItemObject = {pos:this.start, prev: [-1, -1]};
-        this.open = new Heap<starHeapItem>(this.compareFH);
-        const initG = 0; //Initial g cost will always be 0
-        const initH = this.calculateH(this.end);
-        const initF = initG + initH;
-        Heap.heappush(this.open, [initF, initG, initH, top])
+export class AStar extends matrixHeuristicSearch {
+    constructor(start: number[], end: number[], matrix: matrixItemObject[][]) {
+        super(start, end, matrix);
+        const top: matrixItemObject = { pos: this.start, prev: [-1, -1] };
+        Heap.heappush(this.open, [this.calculateF(top), top]); // Use calculateF for A*
     }
 
-    private calculateG(currPos:number[]):number{
-        return this.pythagoreanHeuristic(currPos, this.start);
+
+    public manhattanHeuristic(nodePos: number[]): number {
+        const [x1, y1] = nodePos;
+        const [x2, y2] = this.end;
+        return Math.abs(y2 - y1) + Math.abs(x2 - x1);
     }
-    private calculateH(currPos:number[]):number{
-        return this.pythagoreanHeuristic(currPos, this.end);
+    
+    public calculateG(currPos: number[]): number {
+        // Calculate the cost to reach the current position from the start
+        return this.manhattanHeuristic(currPos);
     }
-    private calculateF(g: number, h: number):number{ 
+    
+    public calculateF(curr: matrixItemObject): number {
+        // Calculate the total cost (g + h) for the current node
+        const g = this.calculateG(curr.pos);
+        const h = this.manhattanHeuristic(curr.pos);
         return g + h;
     }
-
-    private pythagoreanHeuristic(currPos:number[], destPos:number[]):number{
-        const [x1, y1] = currPos as [number, number];
-        const [x2, y2] = destPos as [number, number];
-        return Math.floor(Math.sqrt(Math.abs(x1 - x2) ** 2 +(Math.abs(y1 - y2))) * 10);
-    }
-
-
-    //Comparator function for chosing onne starHeap item over the other
-    //If there are any issues, it'll probably be here
-    private compareFH(a: starHeapItem, b:starHeapItem):number{
-        const [aF, _aG, aH] = a;
-        const [bF, _bG, bH] = a;
-        return aF === bF ? aH - bH : aF - bF;
-    }
-
+    
     public preformFullAlgo(): matrixItemObject[] {
-        let ctr = 0
-        while (this.open.length){
-            const node = this.open.pop()!
-            const [_f, _g, _h, curr]= node;
-            const {pos}: matrixItemObject = curr;
+        while (this.open.length) {
+            const currPair: minHeapItem = this.open.pop()!;
+            const curr: matrixItemObject = currPair[1];
+            const { pos } = curr;
             const [x, y] = pos;
-            
 
-            if (this.outOfRangeOrVisited(x, y)) continue
-            this.visited.add(`${x},${y}`)
-            this.res.push(curr)
-            
-            this.evaluateEnd(curr)
+            if (this.outOfRangeOrVisited(x, y)) continue;
+            this.visited.add(`${x},${y}`);
+            this.res.push(curr);
 
-            if (this.endFound){
-                this.markEndPrev(curr, x, y)
+            this.evaluateEnd(curr);
+            if (this.endFound) {
+                this.markEndPrev(curr, x, y);
                 break;
             }
-            
 
-            for(const [dx, dy] of DIRS_EIGHT){
-                const nextX:number = x + dx;
-                const nextY: number = y + dy
-                const nextCoords:matrixItemObject = {pos:[nextX, nextY] , prev:pos} 
-                const nextG:number = this.calculateG([nextX, nextY])
-                const nextH:number = this.calculateH([nextX, nextY])
-                const nextF:number = this.calculateF(nextG, nextH)
+            for (const [dx, dy] of DIRS_EIGHT) {
+                const nextX: number = x + dx;
+                const nextY: number = y + dy;
+                const nextPos: [number, number] = [nextX, nextY];
+                const next: matrixItemObject = { pos: nextPos, prev: pos };
+                if (this.outOfRangeOrVisited(nextX, nextY)) continue;
 
-                this.open.push([nextF,nextG, nextH, nextCoords])
-    
+                const nextF: number = this.calculateF(next); 
+                Heap.heappush(this.open, [nextF, next]);
             }
-            
-            console.log(this.open.heapArray, node)
-            ctr ++
-            if (ctr === 5)
-            break
         }
-       
 
-        return this.res
+        return this.res;
     }
 
+    public discardInvalidNode(): number[] {
+        const node: matrixItemObject = this.open.pop()![1];
+        return node.pos;
+    }
     
-    public isContainerEmpty():boolean{
-        return !(this.open.heapArray.length > 0)
+    public isContainerEmpty(): boolean {
+        return this.open.heapArray.length === 0;
     }
-
-    public isValidNext():boolean {
-        if (this.open.heapArray.length <= 0) return false;
-        const top:matrixItemObject = this.open.top(1)[0][1];
-        if (this.outOfRangeOrVisited(top.pos[0], top.pos[1])) return false;
-        return true;
-    }
-
-    public discardInvalidNode():number[]{
-        const node: matrixItemObject = this.open.top(1)[0][1];
-        Heap.heappop(this.open);
-        return node.pos
-    }
-
-    public next():number[]{
-        if(this.open.length <= 0) return []
-
+    public next(): number[] {
+        if (this.open.length <= 0) return [];
     
-
-
-        return [1,0];
+        const currPair: minHeapItem = this.open.pop()!;
+        const curr: matrixItemObject = currPair[1];
+        const { pos } = curr;
+        const [x, y] = pos;
+    
+        this.prev = pos;
+        this.visited.add(`${x},${y}`);
+        this.assignValueToMatrix(curr, x, y);
+        this.evaluateEnd(curr);
+    
+        if (this.endFound) {
+            this.markEndPrev(curr, x, y);
+        }
+    
+        // Load the queue
+        for (const [dx, dy] of DIRS_EIGHT) {
+            const nextX: number = x + dx;
+            const nextY: number = y + dy;
+            const nextPos: [number, number] = [nextX, nextY];
+            const next: matrixItemObject = { pos: nextPos, prev: pos };
+            if (this.outOfRangeOrVisited(nextX, nextY)) continue;
+    
+            const nextF: number = this.calculateF(next); // Use calculateF for A*
+            Heap.heappush(this.open, [nextF, next]);
+        }
+    
+        return pos;
     }
-
-    // public showContainer():number[][]{
-    //     const open:number[][] = [];
-
-    //     for(const i of this.open) open.push(i[1].pos)
-        
-    //     return open
-    // }
+    
 }
