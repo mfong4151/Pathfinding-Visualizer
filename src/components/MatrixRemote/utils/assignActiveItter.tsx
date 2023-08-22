@@ -1,7 +1,7 @@
-import { startStop } from "../../../../types/positions";
-import { itterator } from "../../../../types/itterator";
-import { DFSItterMatrix, BFSItterMatrix, BestFSItterMatrix, BiBFSItterMatrix, AStar } from "../../../Matricies/algorithims";
-import { matrixItemObject } from "../../../../types/objects";
+import { startStop } from "../../../types/positions";
+import { itterator } from "../../../types/itterator";
+import { DFSItterMatrix, BFSItterMatrix, BestFSItterMatrix, BiBFSItterMatrix, AStar } from "../../../algorithims";
+import { matrixItemObject } from "../../../types/objects";
 
 const assignActiveItterator = (chosenAlgo:string, startEndPos: startStop, matrix: matrixItemObject[][]) =>{
     

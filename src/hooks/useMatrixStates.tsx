@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { matrixItemObject } from '../types/objects';
-import { createNewMatrix } from '../components/MatrixBanner/MatrixRemote/utils/graphUtils';
+import { createNewMatrix } from '../components/MatrixRemote/utils/graphUtils';
 import { pos, startStop } from '../types/positions';
 
 type matrixStates = {

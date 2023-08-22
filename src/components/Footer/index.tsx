@@ -15,7 +15,6 @@ const Footer:FC = () => {
     alert(`Email copied to clipboard: mfong415@gmail.com`);
   };
 
-
   return (
     <footer id='vis-footer' className="fdc">
         <div className='udc'>

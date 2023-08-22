@@ -1,5 +1,5 @@
 import { matrixHeuristicSearch, minHeapItem } from "./matrixHeuristicSearch";
-import { matrixItemObject } from "../../../types/objects";
+import { matrixItemObject } from "../types/objects";
 import Heap from "heap-js";
 import { DIRS_EIGHT } from "./dirs"; // You should use DIRS_EIGHT for A* search
 

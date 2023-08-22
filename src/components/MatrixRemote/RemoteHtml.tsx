@@ -1,10 +1,9 @@
 import {FC}from 'react'
 import SkipBack from './svgs/SkipBack';
 import Play from './svgs/Play';
-import Pause from './svgs/Pause';
 import FastForward from './svgs/Fastforward';
 import SkipForward from './svgs/SkipForward';
-import './Remote.css'
+import './remote.css'
 
 interface Props{
   handleOnClick:(e: React.MouseEvent<HTMLButtonElement>) => void;

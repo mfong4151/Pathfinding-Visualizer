@@ -1,7 +1,7 @@
-import { matrixItemObject } from "../../../../types/objects";
-import { itterator } from "../../../../types/itterator";
-import { DFSItterMatrix, BFSItterMatrix, BestFSItterMatrix, AStar} from "../../../Matricies/algorithims";
-import { startStop } from "../../../../types/positions";
+import { matrixItemObject } from "../../../types/objects";
+import { itterator } from "../../../types/itterator";
+import { DFSItterMatrix, BFSItterMatrix, BestFSItterMatrix, AStar} from "../../../algorithims";
+import { startStop } from "../../../types/positions";
 
 
 export const createNewMatrix = (numRows :number, numCols :number) : matrixItemObject[][] =>{

@@ -1,17 +1,16 @@
 import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
-import { consoleContentState, matrixState } from '../../../types/state';
-import { startStop } from '../../../types/positions';
-import { itterator } from '../../../types/itterator';
-import { consoleContent, matrixItemObject } from '../../../types/objects';
+import { consoleContentState, matrixState } from '../../types/state';
+import { startStop } from '../../types/positions';
+import { itterator } from '../../types/itterator';
+import { consoleContent, matrixItemObject } from '../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
 
-import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../../Matricies/utils/matrixStyling';
+import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../Matricies/utils/matrixStyling';
 
 import { inShortestPathExclusions } from './utils/graphUtils';
 import { forwardConsoleMsgs } from './utils/remoteUtils';
-import RemoteHtml from '../../Nodulars/Banner/Remote/RemoteHtml';
-
+import RemoteHtml from './RemoteHtml';
 interface Props{
     chosenAlgo: string;
     matrixState: matrixState;

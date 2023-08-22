@@ -29,3 +29,11 @@
 .rotate-svg{
     transform:rotate(180deg)
 }
+
+#remote > button{
+    background-color: var(--color-transparent);
+}
+
+#remote > button:active{
+    background-color: var(--color-transparent);
+}
