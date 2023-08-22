@@ -4,7 +4,6 @@ import { createNewMatrix } from '../components/MatrixRemote/utils/graphUtils';
 import { pos, startStop } from '../types/positions';
 
 type matrixStates = {
-
    matrixDim: pos
    setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
    matrix:matrixItemObject[][];

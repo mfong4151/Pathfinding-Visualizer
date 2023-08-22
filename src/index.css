@@ -231,15 +231,6 @@ code {
 }
 
 
-#toolbar{
-  background-color: var(--color-charcol-header);
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  margin-bottom:1rem;
-  width:100%;
-  border-top: 1rem;
-  border-top-left-radius:1rem;
-}
 
 /* general modal styles */
 

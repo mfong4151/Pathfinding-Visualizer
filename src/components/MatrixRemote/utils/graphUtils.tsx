@@ -24,8 +24,6 @@ export const transplantMatrix = (numRows: number, numCols: number, startEndPos: 
     const newMatrix = createNewMatrix(numRows, numCols)
     const newStartEnd:startStop = {...startEndPos}
 
-    //God this is an annoying edge case:
-    //If the user wants to be stinky then I just decide what they're gunna look at :P
     if(newMatrix.length < 3 || newMatrix[0].length < 3){
         const newMatrix = createNewMatrix(2, 2)
         newMatrix[0][0].val = 's'

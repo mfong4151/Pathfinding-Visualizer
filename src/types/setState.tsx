@@ -3,6 +3,8 @@ import { matrixItemObject } from "./objects"
 import { startStop } from "./positions"
 
 
+export type StateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
+
 export type setBoolean = React.Dispatch<React.SetStateAction<boolean>>;
 export type setString = React.Dispatch<React.SetStateAction<string>>;
 export type setMatItemObjMatrix = React.Dispatch<React.SetStateAction<matrixItemObject[][]>>;

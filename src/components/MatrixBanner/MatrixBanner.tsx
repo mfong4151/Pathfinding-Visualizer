@@ -5,14 +5,14 @@ import ChooseAlgoModal from './ChooseAlgoModal';
 import { pos } from '../../types/positions';
 import Remote from '../MatrixRemote';
 import './../Matricies/graphs.css'
-import { consoleContentState, errorsState, isPlayingState, matrixState, startEndPosState } from '../../types/state';
+import { consoleContentState, errorsState, isPlayingState, matrixStates, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../Matricies/utils/descriptions';
 import { resetStyleSync } from '../Matricies/utils/matrixStyling';
 import { calculateResize } from '../../utils/resizeCanvas';
 import useCanvasResize from '../../hooks/useCanvasResize';
 
 interface Props{
-  matrixState: matrixState;
+  matrixState: matrixStates;
   matrixDimState:{
     matrixDim: pos,
     setMatrixDim: React.Dispatch<React.SetStateAction<pos>>,
@@ -21,14 +21,14 @@ interface Props{
   consoleContentState: consoleContentState;
   isPlayingState: isPlayingState,
   errorsState: errorsState,
-  pageRightDiv: HTMLDivElement | null,
+  matHolderDiv: HTMLDivElement | null,
   matrixDiv: HTMLDivElement | null, 
 }
 
 //temporary fix
 
 
-const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState, pageRightDiv, matrixDiv}) => {
+const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState, matHolderDiv, matrixDiv}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithm')
@@ -50,19 +50,19 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
   }
 
   const handleOnClick= ():void =>{
-    if(!pageRightDiv || !matrixDiv) return 
+    if(!matHolderDiv || !matrixDiv) return 
 
     for(let i: number = 0; i  < matrix.length; i ++)
       for(let j: number = 0; j  < matrix[0].length; j ++){
         resetStyleSync([j, i], 'tile udc')  
     }
-    const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
+    const [rows, cols]:[number, number] = calculateResize(matrixDim, matrixDiv, matHolderDiv)
     setMatrix( createNewMatrix(rows, cols))
     setStartEndPos( {start:{y: -1, x: -1}, end: {y: -1, x: -1}})
     return
   }
 
-  useCanvasResize(pageRightDiv!, matrixDiv!, matrixDim, startEndPos, setMatrix, setStartEndPos, [matrixDim])
+  useCanvasResize(matHolderDiv!, matrixDiv!, matrixDim, startEndPos, setMatrix, setStartEndPos, [matrixDim])
 
 
 

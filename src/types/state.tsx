@@ -1,5 +1,7 @@
+import { SetStateAction } from "react";
 import { consoleContent, matrixItemObject } from "./objects";
-import { startStop } from "./positions";
+import { pos, startStop } from "./positions";
+import { StateSetter } from "./setState";
 
 
 // Universal states
@@ -23,9 +25,14 @@ export type errorsState = {
 
 // Matrix state
 
-export type matrixState = {
-    matrix: matrixItemObject[][];
-    setMatrix: React.Dispatch<React.SetStateAction<matrixItemObject[][]>>;
+export type matrixStates = {
+    matrixDim: pos
+   setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
+   matrix:matrixItemObject[][];
+   setMatrix:React.Dispatch<React.SetStateAction<matrixItemObject[][]>>
+   startEndPos:startStop;
+   setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
+
 }
 
 export type startEndState = {

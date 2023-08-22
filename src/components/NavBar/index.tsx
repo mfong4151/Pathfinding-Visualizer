@@ -29,8 +29,8 @@ const NavBar:FC<Props> = ({footerRef}) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/matricies" className="activeLink">
-            Matricies
+          <NavLink to="/matrices" className="activeLink">
+            Matrices
           </NavLink>
         </li>
       </ul>

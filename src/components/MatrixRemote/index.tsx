@@ -1,6 +1,6 @@
 import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
-import { consoleContentState, matrixState } from '../../types/state';
+import { consoleContentState, matrixStates } from '../../types/state';
 import { startStop } from '../../types/positions';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
@@ -11,9 +11,14 @@ import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSyn
 import { inShortestPathExclusions } from './utils/graphUtils';
 import { forwardConsoleMsgs } from './utils/remoteUtils';
 import RemoteHtml from './RemoteHtml';
+import { StateSetter } from '../../types/setState';
+
 interface Props{
     chosenAlgo: string;
-    matrixState: matrixState;
+    matrixState: {
+        matrix: matrixItemObject[][];
+        setMatrix: StateSetter<matrixItemObject[][]>
+    };
     startEndPos: startStop;
     consoleContentState: consoleContentState
     isPlaying: boolean,

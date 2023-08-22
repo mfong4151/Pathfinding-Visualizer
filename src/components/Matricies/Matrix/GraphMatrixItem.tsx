@@ -3,12 +3,13 @@ import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../Nodulars/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../../types/positions";
-import { consoleContentState, matrixState, startEndState} from "../../../types/state";
+import { consoleContentState, matrixStates, startEndState} from "../../../types/state";
 import '../../Matricies/graphs.css'
 import { matrixItemObject } from "../../../types/objects";
+import { StateSetter } from "../../../types/setState";
 
 interface Props{
-    matrixState: matrixState;
+    matrixState: {matrix: matrixItemObject[][], setMatrix: StateSetter<matrixItemObject[][]>};
     matrixItemObject: matrixItemObject;
     startEndState: startEndState;
     consoleContentState: consoleContentState;

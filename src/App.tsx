@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
       <Routes>
         <Route path="/" element={<Splash/>}/>
-        <Route path="/matricies" element={<Matricies/>}/>
+        <Route path="/matrices" element={<Matricies/>}/>
         <Route path="*" element={<Splash/>}/>
         
       </Routes>

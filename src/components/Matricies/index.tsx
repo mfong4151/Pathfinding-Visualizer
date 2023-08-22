@@ -20,20 +20,16 @@ const Matricies: FC = ()=>{
     const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
     
-    const matrixState = {matrix, setMatrix};
-    const windowDim: windowDim = useWindowSize()
+    const matrixStates = {matrix, setMatrix, matrixDim, setMatrixDim, startEndPos, setStartEndPos};
 
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
-
     const pageLeftRef = useRef<HTMLDivElement>(null);
-    const pageRightRef = useRef<HTMLDivElement>(null);
     const adjBarRef = useRef<HTMLDivElement>(null);
+    
     const matrixRef = useRef<any>();
+    const matrixHolderRef = useRef<any>();
 
-    useEffect(() => {
-      matrixRef.current = document.getElementById("matrix");
-    }, [matrix])
     
 
     useEffect(()=>{
@@ -74,34 +70,19 @@ const Matricies: FC = ()=>{
 
       }
     }, [])
-    
-    useEffect(()=>{
 
-      const pageRightDiv = pageRightRef.current!;
-      const matrixDiv = matrixRef.current!;  
-
-      if(isPlaying  || (!pageRightDiv && !matrixDiv)) return 
-      
-      const [rows, cols]:[number, number] = calculateResize(matrixDim, pageRightDiv, matrixDiv)
-                                            
-      const [newMatrix, newStartEnd]:[matrixItemObject[][], startStop] = transplantMatrix(rows, cols, startEndPos)
-      
-      console.log(newMatrix, newStartEnd)
-      setMatrix(newMatrix)
-      setStartEndPos(newStartEnd)
-
-    },[windowDim])
+  
     
     return(
       <div id='page-main' className={`font-color ${isPlaying && 'unclickable'}`}>
         <MatrixBanner 
-                matrixState = {matrixState}
+                matrixState = {matrixStates}
                 matrixDimState= {{ matrixDim,setMatrixDim}}
                 startEndPosState ={{ startEndPos, setStartEndPos}}
                 consoleContentState = {consoleContentState}
                 isPlayingState = {{isPlaying, setIsPlaying}}
                 errorsState = {errorsState}
-                pageRightDiv = {pageRightRef.current}
+                matHolderDiv = {matrixHolderRef.current}
                 matrixDiv = {matrixRef.current}
           />  
 
@@ -125,12 +106,13 @@ const Matricies: FC = ()=>{
                   <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"/>
                 </svg>
              </div>
-            <section id='page-right' className='udc-no-vertical tab-bg section-border' ref={pageRightRef}>
+            <section id='page-right' className='udc-no-vertical tab-bg section-border' >
                   <GraphMatrix 
-                    matrixState={matrixState} 
-                    startEndState ={{startEndPos, setStartEndPos}}
+                    matrixStates={matrixStates} 
                     consoleContentState={{consoleContent, setConsoleContent}}
                     matrixRef = {matrixRef}
+                    matHolderRef = {matrixHolderRef}
+                    isPlaying={isPlaying}
                     />
             </section>    
 
