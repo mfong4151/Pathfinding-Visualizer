@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Pathfinding-Visualizer/static/css/main.b3a5ccca.css",
-    "main.js": "/Pathfinding-Visualizer/static/js/main.1b0681da.js",
+    "main.css": "/Pathfinding-Visualizer/static/css/main.e8c01600.css",
+    "main.js": "/Pathfinding-Visualizer/static/js/main.39a57467.js",
     "static/media/bfsbi.gif": "/Pathfinding-Visualizer/static/media/bfsbi.26a5bed7fc2101929701.gif",
     "static/media/OpenSans-VariableFont_wdth,wght.ttf": "/Pathfinding-Visualizer/static/media/OpenSans-VariableFont_wdth,wght.ceb05254cedfa895b512.ttf",
     "index.html": "/Pathfinding-Visualizer/index.html",
-    "main.b3a5ccca.css.map": "/Pathfinding-Visualizer/static/css/main.b3a5ccca.css.map",
-    "main.1b0681da.js.map": "/Pathfinding-Visualizer/static/js/main.1b0681da.js.map"
+    "main.e8c01600.css.map": "/Pathfinding-Visualizer/static/css/main.e8c01600.css.map",
+    "main.39a57467.js.map": "/Pathfinding-Visualizer/static/js/main.39a57467.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3a5ccca.css",
-    "static/js/main.1b0681da.js"
+    "static/css/main.e8c01600.css",
+    "static/js/main.39a57467.js"
   ]
 }
