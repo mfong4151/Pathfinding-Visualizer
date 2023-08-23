@@ -11,7 +11,6 @@ import DragDropTotems from "./DragDropTotems";
 import styled, {keyframes} from "styled-components";
 import { calculateResize } from "../../../utils/resizeCanvas";
 import useWindowSize from "../../../hooks/useWindowSize";
-import { StateSetter } from "../../../types/setState";
 import { transplantMatrix } from "../../MatrixRemote/utils/graphUtils";
 
  interface Props{
@@ -23,7 +22,6 @@ import { transplantMatrix } from "../../MatrixRemote/utils/graphUtils";
     
 } 
 
-const TOOLBAR_HEIGHT: number = 128;
 const GraphMatrix: FC<Props> = ({matrixStates, consoleContentState, matrixRef, matHolderRef, isPlaying})=>{
     const [mouseDown, setMouseDown] = useState<boolean>(false);
     const [wallColor, setWallColor] = useState<string>('');
