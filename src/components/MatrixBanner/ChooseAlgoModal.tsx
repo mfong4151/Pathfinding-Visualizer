@@ -1,24 +1,20 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
 import './Banner.css'
+import { StateSetter } from '../../types/setState';
+import algoChoices from '../../algorithims/algoChoices';
 
 interface Props{
-  
   chooseModalState:{
     chooseAlgoModal:boolean;
-    setChooseAlgoModal:React.Dispatch<React.SetStateAction<boolean>>
+    setChooseAlgoModal:StateSetter<boolean>
   }
-
   chooseAlgoState:{
     chosenAlgo:string;
-    setChosenAlgo:React.Dispatch<React.SetStateAction<string>>
+    setChosenAlgo:StateSetter<string>
   }
   chooseAlgoButton:HTMLButtonElement  
 }
 
-interface MapLocation {
-  [key: string]: string[];
-}
 
 
 const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, chooseAlgoButton}) => {
@@ -28,8 +24,6 @@ const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, ch
   const posLeft: string = `${chooseAlgoButton.offsetLeft - MANUAL_OFFSET_X}px`
   const posTop: string = `${chooseAlgoButton.offsetTop +chooseAlgoButton.offsetHeight}px`
   const divWidth: string=  `${chooseAlgoButton.offsetWidth}px`
-  const location = useLocation();
-  const algoChoices:string[] = ['DFS', 'BFS', 'Best First Search', 'Bidirectional BFS', 'A*']
 
   if (chosenAlgo) document.body.classList.add('active-modal')
   else document.body.classList.remove('active-modal')
@@ -44,7 +38,7 @@ const ChooseAlgoModal: React.FC<Props> = ({chooseModalState, chooseAlgoState, ch
               style={{left: posLeft, top: posTop, minWidth: divWidth}}
             >
 
-            {algoChoices.map((algo: string, idx: number)=>
+                {algoChoices.map((algo: string, idx: number)=>
 
               <p className='algo-choice-item udc hover-over' key={idx} onClick={()=> setChosenAlgo(algo)}>
                 {algo}
