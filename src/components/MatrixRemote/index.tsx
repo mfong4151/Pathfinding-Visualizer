@@ -23,11 +23,10 @@ interface Props{
     consoleContentState: consoleContentState
     isPlaying: boolean,
     setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
-    matrixDiv: HTMLDivElement | null;
 }
 
 
-const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying, matrixDiv}) => {
+const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
   const {setConsoleContent} = consoleContentState;
 
   const currIttr = useRef<itterator>(null);

@@ -1,9 +1,9 @@
-import React, {Dispatch, useEffect, useRef} from "react";
+import React, { useEffect} from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../Nodulars/DSACanvas/utils/dragDropConstraints";
 import SvgTotem from "./SvgTotem";
 import { startStop, pos } from "../../../types/positions";
-import { consoleContentState, matrixStates, startEndState} from "../../../types/state";
+import { consoleContentState, startEndState} from "../../../types/state";
 import '../../Matricies/graphs.css'
 import { matrixItemObject } from "../../../types/objects";
 import { StateSetter } from "../../../types/setState";
@@ -46,15 +46,14 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
 
         if (mouseDown && !exclusions.includes(newMatrix[y][x].val)){
             newMatrix[y][x].val = newMatrix[y][x].val === 'w' ? '' : 'w'
-            setMatrix(prev => newMatrix)
-
+            setMatrix(newMatrix)
         }
    
         return
     }
 
     useEffect(()=>{
-        setMouseDown(prev => false)
+        setMouseDown(false)
     },[isOver])
 
     const updateStartStop = (itemType :any):void =>{
@@ -69,7 +68,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
                 newMatrix[y][x].val = 's'
                 newStart.y = y;
                 newStart.x = x;
-                consoleContentState.setConsoleContent(prev => ([`The location to start at has been set to ${newStart.y}, ${newStart.x}`]))
+                consoleContentState.setConsoleContent([`The location to start at has been set to ${newStart.y}, ${newStart.x}`])
 
                 break
             case 'e':
@@ -78,7 +77,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
                 newMatrix[y][x].val = 'e'
                 newEnd.y = y;
                 newEnd.x = x;
-                consoleContentState.setConsoleContent(prev => ([`The location to end at has been set to ${newEnd.y}, ${newEnd.x}`]))
+                consoleContentState.setConsoleContent([`The location to end at has been set to ${newEnd.y}, ${newEnd.x}`])
 
                 break
             default:
@@ -87,7 +86,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
 
         
         newMatrix[y][x].val = droppedTotem
-        setMatrix(prev => newMatrix)
+        setMatrix(newMatrix)
         return
     }
 
