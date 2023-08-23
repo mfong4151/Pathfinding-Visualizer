@@ -1,6 +1,6 @@
 import './graphs.css'
 import {FC, useRef, useEffect } from "react";
-import GraphMatrix from './Matrix'
+import Matrix from './Matrix'
 import MatrixBanner from '../MatrixBanner/MatrixBanner';
 import UIConsole from '../UIConsole';
 import { consoleContentState, errorsState } from '../../types/state';
@@ -102,7 +102,7 @@ const Matricies: FC = ()=>{
                 </svg>
              </div>
             <section id='page-right' className='udc-no-vertical tab-bg section-border' >
-                  <GraphMatrix 
+                  <Matrix 
                     matrixStates={matrixStates} 
                     consoleContentState={{consoleContent, setConsoleContent}}
                     matrixRef = {matrixRef}

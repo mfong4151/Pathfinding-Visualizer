@@ -1,16 +1,17 @@
 import React, {FC, useRef, useEffect} from 'react'
 import './remote.css'
-import { consoleContentState, matrixStates } from '../../types/state';
+import { consoleContentState } from '../../types/state';
 import { startStop } from '../../types/positions';
 import { itterator } from '../../types/itterator';
 import { consoleContent, matrixItemObject } from '../../types/objects';
 import assignActiveItterator from './utils/assignActiveItter';
-
+import SkipBack from '../SVGS/SkipBack';
+import Play from '../SVGS/Play';
+import FastForward from '../SVGS/Fastforward';
+import SkipForward from '../SVGS/SkipForward';
 import { styleElement, styleElementSync, styleShortestPath, styleShortestPathSync } from '../Matricies/utils/matrixStyling';
-
 import { inShortestPathExclusions } from './utils/graphUtils';
 import { forwardConsoleMsgs } from './utils/remoteUtils';
-import RemoteHtml from './RemoteHtml';
 import { StateSetter } from '../../types/setState';
 
 interface Props{
@@ -213,7 +214,28 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   },[chosenAlgo])
 
-  return (<RemoteHtml handleOnClick={handleOnClick} isPlaying={isPlaying}/>)
+  return (<div id='remote' className='fdr se'>
+  <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
+    <SkipBack/>
+  </button>
+
+  <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
+        <Play/>
+    </button> 
+
+  <button 
+      id='fast-forward' 
+      className='remote-btn sq-buttons udc' 
+      onClick={handleOnClick}
+    >
+
+    <FastForward/>
+  </button>
+
+  <button id='skip-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
+    <SkipForward/>
+  </button>
+</div>)
 
 }
 

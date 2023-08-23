@@ -8,18 +8,18 @@ import { StateSetter } from "./setState";
 
 export type isPlayingState = {
     isPlaying: boolean,
-    setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+    setIsPlaying: StateSetter<boolean>
 }
 
 
 export type  consoleContentState = {
     consoleContent: consoleContent
-    setConsoleContent:React.Dispatch<React.SetStateAction<consoleContent>>;
+    setConsoleContent:StateSetter<consoleContent>
 }
 
 export type errorsState = {
     errors: string[]
-    setErrors: React.Dispatch<React.SetStateAction<string[]>>
+    setErrors: StateSetter<string[]>
 }
 
 
@@ -27,28 +27,28 @@ export type errorsState = {
 
 export type matrixStates = {
     matrixDim: pos
-   setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
+   setMatrixDim: StateSetter<pos>
    matrix:matrixItemObject[][];
-   setMatrix:React.Dispatch<React.SetStateAction<matrixItemObject[][]>>
+   setMatrix:StateSetter<matrixItemObject[][]>
    startEndPos:startStop;
-   setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
+   setStartEndPos: StateSetter<startStop>
 
 }
 
 export type startEndState = {
     startEndPos: startStop;
-    setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>
+    setStartEndPos: StateSetter<startStop>
 }
 
 export type matrixNodeState = {
     matrixNodes: boolean,
-    setMatrixNodes: React.Dispatch<React.SetStateAction<boolean>>
+    setMatrixNodes: StateSetter<boolean>
 }
 
 export type startEndPosState = {
 
     startEndPos: startStop,
-    setStartEndPos:React.Dispatch<React.SetStateAction<startStop>>
+    setStartEndPos:StateSetter<startStop>
 }
 
 

@@ -1,17 +1,17 @@
 import {FC, useRef, useState, useEffect} from "react";
 import GraphMatrixItem from "./GraphMatrixItem"
-import { startStop } from "../../../types/positions";
+import { startStop } from "../../types/positions";
 import { DndProvider} from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { consoleContentState, matrixStates } from "../../../types/state";
-import { matrixItemObject } from "../../../types/objects";
-import EditColorModal from "./EditColorModal";
-import useEditColorStates from "../../../hooks/useCustomColorStates";
-import DragDropTotems from "./DragDropTotems";
+import { consoleContentState, matrixStates } from "../../types/state";
+import { matrixItemObject } from "../../types/objects";
+import EditColorModal from "./Totems/EditColorModal";
+import useEditColorStates from "../../hooks/useCustomColorStates";
+import DragDropTotems from "./Totems/DragDropTotems";
 import styled, {keyframes} from "styled-components";
-import { calculateResize } from "../../../utils/resizeCanvas";
-import useWindowSize from "../../../hooks/useWindowSize";
-import { transplantMatrix } from "../../MatrixRemote/utils/graphUtils";
+import { calculateResize } from "../../utils/resizeCanvas";
+import useWindowSize from "../../hooks/useWindowSize";
+import { transplantMatrix } from "../MatrixRemote/utils/graphUtils";
 
  interface Props{
     matrixStates:matrixStates;
@@ -22,7 +22,7 @@ import { transplantMatrix } from "../../MatrixRemote/utils/graphUtils";
     
 } 
 
-const GraphMatrix: FC<Props> = ({matrixStates, consoleContentState, matrixRef, matHolderRef, isPlaying})=>{
+const Matrix: FC<Props> = ({matrixStates, consoleContentState, matrixRef, matHolderRef, isPlaying})=>{
     const [mouseDown, setMouseDown] = useState<boolean>(false);
     const [wallColor, setWallColor] = useState<string>('');
     const [editColorModal, setEditColorModal] = useState<boolean>(false);
@@ -128,4 +128,4 @@ const GraphMatrix: FC<Props> = ({matrixStates, consoleContentState, matrixRef, m
 }
 
 
-export default GraphMatrix;
+export default Matrix;

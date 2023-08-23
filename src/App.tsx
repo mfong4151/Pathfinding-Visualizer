@@ -17,12 +17,9 @@ const App: React.FC = () => {
         <Route path="/" element={<Splash/>}/>
         <Route path="/matrices" element={<Matricies/>}/>
         <Route path="*" element={<Splash/>}/>
-        
       </Routes>
-      <div ref={footerRef}>
-        <Footer/>
 
-      </div>
+      <div ref={footerRef}> <Footer/></div>
     </div>
   );
 }

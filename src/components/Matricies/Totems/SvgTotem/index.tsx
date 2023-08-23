@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import Start from './Start'
 import End from './End'
-import { ItemTypes } from '../../../Nodulars/DSACanvas/utils/dragDropConstraints'
+import { ItemTypes } from '../../utils/dragDropConstraints'
 import {useUseDrag} from '../../../../hooks/useReactDND'
 import { useDrag } from 'react-dnd'
 

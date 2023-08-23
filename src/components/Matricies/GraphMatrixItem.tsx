@@ -1,12 +1,12 @@
 import React, { useEffect} from "react";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "../../Nodulars/DSACanvas/utils/dragDropConstraints";
-import SvgTotem from "./SvgTotem";
-import { startStop, pos } from "../../../types/positions";
-import { consoleContentState, startEndState} from "../../../types/state";
-import '../../Matricies/graphs.css'
-import { matrixItemObject } from "../../../types/objects";
-import { StateSetter } from "../../../types/setState";
+import { ItemTypes } from "./utils/dragDropConstraints";
+import SvgTotem from "./Totems/SvgTotem";
+import { startStop, pos } from "../../types/positions";
+import { consoleContentState, startEndState} from "../../types/state";
+import '../Matricies/graphs.css'
+import { matrixItemObject } from "../../types/objects";
+import { StateSetter } from "../../types/setState";
 
 interface Props{
     matrixState: {matrix: matrixItemObject[][], setMatrix: StateSetter<matrixItemObject[][]>};
