@@ -1,8 +1,8 @@
 import {FC}from 'react'
-import SkipBack from './svgs/SkipBack';
-import Play from './svgs/Play';
-import FastForward from './svgs/Fastforward';
-import SkipForward from './svgs/SkipForward';
+import SkipBack from '../SVGS/SkipBack';
+import Play from '../SVGS/Play';
+import FastForward from '../SVGS/Fastforward';
+import SkipForward from '../SVGS/SkipForward';
 import './remote.css'
 
 interface Props{
