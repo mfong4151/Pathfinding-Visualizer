@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { consoleContent } from "../types/objects";
+import { StateSetter } from "../types/setState";
 
 type genericStates = {
     consoleContent:consoleContent,
-    setConsoleContent:React.Dispatch<React.SetStateAction<consoleContent>>,
+    setConsoleContent:StateSetter<consoleContent>,
     isPlaying: boolean,
-    setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
+    setIsPlaying: StateSetter<boolean>,
     errors:string[],
-    setErrors:React.Dispatch<React.SetStateAction<string[]>>,
+    setErrors:StateSetter<string[]>,
 
 }
 

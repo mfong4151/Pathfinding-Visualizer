@@ -155,9 +155,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     
     }
 
-    const test = ():void =>{
-      activeIttr.next()
-    }
     
     switch (buttonId) {
       case 'reset':

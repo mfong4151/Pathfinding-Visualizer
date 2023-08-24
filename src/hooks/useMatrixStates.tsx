@@ -2,14 +2,15 @@ import React, {useState} from 'react'
 import { matrixItemObject } from '../types/objects';
 import { createNewMatrix } from '../components/MatrixRemote/utils/graphUtils';
 import { pos, startStop } from '../types/positions';
+import { StateSetter } from '../types/setState';
 
 type matrixStates = {
-   matrixDim: pos
-   setMatrixDim: React.Dispatch<React.SetStateAction<pos>>
+   matrixDim: pos;
+   setMatrixDim: StateSetter<pos>;
    matrix:matrixItemObject[][];
-   setMatrix:React.Dispatch<React.SetStateAction<matrixItemObject[][]>>
+   setMatrix:StateSetter<matrixItemObject[][]>;
    startEndPos:startStop;
-   setStartEndPos: React.Dispatch<React.SetStateAction<startStop>>;
+   setStartEndPos: StateSetter<startStop>;
 }
 const DEFAULT_MATRIX_Y:number = 30;
 const DEFAULT_MATRIX_X:number = 30;

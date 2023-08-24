@@ -24,6 +24,7 @@ import { transplantMatrix } from "../MatrixRemote/utils/graphUtils";
 
 const Matrix: FC<Props> = ({matrixStates, consoleContentState, matrixRef, matHolderRef, isPlaying})=>{
     const [mouseDown, setMouseDown] = useState<boolean>(false);
+    const [barPos, setBarPos] = useState<string >('top')
     const [wallColor, setWallColor] = useState<string>('');
     const [editColorModal, setEditColorModal] = useState<boolean>(false);
     const windowDim = useWindowSize();
