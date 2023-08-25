@@ -4,13 +4,13 @@ import { calculateResize } from '../utils/resizeCanvas';
 import { pos } from '../types/positions';
 import { startStop } from '../types/positions';
 import { transplantMatrix } from '../components/MatrixRemote/utils/graphUtils';
-import { setMatItemObjMatrix, setStartStop } from '../types/setState';
+import { StateSetter } from '../types/setState';
 
 
 //Matrix refers to the matrix that is displayed on the page. This could be the canvas matrix, or for matricies the matrix itself.
 const useCanvasResize = (matHolderDiv:HTMLDivElement, matrixDiv:HTMLDivElement, matrixDim:pos, 
-        startEndPos: startStop, setMatrix: setMatItemObjMatrix, 
-        setStartEndPos:setStartStop, dependancies:any[]= []):void => {
+        startEndPos: startStop, setMatrix: StateSetter<matrixItemObject[][]>, 
+        setStartEndPos:StateSetter<startStop>, dependancies:any[]= []):void => {
     
   useEffect(() => {
 

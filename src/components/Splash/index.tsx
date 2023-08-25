@@ -50,7 +50,7 @@ const Splash:React.FC = () => {
             The project was done in Typescript-React. This was an honestly odd choice, as I didn't benefit from the static typing too much. However, it helped me learn how things were done in the setting of large scaleable systems, so there are no regrets overall.
 
           </p>
-          <NavLink className='to-mat' to='/matricies'>
+          <NavLink className='to-mat' to='/matrices'>
                 Go take a look
            </NavLink>
         </section>

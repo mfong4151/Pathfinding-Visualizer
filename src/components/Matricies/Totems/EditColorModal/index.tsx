@@ -1,6 +1,5 @@
 import React, { useRef, useState, FC } from "react";
 import './EditColorModal.css'
-import { ColorStates } from "../../../../types/interface";
 import { activeColor } from "../../../../types/objects";
 import EditTileColorModal from "./EditTileColorModal";
 import {CloseButton} from "../../../SVGS";

@@ -1,15 +1,15 @@
-import { setBoolean } from "../../../../../types/setState";
 import { activeColor } from "../../../../../types/objects";
 import { FC} from "react";
 import { ColorResult, SketchPicker } from "@hello-pangea/color-picker";
 import '../../EditColorModal/EditColorModal.css';
 import {CloseButton} from "../../../../SVGS";
+import { StateSetter } from "../../../../../types/setState";
 
 interface Props {
     position: { left: number; top: number };
     editTileState:{
       tileColorModal: boolean
-      setTileColorModal: setBoolean
+      setTileColorModal: StateSetter<boolean>
     }
     activeColor: activeColor | null
   }
@@ -28,7 +28,7 @@ const EditTileColorModal: FC<Props> = ({ position, editTileState, activeColor}) 
 
     //Dont try and simplify this, color picker is picky about how the on change is given
     const handleOnChange = (colorResult: ColorResult):void =>{
-      setColor!(prev => colorResult.hex)
+      setColor!( colorResult.hex)
     }
     
 

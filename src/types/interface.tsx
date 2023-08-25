@@ -1,4 +1,4 @@
-import { setString } from "./setState";
+import { StateSetter } from "./setState";
 
 export interface MapConditionalString {
     [key: string]: string;
@@ -9,9 +9,9 @@ export interface  ColorStates{
   color2: string,
   color3: string,
   color4: string,
-  setColor1:setString,
-  setColor2:setString,
-  setColor3:setString,
-  setColor4:setString,
+  setColor1:StateSetter<string>,
+  setColor2:StateSetter<string>,
+  setColor3:StateSetter<string>,
+  setColor4:StateSetter<string>,
 
 }

@@ -1,21 +1,21 @@
 import { useState } from "react"
-import { setBoolean, setString } from "../types/setState"
+import { StateSetter } from "../types/setState"
 
 type states = {
     color1: string,
     color2: string,
     color3: string,
     color4: string,
-    setColor1:setString,
-    setColor2:setString,
-    setColor3:setString,
-    setColor4:setString,
+    setColor1:StateSetter<string>,
+    setColor2:StateSetter<string>,
+    setColor3:StateSetter<string>,
+    setColor4:StateSetter<string>,
     shortestPathColor:string,
-    setShortestPathColor: setString,
+    setShortestPathColor: StateSetter<string>,
     editColorModal: boolean,
-    setEditColorModal: setBoolean,
+    setEditColorModal: StateSetter<boolean>,
     customTransition: string,
-    setCustomTransition: setString,
+    setCustomTransition: StateSetter<string>,
 }
 
 const useEditColorStates = (): states  => {
