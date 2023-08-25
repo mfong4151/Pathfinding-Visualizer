@@ -6,7 +6,7 @@ import UIConsole from '../UIConsole';
 import { consoleContentState, errorsState } from '../../types/state';
 import useUIStates from '../../hooks/useUIStates';
 import useMatrixStates from '../../hooks/useMatrixStates';
-
+import BarSVG from './BarSVG';
 
 //For any child components of matricies, if its not explicitly in the folder, that means we've taken it from its counterpart in Nodepage
 
@@ -14,9 +14,7 @@ import useMatrixStates from '../../hooks/useMatrixStates';
 const Matricies: FC = ()=>{
     const {matrixDim, setMatrixDim, matrix, setMatrix, startEndPos, setStartEndPos } = useMatrixStates();
     const {consoleContent,  setConsoleContent,  isPlaying,  setIsPlaying, errors,  setErrors} = useUIStates()
-    
     const matrixStates = {matrix, setMatrix, matrixDim, setMatrixDim, startEndPos, setStartEndPos};
-
     const consoleContentState: consoleContentState = {consoleContent, setConsoleContent}
     const errorsState:errorsState = {errors, setErrors};
     const pageLeftRef = useRef<HTMLDivElement>(null);
@@ -89,17 +87,7 @@ const Matricies: FC = ()=>{
               
             </section>
             <div id='adjbar' className='udc' ref={adjBarRef}>
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 2 14" 
-                    width="2" 
-                    height="14" 
-                    fill="currentColor"
-                    className="text-gray-3 dark:text-dark-gray-3 transition -translate-y-6 group-hover:text-white dark:group-hover:text-white">
-                  <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 1)"/>
-                  <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 7)"/>
-                  <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"/>
-                </svg>
+                <BarSVG/>
              </div>
             <section id='page-right' className='udc-no-vertical tab-bg section-border' >
                   <Matrix 

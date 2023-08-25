@@ -36,11 +36,52 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
   const {matrix} = matrixState;  
   const {start, end} = startEndPos;
   let coords :number[] = [-1, -1];
+  let hasAnimated = animationRef.current
+  
 
+  //used with the reset button 
+  const reset = ():void => {
+    const exclusions = new Set(['s', 'w', 'e']);
+    
+    for(let i:number = 0; i < matrix.length; i++)
+      for(let j:number = 0; j < matrix[0].length; j++){
+        if (exclusions.has(matrix[i][j].val)) continue;
+        document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
 
-  //Now I can't say that this is the cleanest code ever written, but hear me out: 
-  // Too many of the variables and functions involved employ closure, so the easiest way to "clean it" up was to stick it in nested functions
-  //At the very least in your code editor you can click the > arrow to make it all go away...
+      }
+
+      currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
+      hasAnimated = false
+  }
+
+  
+  const forward = (activeIttr: any, newConsoleContent: string[]):void =>{
+    //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
+
+    if (activeIttr.isContainerEmpty()){
+      newConsoleContent.push('In this case, the end point could not be found')
+
+    } else if(!activeIttr.isValidNext()) {
+       const invalidPos:number[] = activeIttr.discardInvalidNode()!
+
+       if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
+        newConsoleContent.push(`At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` )
+
+       else
+         newConsoleContent.push(`At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` )
+  
+    }  else  {
+      coords = activeIttr.next()
+    
+      if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
+
+        newConsoleContent.push(`At this point we visit the point [${coords[0]}, ${coords[1]}]`)
+        styleElement(coords, 'visited-1');
+        const msg:string[] = forwardConsoleMsgs(activeIttr)
+        newConsoleContent.push(msg[0])
+      }
+    }
+  }
 
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -49,7 +90,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     const buttonId = e.currentTarget.id;
     const newConsoleContent: consoleContent = [];
     const activeIttr = currIttr.current;
-    let hasAnimated = animationRef.current
  
 
     if (!activeIttr || start.x === -1 || end.x === -1) {
@@ -63,52 +103,12 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
 
   
-    //used with the reset button 
-    const reset = ():void => {
-      const exclusions = new Set(['s', 'w', 'e']);
-      
-      for(let i:number = 0; i < matrix.length; i++)
-        for(let j:number = 0; j < matrix[0].length; j++){
-          if (exclusions.has(matrix[i][j].val)) continue;
-          document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
-
-        }
-
-        currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix);
-        hasAnimated = false
-    }
-
-    const forward = ():void =>{
-      //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
-
-      if (activeIttr.isContainerEmpty()){
-        newConsoleContent.push('In this case, the end point could not be found')
-
-      } else if(!activeIttr.isValidNext()) {
-         const invalidPos:number[] = activeIttr.discardInvalidNode()!
-
-         if(invalidPos[0] < 0 || invalidPos[0] >= matrix[0].length || invalidPos[1] < 0 || invalidPos[1] > matrix.length)
-          newConsoleContent.push(`At this point, the position ${invalidPos[0]},${invalidPos[1]} is off the board. So we don't visit it` )
-
-         else
-           newConsoleContent.push(`At this point, the node ${invalidPos[0]},${invalidPos[1]} was already visited, so we don't revisit it ` )
     
-      }  else  {
-        coords = activeIttr.next()
-      
-        if (!activeIttr.isStart(coords) && !activeIttr.isEnd(coords)){
 
-          newConsoleContent.push(`At this point we visit the point [${coords[0]}, ${coords[1]}]`)
-          styleElement(coords, 'visited-1');
-          const msg:string[] = forwardConsoleMsgs(activeIttr)
-          newConsoleContent.push(msg[0])
-        }
-      }
-    }
 
 
     const play = ():void  =>{
-      setIsPlaying(prev => true)
+      setIsPlaying(true)
       const res:matrixItemObject[] = activeIttr.preformFullAlgo()
     
       const illustrate = async():Promise<void> =>{
@@ -176,7 +176,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
       case 'fast-forward':
         // if (hasAnimated) reset()
-        if(!activeIttr.endFound) forward();
+        if(!activeIttr.endFound) forward(activeIttr, newConsoleContent);
         else(styleShortestPathSync(activeIttr.generateShortestPath()))
         break;
       case 'skip-forward':
