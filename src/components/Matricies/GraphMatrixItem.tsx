@@ -24,7 +24,7 @@ const GraphMatrixItem: React.FC<Props> = ({matrixState, matrixItemObject, consol
     const {matrix, setMatrix} = matrixState;
     const {startEndPos} = startEndState;
     const {y, x} = pos; 
-
+    
     const [{isOver}, drop] = useDrop(
         ()=> ({
             accept: ItemTypes.MATRIX_CELL,

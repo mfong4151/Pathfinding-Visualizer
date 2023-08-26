@@ -11,7 +11,7 @@ export const createNewMatrix = (numRows :number, numCols :number) : matrixItemOb
     for(let i: number = 0; i < numRows; i++){
         newRow = []
         for(let j: number = 0; j < numCols; j++) {
-            const newMatrixItemObject: matrixItemObject = {id:-1, val:'',  prev: [-2, -2] }
+            const newMatrixItemObject: matrixItemObject = {val:'',  prev: [-2, -2] }
             newRow.push(newMatrixItemObject)
         }
         matrix.push(newRow)
@@ -41,6 +41,7 @@ export const transplantMatrix = (numRows: number, numCols: number, startEndPos: 
         const replacement:string = pos === newStartEnd.start ? 's': 'e'
         const x: number = pos.x;
         const y: number = pos.y;
+
         if (x === -1 || y === -1) continue
         newMatrix[Math.min(newMatrix.length - 1, y)][Math.min(newMatrix[0].length - 1, x )].val = replacement
     }
