@@ -11,7 +11,7 @@ import DragDropTotems from "./Totems/DragDropTotems";
 import styled, {keyframes} from "styled-components";
 import { calculateResize } from "../../utils/resizeCanvas";
 import useWindowSize from "../../hooks/useWindowSize";
-import { transplantMatrix } from "../MatrixRemote/utils/graphUtils";
+import { transplantMatrix } from "../Remote/utils/graphUtils";
 
  interface Props{
     matrixStates:matrixStates;

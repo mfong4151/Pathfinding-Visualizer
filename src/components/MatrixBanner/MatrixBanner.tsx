@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useRef } from 'react';
-import { createNewMatrix } from '../MatrixRemote/utils/graphUtils';
+import { createNewMatrix } from '../Remote/utils/graphUtils';
 import { useState } from 'react';
 import ChooseAlgoModal from './ChooseAlgoModal';
 import { pos } from '../../types/positions';
-import Remote from '../MatrixRemote';
+import Remote from '../Remote';
 import './../Matricies/graphs.css'
 import { consoleContentState, errorsState, isPlayingState, matrixStates, startEndPosState } from '../../types/state';
 import matrixDescriptions from '../Matricies/utils/descriptions';
@@ -28,7 +28,7 @@ interface Props{
 //temporary fix
 
 
-const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState,  errorsState, matHolderDiv, matrixDiv}) => {
+const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPosState,  consoleContentState,  isPlayingState, matHolderDiv, matrixDiv}) => {
 
   const [chooseAlgoModal, setChooseAlgoModal] = useState<boolean>(false)
   const [chosenAlgo, setChosenAlgo] = useState<string>('Choose your algorithm')
@@ -107,6 +107,7 @@ const MatrixBanner:React.FC<Props> = ({ matrixState, matrixDimState,  startEndPo
                   consoleContentState={consoleContentState}
                   isPlaying={isPlaying}
                   setIsPlaying={setIsPlaying}
+                  matrixDiv ={matrixDiv}
             />
 
         </div>

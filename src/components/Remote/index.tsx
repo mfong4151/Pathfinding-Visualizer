@@ -24,12 +24,11 @@ interface Props{
     consoleContentState: consoleContentState
     isPlaying: boolean,
     setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
+    matrixDiv: any
 }
 
-
-const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying}) => {
+const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContentState, isPlaying, setIsPlaying, matrixDiv}) => {
   const {setConsoleContent} = consoleContentState;
-
   const currIttr = useRef<itterator>(null);
   const allowSetIttr = useRef<boolean>(true);
   const animationRef = useRef<boolean>(false);
@@ -38,14 +37,14 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
   let coords :number[] = [-1, -1];
   let hasAnimated = animationRef.current
   
-
   //used with the reset button 
   const reset = ():void => {
     const exclusions = new Set(['s', 'w', 'e']);
     
     for(let i:number = 0; i < matrix.length; i++)
       for(let j:number = 0; j < matrix[0].length; j++){
-        if (exclusions.has(matrix[i][j].val)) continue;
+        if (exclusions.has(matrix[i][j].val)) continue
+      
         document.getElementById(`cell-${j}-${i}`)!.className = 'tile udc';
 
       }
@@ -56,7 +55,6 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   
   const forward = (activeIttr: any, newConsoleContent: string[]):void =>{
-    //Handle case of invalid nodes, in other words nodes that we cant visit because they're off the board or 
 
     if (activeIttr.isContainerEmpty()){
       newConsoleContent.push('In this case, the end point could not be found')
@@ -83,6 +81,57 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
     }
   }
 
+  
+  const play = (activeIttr:any, newConsoleContent: string[]):void  =>{
+    setIsPlaying(true)
+    const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+  
+    const illustrate = async():Promise<void> =>{
+      for(let i:number = 0; i < res.length; i ++){
+        const node:matrixItemObject = res[i];
+
+        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
+          styleElementSync(node.pos, 'visited-1')
+          await new Promise(resolve => setTimeout(resolve, Math.min(i / 12, 13)));
+        }
+      }
+    };
+
+    illustrate().then(()=>{
+
+      const excluded = inShortestPathExclusions(activeIttr)
+
+      if (!excluded){
+        if (activeIttr.endFound) styleShortestPath(activeIttr.generateShortestPath())
+        else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
+      }
+      else if(!activeIttr.endFound){
+        newConsoleContent.push('In this scenario, the endpoint could not be reached.')
+      }
+      
+      setIsPlaying(false)
+
+    })
+
+
+  }
+
+   
+  const skipForward = (activeIttr: any, newConsoleContent: string[]):void =>{
+    const res:matrixItemObject[] = activeIttr.preformFullAlgo()
+    
+    for(let i:number = 0; i < res.length; i ++){
+        const node:matrixItemObject = res[i];
+        if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElementSync(node.pos, 'visited-1-sync') 
+    }
+
+    if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)) styleShortestPathSync(activeIttr.generateShortestPath())
+    else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
+
+  
+  }
+
+  
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -102,60 +151,7 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       return 
     }
 
-  
-    
 
-
-
-    const play = ():void  =>{
-      setIsPlaying(true)
-      const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-    
-      const illustrate = async():Promise<void> =>{
-        for(let i:number = 0; i < res.length; i ++){
-          const node:matrixItemObject = res[i];
-
-          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)){
-            styleElementSync(node.pos, 'visited-1')
-            await new Promise(resolve => setTimeout(resolve, Math.min(i / 12, 13)));
-          }
-        }
-      };
-
-      illustrate().then(()=>{
-
-      const excluded = inShortestPathExclusions(activeIttr)
-
-      if (!excluded){
-        if (activeIttr.endFound) styleShortestPath(activeIttr.generateShortestPath())
-        else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
-      }
-      else{
-        if (!activeIttr.endFound)newConsoleContent.push('In this scenario, the endpoint could not be reached.')
-      }
-      
-      setIsPlaying(false)
-
-      })
-
-
-    }
-
-    const skipForward = ():void =>{
-      const res:matrixItemObject[] = activeIttr.preformFullAlgo()
-      
-      for(let i:number = 0; i < res.length; i ++){
-          const node:matrixItemObject = res[i];
-          if(!activeIttr.isStart(node.pos) && !activeIttr.isEnd(node.pos)) styleElementSync(node.pos, 'visited-1-sync') 
-      }
-
-      if (activeIttr.endFound && !inShortestPathExclusions(activeIttr)) styleShortestPathSync(activeIttr.generateShortestPath())
-      else newConsoleContent.push('In this scenario, the endpoint could not be reached.')
-
-    
-    }
-
-    
     switch (buttonId) {
       case 'reset':
         newConsoleContent.push(`Resetting the board so you can play everything again :3`)
@@ -165,24 +161,18 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
       case 'play':
 
         newConsoleContent.push(`Currently showing the playthrough for ${chosenAlgo}`)
-        // if (hasAnimated) reset()
-        play()
+        play(activeIttr, newConsoleContent)
         break;
-
-      case 'pause':
-        setIsPlaying(prev => !isPlaying)
-
-        break;
-
+        
       case 'fast-forward':
-        // if (hasAnimated) reset()
         if(!activeIttr.endFound) forward(activeIttr, newConsoleContent);
         else(styleShortestPathSync(activeIttr.generateShortestPath()))
         break;
+
       case 'skip-forward':
-        // if (hasAnimated) reset()
-        skipForward()
+        skipForward(activeIttr, newConsoleContent)
         break;
+
       default:
         break
     }
@@ -206,33 +196,29 @@ const Remote:FC<Props> = ({chosenAlgo, matrixState, startEndPos,  consoleContent
 
   useEffect(()=>{
     if(allowSetIttr.current) currIttr.current = assignActiveItterator(chosenAlgo, startEndPos, matrixState.matrix)
-    allowSetIttr.current = true;
-    
+    allowSetIttr.current = true;  
 
   },[chosenAlgo])
 
-  return (<div id='remote' className='fdr se'>
-  <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
-    <SkipBack/>
-  </button>
+  return (
+    <div id='remote' className='fdr se'>
+      <button id='reset' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
+        <SkipBack/>
+      </button>
 
-  <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
+      <button id='play' className='remote-btn sq-buttons udc' onClick={handleOnClick}>
         <Play/>
-    </button> 
+      </button> 
 
-  <button 
-      id='fast-forward' 
-      className='remote-btn sq-buttons udc' 
-      onClick={handleOnClick}
-    >
+      <button  id='fast-forward'  className='remote-btn sq-buttons udc'  onClick={handleOnClick}>
+        <FastForward/>
+      </button>
 
-    <FastForward/>
-  </button>
-
-  <button id='skip-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
-    <SkipForward/>
-  </button>
-</div>)
+      <button id='skip-forward' className='remote-btn sq-buttons' onClick={handleOnClick}>
+        <SkipForward/>
+      </button>
+    </div>
+  )
 
 }
 
