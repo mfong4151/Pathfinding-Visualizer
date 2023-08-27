@@ -1,9 +1,9 @@
-import { activeColor } from "../../../../../types/objects";
+import { activeColor } from "../../../types/objects";
 import { FC} from "react";
 import { ColorResult, SketchPicker } from "@hello-pangea/color-picker";
-import '../../EditColorModal/EditColorModal.css';
-import {CloseButton} from "../../../../SVGS";
-import { StateSetter } from "../../../../../types/setState";
+import '../EditColorModal.css';
+import {CloseButton} from "../../SVGS";
+import { StateSetter } from "../../../types/setState";
 
 interface Props {
     position: { left: number; top: number };

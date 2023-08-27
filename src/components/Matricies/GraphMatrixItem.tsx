@@ -1,7 +1,7 @@
 import React, { useEffect} from "react";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "./utils/dragDropConstraints";
-import SvgTotem from "./Totems/SvgTotem";
+import { ItemTypes } from "../DragDropTotems/dragDropConstraints";
+import SvgTotem from "../DragDropTotems/SvgTotem";
 import { startStop, pos } from "../../types/positions";
 import { consoleContentState, startEndState} from "../../types/state";
 import '../Matricies/graphs.css'

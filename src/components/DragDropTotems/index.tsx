@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import SvgTotem from './SvgTotem'
 import CellTotem from './CellTotem'
-import '../../Matricies/graphs.css'
+import '../Matricies/graphs.css'
 
 
 const DragDropTotems:FC = () => {
@@ -19,7 +19,7 @@ const DragDropTotems:FC = () => {
 
         </div>
         <div className="hover-over drag-icon-holder udc fdc">
-            <CellTotem totemType='w'/>
+            <CellTotem/>
             <p className="toolbar-text">Walls</p>
 
         </div>
